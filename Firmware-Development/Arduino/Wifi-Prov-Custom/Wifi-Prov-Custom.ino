@@ -8,21 +8,28 @@
 BluetoothSerial SerialBT;
 Preferences preferences;
 
+String ssid;
+String password;
+
+const char* tempssid = "";
+const char* temppassword = "";
+
 void setup() {
   Serial.begin(115200);
   SerialBT.begin("ESP32");  // set Bluetooth name
 
-  preferences.begin("wifi_credentials", false);  // open NVS flash memory
+  preferences.begin("credentials", false);
+  ssid = preferences.getString("ssid", ""); 
+  password = preferences.getString("password", "");
 
-  if (preferences.getBytesLength("ssid") > 0 && preferences.getBytesLength("pass") > 0) {
-    // read stored credentials
-    char ssid[32], pass[64];
-    preferences.getBytes("ssid", ssid, 32);
-    preferences.getBytes("pass", pass, 64);
-
+  if (ssid == "" || password == ""){
+    Serial.println("No values saved for ssid or password");
+  }
+  
+  else if (ssid != NULL && password != NULL) {
     // try to connect to WiFi
     Serial.printf("Connecting to %s...\n", ssid);
-    WiFi.begin(ssid, pass);
+    WiFi.begin(ssid.c_str(), password.c_str());
     int retries = WIFI_RETRY;
     while (WiFi.status() != WL_CONNECTED && retries-- > 0) {
       delay(1000);
@@ -52,17 +59,16 @@ void loop() {
       return;
     }
 
-    // extract SSID and password from JSON
-    const char* ssid = doc["ssid"];
-    const char* pass = doc["pass"];
-
-    // store credentials in NVS flash
-    preferences.putBytes("ssid", (const uint8_t*)ssid, strlen(ssid) + 1);
-    preferences.putBytes("pass", (const uint8_t*)pass, strlen(pass) + 1);
+    tempssid = doc["ssid"];
+    temppassword = doc["password"];
+    Serial.println(tempssid);
+    Serial.println(temppassword);
+    preferences.putString("ssid", tempssid);
+    preferences.putString("password", temppassword);
 
     // switch to WiFi mode and connect
     Serial.printf("Connecting to %s...\n", ssid);
-    WiFi.begin(ssid, pass);
+    WiFi.begin(tempssid, temppassword);
     int retries = WIFI_RETRY;
     while (WiFi.status() != WL_CONNECTED && retries-- > 0) {
       delay(1000);
