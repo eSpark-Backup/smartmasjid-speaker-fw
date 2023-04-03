@@ -8,4 +8,4 @@
 extern Preferences preferences;
 
 bool connectWifiFromNVS(void);
-bool connectWifi(const char* ssid, const char* password);
+bool connectWifi(const char* ssid, const char* pass);

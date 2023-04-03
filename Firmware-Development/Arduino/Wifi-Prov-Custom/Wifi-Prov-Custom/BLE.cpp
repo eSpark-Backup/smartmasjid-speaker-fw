@@ -3,32 +3,23 @@
 BLEServer *pServer = NULL;
 BLEService *pService = NULL;
 BLECharacteristic *pTxCharacteristic;
+BLECharacteristic *pDeviceCharacteristic;
+BLECharacteristic *pProvCharacteristic;
+const char* jsonPacket = "{\"device_model\": \"SSB23V1\", \"mac_address\": \"abc:123:efg:456\", \"firmware_rev\": \"1.0\"}";
 
 class MyServerCallbacks : public BLEServerCallbacks
 {
   void onConnect(BLEServer *pServer)
   {
     Serial.println("BLE : device connected");
+    pDeviceCharacteristic->setValue(jsonPacket);
+    pDeviceCharacteristic->notify();
   };
 
   void onDisconnect(BLEServer *pServer)
   {
     Serial.println("BLE : device disconnected");
     pServer->startAdvertising(); // restart advertising
-  }
-};
-
-class DeviceCharacteristicsCallbacks : public BLECharacteristicCallbacks
-{
-  void onWrite(BLECharacteristic *pCharacteristic)
-  {
-    std::string rxValue = pCharacteristic->getValue();
-
-    if (rxValue.length() > 0)
-    {
-      Serial.print("Dev Received Value: ");
-      Serial.println(rxValue.c_str());
-    }
   }
 };
 
@@ -46,20 +37,34 @@ class ProvCharacteristicsCallbacks : public BLECharacteristicCallbacks
       if (error)
       {
         Serial.println("Error parsing JSON");
+        return;
       }
 
       const char *ssid = doc["ssid"];
-      const char *password = doc["password"];
+      const char *pass = doc["pass"];
+      const char *masjidId = doc["masjid_id"];
 
-      preferences.putString("ssid", ssid);
-      preferences.putString("password", password);
+      if (masjidId != NULL)
+      {
+        Serial.printf("Masjid ID : %s\n", masjidId);
+      }
+
+      if ((ssid != NULL) && (pass != NULL))
+      {
+        preferences.putString("ssid", ssid);
+        preferences.putString("pass", pass);
+      }
+      else
+      {
+        return;
+      }    
 
       // switch to WiFi mode and connect
-      if (connectWifi(ssid, password))
+      if (connectWifi(ssid, pass))
       {
         pServer->removeService(pService);
         BLEDevice::deinit();
-      }
+      }   
     }
   }
 };
@@ -84,13 +89,13 @@ bool initializeBLE(void)
 
   pTxCharacteristic->addDescriptor(new BLE2902());
 
-  BLECharacteristic *pDeviceCharacteristic = pService->createCharacteristic(
-      DEVICE_CHARACTERISTIC_UUID,
-      BLECharacteristic::PROPERTY_WRITE);
+  pDeviceCharacteristic = pService->createCharacteristic(
+                      DEVICE_CHARACTERISTIC_UUID,
+                      BLECharacteristic::PROPERTY_READ |
+                      BLECharacteristic::PROPERTY_NOTIFY
+                    );
 
-  pDeviceCharacteristic->setCallbacks(new DeviceCharacteristicsCallbacks());
-
-  BLECharacteristic *pProvCharacteristic = pService->createCharacteristic(
+  pProvCharacteristic = pService->createCharacteristic(
       PROV_CHARACTERISTIC_UUID,
       BLECharacteristic::PROPERTY_WRITE);
 
