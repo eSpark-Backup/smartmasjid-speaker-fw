@@ -6,6 +6,7 @@ BLECharacteristic *pTxCharacteristic;
 BLECharacteristic *pDeviceCharacteristic;
 BLECharacteristic *pProvCharacteristic;
 const char* jsonPacket = "{\"device_model\": \"SSB23V1\", \"mac_address\": \"abc:123:efg:456\", \"firmware_rev\": \"1.0\"}";
+bool bleStarted = false;
 
 class MyServerCallbacks : public BLEServerCallbacks
 {
@@ -60,11 +61,7 @@ class ProvCharacteristicsCallbacks : public BLECharacteristicCallbacks
       }    
 
       // switch to WiFi mode and connect
-      if (connectWifi(ssid, pass))
-      {
-        pServer->removeService(pService);
-        BLEDevice::deinit();
-      }   
+      connectWifi(ssid, pass);
     }
   }
 };
@@ -72,6 +69,7 @@ class ProvCharacteristicsCallbacks : public BLECharacteristicCallbacks
 bool initializeBLE(void)
 {
   WiFi.mode(WIFI_OFF);
+  delay(100);
   // Create the BLE Device
   BLEDevice::init("MYESP32");
 
@@ -107,5 +105,7 @@ bool initializeBLE(void)
   // Start advertising
   pServer->getAdvertising()->start();
   Serial.println("Waiting a client connection to notify...");
+
+  bleStarted = true;
   return true;
 }
