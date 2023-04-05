@@ -6,6 +6,9 @@ const char* api_endpoint_template = "/devices/%s/telemetry";
 const char* macAddress = "abc:123:efg:456";
 bool deviceTelmetryStatus= false;
 
+static char gssid[32];
+static char gpass[32];
+
 Preferences preferences;
 bool connectWifi(const char *ssid, const char *pass)
 {
@@ -109,6 +112,26 @@ bool sendDeviceTelemetry(const char* mac_address) {
     Serial.println(response);
     return false;
   }
+}
+
+bool storeWifiCredsRAM(const char* ssid, const char* pass)
+{
+  strcpy(gssid, ssid);
+  strcpy(gpass, pass);
+  return true;
+}
+
+bool storeWifiCredsNVS(void)
+{
+  storeWifiCredsNVS(gssid, gpass);
+  return true; 
+}
+
+bool storeWifiCredsNVS(const char* ssid, const char* pass)
+{
+  preferences.putString("ssid", ssid);
+  preferences.putString("pass", pass);
+  return true;
 }
 
 void createTelemetryJson(char* json, uint8_t size, const char* status, int battery) {

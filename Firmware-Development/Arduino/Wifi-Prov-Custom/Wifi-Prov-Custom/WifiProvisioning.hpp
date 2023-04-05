@@ -24,3 +24,6 @@ void wifiGotIP(WiFiEvent_t event, WiFiEventInfo_t info);
 bool sendDeviceTelemetry(const char* mac_address, uint8_t retry_interval, uint16_t max_retry_duration);
 bool sendDeviceTelemetry(const char* mac_address);
 void createTelemetryJson(char* json, uint8_t size, const char* status, int battery);
+bool storeWifiCredsNVS(void);
+bool storeWifiCredsNVS(const char* ssid, const char* pass);
+bool storeWifiCredsRAM(const char* ssid, const char* pass);

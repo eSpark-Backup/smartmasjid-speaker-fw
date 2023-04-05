@@ -18,6 +18,7 @@ void setup() {
 void loop() {
    if (bleStarted && deviceTelmetryStatus)
    {
+      storeWifiCredsNVS();
       btStop();
       bleStarted = false;
       Serial.println("BLE Stopped");  

@@ -7,6 +7,8 @@ BLECharacteristic *pDeviceCharacteristic;
 BLECharacteristic *pProvCharacteristic;
 const char* jsonPacket = "{\"device_model\": \"SSB23V1\", \"mac_address\": \"abc:123:efg:456\", \"firmware_rev\": \"1.0\"}";
 bool bleStarted = false;
+const char *ssid;
+const char *pass;
 
 class MyServerCallbacks : public BLEServerCallbacks
 {
@@ -41,8 +43,10 @@ class ProvCharacteristicsCallbacks : public BLECharacteristicCallbacks
         return;
       }
 
-      const char *ssid = doc["ssid"];
-      const char *pass = doc["pass"];
+      ssid = doc["ssid"];
+      pass = doc["pass"];
+      storeWifiCredsRAM(ssid, pass);
+      
       const char *masjidId = doc["masjid_id"];
 
       if (masjidId != NULL)
@@ -52,19 +56,18 @@ class ProvCharacteristicsCallbacks : public BLECharacteristicCallbacks
 
       if ((ssid != NULL) && (pass != NULL))
       {
-        preferences.putString("ssid", ssid);
-        preferences.putString("pass", pass);
+        // switch to WiFi mode and connect
+        connectWifi(ssid, pass);
       }
       else
       {
         return;
-      }    
-
-      // switch to WiFi mode and connect
-      connectWifi(ssid, pass);
+      }        
     }
   }
 };
+
+
 
 bool initializeBLE(void)
 {
