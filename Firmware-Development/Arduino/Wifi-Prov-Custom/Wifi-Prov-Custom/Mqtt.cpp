@@ -1,19 +1,9 @@
 #include "Mqtt.hpp"
 
-// MQTT broker configuration
-const char* mqtt_server = "smartmasjid-broker-dev.futuriklabs.com";
-const int mqtt_port = 1883;
-const char* mqtt_username = "device";
-const char* mqtt_password = "device";
-
-// MQTT topic to subscribe to
-const char* mqtt_topic_reset = "device/abc:123:efg:456/reset";
-const char* mqtt_topic_device_subscribe = "device/abc:123:efg:456/subscribe";
-
 WiFiClient wifiClient;
 PubSubClient mqttClient(wifiClient);
 
-void connectToMQTTBroker() {
+void MQTTClient::connectToBroker() {
   mqttClient.setServer(mqtt_server, mqtt_port);
   while (!mqttClient.connected()) {
     if (mqttClient.connect("arduino_client", mqtt_username, mqtt_password)) {
@@ -25,13 +15,13 @@ void connectToMQTTBroker() {
   }
 }
 
-void subscribeToMQTTTopic() {
-  mqttClient.setCallback(mqttCallback);
-  mqttTopicSubscribe(mqtt_topic_reset);
-  mqttTopicSubscribe(mqtt_topic_device_subscribe);
+void MQTTClient::subscribeTopics() {
+  mqttClient.setCallback(std::bind(&MQTTClient::receiveCallback, this, std::placeholders::_1, std::placeholders::_2, std::placeholders::_3));
+  subscribe(mqtt_topic_reset);
+  subscribe(mqtt_topic_device_subscribe);
 }
 
-void mqttCallback(char* topic, byte* payload, unsigned int length) {
+void MQTTClient::receiveCallback(char* topic, byte* payload, unsigned int length) {
   Serial.print("Received MQTT message [");
   Serial.print(topic);
   Serial.print("]: ");
@@ -39,14 +29,14 @@ void mqttCallback(char* topic, byte* payload, unsigned int length) {
   Serial.write(payload, length);
   Serial.println();
 
-  switch(getMqttTopic(topic))
+  switch(getTopic(topic))
   {
     case DEVICE_RESET:
       Serial.println("RESET TOPIC");
       break;
       
     case DEVICE_SUBSCRIBE:
-      extractMqttTopicAndSubscribe((const char*)payload);
+      extractTopicAndSubscribe((const char*)payload);
       Serial.println("SUBSCRIBE TOPIC");
       break;
       
@@ -55,11 +45,11 @@ void mqttCallback(char* topic, byte* payload, unsigned int length) {
   }
 }
 
-void MQTTLoop() {
+void MQTTClient::loop() {
   mqttClient.loop();
 }
 
-bool mqttTopicSubscribe(const char* topic)
+bool MQTTClient::subscribe(const char* topic)
 {
   if (mqttClient.subscribe(topic))
   {
@@ -69,7 +59,7 @@ bool mqttTopicSubscribe(const char* topic)
   return false;
 }
 
-uint8_t getMqttTopic(const char* topic)
+uint8_t MQTTClient::getTopic(const char* topic)
 {
   if (!strcmp(topic, mqtt_topic_reset))
   {
@@ -82,7 +72,7 @@ uint8_t getMqttTopic(const char* topic)
   return UNKNOWN_TOPIC;
 }
 
-bool extractMqttTopicAndSubscribe(const char* message) {
+bool MQTTClient::extractTopicAndSubscribe(const char* message) {
   DynamicJsonDocument doc(256);
   DeserializationError error = deserializeJson(doc, message);
   if (error) {
@@ -91,7 +81,7 @@ bool extractMqttTopicAndSubscribe(const char* message) {
   else 
   {
     const char* topic = doc["topic"];
-    if (mqttTopicSubscribe(topic))
+    if (subscribe(topic))
     {
       return true;
     }

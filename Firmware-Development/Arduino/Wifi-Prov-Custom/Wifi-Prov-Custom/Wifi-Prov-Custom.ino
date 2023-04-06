@@ -1,6 +1,7 @@
 #include "BLE.hpp"
 #include "WifiProvisioning.hpp"
 #include "Mqtt.hpp"
+MQTTClient mqtt;
 
 void setup() {
   Serial.begin(115200);
@@ -33,14 +34,14 @@ void setup() {
 }
 
 void loop() {
-  connectToMQTTBroker();
-  subscribeToMQTTTopic();
+  mqtt.connectToBroker();
+  mqtt.subscribeTopics();
   while (1)
   {
     if (WiFi.status() != WL_CONNECTED)
     {
       connectWifiFromNVS();
     }
-    MQTTLoop();
+    mqtt.loop();
   }
 }
