@@ -14,14 +14,20 @@ class MQTTClient
 {
   private:
     // MQTT broker configuration
-    const char* mqtt_server = "smartmasjid-broker-dev.futuriklabs.com";
-    const int mqtt_port = 1883;
-    const char* mqtt_username = "device";
-    const char* mqtt_password = "device";
+    const char* mqttServer = "smartmasjid-broker-dev.futuriklabs.com";
+    const int mqttPort = 1883;
+    const char* mqttUsername = "device";
+    const char* mqttPassword = "device";
 
+    /* MQTT topic details */
+    const char* topicPrefix = "device";
+    const char* macAddress = "abc:123:efg:456";
+    
     // MQTT topic to subscribe to
-    const char* mqtt_topic_reset = "device/abc:123:efg:456/reset";
-    const char* mqtt_topic_device_subscribe = "device/abc:123:efg:456/subscribe";
+    const char* mqttTopicReset  = "reset";
+    const char* mqttTopicSubscribe  = "subscribe";
+    const char* mqttTopicUnsubscribe  = "unsubscribe";
+    const char* mqttTopicWifi  = "wifi";
 
   public:
     void connectToBroker();
@@ -31,4 +37,5 @@ class MQTTClient
     bool subscribe(const char* topic);
     uint8_t getTopic(const char* topic);
     bool extractTopicAndSubscribe(const char* message);
+    void getTopicPath(char* dest, const char* topicName); 
 };

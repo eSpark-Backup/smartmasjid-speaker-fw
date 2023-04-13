@@ -4,9 +4,9 @@ WiFiClient wifiClient;
 PubSubClient mqttClient(wifiClient);
 
 void MQTTClient::connectToBroker() {
-  mqttClient.setServer(mqtt_server, mqtt_port);
+  mqttClient.setServer(mqttServer, mqttPort);
   while (!mqttClient.connected()) {
-    if (mqttClient.connect("arduino_client", mqtt_username, mqtt_password)) {
+    if (mqttClient.connect("arduino_client", mqttUsername, mqttPassword)) {
       Serial.println("Connected to MQTT broker");
     } else {
       Serial.println("Failed to connect to MQTT broker");
@@ -17,8 +17,16 @@ void MQTTClient::connectToBroker() {
 
 void MQTTClient::subscribeTopics() {
   mqttClient.setCallback(std::bind(&MQTTClient::receiveCallback, this, std::placeholders::_1, std::placeholders::_2, std::placeholders::_3));
-  subscribe(mqtt_topic_reset);
-  subscribe(mqtt_topic_device_subscribe);
+
+  char topicPath[50];
+  getTopicPath(topicPath, mqttTopicReset);
+  subscribe(topicPath);
+  getTopicPath(topicPath, mqttTopicSubscribe);
+  subscribe(topicPath);
+  getTopicPath(topicPath, mqttTopicUnsubscribe);
+  subscribe(topicPath);
+  getTopicPath(topicPath, mqttTopicWifi);
+  subscribe(topicPath);
 }
 
 void MQTTClient::receiveCallback(char* topic, byte* payload, unsigned int length) {
@@ -61,11 +69,15 @@ bool MQTTClient::subscribe(const char* topic)
 
 uint8_t MQTTClient::getTopic(const char* topic)
 {
-  if (!strcmp(topic, mqtt_topic_reset))
+  char topicPath[50];
+  getTopicPath(topicPath, mqttTopicReset);
+  if (!strcmp(topic, topicPath))
   {
     return DEVICE_RESET;
   }
-  else if (!strcmp(topic, mqtt_topic_device_subscribe))
+
+  getTopicPath(topicPath, mqttTopicSubscribe);
+  if (!strcmp(topic, topicPath))
   {
     return DEVICE_SUBSCRIBE;
   }
@@ -87,4 +99,18 @@ bool MQTTClient::extractTopicAndSubscribe(const char* message) {
     }
   }
   return false;
+}
+
+void MQTTClient::getTopicPath(char* dest, const char* topicName)
+{
+  // Copy the prefix to the destination buffer
+  strcpy(dest, topicPrefix);
+
+  // Add the MAC address to the destination buffer, separating it with slashes
+  strcat(dest, "/");
+  strcat(dest, macAddress);
+
+  // Add the topic name to the destination buffer, also separated with slashes
+  strcat(dest, "/");
+  strcat(dest, topicName);
 }
