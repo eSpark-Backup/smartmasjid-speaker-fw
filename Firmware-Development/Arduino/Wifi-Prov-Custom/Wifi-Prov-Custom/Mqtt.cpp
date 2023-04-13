@@ -47,6 +47,11 @@ void MQTTClient::receiveCallback(char* topic, byte* payload, unsigned int length
       extractTopicAndSubscribe((const char*)payload);
       Serial.println("SUBSCRIBE TOPIC");
       break;
+
+    case DEVICE_UNSUBSCRIBE:
+      extractTopicAndUnsubscribe((const char*)payload);
+      Serial.println("UNSUBSCRIBE TOPIC");
+      break;
       
     default:
       Serial.println("UNKNOWN TOPIC");
@@ -67,6 +72,16 @@ bool MQTTClient::subscribe(const char* topic)
   return false;
 }
 
+bool MQTTClient::unsubscribe(const char* topic)
+{
+  if (mqttClient.unsubscribe(topic))
+  {
+    Serial.printf("Unsubscribed to %s\n",topic);
+    return true;
+  }
+  return false;
+}
+
 uint8_t MQTTClient::getTopic(const char* topic)
 {
   char topicPath[50];
@@ -81,10 +96,27 @@ uint8_t MQTTClient::getTopic(const char* topic)
   {
     return DEVICE_SUBSCRIBE;
   }
+
+  getTopicPath(topicPath, mqttTopicUnsubscribe);
+  if (!strcmp(topic, topicPath))
+  {
+    return DEVICE_UNSUBSCRIBE;
+  }
+  
   return UNKNOWN_TOPIC;
 }
 
 bool MQTTClient::extractTopicAndSubscribe(const char* message) {
+
+  return extractTopicAndControlSubscription(SUBSCRIBE, message);
+}
+
+bool MQTTClient::extractTopicAndUnsubscribe(const char* message) {
+
+  return extractTopicAndControlSubscription(UNSUBSCRIBE, message);
+}
+
+bool MQTTClient::extractTopicAndControlSubscription(subscription control, const char* message) {
   DynamicJsonDocument doc(256);
   DeserializationError error = deserializeJson(doc, message);
   if (error) {
@@ -93,13 +125,30 @@ bool MQTTClient::extractTopicAndSubscribe(const char* message) {
   else 
   {
     const char* topic = doc["topic"];
-    if (subscribe(topic))
+    switch (control)
     {
-      return true;
+      case SUBSCRIBE:
+      if (subscribe(topic))
+      {
+        return true;
+      }
+      break;
+      
+      case UNSUBSCRIBE:
+      if (unsubscribe(topic))
+      {
+        return true;
+      }
+      break;
+      
+      default:
+      Serial.println("UNKNOWN CONTROL");
     }
+    
   }
   return false;
 }
+
 
 void MQTTClient::getTopicPath(char* dest, const char* topicName)
 {

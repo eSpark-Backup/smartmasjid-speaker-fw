@@ -7,8 +7,15 @@ enum mqttTopics
 {
   DEVICE_RESET,
   DEVICE_SUBSCRIBE,
+  DEVICE_UNSUBSCRIBE,
   UNKNOWN_TOPIC = 0xFF,
 };
+
+typedef enum 
+{
+   SUBSCRIBE,
+   UNSUBSCRIBE,
+} subscription;
 
 class MQTTClient
 {
@@ -35,7 +42,10 @@ class MQTTClient
     void receiveCallback(char* topic, byte* payload, unsigned int length);
     void loop();
     bool subscribe(const char* topic);
+    bool unsubscribe(const char* topic);
     uint8_t getTopic(const char* topic);
+    bool extractTopicAndControlSubscription(subscription control, const char* message);
     bool extractTopicAndSubscribe(const char* message);
+    bool extractTopicAndUnsubscribe(const char* message);
     void getTopicPath(char* dest, const char* topicName); 
 };
