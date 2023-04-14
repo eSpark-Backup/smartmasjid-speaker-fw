@@ -1,5 +1,7 @@
 #include "BLE.hpp"
 
+WifiProvisioning* pWifiProv = NULL;
+
 BLEServer *pServer = NULL;
 BLEService *pService = NULL;
 BLECharacteristic *pTxCharacteristic;
@@ -45,7 +47,7 @@ class ProvCharacteristicsCallbacks : public BLECharacteristicCallbacks
 
       ssid = doc["ssid"];
       pass = doc["pass"];
-      storeWifiCredsRAM(ssid, pass);
+      pWifiProv->storeWifiCredsRAM(ssid, pass);
       
       const char *masjidId = doc["masjid_id"];
 
@@ -57,7 +59,7 @@ class ProvCharacteristicsCallbacks : public BLECharacteristicCallbacks
       if ((ssid != NULL) && (pass != NULL))
       {
         // switch to WiFi mode and connect
-        connectWifi(ssid, pass);
+        pWifiProv->connectWifi(ssid, pass);
       }
       else
       {
@@ -69,8 +71,9 @@ class ProvCharacteristicsCallbacks : public BLECharacteristicCallbacks
 
 
 
-bool initializeBLE(void)
+bool BLE::initialize(WifiProvisioning* wifiProv)
 {
+  pWifiProv = wifiProv;
   WiFi.mode(WIFI_OFF);
   delay(100);
   // Create the BLE Device
@@ -111,4 +114,9 @@ bool initializeBLE(void)
 
   bleStarted = true;
   return true;
+}
+
+void BLE::stop(void)
+{
+  btStop();
 }

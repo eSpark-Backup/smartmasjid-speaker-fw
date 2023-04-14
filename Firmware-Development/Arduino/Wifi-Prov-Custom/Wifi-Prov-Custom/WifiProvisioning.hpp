@@ -15,15 +15,18 @@
 
 #define WIFI_RETRY 3  // number of times to retry WiFi connection
 
-extern Preferences preferences;
 extern bool deviceTelmetryStatus;
 
-bool connectWifiFromNVS(void);
-bool connectWifi(const char* ssid, const char* pass);
-void wifiGotIP(WiFiEvent_t event, WiFiEventInfo_t info);
-bool sendDeviceTelemetry(const char* mac_address, uint8_t retry_interval, uint16_t max_retry_duration);
-bool sendDeviceTelemetry(const char* mac_address);
-void createTelemetryJson(char* json, uint8_t size, const char* status, int battery);
-bool storeWifiCredsNVS(void);
-bool storeWifiCredsNVS(const char* ssid, const char* pass);
-bool storeWifiCredsRAM(const char* ssid, const char* pass);
+class WifiProvisioning 
+{
+    public:
+        bool connectWifiFromNVS(void);
+        bool connectWifi(const char* ssid, const char* pass);
+        void wifiGotIP(WiFiEvent_t event, WiFiEventInfo_t info);
+        bool sendDeviceTelemetry(const char* macAddress, uint8_t retryInterval, uint16_t maxRetryDuration);
+        bool sendDeviceTelemetry(const char* macAddress);
+        void createTelemetryJson(char* json, uint8_t size, const char* status, int battery);
+        bool storeWifiCredsNVS(void);
+        bool storeWifiCredsNVS(const char* ssid, const char* pass);
+        bool storeWifiCredsRAM(const char* ssid, const char* pass);
+};

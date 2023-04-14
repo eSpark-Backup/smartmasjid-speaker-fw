@@ -1,22 +1,23 @@
 #include "WifiProvisioning.hpp"
 
 // Replace with your API details
-const char* api_host = "smartmasjid-api-qa.futuriklabs.com";
-const char* api_endpoint_template = "/devices/%s/telemetry";
+const char* apiHost = "smartmasjid-api-qa.futuriklabs.com";
+const char* apiEndpointTemplate = "/devices/%s/telemetry";
 const char* macAddress = "abc:123:efg:456";
 bool deviceTelmetryStatus= false;
 
-static char gssid[32];
-static char gpass[32];
+static char gSsid[32];
+static char gPass[32];
 
 Preferences preferences;
-bool connectWifi(const char *ssid, const char *pass)
+
+bool WifiProvisioning::connectWifi(const char *ssid, const char *pass)
 {
   if (ssid != NULL && pass != NULL)
   {
     // try to connect to WiFi
     Serial.printf("Connecting to %s...\n", ssid);
-    WiFi.onEvent(wifiGotIP, WiFiEvent_t::ARDUINO_EVENT_WIFI_STA_GOT_IP);
+    WiFi.onEvent(std::bind(&WifiProvisioning::wifiGotIP, this, std::placeholders::_1, std::placeholders::_2), WiFiEvent_t::ARDUINO_EVENT_WIFI_STA_GOT_IP);
     WiFi.begin(ssid, pass);
     int retries = WIFI_RETRY;
     while (WiFi.status() != WL_CONNECTED && retries-- > 0)
@@ -37,7 +38,7 @@ bool connectWifi(const char *ssid, const char *pass)
   return false;
 }
 
-bool connectWifiFromNVS(void)
+bool WifiProvisioning::connectWifiFromNVS(void)
 {
   preferences.begin("credentials", false);
   String ssid = preferences.getString("ssid", "");
@@ -54,7 +55,7 @@ bool connectWifiFromNVS(void)
   return false;
 }
 
-void wifiGotIP(WiFiEvent_t event, WiFiEventInfo_t info) {
+void WifiProvisioning::wifiGotIP(WiFiEvent_t event, WiFiEventInfo_t info) {
 
   // Print network details
   Serial.print("Connected to Wi-Fi network with IP address: ");
@@ -65,41 +66,41 @@ void wifiGotIP(WiFiEvent_t event, WiFiEventInfo_t info) {
     deviceTelmetryStatus = true;
   }
 }
-bool sendDeviceTelemetry(const char* mac_address, uint8_t retry_interval, uint16_t max_retry_duration) 
+bool WifiProvisioning::sendDeviceTelemetry(const char* macAddress, uint8_t retryInterval, uint16_t maxRetryDuration) 
 {
   // Start retry loop
-  unsigned long start_time = millis();
-  while (millis() - start_time < (max_retry_duration * SECONDS)) 
+  unsigned long startTime = millis();
+  while (millis() - startTime < (maxRetryDuration * SECONDS)) 
   {
-    if (sendDeviceTelemetry(mac_address)) 
+    if (sendDeviceTelemetry(macAddress)) 
     {
       return true;
     }
     Serial.println("Failed to send telemetry, retrying in 10 seconds...");
-    delay(retry_interval * SECONDS);
+    delay(retryInterval * SECONDS);
   }
   return false;
 }
-bool sendDeviceTelemetry(const char* mac_address) {
+bool WifiProvisioning::sendDeviceTelemetry(const char* macAddress) {
   
   // Construct API endpoint with MAC address
-  char api_endpoint[100];
-  snprintf(api_endpoint, sizeof(api_endpoint), api_endpoint_template, mac_address);
+  char apiEndpoint[100];
+  snprintf(apiEndpoint, sizeof(apiEndpoint), apiEndpointTemplate, macAddress);
   
   // Make HTTP POST request
   HTTPClient http;
-  http.begin(api_host, 80, api_endpoint);
+  http.begin(apiHost, 80, apiEndpoint);
   http.addHeader("Content-Type", "application/json");
   
   char body[64];
   createTelemetryJson(body, sizeof(body), "ONLINE", 70);
   
-  int http_code = http.POST(body);
+  int httpCode = http.POST(body);
   const char* response = http.getString().c_str();
   http.end();
 
   // Check for successful response
-  if ((http_code == HTTP_STATUS_OK) || (http_code == HTTP_STATUS_CREATED)) 
+  if ((httpCode == HTTP_STATUS_OK) || (httpCode == HTTP_STATUS_CREATED)) 
   {
     Serial.println("Telemetry sent successfully!");
     Serial.println(response);
@@ -108,33 +109,33 @@ bool sendDeviceTelemetry(const char* mac_address) {
   else 
   {
     Serial.print("Failed to send telemetry with error code: ");
-    Serial.println(http_code);
+    Serial.println(httpCode);
     Serial.println(response);
     return false;
   }
 }
 
-bool storeWifiCredsRAM(const char* ssid, const char* pass)
+bool WifiProvisioning::storeWifiCredsRAM(const char* ssid, const char* pass)
 {
-  strcpy(gssid, ssid);
-  strcpy(gpass, pass);
+  strcpy(gSsid, ssid);
+  strcpy(gPass, pass);
   return true;
 }
 
-bool storeWifiCredsNVS(void)
+bool WifiProvisioning::storeWifiCredsNVS(void)
 {
-  storeWifiCredsNVS(gssid, gpass);
+  storeWifiCredsNVS(gSsid, gPass);
   return true; 
 }
 
-bool storeWifiCredsNVS(const char* ssid, const char* pass)
+bool WifiProvisioning::storeWifiCredsNVS(const char* ssid, const char* pass)
 {
   preferences.putString("ssid", ssid);
   preferences.putString("pass", pass);
   return true;
 }
 
-void createTelemetryJson(char* json, uint8_t size, const char* status, int battery) {
+void WifiProvisioning::createTelemetryJson(char* json, uint8_t size, const char* status, int battery) {
   // Create a JSON document
   StaticJsonDocument<64> doc;
 

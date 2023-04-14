@@ -15,5 +15,9 @@
 
 extern bool bleStarted;
 
-bool initializeBLE(void);
-bool stopBLE(void);
+class BLE
+{
+  public:
+    bool initialize(WifiProvisioning* wifiProv);
+    void stop(void);
+};

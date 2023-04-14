@@ -1,12 +1,15 @@
 #include "BLE.hpp"
 #include "WifiProvisioning.hpp"
 #include "Mqtt.hpp"
+
+WifiProvisioning wifiProv;
 MQTTClient mqtt;
+BLE ble;
 
 void setup() {
   Serial.begin(115200);
   
-  if(connectWifiFromNVS())
+  if(wifiProv.connectWifiFromNVS())
   {
     while(!deviceTelmetryStatus)
     {
@@ -17,14 +20,14 @@ void setup() {
   
   // switch to Bluetooth mode
   Serial.println("Switching to Bluetooth mode");
-  initializeBLE();
+  ble.initialize(&wifiProv);
   while(WiFi.status() != WL_CONNECTED);
   while (1)
   {
     if (bleStarted && deviceTelmetryStatus)
     {
-        storeWifiCredsNVS();
-        btStop();
+        wifiProv.storeWifiCredsNVS();
+        ble.stop();
         bleStarted = false;
         Serial.println("BLE Stopped"); 
         return; 
@@ -40,7 +43,7 @@ void loop() {
   {
     if (WiFi.status() != WL_CONNECTED)
     {
-      connectWifiFromNVS();
+      wifiProv.connectWifiFromNVS();
     }
     mqtt.loop();
   }
