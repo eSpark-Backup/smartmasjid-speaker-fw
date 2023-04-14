@@ -3,13 +3,13 @@
 #include <PubSubClient.h>
 #include <ArduinoJson.h>
 
-enum mqttTopics
+typedef enum 
 {
   DEVICE_RESET,
   DEVICE_SUBSCRIBE,
   DEVICE_UNSUBSCRIBE,
   UNKNOWN_TOPIC = 0xFF,
-};
+} mqttTopic;
 
 typedef enum 
 {
@@ -43,9 +43,11 @@ class MQTTClient
     void loop();
     bool subscribe(const char* topic);
     bool unsubscribe(const char* topic);
-    uint8_t getTopic(const char* topic);
+    mqttTopic getTopic(const char* topic);
     bool extractTopicAndControlSubscription(subscription control, const char* message);
     bool extractTopicAndSubscribe(const char* message);
     bool extractTopicAndUnsubscribe(const char* message);
     void getTopicPath(char* dest, const char* topicName); 
+    bool compareTopic(const char* topic, const char* topicName);
+    bool controlSubscription(subscription control, const char* topic);
 };

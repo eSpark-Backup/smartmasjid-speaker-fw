@@ -2,7 +2,7 @@
 
 WiFiClient wifiClient;
 PubSubClient mqttClient(wifiClient);
-
+    
 void MQTTClient::connectToBroker() {
   mqttClient.setServer(mqttServer, mqttPort);
   while (!mqttClient.connected()) {
@@ -82,28 +82,31 @@ bool MQTTClient::unsubscribe(const char* topic)
   return false;
 }
 
-uint8_t MQTTClient::getTopic(const char* topic)
+mqttTopic MQTTClient::getTopic(const char* topic)
 {
-  char topicPath[50];
-  getTopicPath(topicPath, mqttTopicReset);
-  if (!strcmp(topic, topicPath))
+  if (compareTopic(topic, mqttTopicReset))
   {
     return DEVICE_RESET;
   }
 
-  getTopicPath(topicPath, mqttTopicSubscribe);
-  if (!strcmp(topic, topicPath))
+  else if (compareTopic(topic, mqttTopicSubscribe))
   {
     return DEVICE_SUBSCRIBE;
   }
 
-  getTopicPath(topicPath, mqttTopicUnsubscribe);
-  if (!strcmp(topic, topicPath))
+  else if (compareTopic(topic, mqttTopicUnsubscribe))
   {
     return DEVICE_UNSUBSCRIBE;
   }
   
   return UNKNOWN_TOPIC;
+}
+
+bool MQTTClient::compareTopic(const char* topic, const char* topicName)
+{
+  char topicPath[50];
+  getTopicPath(topicPath, topicName);
+  return !strcmp(topicPath, topic);
 }
 
 bool MQTTClient::extractTopicAndSubscribe(const char* message) {
@@ -116,7 +119,9 @@ bool MQTTClient::extractTopicAndUnsubscribe(const char* message) {
   return extractTopicAndControlSubscription(UNSUBSCRIBE, message);
 }
 
-bool MQTTClient::extractTopicAndControlSubscription(subscription control, const char* message) {
+bool MQTTClient::extractTopicAndControlSubscription(subscription control, const char* message) 
+{
+  bool ret = false;
   DynamicJsonDocument doc(256);
   DeserializationError error = deserializeJson(doc, message);
   if (error) {
@@ -125,30 +130,29 @@ bool MQTTClient::extractTopicAndControlSubscription(subscription control, const 
   else 
   {
     const char* topic = doc["topic"];
-    switch (control)
-    {
-      case SUBSCRIBE:
-      if (subscribe(topic))
-      {
-        return true;
-      }
-      break;
-      
-      case UNSUBSCRIBE:
-      if (unsubscribe(topic))
-      {
-        return true;
-      }
-      break;
-      
-      default:
-      Serial.println("UNKNOWN CONTROL");
-    }
-    
+    ret = controlSubscription(control, topic);  
   }
-  return false;
+  return ret;
 }
 
+bool MQTTClient::controlSubscription(subscription control, const char* topic)
+{
+  bool ret = false;
+  switch (control)
+  {
+    case SUBSCRIBE:
+      ret = subscribe(topic);
+      break;
+    
+    case UNSUBSCRIBE:
+      ret = unsubscribe(topic);
+      break;
+    
+    default:
+      Serial.println("UNKNOWN CONTROL");
+  }
+  return ret;
+}
 
 void MQTTClient::getTopicPath(char* dest, const char* topicName)
 {
