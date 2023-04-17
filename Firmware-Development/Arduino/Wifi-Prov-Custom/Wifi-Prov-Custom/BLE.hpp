@@ -13,11 +13,19 @@
 #define DEVICE_CHARACTERISTIC_UUID  "6E400010-B5A3-F393-E0A9-E50E24DCCA9E"
 #define PROV_CHARACTERISTIC_UUID  "6E400011-B5A3-F393-E0A9-E50E24DCCA9E"
 
-extern bool bleStarted;
+typedef enum 
+{
+  BLE_STOPPED,
+  BLE_STARTED,
+} bleStatus;
 
 class BLE
 {
+  private:
+    bleStatus status = BLE_STOPPED;
+    
   public:
     bool initialize(WifiProvisioning* wifiProv);
-    void stop(void);
+    bool stop(void);
+    bool isStarted(void);
 };

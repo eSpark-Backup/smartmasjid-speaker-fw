@@ -8,7 +8,6 @@ BLECharacteristic *pTxCharacteristic;
 BLECharacteristic *pDeviceCharacteristic;
 BLECharacteristic *pProvCharacteristic;
 const char* jsonPacket = "{\"device_model\": \"SSB23V1\", \"mac_address\": \"abc:123:efg:456\", \"firmware_rev\": \"1.0\"}";
-bool bleStarted = false;
 const char *ssid;
 const char *pass;
 
@@ -112,11 +111,23 @@ bool BLE::initialize(WifiProvisioning* wifiProv)
   pServer->getAdvertising()->start();
   Serial.println("Waiting a client connection to notify...");
 
-  bleStarted = true;
+  status = BLE_STARTED;
   return true;
 }
 
-void BLE::stop(void)
+bool BLE::stop(void)
 {
-  btStop();
+  bool ret;
+  ret = btStop();
+  if (ret)
+  {
+    Serial.println("BLE Stopped"); 
+    status = BLE_STOPPED;
+  }
+  return ret;
+}
+
+bool BLE::isStarted(void)
+{
+  return (status==BLE_STARTED);
 }

@@ -11,7 +11,7 @@ void setup() {
   
   if(wifiProv.connectWifiFromNVS())
   {
-    while(!deviceTelmetryStatus)
+    while(!wifiProv.isTelemetrySent())
     {
       delay(100);
     }
@@ -24,12 +24,10 @@ void setup() {
   while(WiFi.status() != WL_CONNECTED);
   while (1)
   {
-    if (bleStarted && deviceTelmetryStatus)
+    if (ble.isStarted() && wifiProv.isTelemetrySent())
     {
         wifiProv.storeWifiCredsNVS();
         ble.stop();
-        bleStarted = false;
-        Serial.println("BLE Stopped"); 
         return; 
     }  
     delay(100);

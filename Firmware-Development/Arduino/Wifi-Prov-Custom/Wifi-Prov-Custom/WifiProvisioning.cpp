@@ -1,16 +1,5 @@
 #include "WifiProvisioning.hpp"
 
-// Replace with your API details
-const char* apiHost = "smartmasjid-api-qa.futuriklabs.com";
-const char* apiEndpointTemplate = "/devices/%s/telemetry";
-const char* macAddress = "abc:123:efg:456";
-bool deviceTelmetryStatus= false;
-
-static char gSsid[32];
-static char gPass[32];
-
-Preferences preferences;
-
 bool WifiProvisioning::connectWifi(const char *ssid, const char *pass)
 {
   if (ssid != NULL && pass != NULL)
@@ -63,7 +52,7 @@ void WifiProvisioning::wifiGotIP(WiFiEvent_t event, WiFiEventInfo_t info) {
 
   if (sendDeviceTelemetry(macAddress, RETRY_INTERVAL, MAX_RETRY_DURATION))
   {
-    deviceTelmetryStatus = true;
+    deviceTelemetryStatus = TELEMETRY_SENT;
   }
 }
 bool WifiProvisioning::sendDeviceTelemetry(const char* macAddress, uint8_t retryInterval, uint16_t maxRetryDuration) 
@@ -148,4 +137,9 @@ void WifiProvisioning::createTelemetryJson(char* json, uint8_t size, const char*
 
   // Print the JSON string
   Serial.println(json);
+}
+
+bool WifiProvisioning::isTelemetrySent(void)
+{
+  return (deviceTelemetryStatus==TELEMETRY_SENT);
 }
