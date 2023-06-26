@@ -1,13 +1,20 @@
 #include "BLE.hpp"
 #include "WifiProvisioning.hpp"
-#include "Mqtt.hpp"
-
+// #include "Mqtt.hpp"
+#ifdef ESP32
+#include <WiFi.h>
+#else
+#include <ESP32WiFi.h>
+#endif
 WifiProvisioning wifiProv;
-MQTTClient mqtt;
+// MQTTClient mqtt;
 BLE ble;
 
 void setup() {
   Serial.begin(115200);
+  Serial.print("ESP Board MAC Address: \n ");
+  Serial.println(WiFi.macAddress());
+  // String json={"device_model": SSB23V1, "mac_address": mny:489:efg:456, "firmware_rev": 1.0};
   
   if(wifiProv.connectWifiFromNVS())
   {
@@ -35,14 +42,5 @@ void setup() {
 }
 
 void loop() {
-  mqtt.connectToBroker();
-  mqtt.subscribeTopics();
-  while (1)
-  {
-    if (WiFi.status() != WL_CONNECTED)
-    {
-      wifiProv.connectWifiFromNVS();
-    }
-    mqtt.loop();
-  }
+
 }

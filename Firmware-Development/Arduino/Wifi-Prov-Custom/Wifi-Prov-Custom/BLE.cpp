@@ -7,16 +7,26 @@ BLEService *pService = NULL;
 BLECharacteristic *pTxCharacteristic;
 BLECharacteristic *pDeviceCharacteristic;
 BLECharacteristic *pProvCharacteristic;
-const char* jsonPacket = "{\"device_model\": \"SSB23V1\", \"mac_address\": \"abc:123:efg:456\", \"firmware_rev\": \"1.0\"}";
+String jsonPacket = "{\"device_model\": \"SSB23V1\", \"mac_address\": \"mny:489:efg:456\", \"firmware_rev\": \"1.0\"}";
+String  jsonPacket1 = "{\"device_model\": \"SSB23V1\", \"mac_address\": \"";
+String  jsonPacket2 = "mny:489:efg:456";
+String jsonPacket3 = "\", \"firmware_rev\": \"1.0\"}";
 const char *ssid;
 const char *pass;
 
 class MyServerCallbacks : public BLEServerCallbacks
 {
+
   void onConnect(BLEServer *pServer)
   {
     Serial.println("BLE : device connected");
-    pDeviceCharacteristic->setValue(jsonPacket);
+    String jsonPacket2= WiFi.macAddress();
+    Serial.print("ESP2 Board MAC Address:");
+    Serial.println(jsonPacket2);
+    jsonPacket= jsonPacket1 + jsonPacket2 + jsonPacket3;
+    Serial.println(jsonPacket);
+    // const char* jsonPacket = jsonPacket4;
+    pDeviceCharacteristic->setValue(jsonPacket.c_str());
     pDeviceCharacteristic->notify();
   };
 
@@ -29,6 +39,7 @@ class MyServerCallbacks : public BLEServerCallbacks
 
 class ProvCharacteristicsCallbacks : public BLECharacteristicCallbacks
 {
+  
   void onWrite(BLECharacteristic *pCharacteristic)
   {
     std::string rxValue = pCharacteristic->getValue();
@@ -76,7 +87,7 @@ bool BLE::initialize(WifiProvisioning* wifiProv)
   WiFi.mode(WIFI_OFF);
   delay(100);
   // Create the BLE Device
-  BLEDevice::init("SMSPK_SSB23V1");
+  BLEDevice::init("SSB23V1");
 
   // Create the BLE Server
   pServer = BLEDevice::createServer();
