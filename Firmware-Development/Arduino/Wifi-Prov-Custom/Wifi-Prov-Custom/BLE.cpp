@@ -12,10 +12,11 @@ const char* jsonPacket;
 const char *ssid;
 const char *pass;
 #include <ArduinoJson.h>
+String jsonString;
 
 
 // Function to generate the JSON string
-const char* generateJson(String device_model,String mac_address,String firmware_rev) {
+const char* generatefactoryinfoJson(const char* device_model,const char* mac_address,const char* firmware_rev) {
   // Create a JSON document
   StaticJsonDocument<256> doc;
 
@@ -25,7 +26,7 @@ const char* generateJson(String device_model,String mac_address,String firmware_
   doc["firmware_rev"] = firmware_rev;
 
   // Serialize the JSON document to a string
-  String jsonString;
+  
   serializeJson(doc, jsonString);
 
   return jsonString.c_str();
@@ -35,11 +36,11 @@ class MyServerCallbacks : public BLEServerCallbacks
 {
   void onConnect(BLEServer *pServer)
   {
-    String _device_model = "SMSPK_SSB23V1";
+    // String _device_model = "SMSPK_SSB23V1";
     String _mac_address = WiFi.macAddress();
-    String _firmware_rev = "1.0";
+    // String _firmware_rev = "1.0";
 
-   jsonPacket=  generateJson(_device_model,_mac_address,_firmware_rev);
+   jsonPacket=  generatefactoryinfoJson("SMSPK_SSB23V1",_mac_address.c_str(),"1.0");
     Serial.println("BLE : device connected");
     pDeviceCharacteristic->setValue(jsonPacket);
     pDeviceCharacteristic->notify();
@@ -132,10 +133,10 @@ bool BLE::initialize(WifiProvisioning* wifiProv)
 
   // Start the service
   pService->start();
-  String _device_model = "SMSPK_SSB23V1";
+  // String _device_model = "SMSPK_SSB23V1";
   String _mac_address = WiFi.macAddress();
-  String _firmware_rev = "1.0";
-  jsonPacket=  generateJson(_device_model,_mac_address,_firmware_rev);
+  // String _firmware_rev = "1.0";
+  jsonPacket=  generatefactoryinfoJson("SMSPK_SSB23V1",_mac_address.c_str(),"1.0");
     Serial.println("BLE : device connected");
     pDeviceCharacteristic->setValue(jsonPacket);
     pDeviceCharacteristic->notify();
