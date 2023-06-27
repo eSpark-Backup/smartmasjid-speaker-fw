@@ -7,14 +7,39 @@ BLEService *pService = NULL;
 BLECharacteristic *pTxCharacteristic;
 BLECharacteristic *pDeviceCharacteristic;
 BLECharacteristic *pProvCharacteristic;
-const char* jsonPacket = "{\"device_model\": \"SSB23V1\", \"mac_address\": \"abc:123:efg:456\", \"firmware_rev\": \"1.0\"}";
+// const char* jsonPacket = "{\"device_model\": \"SSB23V1\", \"mac_address\": \"abc:123:efg:456\", \"firmware_rev\": \"1.0\"}";
+const char* jsonPacket;
 const char *ssid;
 const char *pass;
+#include <ArduinoJson.h>
+
+
+// Function to generate the JSON string
+const char* generateJson(String device_model,String mac_address,String firmware_rev) {
+  // Create a JSON document
+  StaticJsonDocument<256> doc;
+
+  // Set the values in the JSON document
+  doc["device_model"] = device_model;
+  doc["mac_address"] = mac_address;
+  doc["firmware_rev"] = firmware_rev;
+
+  // Serialize the JSON document to a string
+  String jsonString;
+  serializeJson(doc, jsonString);
+
+  return jsonString.c_str();
+}
 
 class MyServerCallbacks : public BLEServerCallbacks
 {
   void onConnect(BLEServer *pServer)
   {
+    String _device_model = "SMSPK_SSB23V1";
+    String _mac_address = WiFi.macAddress();
+    String _firmware_rev = "1.0";
+
+   jsonPacket=  generateJson(_device_model,_mac_address,_firmware_rev);
     Serial.println("BLE : device connected");
     pDeviceCharacteristic->setValue(jsonPacket);
     pDeviceCharacteristic->notify();
@@ -82,6 +107,7 @@ bool BLE::initialize(WifiProvisioning* wifiProv)
   pServer = BLEDevice::createServer();
   pServer->setCallbacks(new MyServerCallbacks());
 
+
   // Create the BLE Service
   pService = pServer->createService(SERVICE_UUID);
 
@@ -106,6 +132,13 @@ bool BLE::initialize(WifiProvisioning* wifiProv)
 
   // Start the service
   pService->start();
+  String _device_model = "SMSPK_SSB23V1";
+  String _mac_address = WiFi.macAddress();
+  String _firmware_rev = "1.0";
+  jsonPacket=  generateJson(_device_model,_mac_address,_firmware_rev);
+    Serial.println("BLE : device connected");
+    pDeviceCharacteristic->setValue(jsonPacket);
+    pDeviceCharacteristic->notify();
 
   // Start advertising
   pServer->getAdvertising()->start();
