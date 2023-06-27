@@ -28,7 +28,7 @@ class WifiProvisioning
     const char* apiHost = "smartmasjid-api-qa.futuriklabs.com";
     const char* apiEndpointTemplate = "/external/device/telemetry";
     
-    const char* macAddress = "abc:123:efg:456";
+    const char* macAddress = "abc:123:efg:456" ;
     char gSsid[32];
     char gPass[32];
     
