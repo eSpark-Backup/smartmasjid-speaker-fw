@@ -82,7 +82,7 @@ bool WifiProvisioning::sendDeviceTelemetry(const char* macAddress) {
   http.addHeader("Content-Type", "application/json");
   
   char body[64];
-  createTelemetryJson(body, sizeof(body), "abc:123:efg:456", 90);
+  createTelemetryJson(body, sizeof(body), "ONLINE", 70);
   
   int httpCode = http.POST(body);
   const char* response = http.getString().c_str();
@@ -124,13 +124,13 @@ bool WifiProvisioning::storeWifiCredsNVS(const char* ssid, const char* pass)
   return true;
 }
 
-void WifiProvisioning::createTelemetryJson(char* json, uint8_t size, const char* macAddress, int battery) {
+void WifiProvisioning::createTelemetryJson(char* json, uint8_t size, const char* status, int battery) {
   // Create a JSON document
   StaticJsonDocument<64> doc;
 
   // Add values to the document
+  doc["status"] = status;
   doc["battery"] = battery;
-  doc["macAddress"] = WiFi.macAddress();
 
   // Serialize the JSON document
   serializeJson(doc, json, size);
