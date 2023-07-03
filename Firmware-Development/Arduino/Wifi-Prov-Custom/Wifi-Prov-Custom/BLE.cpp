@@ -73,13 +73,6 @@ class ProvCharacteristicsCallbacks : public BLECharacteristicCallbacks
       ssid = doc["ssid"];
       pass = doc["pass"];
       pWifiProv->storeWifiCredsRAM(ssid, pass);
-      
-      const char *masjidId = doc["masjid_id"];
-
-      if (masjidId != NULL)
-      {
-        Serial.printf("Masjid ID : %s\n", masjidId);
-      }
 
       if ((ssid != NULL) && (pass != NULL))
       {
@@ -93,8 +86,6 @@ class ProvCharacteristicsCallbacks : public BLECharacteristicCallbacks
     }
   }
 };
-
-
 
 bool BLE::initialize(WifiProvisioning* wifiProv)
 {
