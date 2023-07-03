@@ -87,7 +87,7 @@ bool BLE::initialize(WifiProvisioning* wifiProv)
   WiFi.mode(WIFI_OFF);
   delay(100);
   // Create the BLE Device
-  BLEDevice::init("SSB23V1");
+  BLEDevice::init("SMBTN_SBB23V1");
 
   // Create the BLE Server
   pServer = BLEDevice::createServer();
