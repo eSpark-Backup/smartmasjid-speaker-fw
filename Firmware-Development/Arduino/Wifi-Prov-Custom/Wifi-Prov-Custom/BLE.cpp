@@ -1,4 +1,5 @@
 #include "BLE.hpp"
+#include "Device.h"
 
 WifiProvisioning* pWifiProv = NULL;
 
@@ -12,11 +13,11 @@ const char* jsonPacket;
 const char *ssid;
 const char *pass;
 #include <ArduinoJson.h>
-String jsonString;
+
 
 
 // Function to generate the JSON string
-const char* generatefactoryinfoJson(const char* device_model,const char* mac_address,const char* firmware_rev) {
+void generatefactoryinfoJson(const char* device_model, const char* mac_address, const char* firmware_rev, char* jsonString, uint8_t size) {
   // Create a JSON document
   StaticJsonDocument<256> doc;
 
@@ -27,22 +28,22 @@ const char* generatefactoryinfoJson(const char* device_model,const char* mac_add
 
   // Serialize the JSON document to a string
   
-  serializeJson(doc, jsonString);
-
-  return jsonString.c_str();
+  // serializeJson(doc, jsonString);
+  serializeJson(doc, jsonString, size);
 }
 
 class MyServerCallbacks : public BLEServerCallbacks
 {
   void onConnect(BLEServer *pServer)
   {
-    // String _device_model = "SMSPK_SSB23V1";
-    String _mac_address = WiFi.macAddress();
-    // String _firmware_rev = "1.0";
 
-   jsonPacket=  generatefactoryinfoJson("SMSPK_SSB23V1",_mac_address.c_str(),"1.0");
+    String _mac_address = WiFi.macAddress();
+
+    char json[125];
+    generatefactoryinfoJson(SM_MODEL,_mac_address.c_str(),SM_FIRMWARE_VER, json, sizeof(json));
+    Serial.println(json);
     Serial.println("BLE : device connected");
-    pDeviceCharacteristic->setValue(jsonPacket);
+    pDeviceCharacteristic->setValue(json);
     pDeviceCharacteristic->notify();
   };
 
@@ -124,14 +125,6 @@ bool BLE::initialize(WifiProvisioning* wifiProv)
 
   // Start the service
   pService->start();
-  // String _device_model = "SMSPK_SSB23V1";
-  String _mac_address = WiFi.macAddress();
-  // String _firmware_rev = "1.0";
-  jsonPacket=  generatefactoryinfoJson("SMSPK_SSB23V1",_mac_address.c_str(),"1.0");
-    Serial.println("BLE : device connected");
-    pDeviceCharacteristic->setValue(jsonPacket);
-    pDeviceCharacteristic->notify();
-
   // Start advertising
   pServer->getAdvertising()->start();
   Serial.println("Waiting a client connection to notify...");
