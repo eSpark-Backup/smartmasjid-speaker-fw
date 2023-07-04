@@ -1,4 +1,5 @@
 #include "BLE.hpp"
+#include "HTTP_SM.hpp"
 #include "WifiProvisioning.hpp"
 #ifdef ESP32
 #include <WiFi.h>
@@ -8,10 +9,14 @@
 WifiProvisioning wifiProv;
 BLE ble;
 
+
 void setup() {
   Serial.begin(115200);
   Serial.print("ESP Board MAC Address: \n ");
   Serial.println(WiFi.macAddress());
+
+  pinMode(buttonPin, INPUT);
+  attachInterrupt(buttonPin, handleButtonInterrupt, RISING);
   
   if(wifiProv.connectWifiFromNVS())
   {
@@ -36,8 +41,17 @@ void setup() {
     }  
     delay(100);
   }
+  
 }
 
 void loop() {
+  
+  // Check if the button was pressed
+ if (buttonPressed) {
+    buttonPressed = false;
+    Serial.println("Button Pressed");
 
+    // Send the HTTP POST request
+    sendPostRequest();
+  }
 }

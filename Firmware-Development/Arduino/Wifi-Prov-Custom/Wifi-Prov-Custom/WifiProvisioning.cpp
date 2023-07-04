@@ -130,7 +130,7 @@ void WifiProvisioning::createTelemetryJson(char* json, uint8_t size, const char*
 
   // Add values to the document
   doc["battery"] = battery;
-  doc["macAddress"] = WiFi.macAddress();
+  doc["macAddress"] = macAddress;
 
   // Serialize the JSON document
   serializeJson(doc, json, size);
