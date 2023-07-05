@@ -1,9 +1,13 @@
-# smartmasjid-firmware
+# Smart Masjid - Firmware
  To develop firmware for IoT Button and IoT Speaker products
 
+## API Swagger Documentation
+http://smartmasjid-api-qa.futuriklabs.com/swagger-ui/index.html#/
+
+## Firmware Flowchart
+https://app.diagrams.net/#G1D794t6WH5X4qnHniXaRM_4V8VDZjGsNo#%7B%22pageId%22%3A%22XOtjJPAAMMDfJb9Jv2DV%22%7D
 
 ## Testing BLE Provisioning with ESP32 Dev Module
-
 ### Required Software
 1. [ESP32 Flash Download Tool](https://www.espressif.com/sites/default/files/tools/flash_download_tool_3.9.4.zip)
 
