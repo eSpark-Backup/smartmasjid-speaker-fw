@@ -1,5 +1,5 @@
 #include "WifiProvisioning.hpp"
-
+#include "Device.h"
 bool WifiProvisioning::connectWifi(const char *ssid, const char *pass)
 {
   if (ssid != NULL && pass != NULL)
@@ -50,7 +50,7 @@ void WifiProvisioning::wifiGotIP(WiFiEvent_t event, WiFiEventInfo_t info) {
   Serial.print("Connected to Wi-Fi network with IP address: ");
   Serial.println(WiFi.localIP());
 
-  if (sendDeviceTelemetry(macAddress, RETRY_INTERVAL, MAX_RETRY_DURATION))
+  if (sendDeviceTelemetry(MAC_ADDRESS, RETRY_INTERVAL, MAX_RETRY_DURATION))
   {
     deviceTelemetryStatus = TELEMETRY_SENT;
   }
@@ -74,7 +74,7 @@ bool WifiProvisioning::sendDeviceTelemetry(const char* macAddress) {
   
   // Construct API endpoint with MAC address
   char apiEndpoint[100];
-  snprintf(apiEndpoint, sizeof(apiEndpoint), apiEndpointTemplate, macAddress);
+  snprintf(apiEndpoint, sizeof(apiEndpoint), apiEndpointTemplate);
   
   // Make HTTP POST request
   HTTPClient http;
@@ -82,7 +82,7 @@ bool WifiProvisioning::sendDeviceTelemetry(const char* macAddress) {
   http.addHeader("Content-Type", "application/json");
   
   char body[64];
-  createTelemetryJson(body, sizeof(body), WiFi.macAddress().c_str(), 90);
+  createTelemetryJson(body, sizeof(body), macAddress, 90);
   
   int httpCode = http.POST(body);
   const char* response = http.getString().c_str();
