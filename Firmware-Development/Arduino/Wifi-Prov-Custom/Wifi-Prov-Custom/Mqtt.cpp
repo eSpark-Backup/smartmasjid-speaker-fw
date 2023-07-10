@@ -1,5 +1,9 @@
 #include "Mqtt.hpp"
-
+#include "WifiProvisioning.hpp"
+#include <ArduinoJson.h>
+// const char* ssid_1;
+char ssid_1[32];
+char pass_1[32];
 WiFiClient wifiClient;
 PubSubClient mqttClient(wifiClient);
     
@@ -28,7 +32,7 @@ void MQTTClient::subscribeTopics() {
   getTopicPath(topicPath, mqttTopicWifi);
   subscribe(topicPath);
 }
-
+byte data[23] = "HelloWorld";
 void MQTTClient::receiveCallback(char* topic, byte* payload, unsigned int length) {
   Serial.print("Received MQTT message [");
   Serial.print(topic);
@@ -51,6 +55,20 @@ void MQTTClient::receiveCallback(char* topic, byte* payload, unsigned int length
     case DEVICE_UNSUBSCRIBE:
       extractTopicAndUnsubscribe((const char*)payload);
       Serial.println("UNSUBSCRIBE TOPIC");
+      break;
+
+    case DEVICE_Wifi:     
+      Serial.println("Wifi TOPIC");     
+      pWifiProv->removeWifiCredsNVS();
+      Serial.println("Old Credential removed");
+      ReadfactoryinfoJson((const char*)payload, length);
+      Serial.print("SSID: ");
+      Serial.println(ssid_1);
+      Serial.print("Password: ");
+      Serial.println(pass_1);
+      // delay(1000);
+      pWifiProv->storeWifiCredsNVS(ssid_1,pass_1);
+      pWifiProv->connectWifi(ssid_1,pass_1);
       break;
       
     default:
@@ -97,6 +115,10 @@ mqttTopic MQTTClient::getTopic(const char* topic)
   else if (compareTopic(topic, mqttTopicUnsubscribe))
   {
     return DEVICE_UNSUBSCRIBE;
+  }
+  else if (compareTopic(topic, mqttTopicWifi))
+  {
+    return DEVICE_Wifi;
   }
   
   return UNKNOWN_TOPIC;
@@ -167,3 +189,24 @@ void MQTTClient::getTopicPath(char* dest, const char* topicName)
   strcat(dest, "/");
   strcat(dest, topicName);
 }
+
+MQTTClient::MQTTClient(WifiProvisioning* wifiProv)
+{
+  pWifiProv = wifiProv;
+}
+
+void MQTTClient::ReadfactoryinfoJson(const char* jsonpacket, unsigned int length) {
+
+  // read JSON data from Bluetooth
+  StaticJsonDocument<125> doc;
+  DeserializationError error = deserializeJson(doc, jsonpacket, length);
+  const char* ssid = doc["ssid"];
+  const char* pass = doc["password"];
+
+  memcpy(ssid_1, ssid , strlen(ssid));
+  memcpy(pass_1, pass , strlen(pass));
+  Serial.println(ssid_1);
+  Serial.println(pass_1);
+}
+
+

@@ -1,9 +1,16 @@
 #include "WifiProvisioning.hpp"
 #include "Device.h"
+int count = 0;
+int flag = 0;
 bool WifiProvisioning::connectWifi(const char *ssid, const char *pass)
-{
+{ 
+ if ((count<=10)&&(flag==0))
+  {
   if (ssid != NULL && pass != NULL)
   {
+    Serial.print(count);
+    count++;
+    flag =0;
     // try to connect to WiFi
     Serial.printf("Connecting to %s...\n", ssid);
     WiFi.onEvent(std::bind(&WifiProvisioning::wifiGotIP, this, std::placeholders::_1, std::placeholders::_2), WiFiEvent_t::ARDUINO_EVENT_WIFI_STA_GOT_IP);
@@ -25,6 +32,13 @@ bool WifiProvisioning::connectWifi(const char *ssid, const char *pass)
     }
   }
   return false;
+}
+else
+   {
+   flag=1;
+   count =0;
+   }
+
 }
 
 bool WifiProvisioning::connectWifiFromNVS(void)
@@ -123,7 +137,17 @@ bool WifiProvisioning::storeWifiCredsNVS(const char* ssid, const char* pass)
   preferences.putString("pass", pass);
   return true;
 }
-
+bool WifiProvisioning::removeWifiCredsNVS(void)
+{
+  removeWifiCredsNVS(gSsid, gPass);
+  return true; 
+}
+bool WifiProvisioning::removeWifiCredsNVS(const char* ssid, const char* pass)
+{
+  preferences.remove("ssid");
+  preferences.remove("pass");
+  return true;
+}
 void WifiProvisioning::createTelemetryJson(char* json, uint8_t size, const char* macAddress, int battery) {
   // Create a JSON document
   StaticJsonDocument<64> doc;

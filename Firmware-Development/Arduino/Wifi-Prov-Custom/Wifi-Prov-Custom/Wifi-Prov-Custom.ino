@@ -3,7 +3,7 @@
 #include "Mqtt.hpp"
 
 WifiProvisioning wifiProv;
-MQTTClient mqtt;
+MQTTClient mqtt(&wifiProv);
 BLE ble;
 
 void setup() {

@@ -2,12 +2,13 @@
 #include <WiFi.h>
 #include <PubSubClient.h>
 #include <ArduinoJson.h>
-
+#include "WifiProvisioning.hpp"
 typedef enum 
 {
   DEVICE_RESET,
   DEVICE_SUBSCRIBE,
   DEVICE_UNSUBSCRIBE,
+  DEVICE_Wifi,
   UNKNOWN_TOPIC = 0xFF,
 } mqttTopic;
 
@@ -20,6 +21,7 @@ typedef enum
 class MQTTClient
 {
   private:
+    WifiProvisioning* pWifiProv;
     // MQTT broker configuration
     const char* mqttServer = "smartmasjid-broker-dev.futuriklabs.com";
     const int mqttPort = 1883;
@@ -37,6 +39,8 @@ class MQTTClient
     const char* mqttTopicWifi  = "wifi";
 
   public:
+    MQTTClient(WifiProvisioning* wifiProv);
+    void ReadfactoryinfoJson(const char* jsonpacket, unsigned int length);
     void connectToBroker();
     void subscribeTopics();
     void receiveCallback(char* topic, byte* payload, unsigned int length);
