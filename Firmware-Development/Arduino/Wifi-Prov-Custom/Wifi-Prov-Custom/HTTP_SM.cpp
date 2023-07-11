@@ -14,14 +14,16 @@ void handleButtonInterrupt()
 
 void sendPostRequest()
 {
-  // Create the JSON payload
-  String payload = "{\"masjidId\": " + String(masjidId) + "}";
+  StaticJsonDocument<200> doc;
+    doc["masjidId"] = 3;
+  String jsonString;
+  serializeJson(doc, jsonString);
 
   // Send the POST request
   HTTPClient http;
   http.begin(client, apiUrl);
   http.addHeader("Content-Type", "application/json");
-  int httpResponseCode = http.POST(payload);
+  int httpResponseCode = http.POST(jsonString);
 
   // Print the response
   Serial.print("HTTP Response Code: ");
