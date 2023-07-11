@@ -43,6 +43,7 @@ class MQTTClient
     void ReadfactoryinfoJson(const char* jsonpacket, unsigned int length);
     void connectToBroker();
     void subscribeTopics();
+    void UnsubscribeTopics();
     void receiveCallback(char* topic, byte* payload, unsigned int length);
     void loop();
     bool subscribe(const char* topic);

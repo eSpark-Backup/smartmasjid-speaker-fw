@@ -1,21 +1,16 @@
 #include "WifiProvisioning.hpp"
 #include "Device.h"
-int count = 0;
-int flag = 0;
-bool WifiProvisioning::connectWifi(const char *ssid, const char *pass)
+
+bool WifiProvisioning::connectWifi(const char *ssid, const char *pass,int retries)
 { 
- if ((count<=10)&&(flag==0))
-  {
   if (ssid != NULL && pass != NULL)
   {
     // Serial.print(count);
-    count++;
-    flag =0;
+
     // try to connect to WiFi
     Serial.printf("Connecting to %s...\n", ssid);
     WiFi.onEvent(std::bind(&WifiProvisioning::wifiGotIP, this, std::placeholders::_1, std::placeholders::_2), WiFiEvent_t::ARDUINO_EVENT_WIFI_STA_GOT_IP);
     WiFi.begin(ssid, pass);
-    int retries = WIFI_RETRY;
     while (WiFi.status() != WL_CONNECTED && retries-- > 0)
     {
       delay(1000);
@@ -33,13 +28,7 @@ bool WifiProvisioning::connectWifi(const char *ssid, const char *pass)
   }
   return false;
 }
-else
-   {
-   flag=1;
-   count =0;
-   }
 
-}
 
 bool WifiProvisioning::connectWifiFromNVS(void)
 {
@@ -85,7 +74,8 @@ bool WifiProvisioning::sendDeviceTelemetry(const char* macAddress, uint8_t retry
   return false;
 }
 bool WifiProvisioning::sendDeviceTelemetry(const char* macAddress) {
-  
+  // char apiEndpoint[100];
+  // snprintf(apiEndpoint, sizeof(apiEndpoint), "/api/telemetry?mac=%s&key=%s", macAddress, apikey);
   // Construct API endpoint with MAC address
   char apiEndpoint[100];
   snprintf(apiEndpoint, sizeof(apiEndpoint), apiEndpointTemplate);
@@ -93,8 +83,8 @@ bool WifiProvisioning::sendDeviceTelemetry(const char* macAddress) {
   // Make HTTP POST request
   HTTPClient http;
   http.begin(apiHost, 80, apiEndpoint);
+  http.addHeader("x-api-key", "b8z6X5fzbjNDGHz15XtPVzEkO3h5mCT7q4Ei8AupX9DD12PxL94rhnZHarHc8O2H");
   http.addHeader("Content-Type", "application/json");
-  
   char body[64];
   createTelemetryJson(body, sizeof(body), macAddress, 90);
   

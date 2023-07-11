@@ -32,7 +32,7 @@ void MQTTClient::subscribeTopics() {
   getTopicPath(topicPath, mqttTopicWifi);
   subscribe(topicPath);
 }
-byte data[23] = "HelloWorld";
+
 void MQTTClient::receiveCallback(char* topic, byte* payload, unsigned int length) {
   Serial.print("Received MQTT message [");
   Serial.print(topic);
@@ -45,8 +45,6 @@ void MQTTClient::receiveCallback(char* topic, byte* payload, unsigned int length
   {
     case DEVICE_RESET:
       Serial.println("RESET TOPIC");
-      break;
-      
     case DEVICE_SUBSCRIBE:
       extractTopicAndSubscribe((const char*)payload);
       Serial.println("SUBSCRIBE TOPIC");
@@ -67,7 +65,7 @@ void MQTTClient::receiveCallback(char* topic, byte* payload, unsigned int length
       Serial.print("Password: ");
       Serial.println(pass_1);
       pWifiProv->storeWifiCredsNVS(ssid_1,pass_1);
-      pWifiProv->connectWifi(ssid_1,pass_1);
+      pWifiProv->connectWifi(ssid_1,pass_1,10);
       break;
       
     default:

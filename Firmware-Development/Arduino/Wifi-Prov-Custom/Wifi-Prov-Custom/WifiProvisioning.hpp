@@ -27,7 +27,7 @@ class WifiProvisioning
     // Replace with your API details
     const char* apiHost = "smartmasjid-api-qa.futuriklabs.com";
     const char* apiEndpointTemplate = "/external/device/telemetry";
-    
+  
     const char* macAddress = "abc:123:efg:456" ;
     char gSsid[32];
     char gPass[32];
@@ -37,7 +37,7 @@ class WifiProvisioning
     
   public:
     bool connectWifiFromNVS(void);
-    bool connectWifi(const char* ssid, const char* pass);
+    bool connectWifi(const char* ssid, const char* pass,int retries = WIFI_RETRY);
     void wifiGotIP(WiFiEvent_t event, WiFiEventInfo_t info);
     bool sendDeviceTelemetry(const char* macAddress, uint8_t retryInterval, uint16_t maxRetryDuration);
     bool sendDeviceTelemetry(const char* macAddress);
