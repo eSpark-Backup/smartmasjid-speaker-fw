@@ -8,7 +8,7 @@ bool WifiProvisioning::connectWifi(const char *ssid, const char *pass)
   {
   if (ssid != NULL && pass != NULL)
   {
-    Serial.print(count);
+    // Serial.print(count);
     count++;
     flag =0;
     // try to connect to WiFi

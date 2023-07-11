@@ -66,7 +66,6 @@ void MQTTClient::receiveCallback(char* topic, byte* payload, unsigned int length
       Serial.println(ssid_1);
       Serial.print("Password: ");
       Serial.println(pass_1);
-      // delay(1000);
       pWifiProv->storeWifiCredsNVS(ssid_1,pass_1);
       pWifiProv->connectWifi(ssid_1,pass_1);
       break;
