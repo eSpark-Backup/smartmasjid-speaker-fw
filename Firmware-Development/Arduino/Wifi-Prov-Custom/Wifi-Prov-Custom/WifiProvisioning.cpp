@@ -74,9 +74,7 @@ bool WifiProvisioning::sendDeviceTelemetry(const char* macAddress, uint8_t retry
   return false;
 }
 bool WifiProvisioning::sendDeviceTelemetry(const char* macAddress) {
-  // char apiEndpoint[100];
-  // snprintf(apiEndpoint, sizeof(apiEndpoint), "/api/telemetry?mac=%s&key=%s", macAddress, apikey);
-  // Construct API endpoint with MAC address
+
   char apiEndpoint[100];
   snprintf(apiEndpoint, sizeof(apiEndpoint), apiEndpointTemplate);
   
