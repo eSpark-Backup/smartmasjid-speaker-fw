@@ -5,14 +5,14 @@
 const char* apiUrl = "http://smartmasjid-api-qa.futuriklabs.com/external/adhan/start";
 const int masjidId = 1;
 WiFiClient client;
-
+#include <ArduinoJson.h>
 bool buttonPressed = false;
-void handleButtonInterrupt()
-{
-    buttonPressed = true;
-}
+// void handleButtonInterrupt()
+// {
+//     buttonPressed = true;
+// }
 
-void sendPostRequest()
+void AdhanstartRequest()
 {
   StaticJsonDocument<200> doc;
     doc["masjidId"] = 3;

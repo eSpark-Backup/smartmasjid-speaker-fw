@@ -15,8 +15,11 @@ void setup() {
   Serial.print("ESP Board MAC Address: \n ");
   Serial.println(WiFi.macAddress());
 
-  pinMode(buttonPin, INPUT);
-  attachInterrupt(buttonPin, handleButtonInterrupt, RISING);
+  Button.setup();
+
+
+  // pinMode(buttonPin, INPUT);
+  // attachInterrupt(buttonPin, handleButtonInterrupt, RISING);
   
   if(wifiProv.connectWifiFromNVS())
   {
@@ -52,6 +55,6 @@ void loop() {
     Serial.println("Button Pressed");
 
     // Send the HTTP POST request
-    sendPostRequest();
+    AdhanstartRequest();
   }
 }
