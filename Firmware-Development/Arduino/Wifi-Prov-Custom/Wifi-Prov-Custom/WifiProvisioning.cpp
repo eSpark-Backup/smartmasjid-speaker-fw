@@ -79,6 +79,7 @@ bool WifiProvisioning::sendDeviceTelemetry(const char* macAddress) {
   // Make HTTP POST request
   HTTPClient http;
   http.begin(apiHost, 80, apiEndpoint);
+  http.addHeader("x-api-key", EXTERNAL_API_KEY);
   http.addHeader("Content-Type", "application/json");
   
   char body[64];
