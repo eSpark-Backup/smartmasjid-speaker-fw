@@ -4,6 +4,7 @@
 #include <WiFi.h>
 #include <Preferences.h>
 #include <HTTPClient.h>
+#include "Device.h"
 
 #define HTTP_STATUS_OK 200
 #define HTTP_STATUS_CREATED 201
@@ -29,7 +30,7 @@ class WifiProvisioning
     const char* apiHost = "smartmasjid-api-qa.futuriklabs.com";
     const char* apiEndpointTemplate = "/external/device/telemetry";
     
-    const char* macAddress = "abc:123:efg:456";
+    const char* macAddress = MAC_ADDRESS;
     char gSsid[32];
     char gPass[32];
     
