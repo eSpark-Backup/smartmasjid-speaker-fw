@@ -1,4 +1,5 @@
 #include "BLE.hpp"
+#include "Device.h"
 
 WifiProvisioning* pWifiProv = NULL;
 
@@ -20,7 +21,7 @@ class MyServerCallbacks : public BLEServerCallbacks
   void onConnect(BLEServer *pServer)
   {
     Serial.println("BLE : device connected");
-    String jsonPacket2= WiFi.macAddress();
+    String jsonPacket2= MAC_ADDRESS;
     Serial.print("ESP2 Board MAC Address:");
     Serial.println(jsonPacket2);
     jsonPacket= jsonPacket1 + jsonPacket2 + jsonPacket3;

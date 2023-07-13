@@ -1,4 +1,5 @@
 #include "WifiProvisioning.hpp"
+#include "Device.h"
 
 bool WifiProvisioning::connectWifi(const char *ssid, const char *pass)
 {
@@ -131,7 +132,7 @@ void WifiProvisioning::createTelemetryJson(char* json, uint8_t size, const char*
 
   // Add values to the document
   doc["battery"] = battery;
-  doc["macAddress"] = WiFi.macAddress();
+  doc["macAddress"] = MAC_ADDRESS;
 
   // Serialize the JSON document
   serializeJson(doc, json, size);

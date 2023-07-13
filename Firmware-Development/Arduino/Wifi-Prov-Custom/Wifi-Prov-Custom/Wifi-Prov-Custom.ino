@@ -1,5 +1,6 @@
 #include "BLE.hpp"
 #include "WifiProvisioning.hpp"
+#include "Device.h"
 #ifdef ESP32
 #include <WiFi.h>
 #else
@@ -11,7 +12,7 @@ BLE ble;
 void setup() {
   Serial.begin(115200);
   Serial.print("ESP Board MAC Address: \n ");
-  Serial.println(WiFi.macAddress());
+  Serial.println(MAC_ADDRESS);
   
   if(wifiProv.connectWifiFromNVS())
   {
