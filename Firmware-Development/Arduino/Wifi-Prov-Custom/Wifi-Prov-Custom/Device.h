@@ -6,5 +6,8 @@
 #ifdef TESTING
   #define MAC_ADDRESS "abc:123:efg:456"
 #else 
+  // #define MAC_ADDRESS WiFi.macAddress()
+  // #define MAC_ADDRESS_PTR WiFi.macAddress().c_str()
   #define MAC_ADDRESS WiFi.macAddress().c_str()
+  
 #endif

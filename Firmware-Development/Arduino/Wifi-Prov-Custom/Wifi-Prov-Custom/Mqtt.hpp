@@ -3,6 +3,7 @@
 #include <PubSubClient.h>
 #include <ArduinoJson.h>
 #include "WifiProvisioning.hpp"
+#include "Device.h"
 typedef enum 
 {
   DEVICE_RESET,
@@ -30,7 +31,7 @@ class MQTTClient
 
     /* MQTT topic details */
     const char* topicPrefix = "device";
-    const char* macAddress = "abc:123:efg:456";
+    const char* macAddress = WiFi.macAddress().c_str();
     
     // MQTT topic to subscribe to
     const char* mqttTopicReset  = "reset";

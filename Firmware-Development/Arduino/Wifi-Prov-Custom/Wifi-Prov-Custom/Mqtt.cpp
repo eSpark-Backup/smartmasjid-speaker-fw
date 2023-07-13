@@ -41,6 +41,7 @@ void MQTTClient::receiveCallback(char* topic, byte* payload, unsigned int length
   Serial.write(payload, length);
   Serial.println();
 
+
   switch(getTopic(topic))
   {
     case DEVICE_RESET:
