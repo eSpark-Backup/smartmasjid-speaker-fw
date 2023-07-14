@@ -2,7 +2,6 @@
 #include "WifiProvisioning.hpp"
 #include <Arduino.h>
 #include <ArduinoJson.h>
-
 #include <BLEDevice.h>
 #include <BLEServer.h>
 #include <BLEUtils.h>
