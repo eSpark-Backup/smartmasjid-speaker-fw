@@ -6,5 +6,8 @@ extern bool buttonPressed;
 class Button {
 public:
   void setup();
+  static void handleButtonInterrupt();
 };
 #endif
+
+

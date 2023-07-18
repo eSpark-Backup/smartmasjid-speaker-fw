@@ -7,7 +7,7 @@ const int masjidId = 1;
 WiFiClient client;
 #include <ArduinoJson.h>
 
-void AdhanstartRequest()
+void AdhanStart::AdhanstartRequest()
 {
   StaticJsonDocument<200> doc;
   doc["masjidId"] = 3;
