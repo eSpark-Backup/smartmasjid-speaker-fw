@@ -13,6 +13,12 @@ void setup() {
   Serial.begin(115200);
   Serial.print("ESP Board MAC Address: \n ");
   Serial.println(MAC_ADDRESS);
+  // Serial.print("BLE MAC Address:");
+  // initBluetooth();
+  // printDeviceAddress();
+  // initBluetooth();
+  // Serial.print("BLE MAC Address: \n ");
+  // printDeviceAddress();
   
   if(wifiProv.connectWifiFromNVS())
   {
@@ -42,3 +48,5 @@ void setup() {
 void loop() {
 
 }
+
+

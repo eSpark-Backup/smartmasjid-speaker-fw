@@ -1,6 +1,5 @@
 #include "BLE.hpp"
 #include "Device.h"
-
 WifiProvisioning* pWifiProv = NULL;
 
 BLEServer *pServer = NULL;
@@ -21,9 +20,16 @@ class MyServerCallbacks : public BLEServerCallbacks
   void onConnect(BLEServer *pServer)
   {
     Serial.println("BLE : device connected");
+    Serial.println("BLE MAC Address:");
+    initBluetooth();
+    printDeviceAddress();
+    Serial.println(" ");
+    // initBluetooth();
+    // printDeviceAddress();
     String jsonPacket2= MAC_ADDRESS;
-    Serial.print("ESP2 Board MAC Address:");
-    Serial.println(jsonPacket2);
+    // Serial.print("BLE MAC Address:");
+    // printDeviceAddress();
+    // Serial.println(jsonPacket2);
     jsonPacket= jsonPacket1 + jsonPacket2 + jsonPacket3;
     Serial.println(jsonPacket);
     // const char* jsonPacket = jsonPacket4;
@@ -88,7 +94,7 @@ bool BLE::initialize(WifiProvisioning* wifiProv)
   WiFi.mode(WIFI_OFF);
   delay(100);
   // Create the BLE Device
-  BLEDevice::init("SMBTN_SBB23V1");
+  BLEDevice::init("MBTN_SBB23V1");
 
   // Create the BLE Server
   pServer = BLEDevice::createServer();
@@ -143,3 +149,43 @@ bool BLE::isStarted(void)
 {
   return (status==BLE_STARTED);
 }
+ 
+void printDeviceAddress() {
+ 
+  const uint8_t* point = esp_bt_dev_get_address();
+ 
+  for (int i = 0; i < 6; i++) {
+ 
+    char str[3];
+ 
+    sprintf(str, "%02X", (int)point[i]);
+    Serial.print(str);
+ 
+    if (i < 5){
+      Serial.print(":");
+    }
+ 
+  }
+}
+
+bool initBluetooth()
+{
+  if (!btStart()) {
+    // Serial.println("Failed to initialize controller");
+    return false;
+  }
+ 
+  if (esp_bluedroid_init() != ESP_OK) {
+    // Serial.println("Failed to initialize bluedroid");
+    return false;
+  }
+ 
+  if (esp_bluedroid_enable() != ESP_OK) {
+    // Serial.println("Failed to enable bluedroid");
+    return false;
+  }
+ 
+}
+
+
+
