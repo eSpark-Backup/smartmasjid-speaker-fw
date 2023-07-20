@@ -6,6 +6,8 @@
 #include <HTTPClient.h>
 #include "Device.h"
 
+#include "esp_bt_main.h"
+#include "esp_bt_device.h"
 #define HTTP_STATUS_OK 200
 #define HTTP_STATUS_CREATED 201
 

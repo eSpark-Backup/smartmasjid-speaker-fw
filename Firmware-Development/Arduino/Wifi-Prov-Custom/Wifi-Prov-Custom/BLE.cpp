@@ -8,6 +8,7 @@ BLECharacteristic *pTxCharacteristic;
 BLECharacteristic *pDeviceCharacteristic;
 BLECharacteristic *pProvCharacteristic;
 String jsonPacket;
+// String printDeviceAddress();
 String  jsonPacket1 = "{\"device_model\": \"SBB23V1\", \"mac_address\": \"";
 String  jsonPacket2;
 String jsonPacket3 = "\", \"firmware_rev\": \"1.0\"}";
@@ -22,12 +23,13 @@ class MyServerCallbacks : public BLEServerCallbacks
     Serial.println("BLE : device connected");
     Serial.println("BLE MAC Address:");
     initBluetooth();
-    printDeviceAddress();
     Serial.println(" ");
-    // initBluetooth();
-    // printDeviceAddress();
-    String jsonPacket2= MAC_ADDRESS;
-    // Serial.print("BLE MAC Address:");
+    const uint8_t* point = esp_bt_dev_get_address();
+    char mac[18];
+    sprintf(mac, "%02X:%02X:%02X:%02X:%02X:%02X", (int)point[0], (int)point[1], (int)point[2], (int)point[3], (int)point[4], (int)point[5]);
+
+    String jsonPacket2 = mac;
+    // String jsonPacket2= to_string(printDeviceAddress());
     // printDeviceAddress();
     // Serial.println(jsonPacket2);
     jsonPacket= jsonPacket1 + jsonPacket2 + jsonPacket3;
@@ -94,7 +96,7 @@ bool BLE::initialize(WifiProvisioning* wifiProv)
   WiFi.mode(WIFI_OFF);
   delay(100);
   // Create the BLE Device
-  BLEDevice::init("MBTN_SBB23V1");
+  BLEDevice::init("SMBTN_SBB23V1");
 
   // Create the BLE Server
   pServer = BLEDevice::createServer();

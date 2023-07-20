@@ -129,10 +129,12 @@ bool WifiProvisioning::storeWifiCredsNVS(const char* ssid, const char* pass)
 void WifiProvisioning::createTelemetryJson(char* json, uint8_t size, const char* macAddress, int battery) {
   // Create a JSON document
   StaticJsonDocument<64> doc;
-
+  const uint8_t* point = esp_bt_dev_get_address();
+  char mac[18];
+  sprintf(mac, "%02X:%02X:%02X:%02X:%02X:%02X", (int)point[0], (int)point[1], (int)point[2], (int)point[3], (int)point[4], (int)point[5]);
   // Add values to the document
   doc["battery"] = battery;
-  doc["macAddress"] = MAC_ADDRESS;
+  doc["macAddress"] = mac;
 
   // Serialize the JSON document
   serializeJson(doc, json, size);
