@@ -9,7 +9,7 @@
 #endif
 WifiProvisioning wifiProv;
 BLE ble;
-Button myButton;
+Button button;
 
 
 void setup() {
@@ -17,7 +17,7 @@ void setup() {
   Serial.print("ESP Board MAC Address: \n ");
   Serial.println(WiFi.macAddress());
 
-  myButton.setup();
+  button.setup();
 
   
   if(wifiProv.connectWifiFromNVS())
@@ -54,6 +54,6 @@ void loop() {
     buttonPressed = false;
     Serial.println("Button Pressed");
     // Send the HTTP POST request
-    AdhanstartRequest();
+    Adhanstart();
   }
 }

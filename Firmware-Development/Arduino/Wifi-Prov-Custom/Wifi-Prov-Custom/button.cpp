@@ -1,7 +1,7 @@
 #include "button.hpp"
 #include <Arduino.h>
 bool buttonPressed = false;
-// void handleButtonInterrupt();
+void handleButtonInterrupt();
 
 void Button::setup()
 {
