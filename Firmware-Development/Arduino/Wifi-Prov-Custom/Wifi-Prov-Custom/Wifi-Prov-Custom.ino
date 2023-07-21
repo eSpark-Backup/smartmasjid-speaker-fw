@@ -11,15 +11,12 @@ WifiProvisioning wifiProv;
 BLE ble;
 Button button;
 
-
 void setup() {
   Serial.begin(115200);
   Serial.print("ESP Board MAC Address: \n ");
   Serial.println(WiFi.macAddress());
-
   button.setup();
 
-  
   if(wifiProv.connectWifiFromNVS())
   {
     while(!wifiProv.isTelemetrySent())
@@ -27,8 +24,7 @@ void setup() {
       delay(100);
     }
     return;
-  }
-  
+  } 
   // switch to Bluetooth mode
   Serial.println("Switching to Bluetooth mode");
   ble.initialize(&wifiProv);
@@ -45,9 +41,7 @@ void setup() {
   }
   
 }
-
-void loop() {
-  
+void loop() { 
   // Check if the button was pressed
  if (buttonPressed) 
  {
