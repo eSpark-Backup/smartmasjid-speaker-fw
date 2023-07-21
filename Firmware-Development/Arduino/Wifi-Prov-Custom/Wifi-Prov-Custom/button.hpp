@@ -1,16 +1,15 @@
 #pragma once
 extern bool buttonPressed;
 #define buttonPin 4
-#ifndef BUTTON_HPP
-#define BUTTON_HPP
-// #include <httplib.h>
-// #include "path/to/httplib.h"
+#ifndef BUTTON_h
+#define BUTTON_h
+
 class Button {
 public:
-  void setup();
+  void setupfunction();
   static void handleButtonInterrupt();
-//   void button_interrupt_handler();
-// };
+
+};
 #endif
 
 

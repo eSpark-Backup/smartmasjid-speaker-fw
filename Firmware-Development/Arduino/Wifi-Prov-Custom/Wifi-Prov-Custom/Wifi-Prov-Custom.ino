@@ -1,6 +1,7 @@
 #include "BLE.hpp"
 #include "button.hpp"
 #include "HTTP_SM.hpp"
+// #include "BUTTON.h"
 #include "WifiProvisioning.hpp"
 #ifdef ESP32
 #include <WiFi.h>
@@ -15,7 +16,9 @@ void setup() {
   Serial.begin(115200);
   Serial.print("ESP Board MAC Address: \n ");
   Serial.println(WiFi.macAddress());
-  button.setup();
+
+  button.handleButtonInterrupt();
+  button.setupfunction();
 
   if(wifiProv.connectWifiFromNVS())
   {
