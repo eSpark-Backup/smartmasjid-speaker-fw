@@ -1,15 +1,17 @@
 #pragma once
 extern bool buttonPressed;
-#define buttonPin 4
-#ifndef BUTTON_h
-#define BUTTON_h
+// bool Button ;
 
-class Button {
-public:
-  void setupfunction();
-  static void handleButtonInterrupt();
+#define buttonPin 16
+
+class button 
+{
+  public:
+    void setupfunction();
+    static void handleButtonInterrupt();
+    bool buttonpressed();
+    bool isPressed();
+    void clearstate();
 
 };
-#endif
-
 

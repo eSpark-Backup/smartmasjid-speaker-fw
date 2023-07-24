@@ -10,15 +10,15 @@
 #endif
 WifiProvisioning wifiProv;
 BLE ble;
-Button button;
+button btt;
+Smhttp Sm;
 
 void setup() {
   Serial.begin(115200);
   Serial.print("ESP Board MAC Address: \n ");
   Serial.println(WiFi.macAddress());
 
-  button.handleButtonInterrupt();
-  button.setupfunction();
+  btt.setupfunction();
 
   if(wifiProv.connectWifiFromNVS())
   {
@@ -44,13 +44,13 @@ void setup() {
   }
   
 }
-void loop() { 
-  // Check if the button was pressed
- if (buttonPressed) 
- {
-    buttonPressed = false;
-    Serial.println("Button Pressed");
-    // Send the HTTP POST request
-    Adhanstart();
+void loop() 
+  { 
+     if(btt.isPressed())
+      {
+      Serial.println("Button Pressed");
+      Sm.AdhanstartRequest();
+      btt.clearstate();
+      }
+  
   }
-}

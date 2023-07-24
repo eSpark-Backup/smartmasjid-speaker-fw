@@ -7,7 +7,7 @@ const int masjidId = 1;
 WiFiClient client;
 #include <ArduinoJson.h>
 
-void AdhanstartRequest()
+void Smhttp::AdhanstartRequest()
 {
   StaticJsonDocument<200> doc;
   doc["masjidId"] = 3;
@@ -18,6 +18,7 @@ void AdhanstartRequest()
   HTTPClient http;
   http.begin(client, apiUrl);
   http.addHeader("Content-Type", "application/json");
+  http.addHeader("x-api-key", EXTERNAL_API_KEY);
   int httpResponseCode = http.POST(jsonString);
 
   // Print the response
