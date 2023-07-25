@@ -5,6 +5,7 @@
 #include <Preferences.h>
 #include <HTTPClient.h>
 #include "Device.h"
+#include <LinkedList.h>
 
 #define HTTP_STATUS_OK 200
 #define HTTP_STATUS_CREATED 201
@@ -32,6 +33,7 @@ class WifiProvisioning
     const char* macAddress = MAC_ADDRESS;
     char gSsid[32];
     char gPass[32];
+    int count=0;
     
     Preferences preferences;
     telemetryStatus deviceTelemetryStatus = TELEMETRY_NOTSENT;
@@ -46,6 +48,11 @@ class WifiProvisioning
     bool storeWifiCredsNVS(void);
     bool storeWifiCredsNVS(const char* ssid, const char* pass);
     bool storeWifiCredsRAM(const char* ssid, const char* pass);
+    String* storePayloadNVS(LinkedList<String>& List);
+    int deleteSubscription( String* arr, int size,String element);
+    bool UpdateNVS(String* arr,int arrsize);
+    String*  extractPayloadNVS(void);
+    int getArrayLength(String* array);
     bool removeWifiCredsNVS(void);
     bool removeWifiCredsNVS(const char* ssid, const char* pass);
     bool isTelemetrySent(void);

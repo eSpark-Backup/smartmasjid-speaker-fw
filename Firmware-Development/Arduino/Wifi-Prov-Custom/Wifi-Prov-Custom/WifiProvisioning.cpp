@@ -1,5 +1,9 @@
 #include "WifiProvisioning.hpp"
 #include "Device.h"
+#include <LinkedList.h>
+#include <Preferences.h>
+#include <ArduinoJson.h>
+LinkedList<String> List;
 
 bool WifiProvisioning::connectWifi(const char *ssid, const char *pass,int retries)
 { 
@@ -116,6 +120,10 @@ bool WifiProvisioning::storeWifiCredsRAM(const char* ssid, const char* pass)
 bool WifiProvisioning::storeWifiCredsNVS(void)
 {
   storeWifiCredsNVS(gSsid, gPass);
+  String ssid = preferences.getString("ssid", "");
+  String pass = preferences.getString("pass", "");
+  Serial.println(ssid);
+  Serial.println(pass);
   return true; 
 }
 
@@ -125,8 +133,93 @@ bool WifiProvisioning::storeWifiCredsNVS(const char* ssid, const char* pass)
   preferences.putString("pass", pass);
   return true;
 }
+
+String* WifiProvisioning::storePayloadNVS(LinkedList<String>& List)
+{
+  preferences.begin("list");
+  for (int i=0;i<List.size();i++)
+  {
+      preferences.putString(String(i, DEC).c_str(), List.get(i).c_str());
+  }
+  String* value = new String[List.size()];
+   for (int i=0;i<List.size();i++)
+   {
+     value[i] = preferences.getString(String(i, DEC).c_str(), "");
+    //  Serial.print(String(i, DEC).c_str());
+    //  Serial.print(": ");
+    //  Serial.println(value[i]);
+  }
+  return value;
+}
+String* WifiProvisioning::extractPayloadNVS()
+{
+  
+  String* value = new String[100];
+   for (int i=0;i<100;i++)
+   {
+     value[i] = preferences.getString(String(i, DEC).c_str(), "");
+  }
+  return value;
+}
+bool WifiProvisioning::UpdateNVS(String* arr,int arrsize)
+{ 
+  Serial.println("updated NVS is gien below : ");
+  for (int i=0;i<arrsize;i++)
+  {
+  preferences.remove(String(i, DEC).c_str()); // Remove the specified key from the namespace
+  }
+  for (int i=0;i<arrsize;i++)
+  {
+      preferences.putString(String(i, DEC).c_str(), arr[i].c_str());
+  }
+   String value [arrsize];
+   for (int i=0;i<arrsize;i++)
+   {
+     value[i] = preferences.getString(String(i, DEC).c_str(), "");
+     Serial.print(String(i, DEC).c_str());
+     Serial.print(": ");
+     Serial.println(value[i]);
+  }
+  return true;
+}
+int WifiProvisioning:: deleteSubscription( String* arr, int size, String element) {
+  for (int i = 0; i < size; i++) {
+    if (arr[i] == element) {
+      Serial.print("Delete at Index : ");
+      Serial.println(i);
+    for (int j = i; j < size - 1; j++) {
+        arr[j] = arr[j + 1]; 
+      }
+      arr[size-1]="";
+      return i;
+    }
+  }
+  return -1;  // Element not found
+}
+// int WifiProvisioning:: deleteEverythinginNVS( String* arr, int size, String element) {
+//   for (int i = 0; i < size; i++) {
+//     if (arr[i] <=100) {
+//       Serial.print("Delete at Index : ");
+//       Serial.println(i);
+//     for (int j = i; j < size - 1; j++) {
+//         arr[j] = arr[j + 1]; 
+//       }
+//       arr[size-1]="";
+//       return i;
+//     }
+//   }
+//   return -1;  // Element not found
+// }
+int WifiProvisioning:: getArrayLength(String* array) {
+  int length = 0;
+  while (array[length] != nullptr) {
+    length++;
+  }
+  return length;
+}
 bool WifiProvisioning::removeWifiCredsNVS(void)
 {
+  Serial.println("Removing Wifi Creds");
   removeWifiCredsNVS(gSsid, gPass);
   return true; 
 }

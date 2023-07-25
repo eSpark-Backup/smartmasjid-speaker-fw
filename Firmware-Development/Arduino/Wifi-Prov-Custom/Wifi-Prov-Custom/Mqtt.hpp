@@ -38,6 +38,7 @@ class MQTTClient
     const char* mqttTopicSubscribe  = "subscribe";
     const char* mqttTopicUnsubscribe  = "unsubscribe";
     const char* mqttTopicWifi  = "wifi";
+    int count=0;
 
   public:
     MQTTClient(WifiProvisioning* wifiProv);

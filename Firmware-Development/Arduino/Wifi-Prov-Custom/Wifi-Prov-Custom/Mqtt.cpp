@@ -1,9 +1,13 @@
 #include "Mqtt.hpp"
 #include "WifiProvisioning.hpp"
 #include <ArduinoJson.h>
+#include <LinkedList.h>
+LinkedList<String> myList;
+
 // const char* ssid_1;
 char ssid_1[32];
 char pass_1[32];
+const char* topic_1;
 WiFiClient wifiClient;
 PubSubClient mqttClient(wifiClient);
     
@@ -40,20 +44,75 @@ void MQTTClient::receiveCallback(char* topic, byte* payload, unsigned int length
 
   Serial.write(payload, length);
   Serial.println();
-
-
+  char payloadStr[length + 1]; 
+  String* v;
+  int size;
+  int index;
+  bool found;
+  StaticJsonDocument<125> doc;
+  Serial.println(length);
   switch(getTopic(topic))
   {
     case DEVICE_RESET:
       Serial.println("RESET TOPIC");
+
+
+      break;
     case DEVICE_SUBSCRIBE:
       extractTopicAndSubscribe((const char*)payload);
       Serial.println("SUBSCRIBE TOPIC");
+      memcpy(payloadStr, payload, length);
+      payloadStr[length] = '\0';  
+      deserializeJson(doc, payloadStr, length);
+      topic_1 = doc["topic"];
+      Serial.println(topic_1);
+        // Check if the topic is not already present in the list before adding
+      found = false;
+      for (int i = 0; i < myList.size(); i++) {
+      if (myList[i] == topic_1) {
+      found = true;
+      break;
+      }
+     }
+
+    if (!found) {
+    myList.add(topic_1);
+     }
+      Serial.println("Save in NVS as below :");
+      v = new String[myList.size()];
+      v= pWifiProv->storePayloadNVS(myList);
+     for (int i=0;i<myList.size();i++)
+       {
+         Serial.print(i);
+         Serial.print(": ");
+         Serial.println(v[i]);
+        } 
+      delete[] v;
       break;
 
     case DEVICE_UNSUBSCRIBE:
       extractTopicAndUnsubscribe((const char*)payload);
       Serial.println("UNSUBSCRIBE TOPIC");
+      memcpy(payloadStr, payload, length);
+      payloadStr[length] = '\0';  
+      deserializeJson(doc, payloadStr, length);
+      topic_1 = doc["topic"];
+      Serial.println(topic_1);
+      v = new String[length];
+      v=pWifiProv->extractPayloadNVS();
+       size = pWifiProv->getArrayLength(v); 
+       index =  pWifiProv->deleteSubscription( v, size,topic_1);
+      for (int i=0;i<size;i++)
+       {
+         if (v[i]=="")
+         {
+          Serial.print("Empty");
+         }
+         else
+         {Serial.println(v[i]);}
+        } 
+      pWifiProv->UpdateNVS(v,size);
+      delete[] v;
       break;
 
     case DEVICE_Wifi:     
@@ -83,10 +142,34 @@ bool MQTTClient::subscribe(const char* topic)
   if (mqttClient.subscribe(topic))
   {
     Serial.printf("Subscribed to %s\n",topic);
+    // myList.add(topic);
+    // if (count>=3)
+    // {  
+    //   Serial.println("Save in NVS as below :");
+    //   String* v = new String[myList.size()];
+    //   v= pWifiProv->storePayloadNVS(myList);
+    //   delay(1000);
+    //  for (int i=0;i<myList.size();i++)
+    //    {
+    //      Serial.print(i);
+    //      Serial.print(": ");
+    //      Serial.println(v[i]);
+    //     } 
+    //   Serial.println("After Delete subscribtion ,the array is given as below : ");
+    //   int index =  pWifiProv->deleteSubscription( v, myList.size(),"device/C8:F0:9E:4E:74:98/subscribe");
+    //   int size = pWifiProv->getArrayLength(v); 
+    //   for (int i=0;i<size;i++)
+    //    {
+    //      Serial.println(v[i]);
+    //     } 
+    //   pWifiProv->UpdateNVS(v,size);
+    //   delete[] v;
+    // }
+
+    }
+    // count++;
     return true;
   }
-  return false;
-}
 
 bool MQTTClient::unsubscribe(const char* topic)
 {
@@ -181,7 +264,7 @@ void MQTTClient::getTopicPath(char* dest, const char* topicName)
 
   // Add the MAC address to the destination buffer, separating it with slashes
   strcat(dest, "/");
-  strcat(dest, macAddress);
+  strcat(dest, WiFi.macAddress().c_str());
 
   // Add the topic name to the destination buffer, also separated with slashes
   strcat(dest, "/");
@@ -200,7 +283,6 @@ void MQTTClient::ReadfactoryinfoJson(const char* jsonpacket, unsigned int length
   DeserializationError error = deserializeJson(doc, jsonpacket, length);
   const char* ssid = doc["ssid"];
   const char* pass = doc["password"];
-
   memcpy(ssid_1, ssid , strlen(ssid));
   memcpy(pass_1, pass , strlen(pass));
   Serial.println(ssid_1);
