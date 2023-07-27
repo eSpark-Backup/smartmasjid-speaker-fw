@@ -1,4 +1,7 @@
 #include "BLE.hpp"
+#include "button.hpp"
+#include "HTTP_SM.hpp"
+// #include "BUTTON.h"
 #include "WifiProvisioning.hpp"
 #include "Device.h"
 #ifdef ESP32
@@ -8,18 +11,16 @@
 #endif
 WifiProvisioning wifiProv;
 BLE ble;
+button btt;
+Smhttp Sm;
 
 void setup() {
   Serial.begin(115200);
   Serial.print("ESP Board MAC Address: \n ");
   Serial.println(MAC_ADDRESS);
-  // Serial.print("BLE MAC Address:");
-  // initBluetooth();
-  // printDeviceAddress();
-  // initBluetooth();
-  // Serial.print("BLE MAC Address: \n ");
-  // printDeviceAddress();
-  
+
+  btt.setupfunction();
+
   if(wifiProv.connectWifiFromNVS())
   {
     while(!wifiProv.isTelemetrySent())
@@ -27,8 +28,7 @@ void setup() {
       delay(100);
     }
     return;
-  }
-  
+  } 
   // switch to Bluetooth mode
   Serial.println("Switching to Bluetooth mode");
   ble.initialize(&wifiProv);
@@ -43,10 +43,16 @@ void setup() {
     }  
     delay(100);
   }
+  
 }
 
-void loop() {
-
-}
-
-
+void loop() 
+  { 
+     if(btt.isPressed())
+      {
+      Serial.println("Button Pressed");
+      Sm.AdhanstartRequest();
+      btt.clearstate();
+      }
+  
+  }

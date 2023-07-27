@@ -85,7 +85,7 @@ bool WifiProvisioning::sendDeviceTelemetry(const char* macAddress) {
   http.addHeader("Content-Type", "application/json");
   
   char body[64];
-  createTelemetryJson(body, sizeof(body), "abc:123:efg:456", 90);
+  createTelemetryJson(body, sizeof(body), WiFi.macAddress().c_str(), 90);
   
   int httpCode = http.POST(body);
   const char* response = http.getString().c_str();
