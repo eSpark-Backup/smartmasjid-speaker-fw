@@ -34,6 +34,7 @@ class WifiProvisioning
     char gSsid[32];
     char gPass[32];
     int count=0;
+
     
     Preferences preferences;
     telemetryStatus deviceTelemetryStatus = TELEMETRY_NOTSENT;
@@ -48,11 +49,9 @@ class WifiProvisioning
     bool storeWifiCredsNVS(void);
     bool storeWifiCredsNVS(const char* ssid, const char* pass);
     bool storeWifiCredsRAM(const char* ssid, const char* pass);
-    String* storePayloadNVS(LinkedList<String>& List);
-    int deleteSubscription( String* arr, int size,String element);
-    bool UpdateNVS(String* arr,int arrsize);
-    String*  extractPayloadNVS(void);
-    int getArrayLength(String* array);
+    void saveSubscriptioninNVS(const char* topics);
+    void deleteSubscriptioninNVS(const char* topics);
+    void  getSubscriptionsfromNVS(void);
     bool removeWifiCredsNVS(void);
     bool removeWifiCredsNVS(const char* ssid, const char* pass);
     bool isTelemetrySent(void);

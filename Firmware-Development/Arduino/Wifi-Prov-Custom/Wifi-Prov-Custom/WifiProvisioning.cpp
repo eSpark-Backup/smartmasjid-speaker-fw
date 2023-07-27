@@ -9,9 +9,6 @@ bool WifiProvisioning::connectWifi(const char *ssid, const char *pass,int retrie
 { 
   if (ssid != NULL && pass != NULL)
   {
-    // Serial.print(count);
-
-    // try to connect to WiFi
     Serial.printf("Connecting to %s...\n", ssid);
     WiFi.onEvent(std::bind(&WifiProvisioning::wifiGotIP, this, std::placeholders::_1, std::placeholders::_2), WiFiEvent_t::ARDUINO_EVENT_WIFI_STA_GOT_IP);
     WiFi.begin(ssid, pass);
@@ -39,6 +36,7 @@ bool WifiProvisioning::connectWifiFromNVS(void)
   preferences.begin("credentials", false);
   String ssid = preferences.getString("ssid", "");
   String pass = preferences.getString("pass", "");
+  preferences.end();
 
   if (ssid == "" || pass == "")
   {
@@ -120,103 +118,65 @@ bool WifiProvisioning::storeWifiCredsRAM(const char* ssid, const char* pass)
 bool WifiProvisioning::storeWifiCredsNVS(void)
 {
   storeWifiCredsNVS(gSsid, gPass);
-  String ssid = preferences.getString("ssid", "");
-  String pass = preferences.getString("pass", "");
-  Serial.println(ssid);
-  Serial.println(pass);
   return true; 
 }
 
 bool WifiProvisioning::storeWifiCredsNVS(const char* ssid, const char* pass)
 {
+  preferences.begin("credentials", false);
   preferences.putString("ssid", ssid);
   preferences.putString("pass", pass);
+  preferences.end();
   return true;
 }
-
-String* WifiProvisioning::storePayloadNVS(LinkedList<String>& List)
+void WifiProvisioning::saveSubscriptioninNVS(const char* topics)//valid
+{          
+  preferences.begin("Subscription");
+  uint32_t c =0;
+  c = preferences.getUInt("count", 0xFFFFFFFF);
+  if ( c== 0xFFFFFFFF)
+  {
+    c =0;
+  }
+  preferences.putString(String(c,DEC).c_str(),topics);
+  preferences.putUInt("count",c+1);
+  preferences.end(); 
+}  
+void WifiProvisioning::deleteSubscriptioninNVS(const char* topics) //valid
 {
-  preferences.begin("list");
-  for (int i=0;i<List.size();i++)
+  preferences.begin("Subscription");
+  uint32_t count = preferences.getUInt("count");
+  for(int i =0 ; i<=count;i++)
   {
-      preferences.putString(String(i, DEC).c_str(), List.get(i).c_str());
-  }
-  String* value = new String[List.size()];
-   for (int i=0;i<List.size();i++)
-   {
-     value[i] = preferences.getString(String(i, DEC).c_str(), "");
-    //  Serial.print(String(i, DEC).c_str());
-    //  Serial.print(": ");
-    //  Serial.println(value[i]);
-  }
-  return value;
-}
-String* WifiProvisioning::extractPayloadNVS()
-{
-  
-  String* value = new String[100];
-   for (int i=0;i<100;i++)
-   {
-     value[i] = preferences.getString(String(i, DEC).c_str(), "");
-  }
-  return value;
-}
-bool WifiProvisioning::UpdateNVS(String* arr,int arrsize)
-{ 
-  Serial.println("updated NVS is gien below : ");
-  for (int i=0;i<arrsize;i++)
-  {
-  preferences.remove(String(i, DEC).c_str()); // Remove the specified key from the namespace
-  }
-  for (int i=0;i<arrsize;i++)
-  {
-      preferences.putString(String(i, DEC).c_str(), arr[i].c_str());
-  }
-   String value [arrsize];
-   for (int i=0;i<arrsize;i++)
-   {
-     value[i] = preferences.getString(String(i, DEC).c_str(), "");
-     Serial.print(String(i, DEC).c_str());
-     Serial.print(": ");
-     Serial.println(value[i]);
-  }
-  return true;
-}
-int WifiProvisioning:: deleteSubscription( String* arr, int size, String element) {
-  for (int i = 0; i < size; i++) {
-    if (arr[i] == element) {
-      Serial.print("Delete at Index : ");
-      Serial.println(i);
-    for (int j = i; j < size - 1; j++) {
-        arr[j] = arr[j + 1]; 
-      }
-      arr[size-1]="";
-      return i;
+    String key_value= preferences.getString(String(i,DEC).c_str(),"");
+    bool found = false;
+    if (strcmp(key_value.c_str(),topics)==0)
+    {
+      preferences.remove(String(i,DEC).c_str());
+      key_value = preferences.getString(String(count-1,DEC).c_str(),"");
+      preferences.putString(String(i,DEC).c_str(),key_value);
+      count--;
+      preferences.putUInt("count",count);
+      found = true;
+      break;
     }
-  }
-  return -1;  // Element not found
+  } 
+    preferences.end(); 
 }
-// int WifiProvisioning:: deleteEverythinginNVS( String* arr, int size, String element) {
-//   for (int i = 0; i < size; i++) {
-//     if (arr[i] <=100) {
-//       Serial.print("Delete at Index : ");
-//       Serial.println(i);
-//     for (int j = i; j < size - 1; j++) {
-//         arr[j] = arr[j + 1]; 
-//       }
-//       arr[size-1]="";
-//       return i;
-//     }
-//   }
-//   return -1;  // Element not found
-// }
-int WifiProvisioning:: getArrayLength(String* array) {
-  int length = 0;
-  while (array[length] != nullptr) {
-    length++;
-  }
-  return length;
-}
+void WifiProvisioning::getSubscriptionsfromNVS(void) //valid
+  { 
+    preferences.begin("Subscription");
+    for (int i =0 ; i<=100;i++)
+    {
+      String key_value = preferences.getString(String(i,DEC).c_str(),"");
+      if (key_value =="")
+        break;
+      Serial.print("subscription =");
+      Serial.print(key_value);
+      Serial.println("\n");
+ 
+    }
+  } 
 bool WifiProvisioning::removeWifiCredsNVS(void)
 {
   Serial.println("Removing Wifi Creds");
@@ -229,19 +189,12 @@ bool WifiProvisioning::removeWifiCredsNVS(const char* ssid, const char* pass)
   preferences.remove("pass");
   return true;
 }
-void WifiProvisioning::createTelemetryJson(char* json, uint8_t size, const char* macAddress, int battery) {
-  // Create a JSON document
+void WifiProvisioning::createTelemetryJson(char* json, uint8_t size, const char* macAddress, int battery) 
+{
   StaticJsonDocument<64> doc;
-
-  // Add values to the document
   doc["battery"] = battery;
   doc["macAddress"] =macAddress;
-  
-
-  // Serialize the JSON document
   serializeJson(doc, json, size);
-
-  // Print the JSON string
   Serial.println(json);
 }
 

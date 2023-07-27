@@ -2,9 +2,11 @@
 #include "WifiProvisioning.hpp"
 #include <ArduinoJson.h>
 #include <LinkedList.h>
+#include <Preferences.h>
+Preferences NVS;
 LinkedList<String> myList;
-
-// const char* ssid_1;
+int c ;
+String s;
 char ssid_1[32];
 char pass_1[32];
 const char* topic_1;
@@ -35,6 +37,8 @@ void MQTTClient::subscribeTopics() {
   subscribe(topicPath);
   getTopicPath(topicPath, mqttTopicWifi);
   subscribe(topicPath);
+  SubscribeTopicsfromNVS();
+
 }
 
 void MQTTClient::receiveCallback(char* topic, byte* payload, unsigned int length) {
@@ -50,69 +54,25 @@ void MQTTClient::receiveCallback(char* topic, byte* payload, unsigned int length
   int index;
   bool found;
   StaticJsonDocument<125> doc;
-  Serial.println(length);
   switch(getTopic(topic))
   {
     case DEVICE_RESET:
       Serial.println("RESET TOPIC");
-
-
+      UnsubscribeTopicsReset();
+      RemoveMasjidIdfromNVS();
+      UnSubscribeTopicsfromNVS();
+      pWifiProv->deleteSubscriptioninNVS(topic);
+      pWifiProv->removeWifiCredsNVS();
       break;
+
     case DEVICE_SUBSCRIBE:
       extractTopicAndSubscribe((const char*)payload);
       Serial.println("SUBSCRIBE TOPIC");
-      memcpy(payloadStr, payload, length);
-      payloadStr[length] = '\0';  
-      deserializeJson(doc, payloadStr, length);
-      topic_1 = doc["topic"];
-      Serial.println(topic_1);
-        // Check if the topic is not already present in the list before adding
-      found = false;
-      for (int i = 0; i < myList.size(); i++) {
-      if (myList[i] == topic_1) {
-      found = true;
-      break;
-      }
-     }
-
-    if (!found) {
-    myList.add(topic_1);
-     }
-      Serial.println("Save in NVS as below :");
-      v = new String[myList.size()];
-      v= pWifiProv->storePayloadNVS(myList);
-     for (int i=0;i<myList.size();i++)
-       {
-         Serial.print(i);
-         Serial.print(": ");
-         Serial.println(v[i]);
-        } 
-      delete[] v;
       break;
 
     case DEVICE_UNSUBSCRIBE:
       extractTopicAndUnsubscribe((const char*)payload);
       Serial.println("UNSUBSCRIBE TOPIC");
-      memcpy(payloadStr, payload, length);
-      payloadStr[length] = '\0';  
-      deserializeJson(doc, payloadStr, length);
-      topic_1 = doc["topic"];
-      Serial.println(topic_1);
-      v = new String[length];
-      v=pWifiProv->extractPayloadNVS();
-       size = pWifiProv->getArrayLength(v); 
-       index =  pWifiProv->deleteSubscription( v, size,topic_1);
-      for (int i=0;i<size;i++)
-       {
-         if (v[i]=="")
-         {
-          Serial.print("Empty");
-         }
-         else
-         {Serial.println(v[i]);}
-        } 
-      pWifiProv->UpdateNVS(v,size);
-      delete[] v;
       break;
 
     case DEVICE_Wifi:     
@@ -142,32 +102,9 @@ bool MQTTClient::subscribe(const char* topic)
   if (mqttClient.subscribe(topic))
   {
     Serial.printf("Subscribed to %s\n",topic);
-    // myList.add(topic);
-    // if (count>=3)
-    // {  
-    //   Serial.println("Save in NVS as below :");
-    //   String* v = new String[myList.size()];
-    //   v= pWifiProv->storePayloadNVS(myList);
-    //   delay(1000);
-    //  for (int i=0;i<myList.size();i++)
-    //    {
-    //      Serial.print(i);
-    //      Serial.print(": ");
-    //      Serial.println(v[i]);
-    //     } 
-    //   Serial.println("After Delete subscribtion ,the array is given as below : ");
-    //   int index =  pWifiProv->deleteSubscription( v, myList.size(),"device/C8:F0:9E:4E:74:98/subscribe");
-    //   int size = pWifiProv->getArrayLength(v); 
-    //   for (int i=0;i<size;i++)
-    //    {
-    //      Serial.println(v[i]);
-    //     } 
-    //   pWifiProv->UpdateNVS(v,size);
-    //   delete[] v;
-    // }
 
     }
-    // count++;
+
     return true;
   }
 
@@ -225,16 +162,28 @@ bool MQTTClient::extractTopicAndUnsubscribe(const char* message) {
 bool MQTTClient::extractTopicAndControlSubscription(subscription control, const char* message) 
 {
   bool ret = false;
+  
   DynamicJsonDocument doc(256);
   DeserializationError error = deserializeJson(doc, message);
   if (error) {
     Serial.println("Error parsing JSON");
+    
   } 
   else 
-  {
-    const char* topic = doc["topic"];
-    ret = controlSubscription(control, topic);  
-  }
+    {
+      const char* topic = doc["topic"];
+        switch(control)
+        {
+          case SUBSCRIBE:
+              pWifiProv->saveSubscriptioninNVS(topic);
+              break;
+          case UNSUBSCRIBE:
+              pWifiProv->deleteSubscriptioninNVS(topic);
+              break;
+        }
+      ret = controlSubscription(control, topic);  
+    }
+
   return ret;
 }
 
@@ -288,5 +237,55 @@ void MQTTClient::ReadfactoryinfoJson(const char* jsonpacket, unsigned int length
   Serial.println(ssid_1);
   Serial.println(pass_1);
 }
+void MQTTClient::SubscribeTopicsfromNVS()
+{
+    NVS.begin("Subscription");
+    uint32_t count = NVS.getUInt("count");
+    for (int i =0 ; i<=count;i++)
+    {
+      String key_value = NVS.getString(String(i,DEC).c_str(),"");
+      if (key_value =="")
+        break;
+      const char* topic = key_value.c_str();
+      if (mqttClient.subscribe(topic))
+        {
+        Serial.printf("Subscribed to %s\n",topic);
+        }
 
+    }
+}
+void MQTTClient::UnSubscribeTopicsfromNVS()
+{
+    NVS.begin("Subscription");
+    uint32_t count = NVS.getUInt("count");
+    for (int i =0 ; i<=count;i++)
+    {
+      String key_value = NVS.getString(String(i,DEC).c_str(),"");
+      if (key_value =="")
+        break;
+      const char* topic = key_value.c_str();
+      if (mqttClient.unsubscribe(topic))
+        {
+        Serial.printf("Unsubscribed to %s\n",topic);
+        }
 
+    }
+}
+void MQTTClient::RemoveMasjidIdfromNVS()
+{
+      NVS.begin("FactoryInfo");
+      NVS.remove("masjid_id");
+}
+
+void MQTTClient::UnsubscribeTopicsReset()
+{
+  char topicPath[50];
+  getTopicPath(topicPath, mqttTopicReset);
+  unsubscribe(topicPath);
+  getTopicPath(topicPath, mqttTopicSubscribe);
+  unsubscribe(topicPath);
+  getTopicPath(topicPath, mqttTopicUnsubscribe);
+  unsubscribe(topicPath);
+  getTopicPath(topicPath, mqttTopicWifi);
+  unsubscribe(topicPath);
+}

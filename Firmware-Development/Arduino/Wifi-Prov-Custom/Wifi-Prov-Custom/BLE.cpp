@@ -1,6 +1,7 @@
 #include "BLE.hpp"
 #include "Device.h"
-
+#include <Preferences.h>
+Preferences FactInfo;
 WifiProvisioning* pWifiProv = NULL;
 
 BLEServer *pServer = NULL;
@@ -12,6 +13,7 @@ BLECharacteristic *pProvCharacteristic;
 const char* jsonPacket;
 const char *ssid;
 const char *pass;
+const char *masjid_id;
 #include <ArduinoJson.h>
 
 
@@ -73,6 +75,10 @@ class ProvCharacteristicsCallbacks : public BLECharacteristicCallbacks
 
       ssid = doc["ssid"];
       pass = doc["pass"];
+      masjid_id = doc["masjid_id"];
+      FactInfo.begin("FactoryInfo");
+      // NVS.putUInt("masjid_id",masjid_id);
+      FactInfo.putString("masjid_id",masjid_id);
       pWifiProv->storeWifiCredsRAM(ssid, pass);
 
       if ((ssid != NULL) && (pass != NULL))

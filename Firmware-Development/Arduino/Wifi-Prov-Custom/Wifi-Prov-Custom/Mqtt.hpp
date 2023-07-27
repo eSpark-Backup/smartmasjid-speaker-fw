@@ -38,7 +38,7 @@ class MQTTClient
     const char* mqttTopicSubscribe  = "subscribe";
     const char* mqttTopicUnsubscribe  = "unsubscribe";
     const char* mqttTopicWifi  = "wifi";
-    int count=0;
+    
 
   public:
     MQTTClient(WifiProvisioning* wifiProv);
@@ -57,4 +57,8 @@ class MQTTClient
     void getTopicPath(char* dest, const char* topicName); 
     bool compareTopic(const char* topic, const char* topicName);
     bool controlSubscription(subscription control, const char* topic);
+    void SubscribeTopicsfromNVS();
+    void UnSubscribeTopicsfromNVS();
+    void RemoveMasjidIdfromNVS();
+    void UnsubscribeTopicsReset();
 };
