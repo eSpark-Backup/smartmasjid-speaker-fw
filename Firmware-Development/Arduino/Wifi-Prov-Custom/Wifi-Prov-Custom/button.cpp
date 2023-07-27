@@ -1,22 +1,25 @@
-#include "button.hpp"
-#include "HTTP_SM.hpp"
 #include <Arduino.h>
+#include "button.hpp"
+
 bool buttonPressed = false;
-void button::setupfunction()
+
+void Button::setup()
 {
-  pinMode(buttonPin, INPUT);
-  attachInterrupt(buttonPin, handleButtonInterrupt, RISING); 
-}
-void button::handleButtonInterrupt() 
-{
-  buttonPressed = true; // Assuming you have a global variable named buttonPressed
+  pinMode(SMBTN_GPIO, INPUT);
+  attachInterrupt(SMBTN_GPIO, handleButtonInterrupt, RISING); 
 }
 
-bool button::isPressed()
+void Button::handleButtonInterrupt() 
+{
+  buttonPressed = true;
+}
+
+bool Button::isPressed()
 {
   return buttonPressed; 
 }
-void button::clearstate()
+
+void Button::clearState()
 {
   buttonPressed= false;
 }

@@ -1,17 +1,13 @@
 #pragma once
-extern bool buttonPressed;
-// bool Button ;
 
-#define buttonPin 16
+#define SMBTN_GPIO 16
 
-class button 
+class Button 
 {
   public:
-    void setupfunction();
+    void setup();
     static void handleButtonInterrupt();
-    bool buttonpressed();
     bool isPressed();
-    void clearstate();
+    void clearState();
 
 };
-

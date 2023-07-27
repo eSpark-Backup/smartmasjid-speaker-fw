@@ -4,14 +4,10 @@
 // #include "BUTTON.h"
 #include "WifiProvisioning.hpp"
 #include "Device.h"
-#ifdef ESP32
-#include <WiFi.h>
-#else
-#include <ESP32WiFi.h>
-#endif
+
 WifiProvisioning wifiProv;
 BLE ble;
-button btt;
+Button btt;
 Smhttp Sm;
 
 void setup() {
@@ -19,7 +15,7 @@ void setup() {
   Serial.print("ESP Board MAC Address: \n ");
   Serial.println(MAC_ADDRESS);
 
-  btt.setupfunction();
+  btt.setup();
 
   if(wifiProv.connectWifiFromNVS())
   {
@@ -47,12 +43,12 @@ void setup() {
 }
 
 void loop() 
-  { 
-     if(btt.isPressed())
-      {
+{ 
+   if(btt.isPressed())
+    {
       Serial.println("Button Pressed");
       Sm.AdhanstartRequest();
-      btt.clearstate();
-      }
-  
-  }
+      btt.clearState();
+    }
+
+}

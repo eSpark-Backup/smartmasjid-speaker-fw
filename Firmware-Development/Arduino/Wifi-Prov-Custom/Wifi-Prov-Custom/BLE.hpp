@@ -31,5 +31,4 @@ class BLE
     bool initialize(WifiProvisioning* wifiProv);
     bool stop(void);
     bool isStarted(void);
-    // bool initiBluetooth(void)
 };
