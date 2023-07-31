@@ -7,11 +7,7 @@ BLEService *pService = NULL;
 BLECharacteristic *pTxCharacteristic;
 BLECharacteristic *pDeviceCharacteristic;
 BLECharacteristic *pProvCharacteristic;
-String jsonPacket;
-// String printDeviceAddress();
-String  jsonPacket1 = "{\"device_model\": \"SBB23V1\", \"mac_address\": \"";
-String  jsonPacket2;
-String jsonPacket3 = "\", \"firmware_rev\": \"1.0\"}";
+
 const char *ssid;
 const char *pass;
 
@@ -21,21 +17,12 @@ class MyServerCallbacks : public BLEServerCallbacks
   void onConnect(BLEServer *pServer)
   {
     Serial.println("BLE : device connected");
-    Serial.println("BLE MAC Address:");
-    initBluetooth();
-    Serial.println(" ");
-    const uint8_t* point = esp_bt_dev_get_address();
-    char mac[18];
-    sprintf(mac, "%02X:%02X:%02X:%02X:%02X:%02X", (int)point[0], (int)point[1], (int)point[2], (int)point[3], (int)point[4], (int)point[5]);
-
-    String jsonPacket2 = mac;
-    // String jsonPacket2= to_string(printDeviceAddress());
-    // printDeviceAddress();
-    // Serial.println(jsonPacket2);
-    jsonPacket= jsonPacket1 + jsonPacket2 + jsonPacket3;
-    Serial.println(jsonPacket);
-    // const char* jsonPacket = jsonPacket4;
-    pDeviceCharacteristic->setValue(jsonPacket.c_str());
+    char factoryInfoJson[100]; 
+    SM_Json smJson;
+    smJson.createFactoryInfoJson(factoryInfoJson, sizeof(factoryInfoJson));
+    Serial.println(factoryInfoJson);
+    
+    pDeviceCharacteristic->setValue(factoryInfoJson);
     pDeviceCharacteristic->notify();
   };
 
@@ -151,43 +138,3 @@ bool BLE::isStarted(void)
 {
   return (status==BLE_STARTED);
 }
- 
-void printDeviceAddress() {
- 
-  const uint8_t* point = esp_bt_dev_get_address();
- 
-  for (int i = 0; i < 6; i++) {
- 
-    char str[3];
- 
-    sprintf(str, "%02X", (int)point[i]);
-    Serial.print(str);
- 
-    if (i < 5){
-      Serial.print(":");
-    }
- 
-  }
-}
-
-bool initBluetooth()
-{
-  if (!btStart()) {
-    // Serial.println("Failed to initialize controller");
-    return false;
-  }
- 
-  if (esp_bluedroid_init() != ESP_OK) {
-    // Serial.println("Failed to initialize bluedroid");
-    return false;
-  }
- 
-  if (esp_bluedroid_enable() != ESP_OK) {
-    // Serial.println("Failed to enable bluedroid");
-    return false;
-  }
- 
-}
-
-
-

@@ -1,6 +1,7 @@
 #include "WifiProvisioning.hpp"
 #include "Device.h"
 #include "BLE.hpp"
+#include "SM_Json.hpp"
 
 bool WifiProvisioning::connectWifi(const char *ssid, const char *pass)
 {
@@ -57,6 +58,7 @@ void WifiProvisioning::wifiGotIP(WiFiEvent_t event, WiFiEventInfo_t info) {
     deviceTelemetryStatus = TELEMETRY_SENT;
   }
 }
+
 bool WifiProvisioning::sendDeviceTelemetry(const char* macAddress, uint8_t retryInterval, uint16_t maxRetryDuration) 
 {
   // Start retry loop
@@ -72,6 +74,7 @@ bool WifiProvisioning::sendDeviceTelemetry(const char* macAddress, uint8_t retry
   }
   return false;
 }
+
 bool WifiProvisioning::sendDeviceTelemetry(const char* macAddress) {
   
   // Construct API endpoint with MAC address
@@ -83,11 +86,15 @@ bool WifiProvisioning::sendDeviceTelemetry(const char* macAddress) {
   http.begin(apiHost, 80, apiEndpoint);
   http.addHeader("x-api-key", EXTERNAL_API_KEY);
   http.addHeader("Content-Type", "application/json");
+
+  char deviceMacAddress[20];
+  getDeviceMAC(deviceMacAddress);
   
-  char body[64];
-  createTelemetryJson(body, sizeof(body), WiFi.macAddress().c_str(), 90);
+  SM_Json smJson;
+  char telemetryJson[64]; 
+  smJson.createTelemetryJson(deviceMacAddress, BATTERY_HEALTH, telemetryJson, sizeof(telemetryJson));
   
-  int httpCode = http.POST(body);
+  int httpCode = http.POST(telemetryJson);
   const char* response = http.getString().c_str();
   http.end();
 
@@ -125,24 +132,6 @@ bool WifiProvisioning::storeWifiCredsNVS(const char* ssid, const char* pass)
   preferences.putString("ssid", ssid);
   preferences.putString("pass", pass);
   return true;
-}
-
-void WifiProvisioning::createTelemetryJson(char* json, uint8_t size, const char* macAddress, int battery) {
-  // Create a JSON document
-  StaticJsonDocument<64> doc;
-  initBluetooth();
-  const uint8_t* point = esp_bt_dev_get_address();
-  char mac[18];
-  sprintf(mac, "%02X:%02X:%02X:%02X:%02X:%02X", (int)point[0], (int)point[1], (int)point[2], (int)point[3], (int)point[4], (int)point[5]);
-  // Add values to the document
-  doc["battery"] = battery;
-  doc["macAddress"] = mac;
-
-  // Serialize the JSON document
-  serializeJson(doc, json, size);
-
-  // Print the JSON string
-  Serial.println(json);
 }
 
 bool WifiProvisioning::isTelemetrySent(void)
