@@ -35,3 +35,10 @@ void SM_Json::createTelemetryJson(const char* macAddress, int battery, char* jso
   // Print the JSON string
   Serial.println(json);
 }
+
+void SM_Json::createMasjidIdJson(const char* masjidId, char* json, uint8_t size)
+{
+  StaticJsonDocument<64> doc;
+  doc["masjidId"] = masjidId; // For Testing
+  serializeJson(doc, json, size);
+}

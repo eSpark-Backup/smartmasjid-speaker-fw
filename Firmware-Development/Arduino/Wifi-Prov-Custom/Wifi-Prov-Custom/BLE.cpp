@@ -13,7 +13,6 @@ const char *pass;
 
 class MyServerCallbacks : public BLEServerCallbacks
 {
-
   void onConnect(BLEServer *pServer)
   {
     Serial.println("BLE : device connected");

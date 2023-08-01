@@ -8,16 +8,16 @@
 
 bool SmHttp::startAdhan()
 {
-  StaticJsonDocument<200> doc;
-  doc["masjidId"] = 3; // For Testing
-  String masjidIdJson;
-  serializeJson(doc, masjidIdJson);
-
   // Send the POST request
   HTTPClient http;
   http.begin(smHost, 80, adhanStartEndpoint);
   http.addHeader("Content-Type", "application/json");
   http.addHeader("x-api-key", EXTERNAL_API_KEY);
+
+  SM_Json smJson;
+  char masjidIdJson[64]; 
+  smJson.createMasjidIdJson(MASJID_ID_TEST, masjidIdJson, sizeof(masjidIdJson));
+  
   int httpCode = http.POST(masjidIdJson);
   const char* response = http.getString().c_str();
 
