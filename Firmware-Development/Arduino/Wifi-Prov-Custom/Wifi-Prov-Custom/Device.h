@@ -1,4 +1,6 @@
 #pragma once
+#include <WiFi.h>
+
 #define SM_MODEL "SBB23V1"
 #define SM_FIRMWARE_VER "1.0"
 #define BLE_MAC_OFFSET 2
@@ -14,7 +16,10 @@
 static inline bool getDeviceMAC(char* dest)
 {
   if (!dest)
+  {
+    Serial.println("getDeviceMAC() -> dest* is null");
     return false;
+  }
   
   uint8_t mac[6];
   WiFi.macAddress(mac);

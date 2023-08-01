@@ -1,19 +1,16 @@
 #include "BLE.hpp"
 #include "button.hpp"
 #include "HTTP_SM.hpp"
-// #include "BUTTON.h"
 #include "WifiProvisioning.hpp"
 #include "Device.h"
 
 WifiProvisioning wifiProv;
 BLE ble;
 Button btt;
-Smhttp Sm;
+SmHttp smHttp;
 
 void setup() {
   Serial.begin(115200);
-  Serial.print("ESP Board MAC Address: \n ");
-  Serial.println(MAC_ADDRESS);
 
   btt.setup();
 
@@ -47,7 +44,7 @@ void loop()
    if(btt.isPressed())
     {
       Serial.println("Button Pressed");
-      Sm.AdhanstartRequest();
+      smHttp.startAdhan();
       btt.clearState();
     }
 

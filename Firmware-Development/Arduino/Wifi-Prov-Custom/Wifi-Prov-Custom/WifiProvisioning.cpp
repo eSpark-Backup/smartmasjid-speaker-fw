@@ -1,7 +1,7 @@
 #include "WifiProvisioning.hpp"
 #include "Device.h"
 #include "BLE.hpp"
-#include "SM_Json.hpp"
+#include "HTTP_SM.hpp"
 
 bool WifiProvisioning::connectWifi(const char *ssid, const char *pass)
 {
@@ -53,64 +53,13 @@ void WifiProvisioning::wifiGotIP(WiFiEvent_t event, WiFiEventInfo_t info) {
   Serial.print("Connected to Wi-Fi network with IP address: ");
   Serial.println(WiFi.localIP());
 
-  if (sendDeviceTelemetry(macAddress, RETRY_INTERVAL, MAX_RETRY_DURATION))
-  {
-    deviceTelemetryStatus = TELEMETRY_SENT;
-  }
-}
-
-bool WifiProvisioning::sendDeviceTelemetry(const char* macAddress, uint8_t retryInterval, uint16_t maxRetryDuration) 
-{
-  // Start retry loop
-  unsigned long startTime = millis();
-  while (millis() - startTime < (maxRetryDuration * SECONDS)) 
-  {
-    if (sendDeviceTelemetry(macAddress)) 
-    {
-      return true;
-    }
-    Serial.println("Failed to send telemetry, retrying in 10 seconds...");
-    delay(retryInterval * SECONDS);
-  }
-  return false;
-}
-
-bool WifiProvisioning::sendDeviceTelemetry(const char* macAddress) {
-  
-  // Construct API endpoint with MAC address
-  char apiEndpoint[100];
-  snprintf(apiEndpoint, sizeof(apiEndpoint), apiEndpointTemplate, macAddress);
-  
-  // Make HTTP POST request
-  HTTPClient http;
-  http.begin(apiHost, 80, apiEndpoint);
-  http.addHeader("x-api-key", EXTERNAL_API_KEY);
-  http.addHeader("Content-Type", "application/json");
-
   char deviceMacAddress[20];
   getDeviceMAC(deviceMacAddress);
-  
-  SM_Json smJson;
-  char telemetryJson[64]; 
-  smJson.createTelemetryJson(deviceMacAddress, BATTERY_HEALTH, telemetryJson, sizeof(telemetryJson));
-  
-  int httpCode = http.POST(telemetryJson);
-  const char* response = http.getString().c_str();
-  http.end();
 
-  // Check for successful response
-  if ((httpCode == HTTP_STATUS_OK) || (httpCode == HTTP_STATUS_CREATED)) 
+  SmHttp smHttp;
+  if (smHttp.sendDeviceTelemetry(deviceMacAddress, RETRY_INTERVAL, MAX_RETRY_DURATION))
   {
-    Serial.println("Telemetry sent successfully!");
-    Serial.println(response);
-    return true;
-  } 
-  else 
-  {
-    Serial.print("Failed to send telemetry with error code: ");
-    Serial.println(httpCode);
-    Serial.println(response);
-    return false;
+    deviceTelemetryStatus = TELEMETRY_SENT;
   }
 }
 
