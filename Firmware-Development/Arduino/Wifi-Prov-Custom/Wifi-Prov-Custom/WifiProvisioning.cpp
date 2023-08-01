@@ -1,7 +1,7 @@
 #include "WifiProvisioning.hpp"
-#include "Device.h"
+#include "Device.hpp"
 #include "BLE.hpp"
-#include "HTTP_SM.hpp"
+#include "SM_Http.hpp"
 
 bool WifiProvisioning::connectWifi(const char *ssid, const char *pass)
 {

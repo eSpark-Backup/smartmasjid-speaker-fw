@@ -4,7 +4,7 @@
 #include <WiFi.h>
 #include <Preferences.h>
 #include <HTTPClient.h>
-#include "Device.h"
+#include "Device.hpp"
 #include "esp_bt_main.h"
 #include "esp_bt_device.h"
 

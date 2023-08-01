@@ -1,8 +1,8 @@
 #include "BLE.hpp"
-#include "button.hpp"
-#include "HTTP_SM.hpp"
+#include "Button.hpp"
+#include "SM_Http.hpp"
 #include "WifiProvisioning.hpp"
-#include "Device.h"
+#include "Device.hpp"
 
 WifiProvisioning wifiProv;
 BLE ble;

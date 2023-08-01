@@ -2,9 +2,9 @@
 #include <WiFi.h>
 #include <HTTPClient.h>
 #include <ArduinoJson.h>
-#include "HTTP_SM.hpp"
+#include "SM_Http.hpp"
 #include "SM_Json.hpp"
-#include "Device.h"
+#include "Device.hpp"
 
 bool SmHttp::startAdhan()
 {

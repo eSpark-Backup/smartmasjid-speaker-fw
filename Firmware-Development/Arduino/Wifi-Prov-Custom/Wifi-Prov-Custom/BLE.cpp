@@ -1,5 +1,7 @@
 #include "BLE.hpp"
-#include "Device.h"
+#include "Device.hpp"
+#include "SM_Json.hpp"
+
 WifiProvisioning* pWifiProv = NULL;
 
 BLEServer *pServer = NULL;

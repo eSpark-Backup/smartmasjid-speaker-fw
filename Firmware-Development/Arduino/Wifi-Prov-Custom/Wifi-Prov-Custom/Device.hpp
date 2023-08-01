@@ -6,13 +6,6 @@
 #define BLE_MAC_OFFSET 2
 #define BATTERY_HEALTH 90
 #define MASJID_ID_TEST 3
-// #define TESTING
-
-#ifdef TESTING
-  #define MAC_ADDRESS "abc:123:efg:456"
-#else 
-  #define MAC_ADDRESS WiFi.macAddress().c_str()
-#endif
 
 static inline bool getDeviceMAC(char* dest)
 {

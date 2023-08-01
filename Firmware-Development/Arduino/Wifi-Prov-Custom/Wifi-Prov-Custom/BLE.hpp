@@ -1,14 +1,12 @@
 #pragma once
-#include "WifiProvisioning.hpp"
-#include "esp_bt_main.h"
-#include "esp_bt_device.h"
+
 #include <Arduino.h>
 #include <ArduinoJson.h>
 #include <BLEDevice.h>
 #include <BLEServer.h>
 #include <BLEUtils.h>
 #include <BLE2902.h>
-#include "SM_Json.hpp"
+#include "WifiProvisioning.hpp"
 
 #define SERVICE_UUID                "6E400001-B5A3-F393-E0A9-E50E24DCCA9E" // UART service UUID
 #define CHARACTERISTIC_UUID_TX      "6E400003-B5A3-F393-E0A9-E50E24DCCA9E"
