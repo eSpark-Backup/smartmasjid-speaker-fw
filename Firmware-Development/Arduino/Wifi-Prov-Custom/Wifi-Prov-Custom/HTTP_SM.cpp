@@ -14,9 +14,10 @@ bool SmHttp::startAdhan()
   http.addHeader("Content-Type", "application/json");
   http.addHeader("x-api-key", EXTERNAL_API_KEY);
 
-  SM_Json smJson;
   char masjidIdJson[64]; 
-  smJson.createMasjidIdJson(MASJID_ID_TEST, masjidIdJson, sizeof(masjidIdJson));
+  SM_Json::create(masjidIdJson, sizeof(masjidIdJson),
+                      std::pair<const char*, uint32_t>("masjidId", MASJID_ID_TEST));
+  Serial.println(masjidIdJson);
   
   int httpCode = http.POST(masjidIdJson);
   const char* response = http.getString().c_str();
@@ -62,9 +63,11 @@ bool SmHttp::sendDeviceTelemetry(const char* macAddress)
   http.addHeader("x-api-key", EXTERNAL_API_KEY);
   http.addHeader("Content-Type", "application/json");
   
-  SM_Json smJson;
   char telemetryJson[64]; 
-  smJson.createTelemetryJson(macAddress, BATTERY_HEALTH, telemetryJson, sizeof(telemetryJson));
+  SM_Json::create(telemetryJson, sizeof(telemetryJson),
+                      std::pair<const char*, uint8_t>("battery", BATTERY_HEALTH),
+                      std::pair<const char*, const char*>("macAddress", macAddress));
+  Serial.println(telemetryJson);
   
   int httpCode = http.POST(telemetryJson);
   const char* response = http.getString().c_str();

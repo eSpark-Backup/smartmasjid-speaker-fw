@@ -16,9 +16,14 @@ class MyServerCallbacks : public BLEServerCallbacks
   void onConnect(BLEServer *pServer)
   {
     Serial.println("BLE : device connected");
-    char factoryInfoJson[100]; 
-    SM_Json smJson;
-    smJson.createFactoryInfoJson(factoryInfoJson, sizeof(factoryInfoJson));
+    
+    char deviceMacAddress[20];
+    getDeviceMAC(deviceMacAddress);
+    char factoryInfoJson[100];
+    SM_Json::create(factoryInfoJson, sizeof(factoryInfoJson),
+                        std::pair<const char*, const char*>("device_model", SM_MODEL),
+                        std::pair<const char*, const char*>("mac_address", deviceMacAddress),
+                        std::pair<const char*, const char*>("firmware_rev", SM_FIRMWARE_VER));                                         
     Serial.println(factoryInfoJson);
     
     pDeviceCharacteristic->setValue(factoryInfoJson);
@@ -34,7 +39,6 @@ class MyServerCallbacks : public BLEServerCallbacks
 
 class ProvCharacteristicsCallbacks : public BLECharacteristicCallbacks
 {
-  
   void onWrite(BLECharacteristic *pCharacteristic)
   {
     std::string rxValue = pCharacteristic->getValue();

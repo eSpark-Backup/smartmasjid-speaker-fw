@@ -5,7 +5,7 @@
 #define SM_FIRMWARE_VER "1.0"
 #define BLE_MAC_OFFSET 2
 #define BATTERY_HEALTH 90
-#define MASJID_ID_TEST "3"
+#define MASJID_ID_TEST 3
 // #define TESTING
 
 #ifdef TESTING
