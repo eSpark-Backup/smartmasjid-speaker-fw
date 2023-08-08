@@ -6,13 +6,13 @@
 
 WifiProvisioning wifiProv;
 BLE ble;
-Button btt;
+Button button(SMBTN_GPIO);
 SmHttp smHttp;
 
 void setup() {
   Serial.begin(115200);
 
-  btt.setup();
+  button.setup();
 
   if(wifiProv.connectWifiFromNVS())
   {
@@ -41,11 +41,5 @@ void setup() {
 
 void loop() 
 { 
-   if(btt.isPressed())
-    {
-      Serial.println("Button Pressed");
-      smHttp.startAdhan();
-      btt.clearState();
-    }
-
+  button.loop();
 }

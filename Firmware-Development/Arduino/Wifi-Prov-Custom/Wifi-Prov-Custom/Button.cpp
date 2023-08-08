@@ -1,25 +1,40 @@
 #include <Arduino.h>
+#include "FunctionalInterrupt.h"
+#include "SM_Http.hpp"
 #include "Button.hpp"
-
-bool buttonPressed = false;
 
 void Button::setup()
 {
-  pinMode(SMBTN_GPIO, INPUT);
-  attachInterrupt(SMBTN_GPIO, handleButtonInterrupt, RISING); 
+  pinMode(pin, INPUT);
+  attachInterrupt(pin, std::bind(&Button::handleButtonInterrupt, this), RISING); 
 }
 
 void Button::handleButtonInterrupt() 
 {
-  buttonPressed = true;
+  switch(state)
+  {
+    case UNPRESSED:
+      state = ADHAN_START_REQUESTED;
+      break;
+
+      default:
+        break;
+  }
 }
 
-bool Button::isPressed()
+void Button::loop()
 {
-  return buttonPressed; 
-}
+  switch(state)
+  {
+    case ADHAN_START_REQUESTED:
+      {
+        SmHttp smHttp;
+        smHttp.startAdhan();
+      }
+      state = UNPRESSED;
+      break;
 
-void Button::clearState()
-{
-  buttonPressed= false;
+    default:
+      break;
+  }
 }

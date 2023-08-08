@@ -8,6 +8,9 @@
 
 bool SmHttp::startAdhan()
 {
+  if (WiFi.status() != WL_CONNECTED)
+    return false;
+    
   // Send the POST request
   HTTPClient http;
   http.begin(smHost, 80, adhanStartEndpoint);
@@ -41,6 +44,9 @@ bool SmHttp::startAdhan()
 
 bool SmHttp::sendDeviceTelemetry(const char* macAddress, uint8_t retryInterval, uint16_t maxRetryDuration) 
 {
+  if (WiFi.status() != WL_CONNECTED)
+    return false;
+    
   // Start retry loop
   unsigned long startTime = millis();
   while ((millis() - startTime) < TO_MS(maxRetryDuration)) 
@@ -57,6 +63,9 @@ bool SmHttp::sendDeviceTelemetry(const char* macAddress, uint8_t retryInterval, 
 
 bool SmHttp::sendDeviceTelemetry(const char* macAddress) 
 {
+  if (WiFi.status() != WL_CONNECTED)
+    return false;
+    
   // Make HTTP POST request
   HTTPClient http;
   http.begin(smHost, 80, telemetryEndpoint);
