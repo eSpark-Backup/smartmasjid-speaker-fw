@@ -12,9 +12,11 @@ class SmHttp
     const char* smHost = "smartmasjid-api-qa.futuriklabs.com";
     const char* telemetryEndpoint = "/external/device/telemetry";
     const char* adhanStartEndpoint = "/external/adhan/start";
+    const char* adhanStopEndpoint = "/external/adhan/stop";
     
   public:
     bool startAdhan();  
     bool sendDeviceTelemetry(const char* macAddress, uint8_t retryInterval, uint16_t maxRetryDuration);
     bool sendDeviceTelemetry(const char* macAddress);
+    bool stopAdhan(); 
 };
