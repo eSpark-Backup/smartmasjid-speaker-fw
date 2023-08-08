@@ -31,10 +31,11 @@ class WifiProvisioning
     
   public:
     bool connectWifiFromNVS(void);
-    bool connectWifi(const char* ssid, const char* pass);
+    bool connectWifi(const char* ssid, const char* pass, int retries = WIFI_RETRY);
     void wifiGotIP(WiFiEvent_t event, WiFiEventInfo_t info);
     bool storeWifiCredsNVS(void);
     bool storeWifiCredsNVS(const char* ssid, const char* pass);
     bool storeWifiCredsRAM(const char* ssid, const char* pass);
     bool isTelemetrySent(void);
+    bool removeWifiCredsNVS(void);
 };

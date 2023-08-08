@@ -3,15 +3,13 @@
 #include "BLE.hpp"
 #include "SM_Http.hpp"
 
-bool WifiProvisioning::connectWifi(const char *ssid, const char *pass)
-{
+bool WifiProvisioning::connectWifi(const char *ssid, const char *pass, int retries)
+{ 
   if (ssid != NULL && pass != NULL)
   {
-    // try to connect to WiFi
     Serial.printf("Connecting to %s...\n", ssid);
     WiFi.onEvent(std::bind(&WifiProvisioning::wifiGotIP, this, std::placeholders::_1, std::placeholders::_2), WiFiEvent_t::ARDUINO_EVENT_WIFI_STA_GOT_IP);
     WiFi.begin(ssid, pass);
-    int retries = WIFI_RETRY;
     while (WiFi.status() != WL_CONNECTED && retries-- > 0)
     {
       delay(1000);
@@ -86,4 +84,12 @@ bool WifiProvisioning::storeWifiCredsNVS(const char* ssid, const char* pass)
 bool WifiProvisioning::isTelemetrySent(void)
 {
   return (deviceTelemetryStatus==TELEMETRY_SENT);
+}
+  
+bool WifiProvisioning::removeWifiCredsNVS()
+{
+  bool ret = false;
+  ret = preferences.remove("ssid");
+  ret &= preferences.remove("pass");
+  return ret;
 }

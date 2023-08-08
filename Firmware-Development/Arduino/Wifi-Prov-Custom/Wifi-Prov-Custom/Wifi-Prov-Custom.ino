@@ -2,12 +2,14 @@
 #include "Button.hpp"
 #include "SM_Http.hpp"
 #include "WifiProvisioning.hpp"
+#include "Mqtt.hpp"
 #include "Device.hpp"
 
 WifiProvisioning wifiProv;
 BLE ble;
 Button button(SMBTN_GPIO);
 SmHttp smHttp;
+MQTTClient mqtt(&wifiProv);
 
 void setup() {
   Serial.begin(115200);
@@ -41,5 +43,10 @@ void setup() {
 
 void loop() 
 { 
-  button.loop();
+  mqtt.setup();
+  while (1)
+  {
+    button.loop();
+    mqtt.loop();
+  }
 }
