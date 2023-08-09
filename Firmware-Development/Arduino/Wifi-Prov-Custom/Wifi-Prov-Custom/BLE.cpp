@@ -1,3 +1,10 @@
+
+#include <Arduino.h>
+#include <ArduinoJson.h>
+#include <BLEDevice.h>
+#include <BLEServer.h>
+#include <BLEUtils.h>
+#include <BLE2902.h>
 #include "BLE.hpp"
 #include "Device.hpp"
 #include "SM_Json.hpp"
@@ -10,9 +17,6 @@ BLECharacteristic *pTxCharacteristic;
 BLECharacteristic *pDeviceCharacteristic;
 BLECharacteristic *pProvCharacteristic;
 
-const char *ssid;
-const char *pass;
-
 class MyServerCallbacks : public BLEServerCallbacks
 {
   void onConnect(BLEServer *pServer)
@@ -21,6 +25,7 @@ class MyServerCallbacks : public BLEServerCallbacks
     
     char deviceMacAddress[20];
     getDeviceMAC(deviceMacAddress);
+    
     char factoryInfoJson[100];
     SM_Json::create(factoryInfoJson, sizeof(factoryInfoJson),
                         std::pair<const char*, const char*>("device_model", SM_MODEL),
@@ -47,46 +52,38 @@ class ProvCharacteristicsCallbacks : public BLECharacteristicCallbacks
 
     if (rxValue.length() > 0)
     {
-      // read JSON data from Bluetooth
-      StaticJsonDocument<128> doc;
-      DeserializationError error = deserializeJson(doc, rxValue);
-      if (error)
-      {
-        Serial.println("Error parsing JSON");
-        return;
-      }
-
-      ssid = doc["ssid"];
-      pass = doc["pass"];
-      pWifiProv->storeWifiCredsRAM(ssid, pass);
-      
-      const char *masjidId = doc["masjid_id"];
-
-      if (masjidId != NULL)
+      char masjidId[32];
+      if (SM_Json::parse(rxValue.c_str(), std::make_pair("masjid_id", masjidId))) 
       {
         Serial.printf("Masjid ID : %s\n", masjidId);
       }
-
-      if ((ssid != NULL) && (pass != NULL))
-      {
-        // switch to WiFi mode and connect
-        pWifiProv->connectWifi(ssid, pass);
-      }
       else
       {
-        return;
-      }        
+        Serial.println("Unable to parse masjis id");
+      }  
+      
+      char ssid[32];
+      char pass[32];
+      if (SM_Json::parse(rxValue.c_str(), std::make_pair("ssid", ssid), std::make_pair("pass", pass))) 
+      {
+        pWifiProv->storeWifiCredsRAM(ssid, pass);
+        pWifiProv->connectWifi(ssid, pass);
+      } 
+      else
+      {
+        Serial.println("Unable to parse wifi credentials");
+      }     
     }
   }
 };
 
-
-
-bool BLE::initialize(WifiProvisioning* wifiProv)
+BLE::BLE(WifiProvisioning* wifiProv)
 {
   pWifiProv = wifiProv;
-  WiFi.mode(WIFI_OFF);
-  delay(100);
+}
+
+bool BLE::initialize()
+{
   // Create the BLE Device
   BLEDevice::init("SMBTN_SBB23V1");
 

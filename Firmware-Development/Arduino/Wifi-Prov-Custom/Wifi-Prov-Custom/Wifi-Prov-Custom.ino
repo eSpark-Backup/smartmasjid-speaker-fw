@@ -6,47 +6,50 @@
 #include "Device.hpp"
 
 WifiProvisioning wifiProv;
-BLE ble;
+BLE ble(&wifiProv);
 Button button(SMBTN_GPIO);
 SmHttp smHttp;
 MQTTClient mqtt(&wifiProv);
 
-void setup() {
+void setup() 
+{
   Serial.begin(115200);
-
-  button.setup();
-
+  
   if(wifiProv.connectWifiFromNVS())
   {
     while(!wifiProv.isTelemetrySent())
     {
       delay(100);
     }
-    return;
   } 
-  // switch to Bluetooth mode
-  Serial.println("Switching to Bluetooth mode");
-  ble.initialize(&wifiProv);
-  while(WiFi.status() != WL_CONNECTED);
-  while (1)
+  else
   {
-    if (ble.isStarted() && wifiProv.isTelemetrySent())
-    {
-        wifiProv.storeWifiCredsNVS();
-        ble.stop();
-        return; 
-    }  
+    // Turn off wifi
+    WiFi.mode(WIFI_OFF);
     delay(100);
+    
+    // switch to Bluetooth mode
+    Serial.println("Switching to Bluetooth mode");
+    ble.initialize();
+    while(WiFi.status() != WL_CONNECTED);
+    while (1)
+    {
+      if (ble.isStarted() && wifiProv.isTelemetrySent())
+      {
+          wifiProv.storeWifiCredsNVS();
+          ble.stop();
+          break;
+      }  
+      delay(100);
+    }
   }
   
+  mqtt.setup();
+  button.setup();
 }
 
 void loop() 
 { 
-  mqtt.setup();
-  while (1)
-  {
-    button.loop();
-    mqtt.loop();
-  }
+  button.loop();
+  mqtt.loop();
 }

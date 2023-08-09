@@ -41,7 +41,6 @@ class MQTTClient
   public:
     MQTTClient(WifiProvisioning* wifiProv) : pWifiProv(wifiProv) {}
     void setup();
-    bool parseCredentials(char* pSsid, char* pPass, const char* jsonpacket, unsigned int length);
     void connectToBroker();
     void subscribeTopics();
     void unsubscribeTopics();

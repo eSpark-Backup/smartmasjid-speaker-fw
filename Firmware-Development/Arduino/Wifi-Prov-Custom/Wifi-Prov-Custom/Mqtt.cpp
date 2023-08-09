@@ -1,7 +1,9 @@
-#include "Mqtt.hpp"
-#include "WifiProvisioning.hpp"
 #include <ArduinoJson.h>
 #include <Preferences.h>
+#include "Mqtt.hpp"
+#include "WifiProvisioning.hpp"
+#include "SM_Json.hpp"
+
 Preferences NVS;
 
 WiFiClient wifiClient;
@@ -13,6 +15,7 @@ void MQTTClient::setup()
   connectToBroker();
   subscribeTopics();
 }
+
 void MQTTClient::connectToBroker() 
 {
   mqttClient.setServer(mqttServer, mqttPort);
@@ -21,7 +24,8 @@ void MQTTClient::connectToBroker()
     if (mqttClient.connect("arduino_client", mqttUsername, mqttPassword)) 
     {
       Serial.println("Connected to MQTT broker");
-    } else 
+    } 
+    else 
     {
       Serial.println("Failed to connect to MQTT broker");
       delay(1000);
@@ -57,25 +61,36 @@ void MQTTClient::receiveCallback(char* topic, byte* payload, unsigned int length
       removeMasjidIdfromNVS();
       if (pWifiProv->removeWifiCredsNVS())
       {
-        Serial.println("Old Credential removed");
+        Serial.println("Old credential removed");
       }
       break;
 
-    case DEVICE_Wifi:     
-      Serial.println("Wifi TOPIC");     
-      if (pWifiProv->removeWifiCredsNVS())
-      {
-        Serial.println("Old Credential removed");
-      }     
-      char ssid[32];
-      char pass[32];
-      parseCredentials(ssid, pass, (const char*)payload, length);
-      pWifiProv->storeWifiCredsNVS(ssid, pass);
-      pWifiProv->connectWifi(ssid, pass, 10);
+    case DEVICE_Wifi:  
+      {   
+        Serial.println("Wifi TOPIC");  
+        if (pWifiProv->removeWifiCredsNVS())
+        {
+          Serial.println("Old credential removed");
+        }  
+           
+        char ssid[32];
+        char pass[32];
+        if (SM_Json::parse((const char*)payload, std::make_pair("ssid", ssid), std::make_pair("password", pass))) 
+        {
+          pWifiProv->storeWifiCredsNVS(ssid, pass);
+          pWifiProv->connectWifi(ssid, pass, 10);
+        }
+        else
+        {
+          Serial.println("Unable to parse wifi credentials");
+        }
+      }
+
       break;
       
     default:
       Serial.println("UNKNOWN TOPIC");
+      break;
   }
 }
 
@@ -139,19 +154,15 @@ bool MQTTClient::extractTopicAndUnsubscribe(const char* message)
 bool MQTTClient::extractTopicAndControlSubscription(subscription control, const char* message) 
 {
   bool ret = false;
-  
-  DynamicJsonDocument doc(256);
-  DeserializationError error = deserializeJson(doc, message);
-  if (error) 
+  char topic[64];
+  if (SM_Json::parse(message, std::make_pair("topic", topic))) 
   {
-    Serial.println("Error parsing JSON");
-  } 
+    ret = controlSubscription(control, topic); 
+  }
   else 
   {
-    const char* topic = doc["topic"];
-    ret = controlSubscription(control, topic);  
+    Serial.println("Unable to parse topic");  
   }
-
   return ret;
 }
 
@@ -188,24 +199,6 @@ void MQTTClient::getTopicPath(char* dest, const char* topicName)
   // Add the topic name to the destination buffer, also separated with slashes
   strcat(dest, "/");
   strcat(dest, topicName);
-}
-
-bool MQTTClient::parseCredentials(char* pSsid, char* pPass, const char* jsonpacket, unsigned int length) 
-{
-  StaticJsonDocument<125> doc;
-  DeserializationError error = deserializeJson(doc, jsonpacket, length);
-  if (error) 
-  {
-    Serial.println("Error parsing JSON");
-    return false;
-  } 
-  
-  const char* ssid = doc["ssid"];
-  const char* pass = doc["password"];
-  memcpy(pSsid, ssid , strlen(ssid)+1);
-  memcpy(pPass, pass , strlen(pass)+1);
-  
-  return true;
 }
 
 void MQTTClient::removeMasjidIdfromNVS()
