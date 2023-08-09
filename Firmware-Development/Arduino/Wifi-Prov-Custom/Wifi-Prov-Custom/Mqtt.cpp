@@ -1,24 +1,33 @@
+#include <ArduinoJson.h>
+#include <Preferences.h>
 #include "Mqtt.hpp"
 #include "WifiProvisioning.hpp"
-#include <ArduinoJson.h>
-#include <LinkedList.h>
-#include <Preferences.h>
+#include "SM_Json.hpp"
+
 Preferences NVS;
-LinkedList<String> myList;
-int c ;
-String s;
+
 char ssid_1[32];
 char pass_1[32];
-const char* topic_1;
 WiFiClient wifiClient;
 PubSubClient mqttClient(wifiClient);
-    
-void MQTTClient::connectToBroker() {
+
+void MQTTClient::setup()
+{  
+  getDeviceMAC(macAddress);
+  connectToBroker();
+  subscribeTopics();
+}
+void MQTTClient::connectToBroker() 
+{
   mqttClient.setServer(mqttServer, mqttPort);
-  while (!mqttClient.connected()) {
-    if (mqttClient.connect("arduino_client", mqttUsername, mqttPassword)) {
+  while (!mqttClient.connected()) 
+  {
+    if (mqttClient.connect("arduino_client", mqttUsername, mqttPassword)) 
+    {
       Serial.println("Connected to MQTT broker");
-    } else {
+    } 
+    else 
+    {
       Serial.println("Failed to connect to MQTT broker");
       delay(1000);
     }
@@ -37,7 +46,7 @@ void MQTTClient::subscribeTopics() {
   subscribe(topicPath);
   getTopicPath(topicPath, mqttTopicWifi);
   subscribe(topicPath);
-  SubscribeTopicsfromNVS();
+  subscribeTopicsfromNVS();
 
 }
 
@@ -48,21 +57,16 @@ void MQTTClient::receiveCallback(char* topic, byte* payload, unsigned int length
 
   Serial.write(payload, length);
   Serial.println();
-  char payloadStr[length + 1]; 
-  String* v;
-  int size;
-  int index;
-  bool found;
-  StaticJsonDocument<125> doc;
   switch(getTopic(topic))
   {
     case DEVICE_RESET:
       Serial.println("RESET TOPIC");
-      UnsubscribeTopicsReset();
-      RemoveMasjidIdfromNVS();
-      UnSubscribeTopicsfromNVS();
-      pWifiProv->deleteSubscriptioninNVS(topic);
-      pWifiProv->removeWifiCredsNVS();
+      unsubscribeTopics();
+      removeMasjidIdfromNVS();
+      if (pWifiProv->removeWifiCredsNVS())
+      {
+        Serial.println("Old credential removed");
+      }
       break;
 
     case DEVICE_SUBSCRIBE:
@@ -76,24 +80,36 @@ void MQTTClient::receiveCallback(char* topic, byte* payload, unsigned int length
       break;
 
     case DEVICE_Wifi:     
-      Serial.println("Wifi TOPIC");     
-      pWifiProv->removeWifiCredsNVS();
-      Serial.println("Old Credential removed");
-      ReadfactoryinfoJson((const char*)payload, length);
-      Serial.print("SSID: ");
-      Serial.println(ssid_1);
-      Serial.print("Password: ");
-      Serial.println(pass_1);
-      pWifiProv->storeWifiCredsNVS(ssid_1,pass_1);
-      pWifiProv->connectWifi(ssid_1,pass_1,10);
+     {   
+        Serial.println("Wifi TOPIC");  
+        if (pWifiProv->removeWifiCredsNVS())
+        {
+          Serial.println("Old credential removed");
+        }  
+           
+        char ssid[32];
+        char pass[32];
+        if (SM_Json::parse((const char*)payload, std::make_pair("ssid", ssid), std::make_pair("password", pass))) 
+        {
+          pWifiProv->storeWifiCredsNVS(ssid, pass);
+          pWifiProv->connectWifi(ssid, pass, 10);
+        }
+        else
+        {
+          Serial.println("Unable to parse wifi credentials");
+        }
+      }
+
       break;
       
     default:
       Serial.println("UNKNOWN TOPIC");
+      break;
   }
 }
 
-void MQTTClient::loop() {
+void MQTTClient::loop() 
+{
   mqttClient.loop();
 }
 
@@ -102,11 +118,10 @@ bool MQTTClient::subscribe(const char* topic)
   if (mqttClient.subscribe(topic))
   {
     Serial.printf("Subscribed to %s\n",topic);
-
-    }
-
     return true;
   }
+  return false;
+}
 
 bool MQTTClient::unsubscribe(const char* topic)
 {
@@ -149,12 +164,14 @@ bool MQTTClient::compareTopic(const char* topic, const char* topicName)
   return !strcmp(topicPath, topic);
 }
 
-bool MQTTClient::extractTopicAndSubscribe(const char* message) {
+bool MQTTClient::extractTopicAndSubscribe(const char* message) 
+{
 
   return extractTopicAndControlSubscription(SUBSCRIBE, message);
 }
 
-bool MQTTClient::extractTopicAndUnsubscribe(const char* message) {
+bool MQTTClient::extractTopicAndUnsubscribe(const char* message) 
+{
 
   return extractTopicAndControlSubscription(UNSUBSCRIBE, message);
 }
@@ -162,28 +179,15 @@ bool MQTTClient::extractTopicAndUnsubscribe(const char* message) {
 bool MQTTClient::extractTopicAndControlSubscription(subscription control, const char* message) 
 {
   bool ret = false;
-  
-  DynamicJsonDocument doc(256);
-  DeserializationError error = deserializeJson(doc, message);
-  if (error) {
-    Serial.println("Error parsing JSON");
-    
-  } 
+  char topic[64];
+  if (SM_Json::parse(message, std::make_pair("topic", topic))) 
+  {
+    ret = controlSubscription(control, topic); 
+  }
   else 
-    {
-      const char* topic = doc["topic"];
-        switch(control)
-        {
-          case SUBSCRIBE:
-              pWifiProv->saveSubscriptioninNVS(topic);
-              break;
-          case UNSUBSCRIBE:
-              pWifiProv->deleteSubscriptioninNVS(topic);
-              break;
-        }
-      ret = controlSubscription(control, topic);  
-    }
-
+  {
+    Serial.println("Unable to parse topic");  
+  }
   return ret;
 }
 
@@ -213,31 +217,14 @@ void MQTTClient::getTopicPath(char* dest, const char* topicName)
 
   // Add the MAC address to the destination buffer, separating it with slashes
   strcat(dest, "/");
-  strcat(dest, WiFi.macAddress().c_str());
+  strcat(dest, macAddress);
 
   // Add the topic name to the destination buffer, also separated with slashes
   strcat(dest, "/");
   strcat(dest, topicName);
 }
 
-MQTTClient::MQTTClient(WifiProvisioning* wifiProv)
-{
-  pWifiProv = wifiProv;
-}
-
-void MQTTClient::ReadfactoryinfoJson(const char* jsonpacket, unsigned int length) {
-
-  // read JSON data from Bluetooth
-  StaticJsonDocument<125> doc;
-  DeserializationError error = deserializeJson(doc, jsonpacket, length);
-  const char* ssid = doc["ssid"];
-  const char* pass = doc["password"];
-  memcpy(ssid_1, ssid , strlen(ssid));
-  memcpy(pass_1, pass , strlen(pass));
-  Serial.println(ssid_1);
-  Serial.println(pass_1);
-}
-void MQTTClient::SubscribeTopicsfromNVS()
+void MQTTClient::subscribeTopicsfromNVS()
 {
     NVS.begin("Subscription");
     uint32_t count = NVS.getUInt("count");
@@ -254,7 +241,7 @@ void MQTTClient::SubscribeTopicsfromNVS()
 
     }
 }
-void MQTTClient::UnSubscribeTopicsfromNVS()
+void MQTTClient::unsubscribeTopicsfromNVS()
 {
     NVS.begin("Subscription");
     uint32_t count = NVS.getUInt("count");
@@ -271,13 +258,13 @@ void MQTTClient::UnSubscribeTopicsfromNVS()
 
     }
 }
-void MQTTClient::RemoveMasjidIdfromNVS()
+void MQTTClient::removeMasjidIdfromNVS()
 {
       NVS.begin("FactoryInfo");
       NVS.remove("masjid_id");
 }
 
-void MQTTClient::UnsubscribeTopicsReset()
+void MQTTClient::unsubscribeTopics()
 {
   char topicPath[50];
   getTopicPath(topicPath, mqttTopicReset);

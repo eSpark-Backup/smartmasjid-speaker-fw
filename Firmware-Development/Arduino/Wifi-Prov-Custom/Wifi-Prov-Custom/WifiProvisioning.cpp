@@ -1,11 +1,9 @@
 #include "WifiProvisioning.hpp"
-#include "Device.h"
-#include <LinkedList.h>
-#include <Preferences.h>
-#include <ArduinoJson.h>
-LinkedList<String> List;
+#include "Device.hpp"
+#include "BLE.hpp"
+#include "SM_Http.hpp"
 
-bool WifiProvisioning::connectWifi(const char *ssid, const char *pass,int retries)
+bool WifiProvisioning::connectWifi(const char *ssid, const char *pass, int retries)
 { 
   if (ssid != NULL && pass != NULL)
   {
@@ -55,7 +53,11 @@ void WifiProvisioning::wifiGotIP(WiFiEvent_t event, WiFiEventInfo_t info) {
   Serial.print("Connected to Wi-Fi network with IP address: ");
   Serial.println(WiFi.localIP());
 
-  if (sendDeviceTelemetry(MAC_ADDRESS, RETRY_INTERVAL, MAX_RETRY_DURATION))
+  char deviceMacAddress[20];
+  getDeviceMAC(deviceMacAddress);
+
+  SmHttp smHttp;
+  if (smHttp.sendDeviceTelemetry(deviceMacAddress, RETRY_INTERVAL, MAX_RETRY_DURATION))
   {
     deviceTelemetryStatus = TELEMETRY_SENT;
   }

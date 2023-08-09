@@ -4,8 +4,9 @@
 #include <WiFi.h>
 #include <Preferences.h>
 #include <HTTPClient.h>
-#include "Device.h"
-#include <LinkedList.h>
+#include "Device.hpp"
+#include "esp_bt_main.h"
+#include "esp_bt_device.h"
 
 #define HTTP_STATUS_OK 200
 #define HTTP_STATUS_CREATED 201

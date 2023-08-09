@@ -1,7 +1,14 @@
+
+#include <Arduino.h>
+#include <ArduinoJson.h>
+#include <BLEDevice.h>
+#include <BLEServer.h>
+#include <BLEUtils.h>
+#include <BLE2902.h>
 #include "BLE.hpp"
-#include "Device.h"
-#include <Preferences.h>
-Preferences FactInfo;
+#include "Device.hpp"
+#include "SM_Json.hpp"
+
 WifiProvisioning* pWifiProv = NULL;
 
 BLEServer *pServer = NULL;
@@ -9,43 +16,24 @@ BLEService *pService = NULL;
 BLECharacteristic *pTxCharacteristic;
 BLECharacteristic *pDeviceCharacteristic;
 BLECharacteristic *pProvCharacteristic;
-// const char* jsonPacket = "{\"device_model\": \"SSB23V1\", \"mac_address\": \"abc:123:efg:456\", \"firmware_rev\": \"1.0\"}";
-const char* jsonPacket;
-const char *ssid;
-const char *pass;
-const char *masjid_id;
-#include <ArduinoJson.h>
-
-
-
-// Function to generate the JSON string
-void generatefactoryinfoJson(const char* device_model, const char* mac_address, const char* firmware_rev, char* jsonString, uint8_t size) {
-  // Create a JSON document
-  StaticJsonDocument<256> doc;
-
-  // Set the values in the JSON document
-  doc["device_model"] = device_model;
-  doc["mac_address"] = mac_address;
-  doc["firmware_rev"] = firmware_rev;
-
-  // Serialize the JSON document to a string
-  
-  // serializeJson(doc, jsonString);
-  serializeJson(doc, jsonString, size);
-}
 
 class MyServerCallbacks : public BLEServerCallbacks
 {
   void onConnect(BLEServer *pServer)
   {
-
-    String _mac_address = WiFi.macAddress();
-
-    char json[125];
-    generatefactoryinfoJson(SM_MODEL,_mac_address.c_str(),SM_FIRMWARE_VER, json, sizeof(json));
-    Serial.println(json);
     Serial.println("BLE : device connected");
-    pDeviceCharacteristic->setValue(json);
+    
+    char deviceMacAddress[20];
+    getDeviceMAC(deviceMacAddress);
+    
+    char factoryInfoJson[100];
+    SM_Json::create(factoryInfoJson, sizeof(factoryInfoJson),
+                        std::pair<const char*, const char*>("device_model", SM_MODEL),
+                        std::pair<const char*, const char*>("mac_address", deviceMacAddress),
+                        std::pair<const char*, const char*>("firmware_rev", SM_FIRMWARE_VER));                                         
+    Serial.println(factoryInfoJson);
+    
+    pDeviceCharacteristic->setValue(factoryInfoJson);
     pDeviceCharacteristic->notify();
   };
 
@@ -64,48 +52,44 @@ class ProvCharacteristicsCallbacks : public BLECharacteristicCallbacks
 
     if (rxValue.length() > 0)
     {
-      // read JSON data from Bluetooth
-      StaticJsonDocument<128> doc;
-      DeserializationError error = deserializeJson(doc, rxValue);
-      if (error)
+      char masjidId[32];
+      if (SM_Json::parse(rxValue.c_str(), std::make_pair("masjid_id", masjidId))) 
       {
-        Serial.println("Error parsing JSON");
-        return;
-      }
-
-      ssid = doc["ssid"];
-      pass = doc["pass"];
-      masjid_id = doc["masjid_id"];
-      FactInfo.begin("FactoryInfo");
-      // NVS.putUInt("masjid_id",masjid_id);
-      FactInfo.putString("masjid_id",masjid_id);
-      pWifiProv->storeWifiCredsRAM(ssid, pass);
-
-      if ((ssid != NULL) && (pass != NULL))
-      {
-        // switch to WiFi mode and connect
-        pWifiProv->connectWifi(ssid, pass);
+        Serial.printf("Masjid ID : %s\n", masjidId);
       }
       else
       {
-        return;
-      }        
+        Serial.println("Unable to parse masjis id");
+      }  
+      
+      char ssid[32];
+      char pass[32];
+      if (SM_Json::parse(rxValue.c_str(), std::make_pair("ssid", ssid), std::make_pair("pass", pass))) 
+      {
+        pWifiProv->storeWifiCredsRAM(ssid, pass);
+        pWifiProv->connectWifi(ssid, pass);
+      } 
+      else
+      {
+        Serial.println("Unable to parse wifi credentials");
+      }     
     }
   }
 };
 
-bool BLE::initialize(WifiProvisioning* wifiProv)
+BLE::BLE(WifiProvisioning* wifiProv)
 {
   pWifiProv = wifiProv;
-  WiFi.mode(WIFI_OFF);
-  delay(100);
+}
+
+bool BLE::initialize()
+{
   // Create the BLE Device
-  BLEDevice::init("SMSPK_SSB23V1");
+  BLEDevice::init("SMBTN_SBB23V1");
 
   // Create the BLE Server
   pServer = BLEDevice::createServer();
   pServer->setCallbacks(new MyServerCallbacks());
-
 
   // Create the BLE Service
   pService = pServer->createService(SERVICE_UUID);

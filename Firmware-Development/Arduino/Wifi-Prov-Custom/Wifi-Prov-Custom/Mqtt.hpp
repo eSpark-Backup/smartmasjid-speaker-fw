@@ -3,7 +3,7 @@
 #include <PubSubClient.h>
 #include <ArduinoJson.h>
 #include "WifiProvisioning.hpp"
-#include "Device.h"
+#include "Device.hpp"
 typedef enum 
 {
   DEVICE_RESET,
@@ -31,7 +31,7 @@ class MQTTClient
 
     /* MQTT topic details */
     const char* topicPrefix = "device";
-    const char* macAddress = WiFi.macAddress().c_str();
+    char macAddress[20];
     
     // MQTT topic to subscribe to
     const char* mqttTopicReset  = "reset";
@@ -41,11 +41,11 @@ class MQTTClient
     
 
   public:
-    MQTTClient(WifiProvisioning* wifiProv);
-    void ReadfactoryinfoJson(const char* jsonpacket, unsigned int length);
+    MQTTClient(WifiProvisioning* wifiProv) : pWifiProv(wifiProv) {}
+    void setup();
     void connectToBroker();
     void subscribeTopics();
-    void UnsubscribeTopics();
+    void unsubscribeTopics();
     void receiveCallback(char* topic, byte* payload, unsigned int length);
     void loop();
     bool subscribe(const char* topic);
@@ -57,8 +57,7 @@ class MQTTClient
     void getTopicPath(char* dest, const char* topicName); 
     bool compareTopic(const char* topic, const char* topicName);
     bool controlSubscription(subscription control, const char* topic);
-    void SubscribeTopicsfromNVS();
-    void UnSubscribeTopicsfromNVS();
-    void RemoveMasjidIdfromNVS();
-    void UnsubscribeTopicsReset();
+    void removeMasjidIdfromNVS();
+    void subscribeTopicsfromNVS();
+    void unsubscribeTopicsfromNVS();
 };
