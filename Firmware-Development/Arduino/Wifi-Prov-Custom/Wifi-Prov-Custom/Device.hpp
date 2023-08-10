@@ -11,9 +11,10 @@
 class Device 
 {
   private:
-    static bool getDeviceMAC(char* dest);
+    static bool getMac(char* dest);
   
   public:
+    Device() = delete; // Disable constructor
     static char macAddress[20];
     
     static void setup();

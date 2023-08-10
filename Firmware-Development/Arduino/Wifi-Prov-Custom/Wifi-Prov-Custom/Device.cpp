@@ -4,7 +4,7 @@
 
 char Device::macAddress[20] = "";
 
-bool Device::getDeviceMAC(char* dest) 
+bool Device::getMac(char* dest) 
 {
   if (!dest) 
   {
@@ -22,7 +22,7 @@ bool Device::getDeviceMAC(char* dest)
 
 void Device::setup() 
 {
-  getDeviceMAC(macAddress);
+  getMac(macAddress);
 
   // For Testing
   Serial.println(Device::macAddress); 

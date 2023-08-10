@@ -6,6 +6,7 @@
 class SM_Json 
 {
   public:
+    SM_Json() = delete; // Disable constructor
     template <typename... Args>
     static void create(char* json, uint8_t size, Args... args) 
     {
