@@ -25,9 +25,9 @@ class MyServerCallbacks : public BLEServerCallbacks
     
     char factoryInfoJson[100];
     SM_Json::create(factoryInfoJson, sizeof(factoryInfoJson),
-                        std::pair<const char*, const char*>("device_model", SM_MODEL),
-                        std::pair<const char*, const char*>("mac_address", Device::macAddress),
-                        std::pair<const char*, const char*>("firmware_rev", SM_FIRMWARE_VER));                                         
+                        std::make_pair("device_model", SM_MODEL),
+                        std::make_pair("mac_address", Device::macAddress),
+                        std::make_pair("firmware_rev", SM_FIRMWARE_VER));                                         
     Serial.println(factoryInfoJson);
     
     pDeviceCharacteristic->setValue(factoryInfoJson);
