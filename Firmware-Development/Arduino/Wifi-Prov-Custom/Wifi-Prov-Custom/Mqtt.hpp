@@ -31,7 +31,6 @@ class MQTTClient
 
     /* MQTT topic details */
     const char* topicPrefix = "device";
-    char macAddress[20];
     
     // MQTT topic to subscribe to
     const char* mqttTopicReset  = "reset";

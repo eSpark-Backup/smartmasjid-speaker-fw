@@ -23,13 +23,10 @@ class MyServerCallbacks : public BLEServerCallbacks
   {
     Serial.println("BLE : device connected");
     
-    char deviceMacAddress[20];
-    getDeviceMAC(deviceMacAddress);
-    
     char factoryInfoJson[100];
     SM_Json::create(factoryInfoJson, sizeof(factoryInfoJson),
                         std::pair<const char*, const char*>("device_model", SM_MODEL),
-                        std::pair<const char*, const char*>("mac_address", deviceMacAddress),
+                        std::pair<const char*, const char*>("mac_address", Device::macAddress),
                         std::pair<const char*, const char*>("firmware_rev", SM_FIRMWARE_VER));                                         
     Serial.println(factoryInfoJson);
     
@@ -69,8 +66,16 @@ class ProvCharacteristicsCallbacks : public BLECharacteristicCallbacks
       char pass[32];
       if (SM_Json::parse(rxValue.c_str(), std::make_pair("ssid", ssid), std::make_pair("pass", pass))) 
       {
-        pWifiProv->storeWifiCredsRAM(ssid, pass);
-        pWifiProv->connectWifi(ssid, pass);
+        if (pWifiProv->connectWifi(ssid, pass))
+        {    
+          // Store credentials in NVS
+          if (Sm_Nvs::put(DEVICE_WIFI_CREDENTIALS_NAMESPACE,
+                      std::make_pair("ssid", ssid),
+                      std::make_pair("pass", pass)))
+          {
+            Serial.println("Wifi credentials stored");
+          }
+        }
       } 
       else
       {

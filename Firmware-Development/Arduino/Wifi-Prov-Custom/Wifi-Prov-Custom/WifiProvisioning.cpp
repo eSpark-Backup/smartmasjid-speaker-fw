@@ -23,6 +23,7 @@ bool WifiProvisioning::connectWifi(const char *ssid, const char *pass, int retri
     }
     else
     {
+      WiFi.disconnect();
       Serial.println("Failed to connect to WiFi");
     }
   }
@@ -56,34 +57,11 @@ void WifiProvisioning::wifiGotIP(WiFiEvent_t event, WiFiEventInfo_t info)
   Serial.print("Connected to Wi-Fi network with IP address: ");
   Serial.println(WiFi.localIP());
 
-  char deviceMacAddress[20];
-  getDeviceMAC(deviceMacAddress);
-
   SmHttp smHttp;
-  if (smHttp.sendDeviceTelemetry(deviceMacAddress, RETRY_INTERVAL, MAX_RETRY_DURATION))
+  if (smHttp.sendDeviceTelemetry(Device::macAddress, RETRY_INTERVAL, MAX_RETRY_DURATION))
   {
     deviceTelemetryStatus = TELEMETRY_SENT;
   }
-}
-
-bool WifiProvisioning::storeWifiCredsRAM(const char* ssid, const char* pass)
-{
-  strcpy(gSsid, ssid);
-  strcpy(gPass, pass);
-  return true;
-}
-
-bool WifiProvisioning::storeWifiCredsNVS(void)
-{
-  storeWifiCredsNVS(gSsid, gPass);
-  return true; 
-}
-
-bool WifiProvisioning::storeWifiCredsNVS(const char* ssid, const char* pass)
-{
-  preferences.putString("ssid", ssid);
-  preferences.putString("pass", pass);
-  return true;
 }
 
 bool WifiProvisioning::isTelemetrySent(void)

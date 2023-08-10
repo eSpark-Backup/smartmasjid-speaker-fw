@@ -1,18 +1,14 @@
 #include <ArduinoJson.h>
-#include <Preferences.h>
 #include "Mqtt.hpp"
 #include "WifiProvisioning.hpp"
 #include "SM_Json.hpp"
 #include "SM_Nvs.hpp"
-
-Preferences NVS;
 
 WiFiClient wifiClient;
 PubSubClient mqttClient(wifiClient);
 
 void MQTTClient::setup()
 {  
-  getDeviceMAC(macAddress);
   connectToBroker();
   subscribeTopics();
 }
@@ -82,11 +78,19 @@ void MQTTClient::receiveCallback(char* topic, byte* payload, unsigned int length
         if (SM_Json::parse((const char*)payload, std::make_pair("ssid", ssid), std::make_pair("password", pass))) 
         {
           // Store credentials in NVS
-          Sm_Nvs::put(DEVICE_WIFI_CREDENTIALS_NAMESPACE,
+          if (Sm_Nvs::put(DEVICE_WIFI_CREDENTIALS_NAMESPACE,
                       std::make_pair("ssid", ssid),
-                      std::make_pair("pass", pass));
+                      std::make_pair("pass", pass)))
+          {
+            Serial.println("Wifi credentials updated");
+          }
                       
-          pWifiProv->connectWifi(ssid, pass, 10);
+          if (pWifiProv->connectWifi(ssid, pass, 10))
+          {
+            // Setup MQTT again
+            setup();
+          }
+
         }
         else
         {
@@ -202,7 +206,7 @@ void MQTTClient::getTopicPath(char* dest, const char* topicName)
 
   // Add the MAC address to the destination buffer, separating it with slashes
   strcat(dest, "/");
-  strcat(dest, macAddress);
+  strcat(dest, Device::macAddress);
 
   // Add the topic name to the destination buffer, also separated with slashes
   strcat(dest, "/");

@@ -1,5 +1,4 @@
 #pragma once
-#include <WiFi.h>
 
 #define SM_MODEL "SBB23V1"
 #define SM_FIRMWARE_VER "1.0"
@@ -9,19 +8,14 @@
 #define DEVICE_FACTORY_INFO_NAMESPACE "factoryInfo"
 #define DEVICE_WIFI_CREDENTIALS_NAMESPACE "credentials"
 
-static inline bool getDeviceMAC(char* dest)
+class Device 
 {
-  if (!dest)
-  {
-    Serial.println("getDeviceMAC() -> dest* is null");
-    return false;
-  }
+  private:
+    static bool getDeviceMAC(char* dest);
   
-  uint8_t mac[6];
-  WiFi.macAddress(mac);
-  mac[5] += BLE_MAC_OFFSET;
+  public:
+    static char macAddress[20];
+    
+    static void setup();
 
-  sprintf(dest, "%02X:%02X:%02X:%02X:%02X:%02X", mac[0], mac[1], mac[2], mac[3], mac[4], mac[5]);
-  return true;
-}
-  
+};

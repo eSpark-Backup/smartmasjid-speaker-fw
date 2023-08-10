@@ -1,4 +1,5 @@
 #pragma once
+#include <Preferences.h>
 
 class Sm_Nvs 
 {
