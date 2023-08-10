@@ -2,6 +2,7 @@
 #include "Device.hpp"
 #include "BLE.hpp"
 #include "SM_Http.hpp"
+#include "SM_Nvs.hpp"
 
 bool WifiProvisioning::connectWifi(const char *ssid, const char *pass, int retries)
 { 
@@ -30,23 +31,27 @@ bool WifiProvisioning::connectWifi(const char *ssid, const char *pass, int retri
 
 bool WifiProvisioning::connectWifiFromNVS(void)
 {
-  preferences.begin("credentials", false);
-  String ssid = preferences.getString("ssid", "");
-  String pass = preferences.getString("pass", "");
-
-  if (ssid == "" || pass == "")
+  char ssid[32];
+  char pass[32];
+  
+  bool ret = Sm_Nvs::get(DEVICE_WIFI_CREDENTIALS_NAMESPACE,
+                        std::make_pair("ssid", ssid),
+                        std::make_pair("pass", pass));   
+                                              
+  if (!ret)
   {
     Serial.println("No values saved for ssid or password");
   }
-  else if (connectWifi(ssid.c_str(), pass.c_str()))
+  else if (connectWifi(ssid, pass))
   {
     return true;
   }
+  
   return false;
 }
 
-void WifiProvisioning::wifiGotIP(WiFiEvent_t event, WiFiEventInfo_t info) {
-
+void WifiProvisioning::wifiGotIP(WiFiEvent_t event, WiFiEventInfo_t info) 
+{
   // Print network details
   Serial.print("Connected to Wi-Fi network with IP address: ");
   Serial.println(WiFi.localIP());
@@ -84,12 +89,4 @@ bool WifiProvisioning::storeWifiCredsNVS(const char* ssid, const char* pass)
 bool WifiProvisioning::isTelemetrySent(void)
 {
   return (deviceTelemetryStatus==TELEMETRY_SENT);
-}
-  
-bool WifiProvisioning::removeWifiCredsNVS()
-{
-  bool ret = false;
-  ret = preferences.remove("ssid");
-  ret &= preferences.remove("pass");
-  return ret;
 }

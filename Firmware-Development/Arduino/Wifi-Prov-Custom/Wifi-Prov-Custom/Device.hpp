@@ -6,6 +6,8 @@
 #define BLE_MAC_OFFSET 2
 #define BATTERY_HEALTH 90
 #define MASJID_ID_TEST 3
+#define DEVICE_FACTORY_INFO_NAMESPACE "factoryInfo"
+#define DEVICE_WIFI_CREDENTIALS_NAMESPACE "credentials"
 
 static inline bool getDeviceMAC(char* dest)
 {

@@ -4,6 +4,7 @@
 #include "WifiProvisioning.hpp"
 #include "Mqtt.hpp"
 #include "Device.hpp"
+#include "SM_Nvs.hpp"
 
 WifiProvisioning wifiProv;
 BLE ble(&wifiProv);
@@ -14,6 +15,18 @@ MQTTClient mqtt(&wifiProv);
 void setup() 
 {
   Serial.begin(115200);
+  char masjidId[32];
+  bool ret = Sm_Nvs::get(DEVICE_FACTORY_INFO_NAMESPACE,
+                        std::make_pair("masjidId", masjidId)); 
+  if(ret)
+  {
+    Serial.print("masjidId: ");
+    Serial.println(masjidId);   
+  }
+  else
+  {
+    Serial.print("Unable to find masjid id");
+  }
   
   if(wifiProv.connectWifiFromNVS())
   {

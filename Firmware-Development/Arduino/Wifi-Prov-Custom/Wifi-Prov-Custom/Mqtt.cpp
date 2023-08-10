@@ -3,6 +3,7 @@
 #include "Mqtt.hpp"
 #include "WifiProvisioning.hpp"
 #include "SM_Json.hpp"
+#include "SM_Nvs.hpp"
 
 Preferences NVS;
 
@@ -58,8 +59,11 @@ void MQTTClient::receiveCallback(char* topic, byte* payload, unsigned int length
     case DEVICE_RESET:
       Serial.println("RESET TOPIC");
       unsubscribeTopics();
-      removeMasjidIdfromNVS();
-      if (pWifiProv->removeWifiCredsNVS())
+      if (Sm_Nvs::del(DEVICE_FACTORY_INFO_NAMESPACE, "masjidId"))
+      {
+        Serial.println("Masjid Id Removed");
+      }
+      if (Sm_Nvs::del(DEVICE_WIFI_CREDENTIALS_NAMESPACE, "ssid", "pass"))
       {
         Serial.println("Old credential removed");
       }
@@ -68,16 +72,20 @@ void MQTTClient::receiveCallback(char* topic, byte* payload, unsigned int length
     case DEVICE_Wifi:  
       {   
         Serial.println("Wifi TOPIC");  
-        if (pWifiProv->removeWifiCredsNVS())
+        if (Sm_Nvs::del(DEVICE_WIFI_CREDENTIALS_NAMESPACE, "ssid", "pass"))
         {
           Serial.println("Old credential removed");
-        }  
+        } 
            
         char ssid[32];
         char pass[32];
         if (SM_Json::parse((const char*)payload, std::make_pair("ssid", ssid), std::make_pair("password", pass))) 
         {
-          pWifiProv->storeWifiCredsNVS(ssid, pass);
+          // Store credentials in NVS
+          Sm_Nvs::put(DEVICE_WIFI_CREDENTIALS_NAMESPACE,
+                      std::make_pair("ssid", ssid),
+                      std::make_pair("pass", pass));
+                      
           pWifiProv->connectWifi(ssid, pass, 10);
         }
         else
@@ -199,12 +207,6 @@ void MQTTClient::getTopicPath(char* dest, const char* topicName)
   // Add the topic name to the destination buffer, also separated with slashes
   strcat(dest, "/");
   strcat(dest, topicName);
-}
-
-void MQTTClient::removeMasjidIdfromNVS()
-{
-  NVS.begin("FactoryInfo");
-  NVS.remove("masjid_id");
 }
 
 void MQTTClient::unsubscribeTopics()

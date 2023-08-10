@@ -1,4 +1,3 @@
-
 #include <Arduino.h>
 #include <ArduinoJson.h>
 #include <BLEDevice.h>
@@ -8,6 +7,7 @@
 #include "BLE.hpp"
 #include "Device.hpp"
 #include "SM_Json.hpp"
+#include "SM_Nvs.hpp"
 
 WifiProvisioning* pWifiProv = NULL;
 
@@ -55,7 +55,10 @@ class ProvCharacteristicsCallbacks : public BLECharacteristicCallbacks
       char masjidId[32];
       if (SM_Json::parse(rxValue.c_str(), std::make_pair("masjid_id", masjidId))) 
       {
-        Serial.printf("Masjid ID : %s\n", masjidId);
+        Serial.printf("Masjid id : %s\n", masjidId);
+        // Store masjid id in NVS
+          Sm_Nvs::put(DEVICE_FACTORY_INFO_NAMESPACE,
+                      std::make_pair("masjidId", masjidId));
       }
       else
       {

@@ -21,7 +21,7 @@ class Button
     uint8_t pin;
     volatile buttonState state = UNPRESSED;
     SmHttp smHttp;
-    void handleButtonInterrupt();
+    void interruptHandler();
     uint32_t adhanStartTime= 0;
     
   public:

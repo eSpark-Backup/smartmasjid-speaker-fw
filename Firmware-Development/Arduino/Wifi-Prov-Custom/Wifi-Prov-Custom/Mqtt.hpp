@@ -55,5 +55,4 @@ class MQTTClient
     void getTopicPath(char* dest, const char* topicName); 
     bool compareTopic(const char* topic, const char* topicName);
     bool controlSubscription(subscription control, const char* topic);
-    void removeMasjidIdfromNVS();
 };

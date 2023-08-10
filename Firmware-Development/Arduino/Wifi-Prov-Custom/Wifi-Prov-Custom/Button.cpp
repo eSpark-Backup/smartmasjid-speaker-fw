@@ -5,10 +5,10 @@
 void Button::setup()
 {
   pinMode(pin, INPUT);
-  attachInterrupt(pin, std::bind(&Button::handleButtonInterrupt, this), RISING); 
+  attachInterrupt(pin, std::bind(&Button::interruptHandler, this), RISING); 
 }
 
-void Button::handleButtonInterrupt() 
+void Button::interruptHandler() 
 {
   switch(state)
   {

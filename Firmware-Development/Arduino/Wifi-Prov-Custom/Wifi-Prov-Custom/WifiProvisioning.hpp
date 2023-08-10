@@ -37,5 +37,4 @@ class WifiProvisioning
     bool storeWifiCredsNVS(const char* ssid, const char* pass);
     bool storeWifiCredsRAM(const char* ssid, const char* pass);
     bool isTelemetrySent(void);
-    bool removeWifiCredsNVS(void);
 };
