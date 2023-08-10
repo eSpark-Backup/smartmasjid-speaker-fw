@@ -22,7 +22,7 @@ typedef enum
 class MQTTClient
 {
   private:
-    WifiProvisioning* pWifiProv;
+    IWifiProvisioning* pWifiProv;
     // MQTT broker configuration
     const char* mqttServer = "smartmasjid-broker-dev.futuriklabs.com";
     const int mqttPort = 1883;
@@ -38,7 +38,7 @@ class MQTTClient
     
 
   public:
-    MQTTClient(WifiProvisioning* wifiProv) : pWifiProv(wifiProv) {}
+    MQTTClient(IWifiProvisioning* wifiProv) : pWifiProv(wifiProv) {}
     void setup();
     void connectToBroker();
     void subscribeTopics();

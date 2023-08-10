@@ -18,7 +18,7 @@ class BLE
     bleStatus status = BLE_STOPPED;
     
   public:
-    BLE(WifiProvisioning* wifiProv);
+    BLE(IWifiProvisioning* wifiProv);
     bool initialize();
     bool stop(void);
     bool isStarted(void);

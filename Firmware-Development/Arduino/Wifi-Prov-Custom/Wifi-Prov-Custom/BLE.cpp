@@ -9,7 +9,7 @@
 #include "SM_Json.hpp"
 #include "SM_Nvs.hpp"
 
-WifiProvisioning* pWifiProv = NULL;
+IWifiProvisioning* pWifiProv = NULL;
 
 BLEServer *pServer = NULL;
 BLEService *pService = NULL;
@@ -85,7 +85,7 @@ class ProvCharacteristicsCallbacks : public BLECharacteristicCallbacks
   }
 };
 
-BLE::BLE(WifiProvisioning* wifiProv)
+BLE::BLE(IWifiProvisioning* wifiProv)
 {
   pWifiProv = wifiProv;
 }
