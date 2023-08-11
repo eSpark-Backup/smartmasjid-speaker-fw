@@ -12,7 +12,7 @@ MQTTClient mqtt(&wifiProv);
 void setup() 
 {
   Serial.begin(115200);
-  
+  Device::setup();
   if(wifiProv.connectWifiFromNVS())
   {
     while(!wifiProv.isTelemetrySent())

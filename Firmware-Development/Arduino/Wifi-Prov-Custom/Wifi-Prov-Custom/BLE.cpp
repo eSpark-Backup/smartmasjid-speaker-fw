@@ -8,8 +8,9 @@
 #include "BLE.hpp"
 #include "Device.hpp"
 #include "SM_Json.hpp"
+#include "SM_Nvs.hpp"
 
-WifiProvisioning* pWifiProv = NULL;
+IWifiProvisioning* pWifiProv = NULL;
 
 BLEServer *pServer = NULL;
 BLEService *pService = NULL;
@@ -22,15 +23,13 @@ class MyServerCallbacks : public BLEServerCallbacks
   void onConnect(BLEServer *pServer)
   {
     Serial.println("BLE : device connected");
-    
-    char deviceMacAddress[20];
-    getDeviceMAC(deviceMacAddress);
+
     
     char factoryInfoJson[100];
     SM_Json::create(factoryInfoJson, sizeof(factoryInfoJson),
-                        std::pair<const char*, const char*>("device_model", SM_MODEL),
-                        std::pair<const char*, const char*>("mac_address", deviceMacAddress),
-                        std::pair<const char*, const char*>("firmware_rev", SM_FIRMWARE_VER));                                         
+                        std::make_pair("device_model", SM_MODEL),
+                        std::make_pair("mac_address", Device::macAddress),
+                        std::make_pair("firmware_rev", SM_FIRMWARE_VER));                                          
     Serial.println(factoryInfoJson);
     
     pDeviceCharacteristic->setValue(factoryInfoJson);
@@ -66,8 +65,16 @@ class ProvCharacteristicsCallbacks : public BLECharacteristicCallbacks
       char pass[32];
       if (SM_Json::parse(rxValue.c_str(), std::make_pair("ssid", ssid), std::make_pair("pass", pass))) 
       {
-        pWifiProv->storeWifiCredsRAM(ssid, pass);
-        pWifiProv->connectWifi(ssid, pass);
+        if (pWifiProv->connectWifi(ssid, pass))
+        {    
+          // Store credentials in NVS
+          if (Sm_Nvs::put(DEVICE_WIFI_CREDENTIALS_NAMESPACE,
+                      std::make_pair("ssid", ssid),
+                      std::make_pair("pass", pass)))
+          {
+            Serial.println("Wifi credentials stored");
+          }
+        }
       } 
       else
       {
@@ -77,7 +84,7 @@ class ProvCharacteristicsCallbacks : public BLECharacteristicCallbacks
   }
 };
 
-BLE::BLE(WifiProvisioning* wifiProv)
+BLE::BLE(IWifiProvisioning* wifiProv)
 {
   pWifiProv = wifiProv;
 }
@@ -85,7 +92,7 @@ BLE::BLE(WifiProvisioning* wifiProv)
 bool BLE::initialize()
 {
   // Create the BLE Device
-  BLEDevice::init("SMBTN_SBB23V1");
+  BLEDevice::init("SMSPK_SSB23V1");
 
   // Create the BLE Server
   pServer = BLEDevice::createServer();

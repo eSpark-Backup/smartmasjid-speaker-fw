@@ -19,7 +19,7 @@ bool SmHttp::startAdhan()
 
   char masjidIdJson[64]; 
   SM_Json::create(masjidIdJson, sizeof(masjidIdJson),
-                      std::pair<const char*, uint32_t>("masjidId", MASJID_ID_TEST));
+                      std::make_pair("masjidId", MASJID_ID_TEST));
   Serial.println(masjidIdJson);
   
   int httpCode = http.POST(masjidIdJson);
@@ -74,8 +74,8 @@ bool SmHttp::sendDeviceTelemetry(const char* macAddress)
   
   char telemetryJson[64]; 
   SM_Json::create(telemetryJson, sizeof(telemetryJson),
-                      std::pair<const char*, uint8_t>("battery", BATTERY_HEALTH),
-                      std::pair<const char*, const char*>("macAddress", macAddress));
+                      std::make_pair("battery", BATTERY_HEALTH),
+                      std::make_pair("macAddress", macAddress));
   Serial.println(telemetryJson);
   
   int httpCode = http.POST(telemetryJson);
@@ -110,7 +110,7 @@ bool SmHttp::stopAdhan()
 
   char masjidIdJson[64]; 
   SM_Json::create(masjidIdJson, sizeof(masjidIdJson),
-                      std::pair<const char*, uint32_t>("masjidId", MASJID_ID_TEST));
+                      std::make_pair("masjidId", MASJID_ID_TEST));
   Serial.println(masjidIdJson);
   
   int httpCode = http.POST(masjidIdJson);

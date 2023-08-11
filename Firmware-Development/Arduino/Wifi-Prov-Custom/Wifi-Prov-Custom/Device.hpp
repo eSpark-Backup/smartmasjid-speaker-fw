@@ -1,20 +1,26 @@
 #pragma once
 #include <WiFi.h>
 
-#define SM_MODEL "SBB23V1"
+#define SM_MODEL "SSB23V1"
 #define SM_FIRMWARE_VER "1.0"
 #define BLE_MAC_OFFSET 2
 #define BATTERY_HEALTH 90
 #define MASJID_ID_TEST 3
+#define DEVICE_FACTORY_INFO_NAMESPACE "factoryInfo"
+#define DEVICE_WIFI_CREDENTIALS_NAMESPACE "credentials"
 
-#ifdef TESTING
-  #define MAC_ADDRESS "abc:123:efg:456"
-#else 
-  // #define MAC_ADDRESS WiFi.macAddress()
-  // #define MAC_ADDRESS_PTR WiFi.macAddress().c_str()
-  #define MAC_ADDRESS WiFi.macAddress().c_str()
+class Device 
+{
+  private:
+    static bool getMac(char* dest);
   
-#endif
+  public:
+    Device() = delete; // Disable constructor
+    static char macAddress[20];
+    
+    static void setup();
+
+};
 
 static inline bool getDeviceMAC(char* dest)
 {

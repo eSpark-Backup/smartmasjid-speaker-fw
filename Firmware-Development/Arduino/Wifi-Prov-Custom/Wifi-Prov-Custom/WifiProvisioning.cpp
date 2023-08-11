@@ -2,7 +2,7 @@
 #include "Device.hpp"
 #include "BLE.hpp"
 #include "SM_Http.hpp"
-
+#include "SM_Nvs.hpp"
 bool WifiProvisioning::connectWifi(const char *ssid, const char *pass, int retries)
 { 
   if (ssid != NULL && pass != NULL)
@@ -22,6 +22,7 @@ bool WifiProvisioning::connectWifi(const char *ssid, const char *pass, int retri
     }
     else
     {
+      WiFi.disconnect();
       Serial.println("Failed to connect to WiFi");
     }
   }
@@ -31,23 +32,27 @@ bool WifiProvisioning::connectWifi(const char *ssid, const char *pass, int retri
 
 bool WifiProvisioning::connectWifiFromNVS(void)
 {
-  preferences.begin("credentials", false);
-  String ssid = preferences.getString("ssid", "");
-  String pass = preferences.getString("pass", "");
-  preferences.end();
-
-  if (ssid == "" || pass == "")
+  char ssid[32];
+  char pass[32];
+  
+  bool ret = Sm_Nvs::get(DEVICE_WIFI_CREDENTIALS_NAMESPACE,
+                        std::make_pair("ssid", ssid),
+                        std::make_pair("pass", pass));   
+                                              
+  if (!ret)
   {
     Serial.println("No values saved for ssid or password");
   }
-  else if (connectWifi(ssid.c_str(), pass.c_str()))
+  else if (connectWifi(ssid, pass))
   {
     return true;
   }
+  
   return false;
 }
 
-void WifiProvisioning::wifiGotIP(WiFiEvent_t event, WiFiEventInfo_t info) {
+void WifiProvisioning::wifiGotIP(WiFiEvent_t event, WiFiEventInfo_t info) 
+{
 
   // Print network details
   Serial.print("Connected to Wi-Fi network with IP address: ");
@@ -76,38 +81,6 @@ bool WifiProvisioning::sendDeviceTelemetry(const char* macAddress, uint8_t retry
     delay(retryInterval * SECONDS);
   }
   return false;
-}
-bool WifiProvisioning::sendDeviceTelemetry(const char* macAddress) {
-
-  char apiEndpoint[100];
-  snprintf(apiEndpoint, sizeof(apiEndpoint), apiEndpointTemplate);
-  
-  // Make HTTP POST request
-  HTTPClient http;
-  http.begin(apiHost, 80, apiEndpoint);
-  http.addHeader("x-api-key", "b8z6X5fzbjNDGHz15XtPVzEkO3h5mCT7q4Ei8AupX9DD12PxL94rhnZHarHc8O2H");
-  http.addHeader("Content-Type", "application/json");
-  char body[64];
-  createTelemetryJson(body, sizeof(body), macAddress, 90);
-  
-  int httpCode = http.POST(body);
-  const char* response = http.getString().c_str();
-  http.end();
-
-  // Check for successful response
-  if ((httpCode == HTTP_STATUS_OK) || (httpCode == HTTP_STATUS_CREATED)) 
-  {
-    Serial.println("Telemetry sent successfully!");
-    Serial.println(response);
-    return true;
-  } 
-  else 
-  {
-    Serial.print("Failed to send telemetry with error code: ");
-    Serial.println(httpCode);
-    Serial.println(response);
-    return false;
-  }
 }
 
 bool WifiProvisioning::storeWifiCredsRAM(const char* ssid, const char* pass)
@@ -190,14 +163,6 @@ bool WifiProvisioning::removeWifiCredsNVS(const char* ssid, const char* pass)
   preferences.remove("ssid");
   preferences.remove("pass");
   return true;
-}
-void WifiProvisioning::createTelemetryJson(char* json, uint8_t size, const char* macAddress, int battery) 
-{
-  StaticJsonDocument<64> doc;
-  doc["battery"] = battery;
-  doc["macAddress"] =macAddress;
-  serializeJson(doc, json, size);
-  Serial.println(json);
 }
 
 bool WifiProvisioning::isTelemetrySent(void)

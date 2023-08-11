@@ -1,8 +1,8 @@
 #pragma once
 #include <Arduino.h>
 #include <ArduinoJson.h>
-#include <WiFi.h>
 #include <Preferences.h>
+#include <WiFi.h>
 #include <HTTPClient.h>
 #include "Device.hpp"
 #include "esp_bt_main.h"
@@ -24,25 +24,27 @@ typedef enum
   TELEMETRY_SENT,
 } telemetryStatus;
 
-class WifiProvisioning 
+class IWifiProvisioning 
+{
+  public:
+    virtual bool connectWifi(const char* ssid, const char* pass, int retries = WIFI_RETRY) = 0;
+};
+class WifiProvisioning : public IWifiProvisioning
 {
   private:
     // Replace with your API details
     const char* apiHost = "smartmasjid-api-qa.futuriklabs.com";
     const char* apiEndpointTemplate = "/external/device/telemetry";
   
-    const char* macAddress = MAC_ADDRESS;
     char gSsid[32];
     char gPass[32];
     int count=0;
-
-    
     Preferences preferences;
     telemetryStatus deviceTelemetryStatus = TELEMETRY_NOTSENT;
     
   public:
     bool connectWifiFromNVS(void);
-    bool connectWifi(const char* ssid, const char* pass,int retries = WIFI_RETRY);
+    bool connectWifi(const char* ssid, const char* pass, int retries = WIFI_RETRY) override;
     void wifiGotIP(WiFiEvent_t event, WiFiEventInfo_t info);
     bool sendDeviceTelemetry(const char* macAddress, uint8_t retryInterval, uint16_t maxRetryDuration);
     bool sendDeviceTelemetry(const char* macAddress);
