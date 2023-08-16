@@ -38,7 +38,6 @@ class WifiProvisioning : public IWifiProvisioning
   
     char gSsid[32];
     char gPass[32];
-    int count=0;
     Preferences preferences;
     telemetryStatus deviceTelemetryStatus = TELEMETRY_NOTSENT;
     
@@ -49,13 +48,5 @@ class WifiProvisioning : public IWifiProvisioning
     bool sendDeviceTelemetry(const char* macAddress, uint8_t retryInterval, uint16_t maxRetryDuration);
     bool sendDeviceTelemetry(const char* macAddress);
     void createTelemetryJson(char* json, uint8_t size, const char* status, int battery);
-    bool storeWifiCredsNVS(void);
-    bool storeWifiCredsNVS(const char* ssid, const char* pass);
-    bool storeWifiCredsRAM(const char* ssid, const char* pass);
-    void saveSubscriptioninNVS(const char* topics);
-    void deleteSubscriptioninNVS(const char* topics);
-    void  getSubscriptionsfromNVS(void);
-    bool removeWifiCredsNVS(void);
-    bool removeWifiCredsNVS(const char* ssid, const char* pass);
     bool isTelemetrySent(void);
 };

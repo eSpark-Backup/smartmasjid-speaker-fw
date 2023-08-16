@@ -28,7 +28,7 @@ class MQTTClient
     const int mqttPort = 1883;
     const char* mqttUsername = "device";
     const char* mqttPassword = "device";
-
+    int count = 0 ;
     /* MQTT topic details */
     const char* topicPrefix = "device";
     char macAddress[20];
@@ -44,9 +44,9 @@ class MQTTClient
   public:
     MQTTClient(IWifiProvisioning* wifiProv) : pWifiProv(wifiProv) {}
     void setup();
-    void connectToBroker();
-    void subscribeTopics();
-    void unsubscribeTopics();
+    bool connectToBroker();
+    bool subscribeTopics();
+    bool unsubscribeTopics();
     void receiveCallback(char* topic, byte* payload, unsigned int length);
     void loop();
     bool subscribe(const char* topic);
@@ -58,7 +58,6 @@ class MQTTClient
     void getTopicPath(char* dest, const char* topicName); 
     bool compareTopic(const char* topic, const char* topicName);
     bool controlSubscription(subscription control, const char* topic);
-    void removeMasjidIdfromNVS();
     void subscribeTopicsfromNVS();
-    void unsubscribeTopicsfromNVS();
+    bool unsubscribeTopicsfromNVS();
 };

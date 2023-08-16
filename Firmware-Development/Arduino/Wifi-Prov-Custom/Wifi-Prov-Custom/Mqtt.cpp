@@ -10,11 +10,10 @@ PubSubClient mqttClient(wifiClient);
 
 void MQTTClient::setup()
 {  
-
   connectToBroker();
-  subscribeTopics();
+  subscribeTopics(); 
 }
-void MQTTClient::connectToBroker() 
+bool MQTTClient::connectToBroker() 
 {
   mqttClient.setServer(mqttServer, mqttPort);
   while (!mqttClient.connected()) 
@@ -22,16 +21,17 @@ void MQTTClient::connectToBroker()
     if (mqttClient.connect("arduino_client", mqttUsername, mqttPassword)) 
     {
       Serial.println("Connected to MQTT broker");
+      return true;
     } 
     else 
     {
       Serial.println("Failed to connect to MQTT broker");
       delay(1000);
+      return false;
     }
   }
 }
-
-void MQTTClient::subscribeTopics() 
+bool MQTTClient::subscribeTopics() 
 {
   mqttClient.setCallback(std::bind(&MQTTClient::receiveCallback, this, std::placeholders::_1, std::placeholders::_2, std::placeholders::_3));
 
@@ -46,6 +46,7 @@ void MQTTClient::subscribeTopics()
   subscribe(topicPath);
   subscribeTopicsfromNVS();
 
+  return true;
 }
 
 void MQTTClient::receiveCallback(char* topic, byte* payload, unsigned int length) {
@@ -87,7 +88,7 @@ void MQTTClient::receiveCallback(char* topic, byte* payload, unsigned int length
         {
           Serial.println("Old credential removed");
         } 
-           
+        bool connectedtonewCredentials = false; 
         char ssid[32];
         char pass[32];
         if (SM_Json::parse((const char*)payload, std::make_pair("ssid", ssid), std::make_pair("password", pass))) 
@@ -104,7 +105,16 @@ void MQTTClient::receiveCallback(char* topic, byte* payload, unsigned int length
           {
             // Setup MQTT again
             setup();
+            connectedtonewCredentials = true;
+            Serial.println(connectedtonewCredentials);
           }
+          if(!connectedtonewCredentials)
+          {
+            Serial.println("Restart ESP.....");
+            delay(10);
+            ESP.restart();
+          }
+
 
         }
         else
@@ -120,13 +130,10 @@ void MQTTClient::receiveCallback(char* topic, byte* payload, unsigned int length
       break;
   }
 }
-
-
 void MQTTClient::loop() 
 {
   mqttClient.loop();
 }
-
 bool MQTTClient::subscribe(const char* topic)
 {
   if (mqttClient.subscribe(topic))
@@ -210,13 +217,55 @@ bool MQTTClient::controlSubscription(subscription control, const char* topic)
   bool ret = false;
   switch (control)
   {
-    case SUBSCRIBE:
+     case SUBSCRIBE:
+    { 
       ret = subscribe(topic);
+      uint32_t c =0;
+      Sm_Nvs::get(DEVICE_SUBSCRIPTION_NAMESPACE,
+                  std::make_pair("count",&c)); 
+      Sm_Nvs::put(DEVICE_SUBSCRIPTION_NAMESPACE,
+                  std::make_pair(String(c, DEC).c_str(), topic));
+      c++;
+      Sm_Nvs::put(DEVICE_SUBSCRIPTION_NAMESPACE,
+                  std::make_pair("count", c)); // Put the incremented value of c
       break;
+    }
     
     case UNSUBSCRIBE:
-      ret = unsubscribe(topic);
-      break;
+    {     
+    ret = unsubscribe(topic);
+    uint32_t count ;
+    Sm_Nvs::get(DEVICE_SUBSCRIPTION_NAMESPACE,
+                    std::make_pair("count",&count));   
+      bool found = false;
+      for(int i =0 ; i<=count;i++)
+    {
+    char keyValue[50];
+    Sm_Nvs::get(DEVICE_SUBSCRIPTION_NAMESPACE,
+                  std::make_pair(String(i, DEC).c_str(), keyValue));
+
+      if (strcmp(keyValue,topic)==0)
+      {
+        Sm_Nvs::del(DEVICE_SUBSCRIPTION_NAMESPACE, String(i,DEC).c_str());
+
+        Sm_Nvs::get(DEVICE_SUBSCRIPTION_NAMESPACE,
+                  std::make_pair(String(count-1, DEC).c_str(), keyValue)); 
+
+        Sm_Nvs::put(DEVICE_SUBSCRIPTION_NAMESPACE,
+                  std::make_pair(String(i, DEC).c_str(), keyValue)); 
+
+        count--;
+
+        Sm_Nvs::put(DEVICE_SUBSCRIPTION_NAMESPACE,
+                    std::make_pair("count",count));   
+                    
+        found = true;
+        break;
+      }
+
+      } 
+        break;
+    }
     
     default:
       Serial.println("UNKNOWN CONTROL");
@@ -240,45 +289,40 @@ void MQTTClient::getTopicPath(char* dest, const char* topicName)
 
 void MQTTClient::subscribeTopicsfromNVS()
 {
-    NVS.begin("Subscription");
-    uint32_t count = NVS.getUInt("count");
-    for (int i =0 ; i<=count;i++)
+  NVS.begin("Subscription");
+  uint32_t count = NVS.getUInt("count");
+  for (int i =0 ; i<=count;i++)
+  {
+    String keyValue = NVS.getString(String(i,DEC).c_str(),"");
+    if (keyValue.isEmpty())
+       break;
+    const char* topic = keyValue.c_str();
+    if (mqttClient.subscribe(topic))
     {
-      String key_value = NVS.getString(String(i,DEC).c_str(),"");
-      if (key_value =="")
-        break;
-      const char* topic = key_value.c_str();
-      if (mqttClient.subscribe(topic))
-        {
-        Serial.printf("Subscribed to %s\n",topic);
-        }
-
+      Serial.printf("Subscribed to %s\n",topic);
     }
+
+  }
 }
-void MQTTClient::unsubscribeTopicsfromNVS()
+bool MQTTClient::unsubscribeTopicsfromNVS()
 {
     NVS.begin("Subscription");
     uint32_t count = NVS.getUInt("count");
     for (int i =0 ; i<=count;i++)
     {
-      String key_value = NVS.getString(String(i,DEC).c_str(),"");
-      if (key_value =="")
-        break;
-      const char* topic = key_value.c_str();
-      if (mqttClient.unsubscribe(topic))
-        {
+    String keyValue = NVS.getString(String(i,DEC).c_str(),"");
+    if (keyValue.isEmpty())
+    break;
+    const char* topic = keyValue.c_str();
+    if (mqttClient.unsubscribe(topic))
+      {
         Serial.printf("Unsubscribed to %s\n",topic);
-        }
-
+        return true;
+      }
     }
+      return false;
 }
-void MQTTClient::removeMasjidIdfromNVS()
-{
-      NVS.begin("FactoryInfo");
-      NVS.remove("masjid_id");
-}
-
-void MQTTClient::unsubscribeTopics()
+bool MQTTClient::unsubscribeTopics()
 {
   char topicPath[50];
   getTopicPath(topicPath, mqttTopicReset);
@@ -289,4 +333,5 @@ void MQTTClient::unsubscribeTopics()
   unsubscribe(topicPath);
   getTopicPath(topicPath, mqttTopicWifi);
   unsubscribe(topicPath);
+  return true;
 }

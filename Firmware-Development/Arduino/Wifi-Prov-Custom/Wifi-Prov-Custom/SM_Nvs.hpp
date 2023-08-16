@@ -47,10 +47,21 @@ class Sm_Nvs
       }
       return false;
     }
+    static bool getVal(Preferences& preferences, const char* key, uint32_t* result) 
+    {
+      uint32_t value = preferences.getUInt(key,0);
+      *result = value;
+      return true;
+    }
     
     static bool putVal(Preferences& preferences, const char* key, const char* value) 
     {
         return preferences.putString(key, value);
+    }
+
+    static bool putVal(Preferences& preferences, const char* key, uint32_t value) 
+    {
+        return preferences.putUInt(key, value);
     }
 
     static bool delVal(Preferences& preferences, const char* key) 

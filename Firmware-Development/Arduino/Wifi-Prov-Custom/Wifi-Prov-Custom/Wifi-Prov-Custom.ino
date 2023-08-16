@@ -34,7 +34,6 @@ void setup()
     {
       if (ble.isStarted() && wifiProv.isTelemetrySent())
       {
-          wifiProv.storeWifiCredsNVS();
           ble.stop();
           break;
       }  
