@@ -3,6 +3,7 @@
 #include "BLE.hpp"
 #include "SM_Http.hpp"
 #include "SM_Nvs.hpp"
+
 bool WifiProvisioning::connectWifi(const char *ssid, const char *pass, int retries)
 { 
   if (ssid != NULL && pass != NULL)

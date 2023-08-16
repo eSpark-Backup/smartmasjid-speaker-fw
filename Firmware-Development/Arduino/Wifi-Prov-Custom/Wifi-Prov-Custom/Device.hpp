@@ -20,6 +20,5 @@ class Device
     static char macAddress[20];
     
     static void setup();
-
 };
 

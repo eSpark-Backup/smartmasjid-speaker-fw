@@ -1,5 +1,4 @@
 #include <ArduinoJson.h>
-#include <Preferences.h>
 #include "Mqtt.hpp"
 #include "WifiProvisioning.hpp"
 #include "SM_Json.hpp"
@@ -12,6 +11,17 @@ void MQTTClient::setup()
 {  
   connectToBroker();
   subscribeTopics(); 
+}
+bool MQTTClient::connectToBroker(int retries) 
+{
+  do
+  {
+    if(connectToBroker())
+    {
+      return true;
+    }
+  } while (--retries);
+  return false;
 }
 bool MQTTClient::connectToBroker() 
 {
@@ -26,7 +36,6 @@ bool MQTTClient::connectToBroker()
     else 
     {
       Serial.println("Failed to connect to MQTT broker");
-      delay(1000);
       return false;
     }
   }
@@ -48,7 +57,6 @@ bool MQTTClient::subscribeTopics()
 
   return true;
 }
-
 void MQTTClient::receiveCallback(char* topic, byte* payload, unsigned int length) {
   Serial.print("Received MQTT message [");
   Serial.print(topic);
@@ -132,6 +140,12 @@ void MQTTClient::receiveCallback(char* topic, byte* payload, unsigned int length
 }
 void MQTTClient::loop() 
 {
+  
+  if (!mqttClient.connected() && Connected) 
+  {
+    Serial.println("MQTT client not connected. Reconnecting...");
+    Connected = connectToBroker(10);
+  }
   mqttClient.loop();
 }
 bool MQTTClient::subscribe(const char* topic)
@@ -286,17 +300,22 @@ void MQTTClient::getTopicPath(char* dest, const char* topicName)
   strcat(dest, "/");
   strcat(dest, topicName);
 }
-
 void MQTTClient::subscribeTopicsfromNVS()
 {
-  NVS.begin("Subscription");
-  uint32_t count = NVS.getUInt("count");
-  for (int i =0 ; i<=count;i++)
-  {
-    String keyValue = NVS.getString(String(i,DEC).c_str(),"");
-    if (keyValue.isEmpty())
-       break;
-    const char* topic = keyValue.c_str();
+    uint32_t count ;
+    Sm_Nvs::get(DEVICE_SUBSCRIPTION_NAMESPACE,
+                    std::make_pair("count",&count)); 
+    for (int i =0 ; i<=count;i++)
+    {
+     char keyValue[50]; 
+
+     Sm_Nvs::get(DEVICE_SUBSCRIPTION_NAMESPACE,
+                  std::make_pair(String(i,DEC).c_str(), keyValue));      
+    
+    if (keyValue[0] == '\0')
+    break;
+    
+    const char* topic = keyValue;
     if (mqttClient.subscribe(topic))
     {
       Serial.printf("Subscribed to %s\n",topic);
@@ -306,17 +325,23 @@ void MQTTClient::subscribeTopicsfromNVS()
 }
 bool MQTTClient::unsubscribeTopicsfromNVS()
 {
-    NVS.begin("Subscription");
-    uint32_t count = NVS.getUInt("count");
+    uint32_t count ;
+    Sm_Nvs::get(DEVICE_SUBSCRIPTION_NAMESPACE,
+                    std::make_pair("count",&count)); 
     for (int i =0 ; i<=count;i++)
     {
-    String keyValue = NVS.getString(String(i,DEC).c_str(),"");
-    if (keyValue.isEmpty())
+     char keyValue[50]; 
+
+     Sm_Nvs::get(DEVICE_SUBSCRIPTION_NAMESPACE,
+                  std::make_pair(String(i,DEC).c_str(), keyValue));      
+    
+    if (keyValue[0] == '\0')
     break;
-    const char* topic = keyValue.c_str();
+
+    const char* topic = keyValue;
     if (mqttClient.unsubscribe(topic))
       {
-        Serial.printf("Unsubscribed to %s\n",topic);
+        Serial.printf("Unsubscribed  to %s\n",topic);
         return true;
       }
     }

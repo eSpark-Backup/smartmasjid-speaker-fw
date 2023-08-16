@@ -38,12 +38,12 @@ class MQTTClient
     const char* mqttTopicSubscribe  = "subscribe";
     const char* mqttTopicUnsubscribe  = "unsubscribe";
     const char* mqttTopicWifi  = "wifi";
-    Preferences NVS;
-    
+    bool Connected = true;
 
   public:
     MQTTClient(IWifiProvisioning* wifiProv) : pWifiProv(wifiProv) {}
     void setup();
+    bool connectToBroker(int retries) ;
     bool connectToBroker();
     bool subscribeTopics();
     bool unsubscribeTopics();
