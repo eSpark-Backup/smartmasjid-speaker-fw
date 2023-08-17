@@ -20,5 +20,7 @@ class Device
     static char macAddress[20];
     
     static void setup();
+    static bool storeSubscribeTopicstoNVS(const char* top);
+    static bool deleteSubscribeTopicstoNVS(const char* topic);
 };
 
