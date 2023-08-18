@@ -12,8 +12,18 @@ void MQTTClient::setup()
   connectToBroker();
   subscribeTopics();
 }
-
-void MQTTClient::connectToBroker() 
+bool MQTTClient::connectToBroker(int retries) 
+{
+  while (retries--) 
+  {
+    if (connectToBroker()) 
+    {
+      return true;
+    }
+  }
+  return false;
+}
+bool MQTTClient::connectToBroker() 
 {
   mqttClient.setServer(mqttServer, mqttPort);
   while (!mqttClient.connected()) 
@@ -21,15 +31,14 @@ void MQTTClient::connectToBroker()
     if (mqttClient.connect("arduino_client", mqttUsername, mqttPassword)) 
     {
       Serial.println("Connected to MQTT broker");
-    } 
-    else 
-    {
+      return true;
+    } else {
       Serial.println("Failed to connect to MQTT broker");
-      delay(1000);
+      delay(timeDelay * 1000);
+      return false;
     }
   }
 }
-
 void MQTTClient::subscribeTopics() 
 {
   mqttClient.setCallback(std::bind(&MQTTClient::receiveCallback, this, std::placeholders::_1, std::placeholders::_2, std::placeholders::_3));
@@ -105,12 +114,14 @@ void MQTTClient::receiveCallback(char* topic, byte* payload, unsigned int length
       break;
   }
 }
-
 void MQTTClient::loop() 
 {
+  if (!mqttClient.connected() && Connected) 
+  {
+    Connected = mqttCallback();
+  }
   mqttClient.loop();
 }
-
 bool MQTTClient::subscribe(const char* topic)
 {
   if (mqttClient.subscribe(topic))
@@ -220,4 +231,11 @@ void MQTTClient::unsubscribeTopics()
   unsubscribe(topicPath);
   getTopicPath(topicPath, mqttTopicWifi);
   unsubscribe(topicPath);
+}
+bool MQTTClient::mqttCallback() 
+{
+  bool connected = true;
+  Serial.println("MQTT client not connected. Reconnecting...");
+  connected = connectToBroker(10);
+  return connected;
 }

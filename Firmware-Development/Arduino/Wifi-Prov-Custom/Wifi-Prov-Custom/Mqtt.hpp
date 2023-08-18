@@ -35,12 +35,13 @@ class MQTTClient
     // MQTT topic to subscribe to
     const char* mqttTopicReset  = "reset";
     const char* mqttTopicWifi  = "wifi";
-    
+    bool Connected = true;
 
   public:
     MQTTClient(IWifiProvisioning* wifiProv) : pWifiProv(wifiProv) {}
     void setup();
-    void connectToBroker();
+    bool connectToBroker();
+    bool connectToBroker(int retries) ;
     void subscribeTopics();
     void unsubscribeTopics();
     void receiveCallback(char* topic, byte* payload, unsigned int length);
@@ -54,4 +55,5 @@ class MQTTClient
     void getTopicPath(char* dest, const char* topicName); 
     bool compareTopic(const char* topic, const char* topicName);
     bool controlSubscription(subscription control, const char* topic);
+    bool mqttCallback();
 };
