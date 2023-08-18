@@ -60,8 +60,7 @@ class MQTTClient
     bool controlSubscription(subscription control, const char* topic);
     bool subscribeTopicsfromNVS();
     bool unsubscribeTopicsfromNVS();
-    void deleteMasjid();
-    void deleteWificredentials();
-    void UpdateNewWificredential(const char* payload);
+    void tryConnectToWifi(const char* ssid, const char* pass);
+    bool mqttCallback();
 
 };
