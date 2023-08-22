@@ -4,11 +4,13 @@
 #include "SM_Json.hpp"
 #include "SM_Nvs.hpp"
 
+
 WiFiClient wifiClient;
 PubSubClient mqttClient(wifiClient);
 
 void MQTTClient::setup()
 {  
+
   connectToBroker();
   subscribeTopics();
 }
@@ -64,50 +66,20 @@ void MQTTClient::receiveCallback(char* topic, byte* payload, unsigned int length
     case DEVICE_RESET:
       Serial.println("RESET TOPIC");
       unsubscribeTopics();
-      if (Sm_Nvs::del(DEVICE_FACTORY_INFO_NAMESPACE, "masjidId"))
-      {
-        Serial.println("Masjid Id Removed");
-      }
-      if (Sm_Nvs::del(DEVICE_WIFI_CREDENTIALS_NAMESPACE, "ssid", "pass"))
-      {
-        Serial.println("Old credential removed");
-      }
+      Device::deleteMasjidId();
+      Device::deleteWificredentials();
       break;
 
     case DEVICE_Wifi:  
-      {   
-        Serial.println("Wifi TOPIC");  
-        if (Sm_Nvs::del(DEVICE_WIFI_CREDENTIALS_NAMESPACE, "ssid", "pass"))
-        {
-          Serial.println("Old credential removed");
-        } 
-           
-        char ssid[32];
-        char pass[32];
-        if (SM_Json::parse((const char*)payload, std::make_pair("ssid", ssid), std::make_pair("password", pass))) 
-        {
-          // Store credentials in NVS
-          if (Sm_Nvs::put(DEVICE_WIFI_CREDENTIALS_NAMESPACE,
-                      std::make_pair("ssid", ssid),
-                      std::make_pair("pass", pass)))
-          {
-            Serial.println("Wifi credentials updated");
-          }
-                      
-          if (pWifiProv->connectWifi(ssid, pass, 10))
-          {
-            // Setup MQTT again
-            setup();
-          }
-
-        }
-        else
-        {
-          Serial.println("Unable to parse wifi credentials");
-        }
+      {
+        Serial.println("Wifi TOPIC");
+        char ssid[35];
+        char pass[35];
+        SM_Json::parse((const char*)payload, std::make_pair("ssid", ssid), std::make_pair("password", pass));
+        Device::updateWifiCredential(ssid, pass);
+        tryConnectToWifi(ssid, pass);
+        break;
       }
-
-      break;
       
     default:
       Serial.println("UNKNOWN TOPIC");
@@ -231,6 +203,19 @@ void MQTTClient::unsubscribeTopics()
   unsubscribe(topicPath);
   getTopicPath(topicPath, mqttTopicWifi);
   unsubscribe(topicPath);
+}
+void MQTTClient::tryConnectToWifi(const char* ssid, const char* pass) 
+{
+  if (pWifiProv->connectWifi(ssid, pass, 10)) 
+  {
+    // Setup MQTT again
+    setup();
+  } 
+  else 
+  {
+    Serial.println("Restart ESP.....");
+    ESP.restart();
+  }
 }
 bool MQTTClient::mqttCallback() 
 {

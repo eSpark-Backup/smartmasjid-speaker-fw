@@ -39,3 +39,26 @@ void Device::setup()
     Serial.println("Unable to find masjid id");
   }
 }
+void Device::deleteMasjidId() 
+{
+  if (Sm_Nvs::del(DEVICE_FACTORY_INFO_NAMESPACE, "masjidId")) 
+  {
+    Serial.println("Masjid Id Removed");
+  }
+}
+void Device::deleteWificredentials() 
+{
+  if (Sm_Nvs::del(DEVICE_WIFI_CREDENTIALS_NAMESPACE, "ssid", "pass")) 
+  {
+    Serial.println("Old credential removed");
+  }
+}
+void Device::updateWifiCredential(const char* ssid, const char* pass) 
+{
+  if (Sm_Nvs::put(DEVICE_WIFI_CREDENTIALS_NAMESPACE,
+                  std::make_pair("ssid", ssid),
+                  std::make_pair("pass", pass))) 
+  {
+    Serial.println("Wifi credentials updated");
+  }
+}
