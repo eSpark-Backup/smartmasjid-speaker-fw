@@ -17,7 +17,7 @@ class SmHttp
     const char* adhanStartEndpoint = "/external/adhan/start";
     const char* adhanStopEndpoint = "/external/adhan/stop";
     int retry =  1;
-    WiFiClientSecure* client = new WiFiClientSecure;
+    
 //     const char* ca_cert = \
 // "-----BEGIN CERTIFICATE-----\n"\
 // "MIIEXjCCA0agAwIBAgITB3MSOAudZoijOx7Zv5zNpo4ODzANBgkqhkiG9w0BAQsF\n"\
