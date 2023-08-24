@@ -9,51 +9,29 @@
 #include "BLE.hpp"
 #include "Mqtt.hpp"
 
-WiFiClientSecure *client = new WiFiClientSecure;
-// WiFiClientSecure client;
-
-bool SmHttp::startAdhan()
+bool SmHttp::startAdhan() 
 {
-  // if (WiFi.status() != WL_CONNECTED)
-  //   return false;
+  if (WiFi.status() != WL_CONNECTED)
+    return false;
 
-  // // client->setCACert(ca_cert);
-  // // client->setInsecure();
-  // // Send the POST request
-  // HTTPClient https;
-  // // std::string concatenatedString = smHost;
-  // // concatenatedString += adhanStartEndpoint;
-  // https.begin(*client,"https://smartmasjid-api-qa.futuriklabs.com/external/adhan/start");
-  // https.addHeader("Content-Type", "application/json");
-  // https.addHeader("x-api-key", EXTERNAL_API_KEY);
+  std::string httpsUrl = smHost;
+  httpsUrl += adhanStartEndpoint;
 
-  // char masjidIdJson[64]; 
-  // SM_Json::create(masjidIdJson, sizeof(masjidIdJson),
-  //                     std::make_pair("masjidId", MASJID_ID_TEST));
-  // Serial.println(masjidIdJson);
-  
-  // int httpCode = https.POST(masjidIdJson);
-  // const char* response = https.getString().c_str();
-
-  // https.end();
-
-  // if ((httpCode == HTTP_STATUS_OK) || (httpCode == HTTP_STATUS_CREATED)) 
-  // {
-  //   Serial.println("Adhan Started!");
-  //   Serial.println(response);
-  //   return true;
-  // } 
-  // else 
-  // {
-  //   Serial.print("Failed to start adhan with error code: ");
-  //   Serial.println(httpCode);
-  //   Serial.println(response);
-  //   return false;
-  // }
+  DynamicJsonDocument jsonDoc(64); 
+  jsonDoc["masjidId"] = MASJID_ID_TEST;
+  std::string jsonString;
+  serializeJson(jsonDoc, jsonString);
+  if (sendHttpsPostRequest(httpsUrl.c_str(),jsonString.c_str()))
+  {
+    return true;
+  } 
+  else 
+  {
+    return false;
+  }
   return true;
 }
-
-bool SmHttp::sendDeviceTelemetry(const char* macAddress, uint8_t retryInterval, uint16_t maxRetryDuration) 
+bool SmHttp::sendDeviceTelemetry(const char* macAddress, uint8_t retryInterval, uint16_t maxRetryDuration)
 {
   if (WiFi.status() != WL_CONNECTED)
     return false;
@@ -70,115 +48,83 @@ bool SmHttp::sendDeviceTelemetry(const char* macAddress, uint8_t retryInterval, 
   }
   return false;
 }
-
 bool SmHttp::sendDeviceTelemetry(const char* macAddress) 
 {
   if (WiFi.status() != WL_CONNECTED)
     return false;
 
-  client->setInsecure();
+  std::string httpsUrl = smHost;
+  httpsUrl += telemetryEndpoint;
 
-  // Make HTTP POST request
-  HTTPClient https;
-  Serial.print("[HTTPS] begin...\n");
-  std::string concatenatedString = smHost;
-  concatenatedString += telemetryEndpoint;
-  // https.begin(*client,"https://smartmasjid-api-qa.futuriklabs.com/external/device/telemetry");
-  https.begin(*client,concatenatedString.c_str());
-  Serial.print("[HTTPS] POST...\n");
-  https.addHeader("x-api-key", EXTERNAL_API_KEY);
-  https.addHeader("Content-Type", "application/json");
-  
-  char telemetryJson[64]; 
+  char telemetryJson[64];
   SM_Json::create(telemetryJson, sizeof(telemetryJson),
-                      std::make_pair("battery", BATTERY_HEALTH),
-                      std::make_pair("macAddress", macAddress));
+                  std::make_pair("battery", BATTERY_HEALTH),
+                  std::make_pair("macAddress", Device::macAddress));
   Serial.println(telemetryJson);
-  
-  Serial.print("check point.....................1\n");
-  int httpCode = https.POST(telemetryJson);
-  Serial.print("check point.....................2\n");
-  const char* response = https.getString().c_str();
-  Serial.print("check point.....................3\n");
-  https.end();
 
-  if ((httpCode == HTTP_STATUS_OK) || (httpCode == HTTP_STATUS_CREATED)) 
+  if (sendHttpsPostRequest(httpsUrl.c_str(), telemetryJson)) 
   {
-    Serial.println("Telemetry sent successfully!");
-    Serial.println(response);
-    retry = 1;
     return true;
   } 
   else 
   {
-    Serial.print("Failed to send telemetry with error code: ");
-    Serial.println(httpCode);
-
-    // if(retry>6)
-    // {
-    //   if(httpCode == DEVCICE_NOT_FOUND)
-    //       { 
-    //         Serial.println("Device not found");  
-    //        //Reset
-    //        MQTTClient mqtt;
-    //        mqtt.unsubscribeTopics();
-    //        Device::deleteMasjidId();
-    //        Device::deleteWificredentials();
-    //        Serial.println("Device is Reset ...");  
-    //        retry = 1;
-    //        return false;
-    //        }
-    //   else
-    //      {  
-    //        //reset esp32
-    //        Serial.println("Restart ESP.....");
-    //        ESP.restart();
-    //      }     
-
-    // }
-    // retry++;
-    Serial.println(response);
     return false;
   }
 }
-
-bool SmHttp::stopAdhan()
+bool SmHttp::stopAdhan() 
 {
-//  if (WiFi.status() != WL_CONNECTED)
-//     return false;
-//   // client->setCACert(ca_cert);
-//    client.setInsecure();
-//   // Send the POST request
-//   char concatenated[256]; 
-//   strcpy(concatenated, smHost);
-//   strcat(concatenated, adhanStopEndpoint);
-//   HTTPClient https;
-//   https.begin(client,concatenated);
-//   https.addHeader("Content-Type", "application/json");
-//   https.addHeader("x-api-key", EXTERNAL_API_KEY);
+  if (WiFi.status() != WL_CONNECTED)
+    return false;
+  std::string httpsUrl = smHost;
+  httpsUrl += adhanStopEndpoint;
 
-//   char masjidIdJson[64]; 
-//   SM_Json::create(masjidIdJson, sizeof(masjidIdJson),
-//                       std::make_pair("masjidId", MASJID_ID_TEST));
-//   Serial.println(masjidIdJson);
+  DynamicJsonDocument jsonDoc(64); 
+  jsonDoc["masjidId"] = MASJID_ID_TEST;
+  std::string jsonString;
+  serializeJson(jsonDoc, jsonString);
+
+  if (sendHttpsPostRequest(httpsUrl.c_str(),jsonString.c_str())) 
+  {
+    return true;
+  } 
+  else 
+  {
+    return false;
+  }
   
-//   int httpCode = https.POST(masjidIdJson);
-//   const char* response = https.getString().c_str();
+}
+bool SmHttp::sendHttpsPostRequest(const char* url, const char* json) 
+{
+  
+  client->setInsecure();
+  HTTPClient https;
+  https.begin(*client, url);
+  https.addHeader("Content-Type", "application/json");
+  https.addHeader("x-api-key", EXTERNAL_API_KEY);
+  
+  Serial.println("Free heap memory: " + String(ESP.getFreeHeap()));
+  delay(1000);
+  if (strcmp(url,"https://smartmasjid-api-qa.futuriklabs.com/external/device/telemetry"))
+  {
+    
+  }
 
-//   https.end();
+  int httpCode = https.POST(json);
+  const char* response = https.getString().c_str();
 
-//   if ((httpCode == HTTP_STATUS_OK) || (httpCode == HTTP_STATUS_CREATED)) 
-//   {
-//     Serial.println("Adhan Stopped!");
-//     Serial.println(response);
-//     return true;
-//   } 
-//   else 
-//   {
-//     Serial.print("Failed to stop adhan with error code: ");
-//     Serial.println(httpCode);
-//     Serial.println(response);
-//     return false;
-//   }
-return true;
+  https.end();
+  if ((httpCode == HTTP_STATUS_OK) || (httpCode == HTTP_STATUS_CREATED)) 
+  {
+    Serial.println("Request successful!");
+    Serial.println(response);
+    return true;
+  } 
+  else 
+  {
+    Serial.print("Request failed with error code: ");
+    Serial.println(httpCode);
+    Serial.println(response);
+    return false;
+  }
+
 }
