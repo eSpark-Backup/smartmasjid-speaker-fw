@@ -95,19 +95,15 @@ bool SmHttp::stopAdhan()
 }
 bool SmHttp::sendHttpsPostRequest(const char* url, const char* json) 
 {
-  
+  WiFiClientSecure* client = new WiFiClientSecure;
   client->setInsecure();
   HTTPClient https;
   https.begin(*client, url);
   https.addHeader("Content-Type", "application/json");
   https.addHeader("x-api-key", EXTERNAL_API_KEY);
   
-  Serial.println("Free heap memory: " + String(ESP.getFreeHeap()));
+  // Serial.println("Free heap memory: " + String(ESP.getFreeHeap()));
   delay(1000);
-  if (strcmp(url,"https://smartmasjid-api-qa.futuriklabs.com/external/device/telemetry"))
-  {
-    
-  }
 
   int httpCode = https.POST(json);
   const char* response = https.getString().c_str();
