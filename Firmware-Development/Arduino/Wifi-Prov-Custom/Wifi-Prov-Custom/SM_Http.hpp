@@ -4,10 +4,9 @@
 #include "Mqtt.hpp"
 #define HTTP_STATUS_OK 200
 #define HTTP_STATUS_CREATED 201
-#define DEVCICE_NOT_FOUND -766
 #define EXTERNAL_API_KEY "b8z6X5fzbjNDGHz15XtPVzEkO3h5mCT7q4Ei8AupX9DD12PxL94rhnZHarHc8O2H"
 #define TO_MS(seconds) (seconds * 1000)
-
+typedef int httpcode;
 
 class SmHttp 
 {
@@ -16,7 +15,7 @@ class SmHttp
     const char* telemetryEndpoint = "/external/device/telemetry";
     const char* adhanStartEndpoint = "/external/adhan/start";
     const char* adhanStopEndpoint = "/external/adhan/stop";
-    int retry =  1;
+    
     
 //     const char* ca_cert = \
 // "-----BEGIN CERTIFICATE-----\n"\
@@ -47,8 +46,10 @@ class SmHttp
 // "-----END CERTIFICATE-----\n";
 
   public:
+    
+    int httpCode ;
     bool startAdhan();  
-    bool sendDeviceTelemetry(const char* macAddress, uint8_t retryInterval, uint16_t maxRetryDuration);
+    httpcode sendDeviceTelemetry(const char* macAddress, uint8_t retryInterval, uint16_t maxRetryDuration);
     bool sendDeviceTelemetry(const char* macAddress);
     bool stopAdhan(); 
     bool sendHttpsPostRequest(const char* url,const char* json);

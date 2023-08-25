@@ -23,6 +23,7 @@ bool SmHttp::startAdhan()
   serializeJson(jsonDoc, jsonString);
   if (sendHttpsPostRequest(httpsUrl.c_str(),jsonString.c_str()))
   {
+   
     return true;
   } 
   else 
@@ -31,22 +32,22 @@ bool SmHttp::startAdhan()
   }
   return true;
 }
-bool SmHttp::sendDeviceTelemetry(const char* macAddress, uint8_t retryInterval, uint16_t maxRetryDuration)
+httpcode SmHttp::sendDeviceTelemetry(const char* macAddress, uint8_t retryInterval, uint16_t maxRetry)
 {
   if (WiFi.status() != WL_CONNECTED)
     return false;
 
   unsigned long startTime = millis();
-  while ((millis() - startTime) < TO_MS(maxRetryDuration)) 
+  while (maxRetry --) 
   {
     if (sendDeviceTelemetry(macAddress)) 
     {
-      return true;
+      return httpCode;
     }
     Serial.println("Failed to send telemetry, retrying in 10 seconds...");
     delay(TO_MS(retryInterval));
   }
-  return false;
+  return httpCode;
 }
 bool SmHttp::sendDeviceTelemetry(const char* macAddress) 
 {
@@ -62,7 +63,7 @@ bool SmHttp::sendDeviceTelemetry(const char* macAddress)
                   std::make_pair("macAddress", Device::macAddress));
   Serial.println(telemetryJson);
 
-  if (sendHttpsPostRequest(httpsUrl.c_str(), telemetryJson)) 
+  if (sendHttpsPostRequest(httpsUrl.c_str(),telemetryJson)) 
   {
     return true;
   } 
@@ -102,10 +103,9 @@ bool SmHttp::sendHttpsPostRequest(const char* url, const char* json)
   https.addHeader("Content-Type", "application/json");
   https.addHeader("x-api-key", EXTERNAL_API_KEY);
   
-  Serial.println("Free heap memory: " + String(ESP.getFreeHeap()));
   delay(1000);
   
-  int httpCode = https.POST(json);
+   httpCode = https.POST(json);
   const char* response = https.getString().c_str();
 
   https.end();
