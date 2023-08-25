@@ -51,16 +51,29 @@ bool WifiProvisioning::connectWifiFromNVS(void)
 }
 void WifiProvisioning::wifiGotIP(WiFiEvent_t event, WiFiEventInfo_t info) 
 {
-
   // Print network details
   Serial.print("Connected to Wi-Fi network with IP address: ");
   Serial.println(WiFi.localIP());
-
+  // delay(TO_MS(RETRY_INTERVAL));
   SmHttp smHttp;
-  if (smHttp.sendDeviceTelemetry(Device::macAddress, RETRY_INTERVAL, MAX_RETRY_DURATION))
+  int httpscode =  smHttp.sendDeviceTelemetry(Device::macAddress, RETRY_INTERVAL, MAX_RETRY);
+  if (httpscode == DEVCICE_FOUND)
   {
     deviceTelemetryStatus = TELEMETRY_SENT;
   }
+  else if(httpscode == DEVCICE_NOT_FOUND)
+  {
+    Serial.println("Device Reset");
+      Device::deleteSubscription();
+      Device::deleteMasjidId();
+      Device::deleteWificredentials();
+  }
+  else 
+  {
+    Serial.println("Device is restarting...");
+    ESP.restart();
+  }
+
 }
 bool WifiProvisioning::isTelemetrySent(void)
 {

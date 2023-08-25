@@ -21,6 +21,7 @@ public:
   static void setup();
   static bool storeSubscription(const char* topic);
   static bool deleteSubscription(const char* topic);
+  static void deleteSubscription(); 
   static void deleteMasjidId();
   static void deleteWificredentials();
   static void updateWifiCredential(const char* ssid, const char* pass);

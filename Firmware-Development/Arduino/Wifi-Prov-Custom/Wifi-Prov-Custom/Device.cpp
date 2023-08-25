@@ -79,6 +79,17 @@ bool Device::deleteSubscription(const char* topic)
   }
   return topicFound;
 }
+void Device::deleteSubscription() 
+{
+  uint32_t count;
+  Sm_Nvs::get(DEVICE_SUBSCRIPTION_NAMESPACE, std::make_pair("count", &count));
+
+  for (int i = 0; i < count; i++) 
+  {
+      Sm_Nvs::del(DEVICE_SUBSCRIPTION_NAMESPACE, String(i, DEC).c_str());
+  }
+  Serial.println("Subscription deleted from Nvs");
+}
 void Device::deleteMasjidId() 
 {
   if (Sm_Nvs::del(DEVICE_FACTORY_INFO_NAMESPACE, "masjidId")) 
