@@ -64,7 +64,6 @@ void WifiProvisioning::wifiGotIP(WiFiEvent_t event, WiFiEventInfo_t info)
   else if(httpscode == DEVCICE_NOT_FOUND)
   {
     Serial.println("Device Reset");
-      Device::deleteSubscription();
       Device::deleteMasjidId();
       Device::deleteWificredentials();
   }
@@ -73,7 +72,6 @@ void WifiProvisioning::wifiGotIP(WiFiEvent_t event, WiFiEventInfo_t info)
     Serial.println("Device is restarting...");
     ESP.restart();
   }
-
 }
 bool WifiProvisioning::isTelemetrySent(void)
 {

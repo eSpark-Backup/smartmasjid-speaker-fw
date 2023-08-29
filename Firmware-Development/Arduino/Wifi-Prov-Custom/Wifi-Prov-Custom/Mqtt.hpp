@@ -39,6 +39,7 @@ class MQTTClient
     const char* mqttTopicUnsubscribe  = "unsubscribe";
     const char* mqttTopicWifi  = "wifi";
     bool Connected = true;
+    bool isConnected = false;
 
   public:
     MQTTClient(IWifiProvisioning* wifiProv) : pWifiProv(wifiProv) {}
@@ -60,7 +61,6 @@ class MQTTClient
     bool controlSubscription(subscription control, const char* topic);
     bool subscribeTopicsfromNVS();
     bool unsubscribeTopicsfromNVS();
-    void tryConnectToWifi(const char* ssid, const char* pass);
     bool mqttCallback();
 
 };

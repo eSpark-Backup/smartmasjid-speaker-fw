@@ -17,6 +17,15 @@ class SM_Json
       // Serialize the JSON document
       serializeJson(doc, json, size);
     }
+    static std::string create(const char* key, const char* value) 
+    {
+        DynamicJsonDocument jsonDoc(64);
+        jsonDoc[key] = value;
+        
+        std::string json;
+        serializeJson(jsonDoc, json);
+        return json;
+    }
 
     template <typename... Args>
     static bool parse(const char* json, Args... args) 
