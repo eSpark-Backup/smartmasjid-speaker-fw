@@ -33,10 +33,13 @@ bool MQTTClient::connectToBroker()
     if (mqttClient.connect("arduino_client", mqttUsername, mqttPassword)) 
     {
       Serial.println("Connected to MQTT broker");
+      isConnected = true; // Set the connection status
       return true;
-    } else {
+    } 
+    else
+     {
       Serial.println("Failed to connect to MQTT broker");
-      delay(timeDelay * 1000);
+      isConnected = false; // Set the connection status
       return false;
     }
   }
@@ -77,8 +80,17 @@ void MQTTClient::receiveCallback(char* topic, byte* payload, unsigned int length
         char pass[35];
         SM_Json::parse((const char*)payload, std::make_pair("ssid", ssid), std::make_pair("password", pass));
         Device::updateWifiCredential(ssid, pass);
-        tryConnectToWifi(ssid, pass);
-        break;
+        if (pWifiProv->connectWifi(ssid, pass, 10)) 
+        {
+          // Setup MQTT again
+            setup();
+        } 
+        else 
+        {
+        Serial.println("Restart ESP.....");
+        ESP.restart();
+        }
+          break;
       }
       
     default:
@@ -88,11 +100,13 @@ void MQTTClient::receiveCallback(char* topic, byte* payload, unsigned int length
 }
 void MQTTClient::loop() 
 {
-  if (!mqttClient.connected() && Connected) 
+  if (!mqttClient.connect("arduino_client", mqttUsername, mqttPassword) && Connected) 
   {
     Connected = mqttCallback();
   }
+
   mqttClient.loop();
+  isConnected = false;
 }
 bool MQTTClient::subscribe(const char* topic)
 {
@@ -204,23 +218,13 @@ void MQTTClient::unsubscribeTopics()
   getTopicPath(topicPath, mqttTopicWifi);
   unsubscribe(topicPath);
 }
-void MQTTClient::tryConnectToWifi(const char* ssid, const char* pass) 
-{
-  if (pWifiProv->connectWifi(ssid, pass, 10)) 
-  {
-    // Setup MQTT again
-    setup();
-  } 
-  else 
-  {
-    Serial.println("Restart ESP.....");
-    ESP.restart();
-  }
-}
 bool MQTTClient::mqttCallback() 
 {
-  bool connected = true;
-  Serial.println("MQTT client not connected. Reconnecting...");
-  connected = connectToBroker(10);
-  return connected;
+    if (!isConnected) 
+    {
+        Serial.println("MQTT client not connected. Reconnecting...");
+        Connected = connectToBroker(10); // Reconnect
+        return Connected;
+    }
+    return false; // Not reconnected
 }

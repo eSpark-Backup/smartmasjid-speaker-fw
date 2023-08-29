@@ -75,7 +75,6 @@ void WifiProvisioning::wifiGotIP(WiFiEvent_t event, WiFiEventInfo_t info)
     Serial.println("Device is restarting...");
     ESP.restart();
   }
-
 }
 
 bool WifiProvisioning::isTelemetrySent(void)

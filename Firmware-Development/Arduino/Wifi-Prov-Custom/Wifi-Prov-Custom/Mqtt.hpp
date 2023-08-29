@@ -34,12 +34,12 @@ private:
   const char* mqttTopicReset = "reset";
   const char* mqttTopicWifi = "wifi";
   bool Connected = true;
+  bool isConnected = false;
 
 
 
 public:
   MQTTClient(IWifiProvisioning* wifiProv): pWifiProv(wifiProv) {}
-  MQTTClient() {}
   void setup();
   bool connectToBroker();
   bool connectToBroker(int retries);
@@ -56,6 +56,5 @@ public:
   void getTopicPath(char* dest, const char* topicName);
   bool compareTopic(const char* topic, const char* topicName);
   bool controlSubscription(subscription control, const char* topic);
-  void tryConnectToWifi(const char* ssid, const char* pass);
   bool mqttCallback();
 };

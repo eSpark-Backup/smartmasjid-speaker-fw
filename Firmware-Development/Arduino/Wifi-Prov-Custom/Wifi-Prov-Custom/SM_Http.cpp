@@ -9,7 +9,7 @@
 #include "BLE.hpp"
 #include "Mqtt.hpp"
 
-bool SmHttp::startAdhan() 
+httpcode SmHttp::startAdhan() 
 {
   if (WiFi.status() != WL_CONNECTED)
     return false;
@@ -17,39 +17,38 @@ bool SmHttp::startAdhan()
   std::string httpsUrl = smHost;
   httpsUrl += adhanStartEndpoint;
 
-  DynamicJsonDocument jsonDoc(64); 
-  jsonDoc["masjidId"] = MASJID_ID_TEST;
-  std::string jsonString;
-  serializeJson(jsonDoc, jsonString);
-  if (sendHttpsPostRequest(httpsUrl.c_str(),jsonString.c_str()))
-  {
-   
-    return true;
-  } 
-  else 
-  {
-    return false;
-  }
-  return true;
+  std::string jsonString = SM_Json::create("masjidId", &MASJID_TEST_ID);
+
+  int httpCode = Post(httpsUrl.c_str(),jsonString.c_str());
+    if (httpCode == HTTP_OK) 
+      return HTTP_OK;
+    else if(httpCode == HTTP_404_ERROR) 
+      return HTTP_404_ERROR;
+    else
+      return httpCode;
 }
 httpcode SmHttp::sendDeviceTelemetry(const char* macAddress, uint8_t retryInterval, uint16_t maxRetry)
 {
   if (WiFi.status() != WL_CONNECTED)
     return false;
-
-  unsigned long startTime = millis();
+  int Httpcode;
   while (maxRetry --) 
   {
-    if (sendDeviceTelemetry(macAddress)) 
-    {
-      return httpCode;
-    }
-    Serial.println("Failed to send telemetry, retrying in 10 seconds...");
-    delay(TO_MS(retryInterval));
+    int httpCode = sendDeviceTelemetry(macAddress);
+    if (httpCode == HTTP_OK) 
+       return HTTP_OK;
+    else
+      {
+        Serial.println("Failed to send telemetry, retrying in 10 seconds...");
+        delay(TO_MS(retryInterval));
+        Httpcode = httpCode;
+      }
   }
-  return httpCode;
+  if(Httpcode == HTTP_404_ERROR) 
+      return HTTP_404_ERROR;
+  return Httpcode;
 }
-bool SmHttp::sendDeviceTelemetry(const char* macAddress) 
+httpcode SmHttp::sendDeviceTelemetry(const char* macAddress) 
 {
   if (WiFi.status() != WL_CONNECTED)
     return false;
@@ -62,39 +61,33 @@ bool SmHttp::sendDeviceTelemetry(const char* macAddress)
                   std::make_pair("battery", BATTERY_HEALTH),
                   std::make_pair("macAddress", Device::macAddress));
   Serial.println(telemetryJson);
-
-  if (sendHttpsPostRequest(httpsUrl.c_str(),telemetryJson)) 
-  {
-    return true;
-  } 
-  else 
-  {
-    return false;
-  }
+    int httpCode = Post(httpsUrl.c_str(),telemetryJson);
+    if (httpCode == HTTP_OK) 
+      return HTTP_OK;
+    else if(httpCode == HTTP_404_ERROR) 
+      return HTTP_404_ERROR;
+    else
+      return httpCode;
 }
-bool SmHttp::stopAdhan() 
+httpcode SmHttp::stopAdhan() 
 {
   if (WiFi.status() != WL_CONNECTED)
     return false;
   std::string httpsUrl = smHost;
   httpsUrl += adhanStopEndpoint;
 
-  DynamicJsonDocument jsonDoc(64); 
-  jsonDoc["masjidId"] = MASJID_ID_TEST;
-  std::string jsonString;
-  serializeJson(jsonDoc, jsonString);
-
-  if (sendHttpsPostRequest(httpsUrl.c_str(),jsonString.c_str())) 
-  {
-    return true;
-  } 
-  else 
-  {
-    return false;
-  }
+  std::string jsonString = SM_Json::create("masjidId", &MASJID_TEST_ID);
+  Serial.println(jsonString.c_str());
+  int httpCode = Post(httpsUrl.c_str(),jsonString.c_str());
+  if (httpCode == HTTP_OK) 
+      return HTTP_OK;
+  else if(httpCode == HTTP_404_ERROR) 
+      return HTTP_404_ERROR;
+  else
+      return httpCode;
   
 }
-bool SmHttp::sendHttpsPostRequest(const char* url, const char* json) 
+httpcode SmHttp::Post(const char* url, const char* json) 
 {
   WiFiClientSecure* client = new WiFiClientSecure;
   client->setInsecure();
@@ -102,25 +95,21 @@ bool SmHttp::sendHttpsPostRequest(const char* url, const char* json)
   https.begin(*client, url);
   https.addHeader("Content-Type", "application/json");
   https.addHeader("x-api-key", EXTERNAL_API_KEY);
-  
-  delay(1000);
-  
-   httpCode = https.POST(json);
+  int httpCode = https.POST(json);
   const char* response = https.getString().c_str();
-
   https.end();
   if ((httpCode == HTTP_STATUS_OK) || (httpCode == HTTP_STATUS_CREATED)) 
   {
     Serial.println("Request successful!");
     Serial.println(response);
-    return true;
+    return httpCode;
   } 
   else 
   {
     Serial.print("Request failed with error code: ");
     Serial.println(httpCode);
     Serial.println(response);
-    return false;
+    return httpCode;
   }
 
 }
