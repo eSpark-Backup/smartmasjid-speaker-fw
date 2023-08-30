@@ -7,6 +7,7 @@ void Button::setup()
   pinMode(pin, INPUT);
   attachInterrupt(pin, std::bind(&Button::interruptHandler, this), RISING); 
 }
+
 void Button::interruptHandler() 
 {
   switch(state)
@@ -26,6 +27,7 @@ void Button::interruptHandler()
         break;
   }
 }
+
 void Button::loop()
 {
   switch(state)

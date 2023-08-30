@@ -13,6 +13,7 @@ void MQTTClient::setup()
   connectToBroker();
   subscribeTopics();
 }
+
 bool MQTTClient::connectToBroker(int retries) 
 {
   while (retries--) 
@@ -24,6 +25,7 @@ bool MQTTClient::connectToBroker(int retries)
   }
   return false;
 }
+
 bool MQTTClient::connectToBroker() 
 {
   mqttClient.setServer(mqttServer, mqttPort);
@@ -43,6 +45,7 @@ bool MQTTClient::connectToBroker()
     }
   }
 }
+
 void MQTTClient::subscribeTopics() 
 {
   mqttClient.setCallback(std::bind(&MQTTClient::receiveCallback, this, std::placeholders::_1, std::placeholders::_2, std::placeholders::_3));
@@ -53,6 +56,7 @@ void MQTTClient::subscribeTopics()
   getTopicPath(topicPath, mqttTopicWifi);
   subscribe(topicPath);
 }
+
 void MQTTClient::receiveCallback(char* topic, byte* payload, unsigned int length) 
 {
   Serial.print("Received MQTT message [");
@@ -96,6 +100,7 @@ void MQTTClient::receiveCallback(char* topic, byte* payload, unsigned int length
       break;
   }
 }
+
 void MQTTClient::loop() {
   if (!mqttClient.connect("arduino_client", mqttUsername, mqttPassword) && Connected) 
   {
@@ -104,6 +109,7 @@ void MQTTClient::loop() {
   mqttClient.loop();
   isConnected = false;
 }
+
 bool MQTTClient::subscribe(const char* topic) 
 {
   if (mqttClient.subscribe(topic)) 
@@ -113,6 +119,7 @@ bool MQTTClient::subscribe(const char* topic)
   }
   return false;
 }
+
 bool MQTTClient::unsubscribe(const char* topic) 
 {
   if (mqttClient.unsubscribe(topic)) 
@@ -122,6 +129,7 @@ bool MQTTClient::unsubscribe(const char* topic)
   }
   return false;
 }
+
 mqttTopic MQTTClient::getTopic(const char* topic) 
 {
   if (compareTopic(topic, mqttTopicReset)) 
@@ -135,12 +143,14 @@ mqttTopic MQTTClient::getTopic(const char* topic)
   }
   return UNKNOWN_TOPIC;
 }
+
 bool MQTTClient::compareTopic(const char* topic, const char* topicName) 
 {
   char topicPath[50];
   getTopicPath(topicPath, topicName);
   return !strcmp(topicPath, topic);
 }
+
 bool MQTTClient::extractTopicAndSubscribe(const char* message) 
 {
   return extractTopicAndControlSubscription(SUBSCRIBE, message);
@@ -150,6 +160,7 @@ bool MQTTClient::extractTopicAndUnsubscribe(const char* message)
 {
   return extractTopicAndControlSubscription(UNSUBSCRIBE, message);
 }
+
 bool MQTTClient::extractTopicAndControlSubscription(subscription control, const char* message) 
 {
   bool ret = false;
@@ -164,6 +175,7 @@ bool MQTTClient::extractTopicAndControlSubscription(subscription control, const 
   }
   return ret;
 }
+
 bool MQTTClient::controlSubscription(subscription control, const char* topic) 
 {
   bool ret = false;
@@ -184,6 +196,7 @@ bool MQTTClient::controlSubscription(subscription control, const char* topic)
 
   return ret;
 }
+
 void MQTTClient::getTopicPath(char* dest, const char* topicName) 
 {
   // Copy the prefix to the destination buffer
@@ -197,6 +210,7 @@ void MQTTClient::getTopicPath(char* dest, const char* topicName)
   strcat(dest, "/");
   strcat(dest, topicName);
 }
+
 void MQTTClient::unsubscribeTopics() 
 {
   char topicPath[50];
@@ -205,6 +219,7 @@ void MQTTClient::unsubscribeTopics()
   getTopicPath(topicPath, mqttTopicWifi);
   unsubscribe(topicPath);
 }
+
 bool MQTTClient::mqttCallback() 
 {
   if (!isConnected) 

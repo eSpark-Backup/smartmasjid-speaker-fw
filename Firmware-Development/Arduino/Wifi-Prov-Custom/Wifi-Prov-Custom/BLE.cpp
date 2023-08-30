@@ -40,6 +40,7 @@ class MyServerCallbacks : public BLEServerCallbacks
     pServer->startAdvertising(); // restart advertising
   }
 };
+
 class ProvCharacteristicsCallbacks : public BLECharacteristicCallbacks
 {
   void onWrite(BLECharacteristic *pCharacteristic)
@@ -83,6 +84,7 @@ class ProvCharacteristicsCallbacks : public BLECharacteristicCallbacks
     }
   }
 };
+
 BLE::BLE(IWifiProvisioning* wifiProv)
 {
   pWifiProv = wifiProv;
@@ -128,6 +130,7 @@ bool BLE::initialize()
   status = BLE_STARTED;
   return true;
 }
+
 bool BLE::stop(void)
 {
   bool ret;
@@ -139,6 +142,7 @@ bool BLE::stop(void)
   }
   return ret;
 }
+
 bool BLE::isStarted(void)
 {
   return (status==BLE_STARTED);

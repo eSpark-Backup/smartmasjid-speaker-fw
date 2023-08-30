@@ -39,6 +39,7 @@ void Device::setup()
     Serial.println("Unable to find masjid id");
   }
 }
+
 void Device::deleteMasjidId() 
 {
   if (Sm_Nvs::del(DEVICE_FACTORY_INFO_NAMESPACE, "masjidId")) 
@@ -53,6 +54,7 @@ void Device::deleteWificredentials()
     Serial.println("Old credential removed");
   }
 }
+
 void Device::updateWifiCredential(const char* ssid, const char* pass) 
 {
   if (Sm_Nvs::put(DEVICE_WIFI_CREDENTIALS_NAMESPACE,

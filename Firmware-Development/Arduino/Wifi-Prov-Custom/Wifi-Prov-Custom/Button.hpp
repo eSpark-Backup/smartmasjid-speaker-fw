@@ -12,6 +12,7 @@ enum buttonState
   ADHAN_STOP_REQUESTED,
   ADHAN_STOPPED
 };
+
 #define TO_MS(seconds) ((seconds) * 1000)
 #define ADHAN_MAX_DURATION TO_MS(5*60)
 
