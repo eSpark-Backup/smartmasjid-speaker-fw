@@ -4,6 +4,7 @@
 #include <ArduinoJson.h>
 #include "WifiProvisioning.hpp"
 #include "Device.hpp"
+
 typedef enum 
 {
   DEVICE_RESET,

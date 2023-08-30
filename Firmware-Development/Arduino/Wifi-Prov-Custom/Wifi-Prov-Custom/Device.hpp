@@ -10,19 +10,21 @@
 #define DEVICE_WIFI_CREDENTIALS_NAMESPACE "credentials"
 #define DEVICE_SUBSCRIPTION_NAMESPACE "subscription"
 #define timeDelay 10
-class Device {
-private:
-  static bool getMac(char* dest);
 
-public:
-  Device() = delete;  // Disable constructor
-  static char macAddress[20];
+class Device 
+{
+  private:
+    static bool getMac(char* dest);
 
-  static void setup();
-  static bool storeSubscription(const char* topic);
-  static bool deleteSubscription(const char* topic);
-  static void deleteSubscription(); 
-  static void deleteMasjidId();
-  static void deleteWificredentials();
-  static void updateWifiCredential(const char* ssid, const char* pass);
+  public:
+    Device() = delete;  // Disable constructor
+    static char macAddress[20];
+
+    static void setup();
+    static bool storeSubscription(const char* topic);
+    static bool deleteSubscription(const char* topic);
+    static void deleteSubscription(); 
+    static void deleteMasjidId();
+    static void deleteWificredentials();
+    static void updateWifiCredential(const char* ssid, const char* pass);
 };

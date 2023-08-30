@@ -19,12 +19,13 @@ class SmHttp
     const char* adhanStartEndpoint = "/external/adhan/start";
     const char* adhanStopEndpoint = "/external/adhan/stop";
     char MASJID_TEST_ID = '3';
+
   public:
-    
     httpcode startAdhan();  
     httpcode sendDeviceTelemetry(const char* macAddress, uint8_t retryInterval, uint16_t maxRetryDuration);
     httpcode sendDeviceTelemetry(const char* macAddress);
     httpcode stopAdhan(); 
     httpcode Post(const char* url,const char* json);
+    
 };
 

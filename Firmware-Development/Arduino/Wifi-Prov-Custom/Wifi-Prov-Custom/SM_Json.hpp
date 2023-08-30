@@ -17,6 +17,7 @@ class SM_Json
       // Serialize the JSON document
       serializeJson(doc, json, size);
     }
+    
     static std::string create(const char* key, const char* value) 
     {
         DynamicJsonDocument jsonDoc(64);

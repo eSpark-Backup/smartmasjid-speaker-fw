@@ -47,6 +47,7 @@ class Sm_Nvs
       }
       return false;
     }
+    
     static bool getVal(Preferences& preferences, const char* key, uint32_t* result) 
     {
       uint32_t value = preferences.getUInt(key,0);

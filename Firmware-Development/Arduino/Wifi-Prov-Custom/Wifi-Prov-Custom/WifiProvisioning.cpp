@@ -29,6 +29,7 @@ bool WifiProvisioning::connectWifi(const char *ssid, const char *pass, int retri
   }
   return false;
 }
+
 bool WifiProvisioning::connectWifiFromNVS(void)
 {
   char ssid[32];
@@ -73,6 +74,7 @@ void WifiProvisioning::wifiGotIP(WiFiEvent_t event, WiFiEventInfo_t info)
     ESP.restart();
   }
 }
+
 bool WifiProvisioning::isTelemetrySent(void)
 {
   return (deviceTelemetryStatus==TELEMETRY_SENT);

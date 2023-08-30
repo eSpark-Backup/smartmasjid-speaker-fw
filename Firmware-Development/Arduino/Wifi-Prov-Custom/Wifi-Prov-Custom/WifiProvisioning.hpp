@@ -19,6 +19,7 @@
 #define WIFI_RETRY 3  // number of times to retry WiFi connection
 #define DEVCICE_FOUND 200
 #define TO_MS(seconds) ((seconds) * 1000)
+
 typedef enum
 {
   TELEMETRY_NOTSENT,
@@ -30,6 +31,7 @@ class IWifiProvisioning
   public:
     virtual bool connectWifi(const char* ssid, const char* pass, int retries = WIFI_RETRY) = 0;
 };
+
 class WifiProvisioning : public IWifiProvisioning
 {
   private:

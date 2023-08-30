@@ -39,6 +39,7 @@ void Device::setup()
     Serial.println("Unable to find masjid id");
   }
 }
+
 bool Device::storeSubscription(const char* topic) 
 {
   uint32_t c = 0;
@@ -57,6 +58,7 @@ bool Device::storeSubscription(const char* topic)
 
   return true;
 }
+
 bool Device::deleteSubscription(const char* topic) 
 {
   uint32_t count;
@@ -79,6 +81,7 @@ bool Device::deleteSubscription(const char* topic)
   }
   return topicFound;
 }
+
 void Device::deleteSubscription() 
 {
   uint32_t count;
@@ -90,6 +93,7 @@ void Device::deleteSubscription()
   }
   Serial.println("Subscription deleted from Nvs");
 }
+
 void Device::deleteMasjidId() 
 {
   if (Sm_Nvs::del(DEVICE_FACTORY_INFO_NAMESPACE, "masjidId")) 
@@ -97,6 +101,7 @@ void Device::deleteMasjidId()
     Serial.println("Masjid Id Removed");
   }
 }
+
 void Device::deleteWificredentials() 
 {
   if (Sm_Nvs::del(DEVICE_WIFI_CREDENTIALS_NAMESPACE, "ssid", "pass")) 
@@ -104,6 +109,7 @@ void Device::deleteWificredentials()
     Serial.println("Old credential removed");
   }
 }
+
 void Device::updateWifiCredential(const char* ssid, const char* pass) 
 {
   if (Sm_Nvs::put(DEVICE_WIFI_CREDENTIALS_NAMESPACE,
