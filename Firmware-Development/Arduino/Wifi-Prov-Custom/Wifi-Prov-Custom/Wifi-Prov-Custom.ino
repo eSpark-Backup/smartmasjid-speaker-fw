@@ -44,11 +44,9 @@ void setup()
       delay(100);
     }
   }
-  
   mqtt.setup();
   // button.setup();
 }
-
 void loop() 
 { 
   button.loop();

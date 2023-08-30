@@ -19,34 +19,26 @@ httpcode SmHttp::startAdhan()
 
   std::string jsonString = SM_Json::create("masjidId", &MASJID_TEST_ID);
 
-  int httpCode = Post(httpsUrl.c_str(),jsonString.c_str());
-    if (httpCode == HTTP_OK) 
-      return HTTP_OK;
-    else if(httpCode == HTTP_404_ERROR) 
-      return HTTP_404_ERROR;
-    else
-      return httpCode;
+  return post(httpsUrl.c_str(), jsonString.c_str());
 }
-httpcode SmHttp::sendDeviceTelemetry(const char* macAddress, uint8_t retryInterval, uint16_t maxRetry)
+httpcode SmHttp::sendDeviceTelemetry(const char* macAddress, uint8_t retryInterval, uint16_t maxRetry) 
 {
   if (WiFi.status() != WL_CONNECTED)
     return false;
-  int Httpcode;
-  while (maxRetry --) 
+
+  int httpCode;
+  while (maxRetry--) 
   {
     int httpCode = sendDeviceTelemetry(macAddress);
-    if (httpCode == HTTP_OK) 
-       return HTTP_OK;
-    else
-      {
-        Serial.println("Failed to send telemetry, retrying in 10 seconds...");
-        delay(TO_MS(retryInterval));
-        Httpcode = httpCode;
-      }
+    if (httpCode == HTTP_OK)
+      return HTTP_OK;
+    else 
+    {
+      Serial.println("Failed to send telemetry, retrying in 10 seconds...");
+      delay(TO_MS(retryInterval));
+    }
   }
-  if(Httpcode == HTTP_404_ERROR) 
-      return HTTP_404_ERROR;
-  return Httpcode;
+  return httpCode;
 }
 httpcode SmHttp::sendDeviceTelemetry(const char* macAddress) 
 {
@@ -61,33 +53,27 @@ httpcode SmHttp::sendDeviceTelemetry(const char* macAddress)
                   std::make_pair("battery", BATTERY_HEALTH),
                   std::make_pair("macAddress", Device::macAddress));
   Serial.println(telemetryJson);
-    int httpCode = Post(httpsUrl.c_str(),telemetryJson);
-    if (httpCode == HTTP_OK) 
-      return HTTP_OK;
-    else if(httpCode == HTTP_404_ERROR) 
-      return HTTP_404_ERROR;
-    else
-      return httpCode;
+
+  int httpCode = post(httpsUrl.c_str(), telemetryJson);
+  if (httpCode == HTTP_OK)
+    return HTTP_OK;
+  else
+    return httpCode;
 }
 httpcode SmHttp::stopAdhan() 
 {
   if (WiFi.status() != WL_CONNECTED)
     return false;
+
   std::string httpsUrl = smHost;
   httpsUrl += adhanStopEndpoint;
 
   std::string jsonString = SM_Json::create("masjidId", &MASJID_TEST_ID);
   Serial.println(jsonString.c_str());
-  int httpCode = Post(httpsUrl.c_str(),jsonString.c_str());
-  if (httpCode == HTTP_OK) 
-      return HTTP_OK;
-  else if(httpCode == HTTP_404_ERROR) 
-      return HTTP_404_ERROR;
-  else
-      return httpCode;
-  
+
+  return post(httpsUrl.c_str(), jsonString.c_str());
 }
-httpcode SmHttp::Post(const char* url, const char* json) 
+httpcode SmHttp::post(const char* url, const char* json) 
 {
   WiFiClientSecure* client = new WiFiClientSecure;
   client->setInsecure();
@@ -98,6 +84,7 @@ httpcode SmHttp::Post(const char* url, const char* json)
   int httpCode = https.POST(json);
   const char* response = https.getString().c_str();
   https.end();
+
   if ((httpCode == HTTP_STATUS_OK) || (httpCode == HTTP_STATUS_CREATED)) 
   {
     Serial.println("Request successful!");
@@ -111,5 +98,4 @@ httpcode SmHttp::Post(const char* url, const char* json)
     Serial.println(response);
     return httpCode;
   }
-
 }

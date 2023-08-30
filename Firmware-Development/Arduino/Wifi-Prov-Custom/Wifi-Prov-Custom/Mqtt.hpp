@@ -18,7 +18,8 @@ typedef enum {
   UNSUBSCRIBE,
 } subscription;
 
-class MQTTClient {
+class MQTTClient 
+{
 private:
   IWifiProvisioning* pWifiProv;
   // MQTT broker configuration

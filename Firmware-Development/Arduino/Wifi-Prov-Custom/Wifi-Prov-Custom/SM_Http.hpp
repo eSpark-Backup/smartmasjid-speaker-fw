@@ -25,5 +25,5 @@ class SmHttp
     httpcode sendDeviceTelemetry(const char* macAddress, uint8_t retryInterval, uint16_t maxRetryDuration);
     httpcode sendDeviceTelemetry(const char* macAddress);
     httpcode stopAdhan(); 
-    httpcode Post(const char* url,const char* json);
+    httpcode post(const char* url,const char* json);
 };

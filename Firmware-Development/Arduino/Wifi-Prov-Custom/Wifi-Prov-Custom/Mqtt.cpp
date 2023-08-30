@@ -8,9 +8,8 @@
 WiFiClient wifiClient;
 PubSubClient mqttClient(wifiClient);
 
-void MQTTClient::setup()
-{  
-
+void MQTTClient::setup() 
+{
   connectToBroker();
   subscribeTopics();
 }
@@ -33,13 +32,13 @@ bool MQTTClient::connectToBroker()
     if (mqttClient.connect("arduino_client", mqttUsername, mqttPassword)) 
     {
       Serial.println("Connected to MQTT broker");
-      isConnected = true; // Set the connection status
+      isConnected = true;  // Set the connection status
       return true;
     } 
-    else
-     {
+    else 
+    {
       Serial.println("Failed to connect to MQTT broker");
-      isConnected = false; // Set the connection status
+      isConnected = false;  // Set the connection status
       return false;
     }
   }
@@ -54,7 +53,6 @@ void MQTTClient::subscribeTopics()
   getTopicPath(topicPath, mqttTopicWifi);
   subscribe(topicPath);
 }
-
 void MQTTClient::receiveCallback(char* topic, byte* payload, unsigned int length) 
 {
   Serial.print("Received MQTT message [");
@@ -63,8 +61,8 @@ void MQTTClient::receiveCallback(char* topic, byte* payload, unsigned int length
 
   Serial.write(payload, length);
   Serial.println();
-  
-  switch(getTopic(topic))
+
+  switch (getTopic(topic)) 
   {
     case DEVICE_RESET:
       Serial.println("RESET TOPIC");
@@ -73,7 +71,7 @@ void MQTTClient::receiveCallback(char* topic, byte* payload, unsigned int length
       Device::deleteWificredentials();
       break;
 
-    case DEVICE_Wifi:  
+    case DEVICE_Wifi:
       {
         Serial.println("Wifi TOPIC");
         char ssid[35];
@@ -83,73 +81,66 @@ void MQTTClient::receiveCallback(char* topic, byte* payload, unsigned int length
         if (pWifiProv->connectWifi(ssid, pass, 10)) 
         {
           // Setup MQTT again
-            setup();
+          setup();
         } 
         else 
         {
-        Serial.println("Restart ESP.....");
-        ESP.restart();
+          Serial.println("Restart ESP.....");
+          ESP.restart();
         }
-          break;
+        break;
       }
-      
+
     default:
       Serial.println("UNKNOWN TOPIC");
       break;
   }
 }
-void MQTTClient::loop() 
-{
+void MQTTClient::loop() {
   if (!mqttClient.connect("arduino_client", mqttUsername, mqttPassword) && Connected) 
   {
     Connected = mqttCallback();
   }
-
   mqttClient.loop();
   isConnected = false;
 }
-bool MQTTClient::subscribe(const char* topic)
+bool MQTTClient::subscribe(const char* topic) 
 {
-  if (mqttClient.subscribe(topic))
+  if (mqttClient.subscribe(topic)) 
   {
-    Serial.printf("Subscribed to %s\n",topic);
+    Serial.printf("Subscribed to %s\n", topic);
     return true;
   }
   return false;
 }
-
-bool MQTTClient::unsubscribe(const char* topic)
+bool MQTTClient::unsubscribe(const char* topic) 
 {
-  if (mqttClient.unsubscribe(topic))
+  if (mqttClient.unsubscribe(topic)) 
   {
-    Serial.printf("Unsubscribed to %s\n",topic);
+    Serial.printf("Unsubscribed to %s\n", topic);
     return true;
   }
   return false;
 }
-
-mqttTopic MQTTClient::getTopic(const char* topic)
+mqttTopic MQTTClient::getTopic(const char* topic) 
 {
-  if (compareTopic(topic, mqttTopicReset))
+  if (compareTopic(topic, mqttTopicReset)) 
   {
     return DEVICE_RESET;
   }
 
-  else if (compareTopic(topic, mqttTopicWifi))
+  else if (compareTopic(topic, mqttTopicWifi)) 
   {
     return DEVICE_Wifi;
   }
-  
   return UNKNOWN_TOPIC;
 }
-
-bool MQTTClient::compareTopic(const char* topic, const char* topicName)
+bool MQTTClient::compareTopic(const char* topic, const char* topicName) 
 {
   char topicPath[50];
   getTopicPath(topicPath, topicName);
   return !strcmp(topicPath, topic);
 }
-
 bool MQTTClient::extractTopicAndSubscribe(const char* message) 
 {
   return extractTopicAndControlSubscription(SUBSCRIBE, message);
@@ -159,44 +150,41 @@ bool MQTTClient::extractTopicAndUnsubscribe(const char* message)
 {
   return extractTopicAndControlSubscription(UNSUBSCRIBE, message);
 }
-
 bool MQTTClient::extractTopicAndControlSubscription(subscription control, const char* message) 
 {
   bool ret = false;
   char topic[64];
   if (SM_Json::parse(message, std::make_pair("topic", topic))) 
   {
-    ret = controlSubscription(control, topic); 
-  }
+    ret = controlSubscription(control, topic);
+  } 
   else 
   {
-    Serial.println("Unable to parse topic");  
+    Serial.println("Unable to parse topic");
   }
   return ret;
 }
-
-bool MQTTClient::controlSubscription(subscription control, const char* topic)
+bool MQTTClient::controlSubscription(subscription control, const char* topic) 
 {
   bool ret = false;
-  
-  switch (control)
+
+  switch (control) 
   {
     case SUBSCRIBE:
       ret = subscribe(topic);
       break;
-    
+
     case UNSUBSCRIBE:
       ret = unsubscribe(topic);
       break;
-    
+
     default:
       Serial.println("UNKNOWN CONTROL");
   }
-  
+
   return ret;
 }
-
-void MQTTClient::getTopicPath(char* dest, const char* topicName)
+void MQTTClient::getTopicPath(char* dest, const char* topicName) 
 {
   // Copy the prefix to the destination buffer
   strcpy(dest, topicPrefix);
@@ -209,8 +197,7 @@ void MQTTClient::getTopicPath(char* dest, const char* topicName)
   strcat(dest, "/");
   strcat(dest, topicName);
 }
-
-void MQTTClient::unsubscribeTopics()
+void MQTTClient::unsubscribeTopics() 
 {
   char topicPath[50];
   getTopicPath(topicPath, mqttTopicReset);
@@ -220,11 +207,11 @@ void MQTTClient::unsubscribeTopics()
 }
 bool MQTTClient::mqttCallback() 
 {
-    if (!isConnected) 
-    {
-        Serial.println("MQTT client not connected. Reconnecting...");
-        Connected = connectToBroker(10); // Reconnect
-        return Connected;
-    }
-    return false; // Not reconnected
+  if (!isConnected) 
+  {
+    Serial.println("MQTT client not connected. Reconnecting...");
+    Connected = connectToBroker(10);  // Reconnect
+    return Connected;
+  }
+  return false;  // Not reconnected
 }
