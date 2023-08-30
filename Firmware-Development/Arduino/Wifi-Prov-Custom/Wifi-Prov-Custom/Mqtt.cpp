@@ -264,21 +264,30 @@ bool MQTTClient::subscribeTopicsfromNVS()
   if (!Sm_Nvs::get(DEVICE_SUBSCRIPTION_NAMESPACE, std::make_pair("count", &count))) 
   {
     // Error getting count from NVS
+    Serial.println("Error getting count from NVS");
     return false;
   }
-
+   int refCounter = 0; 
   for (int i = 0; i < count; i++) 
   {
     char keyValue[50];
     if (!Sm_Nvs::get(DEVICE_SUBSCRIPTION_NAMESPACE, std::make_pair(String(i, DEC).c_str(), keyValue))) 
     {
       // Error getting topic from NVS
-      continue;  // Move to the next iteration
+      Serial.println("Error getting topic from NVS");
+      Serial.println(count);
+      if (refCounter <count)
+      {
+       continue;  // Move to the next iteration
+      }
+      else
+         break;
     }
 
     if (keyValue[0] == '\0') 
     {
       // Empty topic, skip
+      Serial.println("Empty topic, skip...");
       continue;
     }
 
@@ -301,12 +310,20 @@ bool MQTTClient::subscribeTopicsfromNVS()
 bool MQTTClient::unsubscribeTopicsfromNVS() 
 {
   uint32_t count;
-  Sm_Nvs::get(DEVICE_SUBSCRIPTION_NAMESPACE, std::make_pair("count", &count));
+  if(!Sm_Nvs::get(DEVICE_SUBSCRIPTION_NAMESPACE, std::make_pair("count", &count)))
+      {
+        Serial.println("Error getting count from NVS");
+        return false;
+      }
   
   for (int i = 0; i <= count; i++) 
   {
     char keyValue[50];
-    Sm_Nvs::get(DEVICE_SUBSCRIPTION_NAMESPACE, std::make_pair(String(i, DEC).c_str(), keyValue));
+    if(!Sm_Nvs::get(DEVICE_SUBSCRIPTION_NAMESPACE, std::make_pair(String(i, DEC).c_str(), keyValue)))
+       {
+        Serial.println("Error getting topic from NVS");
+        return false;
+       }      
 
     if (keyValue[0] == '\0')
       break;

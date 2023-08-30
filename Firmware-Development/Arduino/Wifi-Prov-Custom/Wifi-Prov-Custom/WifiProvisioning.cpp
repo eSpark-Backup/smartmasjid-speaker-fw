@@ -65,6 +65,7 @@ void WifiProvisioning::wifiGotIP(WiFiEvent_t event, WiFiEventInfo_t info)
   else if(httpscode == DEVCICE_NOT_FOUND)
   {
     Serial.println("Device Reset");
+      Device::deleteSubscriptions();
       Device::deleteMasjidId();
       Device::deleteWificredentials();
   }
