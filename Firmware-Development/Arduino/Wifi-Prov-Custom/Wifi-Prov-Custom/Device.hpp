@@ -19,7 +19,7 @@ class Device
     static char macAddress[20];
     
     static void setup();
-    static void deleteMasjidId();
-    static void deleteWificredentials();
-    static void updateWifiCredential(const char* ssid, const char* pass);
+    static bool deleteMasjidId();
+    static bool deleteWificredentials();
+    static bool updateWifiCredential(const char* ssid, const char* pass);
 };
