@@ -24,8 +24,7 @@ class Device
     static bool storeSubscription(const char* topic);
     static bool deleteSubscription(const char* topic);
     static bool deleteSubscriptions(); 
-    static void deleteMasjidId();
-    static void deleteWificredentials();
-    static void updateWifiCredential(const char* ssid, const char* pass);
-
+    static bool deleteMasjidId();
+    static bool deleteWificredentials();
+    static bool updateWifiCredential(const char* ssid, const char* pass);
 };

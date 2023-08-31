@@ -94,28 +94,26 @@ bool Device::deleteSubscriptions()
   Serial.println("Subscription deleted from Nvs");
   return true;
 }
-void Device::deleteMasjidId() 
+bool Device::deleteMasjidId() 
 {
-  if (Sm_Nvs::del(DEVICE_FACTORY_INFO_NAMESPACE, "masjidId")) 
-  {
-    Serial.println("Masjid Id Removed");
-  }
+  if (!Sm_Nvs::del(DEVICE_FACTORY_INFO_NAMESPACE, "masjidId"))
+    return false; 
+  Serial.println("Masjid Id Removed");
+  return true; 
 }
 
-void Device::deleteWificredentials() 
+bool Device::deleteWificredentials() 
 {
-  if (Sm_Nvs::del(DEVICE_WIFI_CREDENTIALS_NAMESPACE, "ssid", "pass")) 
-  {
-    Serial.println("Old credential removed");
-  }
+  if (!Sm_Nvs::del(DEVICE_WIFI_CREDENTIALS_NAMESPACE, "ssid", "pass")) 
+    return false;
+  Serial.println("Old credential removed");
+  return true;
 }
 
-void Device::updateWifiCredential(const char* ssid, const char* pass) 
+bool Device::updateWifiCredential(const char* ssid, const char* pass) 
 {
-  if (Sm_Nvs::put(DEVICE_WIFI_CREDENTIALS_NAMESPACE,
-                  std::make_pair("ssid", ssid),
-                  std::make_pair("pass", pass))) 
-  {
-    Serial.println("Wifi credentials updated");
-  }
+  if (!Sm_Nvs::put(DEVICE_WIFI_CREDENTIALS_NAMESPACE,std::make_pair("ssid", ssid), std::make_pair("pass", pass))) 
+    return false;
+  Serial.println("Wifi credentials updated");
+  return true;
 }
