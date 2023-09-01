@@ -21,6 +21,7 @@ httpcode SmHttp::startAdhan()
 
   return post(httpsUrl.c_str(),jsonString.c_str());
 }
+
 httpcode SmHttp::sendDeviceTelemetry(const char* macAddress, uint8_t retryInterval, uint16_t maxRetry)
 {
   if (WiFi.status() != WL_CONNECTED)
@@ -40,6 +41,7 @@ httpcode SmHttp::sendDeviceTelemetry(const char* macAddress, uint8_t retryInterv
   }
   return httpCode;
 }
+
 httpcode SmHttp::sendDeviceTelemetry(const char* macAddress) 
 {
   if (WiFi.status() != WL_CONNECTED)
@@ -60,6 +62,7 @@ httpcode SmHttp::sendDeviceTelemetry(const char* macAddress)
   else
     return httpCode;
 }
+
 httpcode SmHttp::stopAdhan() 
 {
   if (WiFi.status() != WL_CONNECTED)

@@ -81,6 +81,7 @@ bool Device::deleteSubscription(const char* topic)
   }
   return topicFound;
 }
+
 bool Device::deleteSubscriptions() 
 {
   uint32_t count;
@@ -94,6 +95,7 @@ bool Device::deleteSubscriptions()
   Serial.println("Subscription deleted from Nvs");
   return true;
 }
+
 bool Device::deleteMasjidId() 
 {
   if (!Sm_Nvs::del(DEVICE_FACTORY_INFO_NAMESPACE, "masjidId"))
