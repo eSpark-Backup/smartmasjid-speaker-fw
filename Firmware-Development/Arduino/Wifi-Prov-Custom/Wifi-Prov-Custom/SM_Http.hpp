@@ -6,10 +6,8 @@
 #define HTTP_STATUS_CREATED 201
 #define EXTERNAL_API_KEY "b8z6X5fzbjNDGHz15XtPVzEkO3h5mCT7q4Ei8AupX9DD12PxL94rhnZHarHc8O2H"
 #define TO_MS(seconds) (seconds * 1000)
-typedef int httpcode;
 
-#define HTTP_OK 200
-#define HTTP_404_ERROR 404
+typedef int httpcode;
 
 class SmHttp 
 {
@@ -28,4 +26,3 @@ class SmHttp
     httpcode post(const char* url,const char* json);
     
 };
-

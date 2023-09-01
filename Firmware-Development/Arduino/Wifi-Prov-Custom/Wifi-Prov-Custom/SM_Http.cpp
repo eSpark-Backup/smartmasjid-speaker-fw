@@ -30,9 +30,11 @@ httpcode SmHttp::sendDeviceTelemetry(const char* macAddress, uint8_t retryInterv
   int httpCode;
   while (maxRetry --) 
   {
-    int httpCode = sendDeviceTelemetry(macAddress);
-    if (httpCode == HTTP_OK) 
-       return HTTP_OK;
+    httpCode = sendDeviceTelemetry(macAddress);
+    if ((httpCode == HttpStatus::OK) || (httpCode == HttpStatus::CREATED)) 
+    {
+       break;
+    }
     else
     {
       Serial.println("Failed to send telemetry, retrying in 10 seconds...");
@@ -56,11 +58,7 @@ httpcode SmHttp::sendDeviceTelemetry(const char* macAddress)
                   std::make_pair("macAddress", Device::macAddress));
   Serial.println(telemetryJson);
 
-  int httpCode = post(httpsUrl.c_str(),telemetryJson);
-  if (httpCode == HTTP_OK) 
-    return HTTP_OK;
-  else
-    return httpCode;
+  return post(httpsUrl.c_str(),telemetryJson);
 }
 
 httpcode SmHttp::stopAdhan() 
