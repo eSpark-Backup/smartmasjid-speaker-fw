@@ -14,17 +14,18 @@
 class Device 
 {
   private:
-    static bool getMac(char* dest);
+    // static bool getMac(char* dest);
 
   public:
     Device() = delete;  // Disable constructor
     static char macAddress[20];
-
     static void setup();
     static bool storeSubscription(const char* topic);
     static bool deleteSubscription(const char* topic);
     static bool deleteSubscriptions(); 
-    static bool deleteMasjidId();
     static bool deleteWificredentials();
     static bool updateWifiCredential(const char* ssid, const char* pass);
+    static void getDeviceMacAddress(char* bleMacAddress);
+    static bool checkMacAddress();
+    static bool storeMacAddress();
 };

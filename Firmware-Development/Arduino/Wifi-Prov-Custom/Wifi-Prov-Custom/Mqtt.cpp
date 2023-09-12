@@ -92,7 +92,6 @@ void MQTTClient::receiveCallback(char* topic, byte* payload, unsigned int length
     case DEVICE_RESET:
       Serial.println("RESET TOPIC");
       unsubscribeTopics();
-      Device::deleteMasjidId();
       Device::deleteWificredentials();
       break;
 

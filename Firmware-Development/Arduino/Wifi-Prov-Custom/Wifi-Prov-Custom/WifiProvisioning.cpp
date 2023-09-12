@@ -45,6 +45,7 @@ bool WifiProvisioning::connectWifiFromNVS(void)
   }
   else if (connectWifi(ssid, pass))
   {
+    
     return true;
   }
   
@@ -70,7 +71,6 @@ void WifiProvisioning::wifiGotIP(WiFiEvent_t event, WiFiEventInfo_t info)
     case HttpStatus::DEVCICE_NOT_FOUND:
       Serial.println("Device Reset");
       Device::deleteSubscriptions();
-      Device::deleteMasjidId();
       Device::deleteWificredentials();
       break;
 

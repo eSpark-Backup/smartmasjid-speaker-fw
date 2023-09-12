@@ -2,42 +2,24 @@
 #include "SM_Json.hpp"
 #include "SM_Nvs.hpp"
 #include "Device.hpp"
+#include "esp_bt_main.h"
+#include "esp_bt_device.h"
 
 char Device::macAddress[20] = "";
 
-bool Device::getMac(char* dest) 
-{
-  if (!dest) 
-  {
-    Serial.println("getDeviceMAC() -> dest* is null");
-    return false;
-  }
-  uint8_t mac[6];
-  WiFi.macAddress(mac);
-  mac[5] += BLE_MAC_OFFSET;
-
-  sprintf(dest, "%02X:%02X:%02X:%02X:%02X:%02X", mac[0], mac[1], mac[2], mac[3], mac[4], mac[5]);
-  return true;
-}
-
 void Device::setup() 
 {
-  getMac(macAddress);
 
-  // For Testing
-  Serial.println(Device::macAddress);
-  char masjidId[32];
-  bool ret = Sm_Nvs::get(DEVICE_FACTORY_INFO_NAMESPACE,
-                         std::make_pair("masjidId", masjidId));
-  if (ret) 
+  if(checkMacAddress())
   {
-    Serial.print("masjidId: ");
-    Serial.println(masjidId);
-  } 
-  else 
-  {
-    Serial.println("Unable to find masjid id");
+   Serial.println(Device::macAddress);
   }
+  else
+  {
+    Device::getDeviceMacAddress(Device::macAddress);
+    storeMacAddress();
+  }
+ 
 }
 
 bool Device::storeSubscription(const char* topic) 
@@ -96,14 +78,6 @@ bool Device::deleteSubscriptions()
   return true;
 }
 
-bool Device::deleteMasjidId() 
-{
-  if (!Sm_Nvs::del(DEVICE_FACTORY_INFO_NAMESPACE, "masjidId"))
-    return false; 
-  Serial.println("Masjid Id Removed");
-  return true; 
-}
-
 bool Device::deleteWificredentials() 
 {
   if (!Sm_Nvs::del(DEVICE_WIFI_CREDENTIALS_NAMESPACE, "ssid", "pass")) 
@@ -118,4 +92,44 @@ bool Device::updateWifiCredential(const char* ssid, const char* pass)
     return false;
   Serial.println("Wifi credentials updated");
   return true;
+}
+
+bool Device::checkMacAddress()
+{
+  if (Sm_Nvs::get(DEVICE_FACTORY_INFO_NAMESPACE, std::make_pair("macaddress", Device::macAddress)))
+  {
+    return true;
+  }
+  return false;
+}
+
+bool Device::storeMacAddress()
+{
+  
+  if (Sm_Nvs::put(DEVICE_FACTORY_INFO_NAMESPACE, std::make_pair("macaddress", Device::macAddress)))
+  {
+    Serial.print("Updated MAC address in NVS: ");
+    Serial.println(Device::macAddress);
+    return true;
+  }
+  else
+  {
+    Serial.println("Failed to update MAC address in NVS.");
+    return false;
+  }
+}
+
+void Device::getDeviceMacAddress(char* bleMacAddress) {
+  const uint8_t* point = esp_bt_dev_get_address();
+
+  for (int i = 0; i < 6; i++) 
+  {
+    sprintf(bleMacAddress, "%02X", (int)point[i]);
+    bleMacAddress += 2;
+    if (i < 5) 
+    {
+      sprintf(bleMacAddress, ":");
+      bleMacAddress += 1;
+    }
+  }
 }

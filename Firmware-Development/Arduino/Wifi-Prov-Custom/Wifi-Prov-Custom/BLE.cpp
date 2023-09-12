@@ -23,7 +23,8 @@ class MyServerCallbacks : public BLEServerCallbacks
   void onConnect(BLEServer *pServer)
   {
     Serial.println("BLE : device connected");
-
+    
+    // Sm_Nvs::put("macAddress", );
     
     char factoryInfoJson[100];
     SM_Json::create(factoryInfoJson, sizeof(factoryInfoJson),
@@ -51,16 +52,6 @@ class ProvCharacteristicsCallbacks : public BLECharacteristicCallbacks
 
     if (rxValue.length() > 0)
     {
-      char masjidId[32];
-      if (SM_Json::parse(rxValue.c_str(), std::make_pair("masjid_id", masjidId))) 
-      {
-        Serial.printf("Masjid ID : %s\n", masjidId);
-      }
-      else
-      {
-        Serial.println("Unable to parse masjis id");
-      }  
-      
       char ssid[32];
       char pass[32];
       if (SM_Json::parse(rxValue.c_str(), std::make_pair("ssid", ssid), std::make_pair("pass", pass))) 
@@ -93,7 +84,8 @@ bool BLE::initialize()
 {
   // Create the BLE Device
   BLEDevice::init("SMSPK_SSB23V1");
-
+  Device::setup();
+  
   // Create the BLE Server
   pServer = BLEDevice::createServer();
   pServer->setCallbacks(new MyServerCallbacks());

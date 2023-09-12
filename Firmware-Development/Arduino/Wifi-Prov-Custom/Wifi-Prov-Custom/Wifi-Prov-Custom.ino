@@ -12,7 +12,7 @@ MQTTClient mqtt(&wifiProv);
 void setup() 
 {
   Serial.begin(115200);
-  Device::setup();
+  Device::checkMacAddress();
   if(wifiProv.connectWifiFromNVS())
   {
     while(!wifiProv.isTelemetrySent())
