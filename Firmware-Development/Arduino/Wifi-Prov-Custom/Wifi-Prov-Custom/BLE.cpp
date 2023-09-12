@@ -93,7 +93,7 @@ bool BLE::initialize()
 {
   // Create the BLE Device
   BLEDevice::init("SMBTN_SBB23V1");
-
+  Device::setup();
   // Create the BLE Server
   pServer = BLEDevice::createServer();
   pServer->setCallbacks(new MyServerCallbacks());

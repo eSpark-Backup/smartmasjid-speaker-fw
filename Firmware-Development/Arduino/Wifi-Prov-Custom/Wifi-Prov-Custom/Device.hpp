@@ -22,4 +22,7 @@ class Device
     static bool deleteMasjidId();
     static bool deleteWificredentials();
     static bool updateWifiCredential(const char* ssid, const char* pass);
+    static void getDeviceMacAddress(char* bleMacAddress);
+    static bool checkMacAddress();
+    static bool storeMacAddress();
 };
