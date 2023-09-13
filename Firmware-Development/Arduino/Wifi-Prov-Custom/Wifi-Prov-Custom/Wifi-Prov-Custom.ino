@@ -7,7 +7,6 @@
 #include "SM_Nvs.hpp"
 
 WifiProvisioning wifiProv;
-BLE ble(&wifiProv);
 Button button(SMBTN_GPIO);
 SmHttp smHttp;
 MQTTClient mqtt(&wifiProv);
@@ -16,6 +15,7 @@ void setup()
 {
   Serial.begin(115200);
   Device::checkMacAddress();
+  BLE::ble(&wifiProv);
   if(wifiProv.connectWifiFromNVS())
   {
     while(!wifiProv.isTelemetrySent())
@@ -31,13 +31,13 @@ void setup()
     
     // switch to Bluetooth mode
     Serial.println("Switching to Bluetooth mode");
-    ble.initialize();
+    BLE::initialize();
     while(WiFi.status() != WL_CONNECTED);
     while (1)
     {
-      if (ble.isStarted() && wifiProv.isTelemetrySent())
+      if (BLE::isStarted() && wifiProv.isTelemetrySent())
       {
-          ble.stop();
+          BLE::stop();
           break;
       }  
       delay(100);

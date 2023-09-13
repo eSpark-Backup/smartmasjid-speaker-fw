@@ -3,6 +3,7 @@
 #include "BLE.hpp"
 #include "SM_Http.hpp"
 #include "SM_Nvs.hpp"
+#include <WiFi.h>
 
 
 bool WifiProvisioning::connectWifi(const char *ssid, const char *pass, int retries)
@@ -72,8 +73,7 @@ void WifiProvisioning::wifiGotIP(WiFiEvent_t event, WiFiEventInfo_t info)
   }
   else 
   {
-    Serial.println("Device is restarting...");
-    ESP.restart();
+    BLE::initialize();
   }
 }
 
