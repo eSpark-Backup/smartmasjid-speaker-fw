@@ -11,6 +11,7 @@
 #include "SM_Nvs.hpp"
 
 IWifiProvisioning* pWifiProv = NULL;
+bleStatus BLE::status = BLE_STOPPED;
 
 BLEServer *pServer = NULL;
 BLEService *pService = NULL;
@@ -75,7 +76,7 @@ class ProvCharacteristicsCallbacks : public BLECharacteristicCallbacks
   }
 };
 
-BLE::BLE(IWifiProvisioning* wifiProv)
+void BLE::ble(IWifiProvisioning* wifiProv)
 {
   pWifiProv = wifiProv;
 }

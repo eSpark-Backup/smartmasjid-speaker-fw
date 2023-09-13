@@ -15,12 +15,12 @@ typedef enum
 class BLE
 {
   private:
-    bleStatus status = BLE_STOPPED;
+    static bleStatus status ;
     
   public:
 
-    BLE(IWifiProvisioning* wifiProv);
-    bool initialize();
-    bool stop(void);
-    bool isStarted(void);
+    static void ble(IWifiProvisioning* wifiProv);
+    static bool initialize();
+    static bool stop(void);
+    static bool isStarted(void);
 };

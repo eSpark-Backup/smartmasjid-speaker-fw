@@ -75,8 +75,7 @@ void WifiProvisioning::wifiGotIP(WiFiEvent_t event, WiFiEventInfo_t info)
       break;
 
     default:
-      Serial.println("Device is restarting...");
-      ESP.restart();
+      BLE::initialize();
       break;
   }
 }
