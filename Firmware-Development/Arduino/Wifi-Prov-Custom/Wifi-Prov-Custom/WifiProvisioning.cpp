@@ -61,19 +61,22 @@ void WifiProvisioning::wifiGotIP(WiFiEvent_t event, WiFiEventInfo_t info)
   // delay(TO_MS(RETRY_INTERVAL));
   SmHttp smHttp;
   int httpscode =  smHttp.sendDeviceTelemetry(Device::macAddress, RETRY_INTERVAL, MAX_RETRY);
-  if (httpscode == DEVCICE_FOUND)
+
+  switch(httpscode)
   {
-    deviceTelemetryStatus = TELEMETRY_SENT;
-  }
-  else if(httpscode == DEVCICE_NOT_FOUND)
-  {
-    Serial.println("Device Reset");
-      Device::deleteMasjidId();
+    case HttpStatus::OK:
+    case HttpStatus::CREATED:
+      deviceTelemetryStatus = TELEMETRY_SENT;
+      break;
+
+    case HttpStatus::DEVCICE_NOT_FOUND:
+      Serial.println("Device Reset");
       Device::deleteWificredentials();
-  }
-  else 
-  {
-    BLE::initialize();
+      break;
+
+    default:
+      BLE::initialize();
+      break;
   }
 }
 
