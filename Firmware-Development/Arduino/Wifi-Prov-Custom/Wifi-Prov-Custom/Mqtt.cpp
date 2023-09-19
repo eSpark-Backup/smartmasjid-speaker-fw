@@ -4,14 +4,19 @@
 #include "SM_Json.hpp"
 #include "SM_Nvs.hpp"
 #include "Device.hpp"
+#include"Amplifier.hpp"
 
 WiFiClient wifiClient;
 PubSubClient mqttClient(wifiClient);
 
 bool MQTTClient::setup() 
 {
+  mqttClient.setSocketTimeout (10);
+  mqttClient.setKeepAlive (60);
   if (connectToBroker() && subscribeTopics())
-    return true;
+    {
+      return true; 
+    }
 
   return false;
 }
@@ -21,11 +26,12 @@ bool MQTTClient::connectToBroker(int retries)
   while (retries--) 
   {
     if (connectToBroker())
-    {
+    { 
       return true;
     }
      delay(timeDelay * 1000);
   }
+
   return false;
 }
 
@@ -105,7 +111,7 @@ void MQTTClient::receiveCallback(char* topic, byte* payload, unsigned int length
       Serial.println("UNSUBSCRIBE TOPIC");
       break;
 
-    case DEVICE_Wifi:
+    case DEVICE_WIFI:
       {
         Serial.println("Wifi TOPIC");
         char ssid[35];
@@ -122,6 +128,16 @@ void MQTTClient::receiveCallback(char* topic, byte* payload, unsigned int length
           Serial.println("Restart ESP.....");
           ESP.restart();
         };
+        break;
+      }
+      case DEVICE_ADHAN:
+      {
+
+        char action[50];
+        SM_Json::parse((const char*)payload,
+                       std::make_pair("action", action));
+
+        adhanStartOrStop(adhan,action);
         break;
       }
 
@@ -180,7 +196,11 @@ mqttTopic MQTTClient::getTopic(const char* topic)
   } 
   else if (compareTopic(topic, mqttTopicWifi)) 
   {
-    return DEVICE_Wifi;
+    return DEVICE_WIFI;
+  }
+  else if (getAdhan(topic)) 
+  {
+    return DEVICE_ADHAN;
   }
 
   return UNKNOWN_TOPIC;
@@ -372,8 +392,142 @@ bool MQTTClient::mqttCallback()
   if (!isConnected) 
   {
       Serial.println("MQTT client not connected. Reconnecting...");
+      int check = mqttClient.state();
+      if (check == 0)
+      Serial.println("client connected");
+      if (check > 0)
+      {Serial.println("issue greater than 0"); 
+      Serial.println(check);} 
+      if (check < 0)
+      {Serial.println("issue less than 0"); 
+      Serial.println(check);}
       Connected = connectToBroker(10); // Reconnect
       return Connected;
   }
   return false; // Not reconnected
+}
+
+bool MQTTClient::getAdhan(const char* topic) 
+{
+  memset(adhan, 0, sizeof(adhan));
+  char* nonConstTopic = const_cast<char*>(topic);
+  char* token = strtok(nonConstTopic, "/");
+  int tokenCount = 0;
+
+  while (token != NULL) 
+  {
+    switch (tokenCount) 
+    {
+      case 3:
+        strncpy(adhan, token, sizeof(adhan)+2);
+        return true ;
+        break;
+    }
+    token = strtok(NULL, "/");
+    tokenCount++;
+  }
+  Serial.println ("unsuccessful");
+  return false;
+}
+
+Adhan MQTTClient::enumAdhan(char* adhan) 
+{
+  if (strcmp(adhan, "fajr") == 0) 
+    return fajr;
+  
+  if (strcmp(adhan, "dhuhr") == 0) 
+    return dhuhr;
+  
+  if (strcmp(adhan, "asr") == 0) 
+    return asr;
+  
+  if (strcmp(adhan, "maghrib") == 0) 
+    return maghrib;
+  
+  if (strcmp(adhan, "isha") == 0)
+    return isha;
+
+  if (strcmp(adhan, "jummah1") == 0)
+    return jummah1;
+
+  if (strcmp(adhan, "jummah2") == 0)
+    return jummah2;
+
+  if (strcmp(adhan, "jummah3") == 0)
+    return jummah3;
+}
+
+void MQTTClient::adhanStartOrStop(char* adhan,char*action)
+{
+  Amplifier amplifier;
+  Adhan topic = enumAdhan (adhan);
+  switch (topic)
+  {
+    case fajr:
+      Serial.print("fajr\t");
+      Serial.println(action);
+      if (strcmp(action,"START")==0)
+         amplifier.amplifierStart();
+      else
+         amplifier.amplifierStop();
+      break;
+    case dhuhr:
+      Serial.print("dhuhur\t");
+      Serial.println(action);
+      if (strcmp(action,"START")==0)
+         amplifier.amplifierStart();
+      else
+         amplifier.amplifierStop();
+      break;
+    case asr:
+      Serial.print("Aser\t");
+      Serial.println(action);
+      if (strcmp(action,"START")==0)
+         amplifier.amplifierStart();
+      else
+         amplifier.amplifierStop();
+      break;
+    case maghrib:
+      Serial.print("Magrib\t");
+      Serial.println(action);
+      if (strcmp(action,"START")==0)
+         amplifier.amplifierStart();
+      else
+         amplifier.amplifierStop();
+      break;
+    case isha:
+      Serial.print("Isha\t");
+      Serial.println(action);
+      if (strcmp(action,"START")==0)
+         amplifier.amplifierStart();
+      else
+         amplifier.amplifierStop();
+      break;
+    case jummah1:
+      Serial.print("jummah1\t");
+      Serial.println(action);
+      if (strcmp(action,"START")==0)
+         amplifier.amplifierStart();
+      else
+         amplifier.amplifierStop();
+      break;
+    case jummah2:
+      Serial.print("jummah2\t");
+      Serial.println(action);
+      if (strcmp(action,"START")==0)
+         amplifier.amplifierStart();
+      else
+         amplifier.amplifierStop();
+      break;
+    case jummah3:
+      Serial.print("jummah3\t");
+      Serial.println(action);
+      if (strcmp(action,"START")==0)
+         amplifier.amplifierStart();
+      else
+         amplifier.amplifierStop();
+      break;
+    default:
+      Serial.println("UNKNOWN ADHAN");       
+  }
 }

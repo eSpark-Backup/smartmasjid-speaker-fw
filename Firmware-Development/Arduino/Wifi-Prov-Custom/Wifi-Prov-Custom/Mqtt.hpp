@@ -10,9 +10,22 @@ typedef enum
   DEVICE_RESET,
   DEVICE_SUBSCRIBE,
   DEVICE_UNSUBSCRIBE,
-  DEVICE_Wifi,
+  DEVICE_WIFI,
+  DEVICE_ADHAN,
   UNKNOWN_TOPIC = 0xFF,
 } mqttTopic;
+
+typedef enum
+{
+  fajr = 1,
+  dhuhr,
+  asr,
+  maghrib,
+  isha,
+  jummah1,
+  jummah2,
+  jummah3,
+} Adhan;
 
 typedef enum 
 {
@@ -39,6 +52,7 @@ class MQTTClient
     const char* mqttTopicSubscribe  = "subscribe";
     const char* mqttTopicUnsubscribe  = "unsubscribe";
     const char* mqttTopicWifi  = "wifi";
+    char adhan[32];
     bool Connected = true;
     bool isConnected = false;
 
@@ -57,11 +71,14 @@ class MQTTClient
     bool extractTopicAndControlSubscription(subscription control, const char* message);
     bool extractTopicAndSubscribe(const char* message);
     bool extractTopicAndUnsubscribe(const char* message);
-    void getTopicPath(char* dest, const char* topicName); 
+    void getTopicPath(char* dest, const char* topicName);
+    bool getAdhan(const char* topic); 
     bool compareTopic(const char* topic, const char* topicName);
     bool controlSubscription(subscription control, const char* topic);
     bool subscribeTopicsfromNVS();
     bool unsubscribeTopicsfromNVS();
     bool mqttCallback();
+    Adhan enumAdhan (char* adhan);
+    void adhanStartOrStop(char* adhan,char*action);
 
 };
