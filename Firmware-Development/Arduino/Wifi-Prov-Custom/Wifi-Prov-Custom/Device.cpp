@@ -24,18 +24,18 @@ void Device::setup()
 
 bool Device::storeSubscription(const char* topic) 
 {
-  uint32_t c = 0;
+  uint32_t count = 0;
   if (!Sm_Nvs::get(DEVICE_SUBSCRIPTION_NAMESPACE,
-                   std::make_pair("count", &c)))
+                   std::make_pair("count", &count)))
     return false;
 
 
   if (!Sm_Nvs::put(DEVICE_SUBSCRIPTION_NAMESPACE,
-                   std::make_pair(String(c, DEC).c_str(), topic)))
+                   std::make_pair(String(count, DEC).c_str(), topic)))
     return false;
 
   if (!Sm_Nvs::put(DEVICE_SUBSCRIPTION_NAMESPACE,
-                   std::make_pair("count", c + 1)))
+                   std::make_pair("count", count + 1)))
     return false;
 
   return true;
@@ -55,6 +55,7 @@ bool Device::deleteSubscription(const char* topic)
       topicFound = true;
       if (!Sm_Nvs::del(DEVICE_SUBSCRIPTION_NAMESPACE, String(i, DEC).c_str()))
         return false;
+
       Sm_Nvs::get(DEVICE_SUBSCRIPTION_NAMESPACE, std::make_pair(String(count - 1, DEC).c_str(), keyValue));
       Sm_Nvs::put(DEVICE_SUBSCRIPTION_NAMESPACE, std::make_pair(String(i, DEC).c_str(), keyValue));
       Sm_Nvs::put(DEVICE_SUBSCRIPTION_NAMESPACE, std::make_pair("count", count - 1));
@@ -119,17 +120,8 @@ bool Device::storeMacAddress()
   }
 }
 
-void Device::getDeviceMacAddress(char* bleMacAddress) {
+void Device::getDeviceMacAddress(char* bleMacAddress) 
+{
   const uint8_t* point = esp_bt_dev_get_address();
-
-  for (int i = 0; i < 6; i++) 
-  {
-    sprintf(bleMacAddress, "%02X", (int)point[i]);
-    bleMacAddress += 2;
-    if (i < 5) 
-    {
-      sprintf(bleMacAddress, ":");
-      bleMacAddress += 1;
-    }
-  }
+  sprintf(bleMacAddress, "%02X:%02X:%02X:%02X:%02X:%02X", (int)point[0],(int)point[1],(int)point[2],(int)point[3],(int)point[4],(int)point[5]);
 }

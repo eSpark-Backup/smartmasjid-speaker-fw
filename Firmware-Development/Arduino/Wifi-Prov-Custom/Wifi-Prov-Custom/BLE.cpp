@@ -76,7 +76,7 @@ class ProvCharacteristicsCallbacks : public BLECharacteristicCallbacks
   }
 };
 
-void BLE::ble(IWifiProvisioning* wifiProv)
+void BLE::setup(IWifiProvisioning* wifiProv)
 {
   pWifiProv = wifiProv;
 }

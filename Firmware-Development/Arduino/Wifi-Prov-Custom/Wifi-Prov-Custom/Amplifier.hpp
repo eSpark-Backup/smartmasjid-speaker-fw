@@ -1,10 +1,26 @@
 #pragma once
 #include<Arduino.h>
 
+typedef enum
+{
+  FAJR = 1,
+  DHUHR,
+  ASR,
+  MAGHRIB,
+  ISHA,
+  JUMMAH1,
+  JUMMAH2,
+  JUMMAH3,
+} Adhan;
 
 class Amplifier
 {
-  public:
-    void amplifierStart();
-    void amplifierStop();
+  private:
+    void start();
+    void stop();
+    void stream(const char* action);
+    Adhan getAdhan (char* adhan);
+
+  public:  
+    void adhanStream(char* adhan, char*action);
 };

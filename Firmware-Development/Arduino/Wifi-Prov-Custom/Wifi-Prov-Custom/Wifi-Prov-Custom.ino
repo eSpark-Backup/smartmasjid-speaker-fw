@@ -12,7 +12,7 @@ void setup()
 {
   Serial.begin(115200);
   Device::checkMacAddress();
-  BLE::ble(&wifiProv);
+  BLE::setup(&wifiProv);
   if(wifiProv.connectWifiFromNVS())
   {
     while(!wifiProv.isTelemetrySent())

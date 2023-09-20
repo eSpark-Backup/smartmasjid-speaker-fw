@@ -132,12 +132,12 @@ void MQTTClient::receiveCallback(char* topic, byte* payload, unsigned int length
       }
       case DEVICE_ADHAN:
       {
-
+        Amplifier amplifier;
         char action[50];
         SM_Json::parse((const char*)payload,
                        std::make_pair("action", action));
 
-        adhanStartOrStop(adhan,action);
+        amplifier.adhanStream(adhan,action);
         break;
       }
 
@@ -392,15 +392,7 @@ bool MQTTClient::mqttCallback()
   if (!isConnected) 
   {
       Serial.println("MQTT client not connected. Reconnecting...");
-      int check = mqttClient.state();
-      if (check == 0)
-      Serial.println("client connected");
-      if (check > 0)
-      {Serial.println("issue greater than 0"); 
-      Serial.println(check);} 
-      if (check < 0)
-      {Serial.println("issue less than 0"); 
-      Serial.println(check);}
+      mqttState();
       Connected = connectToBroker(10); // Reconnect
       return Connected;
   }
@@ -430,104 +422,49 @@ bool MQTTClient::getAdhan(const char* topic)
   return false;
 }
 
-Adhan MQTTClient::enumAdhan(char* adhan) 
+void MQTTClient::mqttState()
 {
-  if (strcmp(adhan, "fajr") == 0) 
-    return fajr;
-  
-  if (strcmp(adhan, "dhuhr") == 0) 
-    return dhuhr;
-  
-  if (strcmp(adhan, "asr") == 0) 
-    return asr;
-  
-  if (strcmp(adhan, "maghrib") == 0) 
-    return maghrib;
-  
-  if (strcmp(adhan, "isha") == 0)
-    return isha;
-
-  if (strcmp(adhan, "jummah1") == 0)
-    return jummah1;
-
-  if (strcmp(adhan, "jummah2") == 0)
-    return jummah2;
-
-  if (strcmp(adhan, "jummah3") == 0)
-    return jummah3;
-}
-
-void MQTTClient::adhanStartOrStop(char* adhan,char*action)
-{
-  Amplifier amplifier;
-  Adhan topic = enumAdhan (adhan);
-  switch (topic)
+  int state = mqttClient.state();
+  switch(state)
   {
-    case fajr:
-      Serial.print("fajr\t");
-      Serial.println(action);
-      if (strcmp(action,"START")==0)
-         amplifier.amplifierStart();
-      else
-         amplifier.amplifierStop();
+    case MQTT::CONNECTION_TIMEOUT:
+      printf("%s\n", MQTT(CONNECTION_TIMEOUT));
       break;
-    case dhuhr:
-      Serial.print("dhuhur\t");
-      Serial.println(action);
-      if (strcmp(action,"START")==0)
-         amplifier.amplifierStart();
-      else
-         amplifier.amplifierStop();
+
+    case MQTT::CONNECTION_LOST:
+      printf("%s\n", MQTT(CONNECTION_LOST));
       break;
-    case asr:
-      Serial.print("Aser\t");
-      Serial.println(action);
-      if (strcmp(action,"START")==0)
-         amplifier.amplifierStart();
-      else
-         amplifier.amplifierStop();
+
+    case MQTT::CONNECTION_FAILED:
+      printf("%s\n", MQTT(CONNECTION_FAILED));
       break;
-    case maghrib:
-      Serial.print("Magrib\t");
-      Serial.println(action);
-      if (strcmp(action,"START")==0)
-         amplifier.amplifierStart();
-      else
-         amplifier.amplifierStop();
+
+    case MQTT::DISCONNECTED:
+      printf("%s\n", MQTT(DISCONNECTED));
       break;
-    case isha:
-      Serial.print("Isha\t");
-      Serial.println(action);
-      if (strcmp(action,"START")==0)
-         amplifier.amplifierStart();
-      else
-         amplifier.amplifierStop();
+
+    case MQTT::CONNECTED:
+      printf("%s\n", MQTT(CONNECTED));
       break;
-    case jummah1:
-      Serial.print("jummah1\t");
-      Serial.println(action);
-      if (strcmp(action,"START")==0)
-         amplifier.amplifierStart();
-      else
-         amplifier.amplifierStop();
+
+    case MQTT::CONNECT_BAD_PROTOCOL:
+      printf("%s\n", MQTT(CONNECT_BAD_PROTOCOL));
       break;
-    case jummah2:
-      Serial.print("jummah2\t");
-      Serial.println(action);
-      if (strcmp(action,"START")==0)
-         amplifier.amplifierStart();
-      else
-         amplifier.amplifierStop();
+
+    case MQTT::CONNECT_BAD_CLIENT_ID:
+      printf("%s\n", MQTT(CONNECT_BAD_CLIENT_ID));
       break;
-    case jummah3:
-      Serial.print("jummah3\t");
-      Serial.println(action);
-      if (strcmp(action,"START")==0)
-         amplifier.amplifierStart();
-      else
-         amplifier.amplifierStop();
+
+    case MQTT::CONNECT_UNAVAILIABLE:
+      printf("%s\n", MQTT(CONNECT_UNAVAILIABLE));
       break;
-    default:
-      Serial.println("UNKNOWN ADHAN");       
+
+    case MQTT::CONNECT_BAD_CREDENTIALS:
+      printf("%s\n", MQTT(CONNECT_BAD_CREDENTIALS));
+      break;
+
+    case MQTT::CONNECT_UNAUTHORIZED:
+      printf("%s\n", MQTT(CONNECT_UNAUTHORIZED));
+      break;
   }
 }

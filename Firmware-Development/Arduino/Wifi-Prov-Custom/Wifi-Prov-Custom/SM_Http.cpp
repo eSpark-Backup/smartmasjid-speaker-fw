@@ -74,6 +74,7 @@ httpcode SmHttp::stopAdhan()
 
   return post(httpsUrl.c_str(),jsonString.c_str());
 }
+
 httpcode SmHttp::post(const char* url, const char* json) 
 {
   WiFiClientSecure* client = new WiFiClientSecure;

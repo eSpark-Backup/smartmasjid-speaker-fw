@@ -19,7 +19,7 @@ class BLE
     
   public:
 
-    static void ble(IWifiProvisioning* wifiProv);
+    static void setup(IWifiProvisioning* wifiProv);
     static bool initialize();
     static bool stop(void);
     static bool isStarted(void);

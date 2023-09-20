@@ -5,6 +5,9 @@
 #include "WifiProvisioning.hpp"
 #include "Device.hpp"
 
+#define TEXTIFY(A) #A
+#define MQTT(State)    "MQTT state : " TEXTIFY(State)
+
 typedef enum 
 {
   DEVICE_RESET,
@@ -15,23 +18,28 @@ typedef enum
   UNKNOWN_TOPIC = 0xFF,
 } mqttTopic;
 
-typedef enum
-{
-  fajr = 1,
-  dhuhr,
-  asr,
-  maghrib,
-  isha,
-  jummah1,
-  jummah2,
-  jummah3,
-} Adhan;
-
 typedef enum 
 {
    SUBSCRIBE,
    UNSUBSCRIBE,
 } subscription;
+
+namespace MQTT
+{
+  typedef enum
+  {
+    CONNECTION_TIMEOUT = -4,
+    CONNECTION_LOST,
+    CONNECTION_FAILED,
+    DISCONNECTED,
+    CONNECTED,
+    CONNECT_BAD_PROTOCOL,
+    CONNECT_BAD_CLIENT_ID,
+    CONNECT_UNAVAILIABLE,
+    CONNECT_BAD_CREDENTIALS,
+    CONNECT_UNAUTHORIZED,
+  }State;
+}
 
 class MQTTClient
 {
@@ -78,7 +86,5 @@ class MQTTClient
     bool subscribeTopicsfromNVS();
     bool unsubscribeTopicsfromNVS();
     bool mqttCallback();
-    Adhan enumAdhan (char* adhan);
-    void adhanStartOrStop(char* adhan,char*action);
-
+    void mqttState();
 };
