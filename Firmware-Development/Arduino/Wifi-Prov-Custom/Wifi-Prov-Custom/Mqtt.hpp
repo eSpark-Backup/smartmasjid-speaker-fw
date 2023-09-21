@@ -86,5 +86,5 @@ class MQTTClient
     bool subscribeTopicsfromNVS();
     bool unsubscribeTopicsfromNVS();
     bool mqttCallback();
-    void mqttState();
+    void printState();
 };

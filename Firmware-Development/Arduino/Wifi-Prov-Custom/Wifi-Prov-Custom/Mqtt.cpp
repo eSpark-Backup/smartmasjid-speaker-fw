@@ -29,7 +29,7 @@ bool MQTTClient::connectToBroker(int retries)
     { 
       return true;
     }
-     delay(timeDelay * 1000);
+     delay(TIME_DELAY * 1000);
   }
 
   return false;
@@ -134,10 +134,12 @@ void MQTTClient::receiveCallback(char* topic, byte* payload, unsigned int length
       {
         Amplifier amplifier;
         char action[50];
+        char streamUrl[50]=" ";
+
         SM_Json::parse((const char*)payload,
                        std::make_pair("action", action));
 
-        amplifier.adhanStream(adhan,action);
+        amplifier.adhanStream(adhan, action, streamUrl);
         break;
       }
 
@@ -392,7 +394,7 @@ bool MQTTClient::mqttCallback()
   if (!isConnected) 
   {
       Serial.println("MQTT client not connected. Reconnecting...");
-      mqttState();
+      printState();
       Connected = connectToBroker(10); // Reconnect
       return Connected;
   }
@@ -422,7 +424,7 @@ bool MQTTClient::getAdhan(const char* topic)
   return false;
 }
 
-void MQTTClient::mqttState()
+void MQTTClient::printState()
 {
   int state = mqttClient.state();
   switch(state)

@@ -18,9 +18,9 @@ class Amplifier
   private:
     void start();
     void stop();
-    void stream(const char* action);
+    void stream(const char* action, char* streamUrl);
     Adhan getAdhan (char* adhan);
 
   public:  
-    void adhanStream(char* adhan, char*action);
+    void adhanStream(char* adhan, char*action, char* streamUrl);
 };

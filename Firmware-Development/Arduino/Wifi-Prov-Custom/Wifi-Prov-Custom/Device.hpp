@@ -9,7 +9,7 @@
 #define DEVICE_FACTORY_INFO_NAMESPACE "factoryInfo"
 #define DEVICE_WIFI_CREDENTIALS_NAMESPACE "credentials"
 #define DEVICE_SUBSCRIPTION_NAMESPACE "subscription"
-#define timeDelay 10
+#define TIME_DELAY 10
 
 class Device 
 {

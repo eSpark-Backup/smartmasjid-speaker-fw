@@ -11,7 +11,7 @@ void Amplifier::stop()
   Serial.println("Amplifier is Stoped...");
 }
 
-void Amplifier::stream(const char* action)
+void Amplifier::stream(const char* action, char* streamUrl)
 {
     if (strcmp(action,"START")==0)
        start();
@@ -47,7 +47,7 @@ Adhan Amplifier::getAdhan(char* adhan)
     return JUMMAH3;
 }
 
-void Amplifier::adhanStream(char* adhan, char*action)
+void Amplifier::adhanStream(char* adhan, char*action, char* streamUrl)
 {
   Adhan topic = getAdhan(adhan);
   switch (topic)
@@ -55,49 +55,49 @@ void Amplifier::adhanStream(char* adhan, char*action)
     case FAJR:
       Serial.print("fajr\t");
       Serial.println(action);
-      stream(action);
+      stream(action, streamUrl);
       break;
 
     case DHUHR:
       Serial.print("dhuhur\t");
       Serial.println(action);
-      stream(action);
+      stream(action, streamUrl);
       break;
 
     case ASR:
       Serial.print("Aser\t");
       Serial.println(action);
-      stream(action);
+      stream(action, streamUrl);
       break;
 
     case MAGHRIB:
       Serial.print("Magrib\t");
       Serial.println(action);
-      stream(action);
+      stream(action, streamUrl);
       break;
 
     case ISHA:
       Serial.print("Isha\t");
       Serial.println(action);
-      stream(action);
+      stream(action, streamUrl);
       break;
 
     case JUMMAH1:
       Serial.print("jummah1\t");
       Serial.println(action);
-      stream(action);
+      stream(action, streamUrl);
       break;
 
     case JUMMAH2:
       Serial.print("jummah2\t");
       Serial.println(action);
-      stream(action);
+      stream(action, streamUrl);
       break;
 
     case JUMMAH3:
       Serial.print("jummah3\t");
       Serial.println(action);
-      stream(action);
+      stream(action, streamUrl);
       break;
 
     default:

@@ -25,8 +25,6 @@ class MyServerCallbacks : public BLEServerCallbacks
   {
     Serial.println("BLE : device connected");
     
-    // Sm_Nvs::put("macAddress", );
-    
     char factoryInfoJson[100];
     SM_Json::create(factoryInfoJson, sizeof(factoryInfoJson),
                         std::make_pair("device_model", SM_MODEL),
