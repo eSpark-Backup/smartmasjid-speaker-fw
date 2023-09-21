@@ -225,8 +225,56 @@ bool MQTTClient::mqttCallback()
   if (!isConnected) 
   {
     Serial.println("MQTT client not connected. Reconnecting...");
+    mqttState();
     Connected = connectToBroker(10);  // Reconnect
     return Connected;
   }
   return false;  // Not reconnected
+}
+
+void MQTTClient::mqttState()
+{
+  int state = mqttClient.state();
+  switch(state)
+  {
+    case MQTT::CONNECTION_TIMEOUT:
+      printf("%s\n", MQTT(CONNECTION_TIMEOUT));
+      break;
+
+    case MQTT::CONNECTION_LOST:
+      printf("%s\n", MQTT(CONNECTION_LOST));
+      break;
+
+    case MQTT::CONNECTION_FAILED:
+      printf("%s\n", MQTT(CONNECTION_FAILED));
+      break;
+
+    case MQTT::DISCONNECTED:
+      printf("%s\n", MQTT(DISCONNECTED));
+      break;
+
+    case MQTT::CONNECTED:
+      printf("%s\n", MQTT(CONNECTED));
+      break;
+
+    case MQTT::CONNECT_BAD_PROTOCOL:
+      printf("%s\n", MQTT(CONNECT_BAD_PROTOCOL));
+      break;
+
+    case MQTT::CONNECT_BAD_CLIENT_ID:
+      printf("%s\n", MQTT(CONNECT_BAD_CLIENT_ID));
+      break;
+
+    case MQTT::CONNECT_UNAVAILIABLE:
+      printf("%s\n", MQTT(CONNECT_UNAVAILIABLE));
+      break;
+
+    case MQTT::CONNECT_BAD_CREDENTIALS:
+      printf("%s\n", MQTT(CONNECT_BAD_CREDENTIALS));
+      break;
+
+    case MQTT::CONNECT_UNAUTHORIZED:
+      printf("%s\n", MQTT(CONNECT_UNAUTHORIZED));
+      break;
+  }
 }

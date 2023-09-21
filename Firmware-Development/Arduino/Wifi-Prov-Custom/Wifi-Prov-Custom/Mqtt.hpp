@@ -5,6 +5,27 @@
 #include <ArduinoJson.h>
 #include "WifiProvisioning.hpp"
 #include "Device.hpp"
+
+#define TEXTIFY(A) #A
+#define MQTT(State)    "MQTT state : " TEXTIFY(State)
+
+namespace MQTT
+{
+  typedef enum
+  {
+    CONNECTION_TIMEOUT = -4,
+    CONNECTION_LOST,
+    CONNECTION_FAILED,
+    DISCONNECTED,
+    CONNECTED,
+    CONNECT_BAD_PROTOCOL,
+    CONNECT_BAD_CLIENT_ID,
+    CONNECT_UNAVAILIABLE,
+    CONNECT_BAD_CREDENTIALS,
+    CONNECT_UNAUTHORIZED,
+  }State;
+}
+
 typedef enum {
   DEVICE_RESET,
   DEVICE_SUBSCRIBE,
@@ -58,4 +79,5 @@ public:
   bool compareTopic(const char* topic, const char* topicName);
   bool controlSubscription(subscription control, const char* topic);
   bool mqttCallback();
+  void mqttState();
 };
