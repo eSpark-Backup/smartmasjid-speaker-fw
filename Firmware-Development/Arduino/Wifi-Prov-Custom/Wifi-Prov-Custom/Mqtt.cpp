@@ -225,14 +225,14 @@ bool MQTTClient::mqttCallback()
   if (!isConnected) 
   {
     Serial.println("MQTT client not connected. Reconnecting...");
-    mqttState();
+    printState();
     Connected = connectToBroker(10);  // Reconnect
     return Connected;
   }
   return false;  // Not reconnected
 }
 
-void MQTTClient::mqttState()
+void MQTTClient::printState()
 {
   int state = mqttClient.state();
   switch(state)

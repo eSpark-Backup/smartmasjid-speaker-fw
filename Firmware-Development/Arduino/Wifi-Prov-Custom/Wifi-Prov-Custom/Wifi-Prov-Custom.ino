@@ -44,7 +44,7 @@ void setup()
     }
   }
   mqtt.setup();
-  // button.setup();
+  button.setup();
 }
 
 void loop() 

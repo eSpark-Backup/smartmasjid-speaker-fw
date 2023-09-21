@@ -7,7 +7,6 @@
 #define MASJID_ID_TEST 3
 #define DEVICE_FACTORY_INFO_NAMESPACE "factoryInfo"
 #define DEVICE_WIFI_CREDENTIALS_NAMESPACE "credentials"
-#define timeDelay 10
 
 class Device 
 {

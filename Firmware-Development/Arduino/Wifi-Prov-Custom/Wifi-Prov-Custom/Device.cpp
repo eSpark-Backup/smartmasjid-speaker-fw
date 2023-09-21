@@ -70,17 +70,10 @@ bool Device::storeMacAddress()
   }
 }
 
-void Device::getDeviceMacAddress(char* bleMacAddress) {
+void Device::getDeviceMacAddress(char* bleMacAddress) 
+{
   const uint8_t* point = esp_bt_dev_get_address();
 
-  for (int i = 0; i < 6; i++) 
-  {
-    sprintf(bleMacAddress, "%02X", (int)point[i]);
-    bleMacAddress += 2;
-    if (i < 5) 
-    {
-      sprintf(bleMacAddress, ":");
-      bleMacAddress += 1;
-    }
-  }
+  if (point != NULL)
+    sprintf(bleMacAddress, "%02X:%02X:%02X:%02X:%02X:%02X", (int)point[0],(int)point[1],(int)point[2],(int)point[3],(int)point[4],(int)point[5]);
 }
