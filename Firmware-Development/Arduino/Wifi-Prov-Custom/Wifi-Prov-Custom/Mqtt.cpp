@@ -134,12 +134,11 @@ void MQTTClient::receiveCallback(char* topic, byte* payload, unsigned int length
       {
         Amplifier amplifier;
         char action[50];
-        char streamUrl[50]=" ";
 
         SM_Json::parse((const char*)payload,
                        std::make_pair("action", action));
 
-        amplifier.adhanStream(adhan, action, streamUrl);
+        amplifier.adhanStream(adhan, action);
         break;
       }
 

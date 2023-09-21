@@ -22,5 +22,5 @@ class Amplifier
     Adhan getAdhan (char* adhan);
 
   public:  
-    void adhanStream(char* adhan, char*action, char* streamUrl);
+    void adhanStream(char* adhan, char*action);
 };

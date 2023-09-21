@@ -47,9 +47,10 @@ Adhan Amplifier::getAdhan(char* adhan)
     return JUMMAH3;
 }
 
-void Amplifier::adhanStream(char* adhan, char*action, char* streamUrl)
+void Amplifier::adhanStream(char* adhan, char*action)
 {
   Adhan topic = getAdhan(adhan);
+  char streamUrl[50];
   switch (topic)
   {
     case FAJR:

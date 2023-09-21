@@ -46,7 +46,6 @@ class WifiProvisioning : public IWifiProvisioning
   
     char gSsid[32];
     char gPass[32];
-    Preferences preferences;
     telemetryStatus deviceTelemetryStatus = TELEMETRY_NOTSENT;
     
   public:
