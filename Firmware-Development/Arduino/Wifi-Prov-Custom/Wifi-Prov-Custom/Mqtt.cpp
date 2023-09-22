@@ -98,6 +98,7 @@ void MQTTClient::receiveCallback(char* topic, byte* payload, unsigned int length
     case DEVICE_RESET:
       Serial.println("RESET TOPIC");
       unsubscribeTopics();
+      Device::deleteSubscriptions();
       Device::deleteWificredentials();
       break;
 
@@ -293,9 +294,7 @@ bool MQTTClient::subscribeTopicsfromNVS()
     char keyValue[50];
     if (!Sm_Nvs::get(DEVICE_SUBSCRIPTION_NAMESPACE, std::make_pair(String(i, DEC).c_str(), keyValue))) 
     {
-      // Error getting topic from NVS
-      Serial.println("Error getting topic from NVS");
-      Serial.println(count);
+
       if (refCounter <count)
       {
        continue;  // Move to the next iteration
