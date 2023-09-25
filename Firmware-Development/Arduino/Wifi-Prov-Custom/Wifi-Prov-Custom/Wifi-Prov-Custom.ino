@@ -33,13 +33,8 @@ void setup()
     Serial.println("Switching to Bluetooth mode");
     BLE::initialize();
     while(WiFi.status() != WL_CONNECTED);
-    while (1)
     {
-      if (BLE::isStarted() && wifiProv.isTelemetrySent())
-      {
-          BLE::stop();
-          break;
-      }  
+      BLE::stop();
       delay(100);
     }
   }
