@@ -131,15 +131,16 @@ void MQTTClient::receiveCallback(char* topic, byte* payload, unsigned int length
         };
         break;
       }
+      
       case DEVICE_ADHAN:
-      {
-        Amplifier amplifier;
+      { 
         char action[50];
-
+        char streamUrl[100];
         SM_Json::parse((const char*)payload,
-                       std::make_pair("action", action));
-
-        amplifier.adhanStream(adhan, action);
+                       std::make_pair("action", action), std::make_pair("streamUrl", streamUrl));
+                       
+        Amplifier amplifier;
+        amplifier.stream(action, streamUrl);
         break;
       }
 
@@ -196,11 +197,13 @@ mqttTopic MQTTClient::getTopic(const char* topic)
   {
     return DEVICE_UNSUBSCRIBE;
   } 
+  
   else if (compareTopic(topic, mqttTopicWifi)) 
   {
     return DEVICE_WIFI;
   }
-  else if (getAdhan(topic)) 
+  
+  else if (compareAdhanTopic(topic)) 
   {
     return DEVICE_ADHAN;
   }
@@ -399,26 +402,14 @@ bool MQTTClient::mqttCallback()
   return false; // Not reconnected
 }
 
-bool MQTTClient::getAdhan(const char* topic) 
+bool MQTTClient::compareAdhanTopic(const char* topic) 
 {
-  memset(adhan, 0, sizeof(adhan));
-  char* nonConstTopic = const_cast<char*>(topic);
-  char* token = strtok(nonConstTopic, "/");
-  int tokenCount = 0;
-
-  while (token != NULL) 
+  // Check if "masjid" and "adhan" are both present in the buffer
+  if (strstr(topic, "masjid") != nullptr && strstr(topic, "adhan") != nullptr) 
   {
-    switch (tokenCount) 
-    {
-      case 3:
-        strncpy(adhan, token, sizeof(adhan)+2);
-        return true ;
-        break;
-    }
-    token = strtok(NULL, "/");
-    tokenCount++;
-  }
-  Serial.println ("unsuccessful");
+      return true;
+  } 
+
   return false;
 }
 

@@ -1,15 +1,21 @@
 #include <WiFi.h>
 #include "SM_Json.hpp"
 #include "SM_Nvs.hpp"
+#include "SM_Http.hpp"
 #include "Device.hpp"
 #include "esp_bt_main.h"
 #include "esp_bt_device.h"
 
 char Device::macAddress[20] = "";
+bool Device::telemFlag = false;
+hw_timer_t* Device::timer = NULL;
+
+void IRAM_ATTR Device::updateTelemetry() {      //Defining Inerrupt function with IRAM_ATTR for faster access
+  telemFlag= true;
+}
 
 void Device::setup() 
 {
-
   if(checkMacAddress())
   {
    Serial.println(Device::macAddress);
@@ -19,8 +25,27 @@ void Device::setup()
     Device::getDeviceMacAddress(Device::macAddress);
     storeMacAddress();
   }
- 
 }
+
+void Device::timerSetup() 
+{
+  Device::timer = timerBegin(0, 80, true);             // timer 0, prescalar: 80, UP counting
+  timerAttachInterrupt(Device::timer, &Device::updateTelemetry, true);   // Attach interrupt
+  timerAlarmWrite(Device::timer, TELEMETRY_UPDATE_TIME * 1000000, true);     // Match value= 1000000 for 1 sec. delay.
+  timerAlarmEnable(Device::timer);                 // Enable Timer with interrupt (Alarm Enable)
+}
+
+void Device::loop() 
+{
+  if(telemFlag)
+  {
+    Serial.println("Updating Telemetry");
+    SmHttp smHttp;
+    smHttp.sendDeviceTelemetry(Device::macAddress);
+    telemFlag= false;
+  }
+}
+
 
 bool Device::storeSubscription(const char* topic) 
 {

@@ -80,7 +80,7 @@ class MQTTClient
     bool extractTopicAndSubscribe(const char* message);
     bool extractTopicAndUnsubscribe(const char* message);
     void getTopicPath(char* dest, const char* topicName);
-    bool getAdhan(const char* topic); 
+    bool compareAdhanTopic(const char* topic); 
     bool compareTopic(const char* topic, const char* topicName);
     bool controlSubscription(subscription control, const char* topic);
     bool subscribeTopicsfromNVS();

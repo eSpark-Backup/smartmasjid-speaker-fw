@@ -37,9 +37,11 @@ void setup()
   }
   
   mqtt.setup();
+  Device::timerSetup();
 }
  
 void loop() 
 { 
   mqtt.loop();
+  Device::loop();
 }
