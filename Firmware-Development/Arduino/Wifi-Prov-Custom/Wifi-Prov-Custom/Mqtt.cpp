@@ -14,9 +14,9 @@ bool MQTTClient::setup()
   mqttClient.setSocketTimeout (10);
   mqttClient.setKeepAlive (60);
   if (connectToBroker() && subscribeTopics())
-    {
-      return true; 
-    }
+  {
+    return true; 
+  }
 
   return false;
 }
@@ -29,7 +29,7 @@ bool MQTTClient::connectToBroker(int retries)
     { 
       return true;
     }
-     delay(TIME_DELAY * 1000);
+     delay(MQTT_RECONNECT_DELAY * 1000);
   }
 
   return false;
@@ -291,14 +291,14 @@ bool MQTTClient::subscribeTopicsfromNVS()
     Serial.println("Error getting count from NVS");
     return false;
   }
-   int refCounter = 0; 
+  
+  int refCounter = 0; 
   for (int i = 0; i < count; i++) 
   {
     char keyValue[50];
     if (!Sm_Nvs::get(DEVICE_SUBSCRIPTION_NAMESPACE, std::make_pair(String(i, DEC).c_str(), keyValue))) 
     {
-
-      if (refCounter <count)
+      if (refCounter < count)
       {
        continue;  // Move to the next iteration
       }
@@ -333,19 +333,19 @@ bool MQTTClient::unsubscribeTopicsfromNVS()
 {
   uint32_t count;
   if(!Sm_Nvs::get(DEVICE_SUBSCRIPTION_NAMESPACE, std::make_pair("count", &count)))
-      {
-        Serial.println("Error getting count from NVS");
-        return false;
-      }
+  {
+    Serial.println("Error getting count from NVS");
+    return false;
+  }
   
   for (int i = 0; i <= count; i++) 
   {
     char keyValue[50];
     if(!Sm_Nvs::get(DEVICE_SUBSCRIPTION_NAMESPACE, std::make_pair(String(i, DEC).c_str(), keyValue)))
-       {
-        Serial.println("Error getting topic from NVS");
-        return false;
-       }      
+    {
+    Serial.println("Error getting topic from NVS");
+    return false;
+    }      
 
     if (keyValue[0] == '\0')
       break;

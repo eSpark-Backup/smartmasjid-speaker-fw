@@ -7,11 +7,11 @@
 #include "esp_bt_device.h"
 
 char Device::macAddress[20] = "";
-bool Device::telemFlag = false;
+bool Device::telemetryTrigger = false;
 hw_timer_t* Device::timer = NULL;
 
-void IRAM_ATTR Device::updateTelemetry() {      //Defining Inerrupt function with IRAM_ATTR for faster access
-  telemFlag= true;
+void IRAM_ATTR Device::triggerTelemetryUpdate() {      //Defining Inerrupt function with IRAM_ATTR for faster access
+  telemetryTrigger= true;
 }
 
 void Device::setup() 
@@ -29,20 +29,20 @@ void Device::setup()
 
 void Device::timerSetup() 
 {
-  Device::timer = timerBegin(0, 80, true);             // timer 0, prescalar: 80, UP counting
-  timerAttachInterrupt(Device::timer, &Device::updateTelemetry, true);   // Attach interrupt
-  timerAlarmWrite(Device::timer, TELEMETRY_UPDATE_TIME * 1000000, true);     // Match value= 1000000 for 1 sec. delay.
-  timerAlarmEnable(Device::timer);                 // Enable Timer with interrupt (Alarm Enable)
+  Device::timer = timerBegin(TIMER_NO, TIMER_PRESCALAR_1MHZ, true);
+  timerAttachInterrupt(Device::timer, &Device::triggerTelemetryUpdate, true); 
+  timerAlarmWrite(Device::timer, TELEMETRY_UPDATE_TIME * TIMER_ONE_SECOND_COUNTS, true);
+  timerAlarmEnable(Device::timer);
 }
 
 void Device::loop() 
 {
-  if(telemFlag)
+  if(telemetryTrigger)
   {
     Serial.println("Updating Telemetry");
     SmHttp smHttp;
     smHttp.sendDeviceTelemetry(Device::macAddress);
-    telemFlag= false;
+    telemetryTrigger= false;
   }
 }
 

@@ -9,19 +9,30 @@
 #define DEVICE_FACTORY_INFO_NAMESPACE "factoryInfo"
 #define DEVICE_WIFI_CREDENTIALS_NAMESPACE "credentials"
 #define DEVICE_SUBSCRIPTION_NAMESPACE "subscription"
-#define TIME_DELAY 10
+
+// Timer Settings
+#define TIMER_NO 0
+#define TIMER_PRESCALAR_1MHZ 80
+#define TIMER_ONE_SECOND_COUNTS 1000000
 #define TELEMETRY_UPDATE_TIME 1 * 60 // telemetry update time in seconds
 
 class Device 
 {
   private:
+    // Variables
     static hw_timer_t * timer;      //H/W timer defining (Pointer to the Structure)
-    static bool telemFlag;
+    static bool telemetryTrigger;
     
   public:
+    // Constructor
     Device() = delete;  // Disable constructor
+
+    // Variables
     static char macAddress[20];
+
+    // Static member methods
     static void setup();
+    static void loop();
     static void timerSetup();
     static bool storeSubscription(const char* topic);
     static bool deleteSubscription(const char* topic);
@@ -31,6 +42,7 @@ class Device
     static void getDeviceMacAddress(char* bleMacAddress);
     static bool checkMacAddress();
     static bool storeMacAddress();
-    static void loop();
-    static void IRAM_ATTR updateTelemetry();
+
+    // ISR
+    static void IRAM_ATTR triggerTelemetryUpdate();
 };

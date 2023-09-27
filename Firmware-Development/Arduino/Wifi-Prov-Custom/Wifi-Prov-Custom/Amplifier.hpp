@@ -4,9 +4,9 @@
 class Amplifier
 {
   private:
-    void start(char* url = NULL);
+    void start(const char* url = NULL);
     void stop();
 
   public:  
-    void stream(const char* action, char* url);
+    void stream(const char* action, const char* url);
 };

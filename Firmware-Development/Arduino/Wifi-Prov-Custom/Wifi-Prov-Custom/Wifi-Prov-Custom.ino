@@ -29,11 +29,11 @@ void setup()
     // switch to Bluetooth mode
     Serial.println("Switching to Bluetooth mode");
     BLE::initialize();
-    while(WiFi.status() != WL_CONNECTED);
-      { 
-        BLE::stop();
-        delay(100);
-      }
+    while(WiFi.status() != WL_CONNECTED) 
+    {
+      delay(100);
+    }
+    BLE::stop();   
   }
   
   mqtt.setup();
