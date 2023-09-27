@@ -1,13 +1,20 @@
 #include <WiFi.h>
 #include "SM_Nvs.hpp"
+#include "SM_Http.hpp"
 #include "Device.hpp"
 #include "esp_bt_device.h"
 
 char Device::macAddress[20] = "";
+bool Device::telemetryTrigger = false;  
+hw_timer_t* Device::timer = NULL; 
+
+void IRAM_ATTR Device::triggerTelemetryUpdate() 
+{
+  telemetryTrigger= true; 
+}
 
 void Device::setup() 
 {
-
   if(checkMacAddress())
   {
    Serial.println(Device::macAddress);
@@ -17,13 +24,32 @@ void Device::setup()
     Device::getDeviceMacAddress(Device::macAddress);
     storeMacAddress();
   }
- 
+}
+
+void Device::timerSetup() 
+{
+  Device::timer = timerBegin(TIMER_NO, TIMER_PRESCALAR_1MHZ, true);
+  timerAttachInterrupt(Device::timer, &Device::triggerTelemetryUpdate, true); 
+  timerAlarmWrite(Device::timer, TELEMETRY_UPDATE_TIME * TIMER_ONE_SECOND_COUNTS, true);
+  timerAlarmEnable(Device::timer);
+}
+
+void Device::loop() 
+{
+  if(telemetryTrigger)
+  {
+    Serial.println("Updating Telemetry");
+    SmHttp smHttp;
+    smHttp.sendDeviceTelemetry(Device::macAddress);
+    telemetryTrigger= false;
+  }
 }
 
 bool Device::deleteMasjidId() 
 {
   if (!Sm_Nvs::del(DEVICE_FACTORY_INFO_NAMESPACE, "masjidId")) 
     return false;
+    
   Serial.println("Masjid Id Removed");
   return true;
 }
@@ -31,6 +57,7 @@ bool Device::deleteWificredentials()
 {
   if (!Sm_Nvs::del(DEVICE_WIFI_CREDENTIALS_NAMESPACE, "ssid", "pass")) 
     return false;
+    
   Serial.println("Old credential removed");
   return true;
 }
@@ -41,6 +68,7 @@ bool Device::updateWifiCredential(const char* ssid, const char* pass)
                   std::make_pair("ssid", ssid),
                   std::make_pair("pass", pass))) 
     return false;
+    
   Serial.println("Wifi credentials updated");
   return true;
 }

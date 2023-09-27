@@ -1,6 +1,5 @@
 #pragma once
 #include <WiFi.h>
-#include <WiFiClientSecure.h>
 #include <PubSubClient.h>
 #include <ArduinoJson.h>
 #include "WifiProvisioning.hpp"
@@ -8,6 +7,23 @@
 
 #define TEXTIFY(A) #A
 #define MQTT(State)    "MQTT state : " TEXTIFY(State)
+#define MQTT_RECONNECT_DELAY 10
+
+typedef enum 
+{
+  DEVICE_RESET,
+  DEVICE_SUBSCRIBE,
+  DEVICE_UNSUBSCRIBE,
+  DEVICE_WIFI,
+  DEVICE_ADHAN,
+  UNKNOWN_TOPIC = 0xFF,
+} mqttTopic;
+
+typedef enum 
+{
+   SUBSCRIBE,
+   UNSUBSCRIBE,
+} subscription;
 
 namespace MQTT
 {
@@ -25,19 +41,6 @@ namespace MQTT
     CONNECT_UNAUTHORIZED,
   }State;
 }
-
-typedef enum {
-  DEVICE_RESET,
-  DEVICE_SUBSCRIBE,
-  DEVICE_UNSUBSCRIBE,
-  DEVICE_Wifi,
-  UNKNOWN_TOPIC = 0xFF,
-} mqttTopic;
-
-typedef enum {
-  SUBSCRIBE,
-  UNSUBSCRIBE,
-} subscription;
 
 class MQTTClient 
 {
@@ -62,11 +65,11 @@ private:
 
 public:
   MQTTClient(IWifiProvisioning* wifiProv): pWifiProv(wifiProv) {}
-  void setup();
+  bool setup();
   bool connectToBroker();
   bool connectToBroker(int retries);
-  void subscribeTopics();
-  void unsubscribeTopics();
+  bool subscribeTopics();
+  bool unsubscribeTopics();
   void receiveCallback(char* topic, byte* payload, unsigned int length);
   void loop();
   bool subscribe(const char* topic);

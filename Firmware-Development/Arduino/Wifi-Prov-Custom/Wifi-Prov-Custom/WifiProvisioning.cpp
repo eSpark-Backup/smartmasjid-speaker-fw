@@ -5,7 +5,6 @@
 #include "SM_Nvs.hpp"
 #include <WiFi.h>
 
-
 bool WifiProvisioning::connectWifi(const char *ssid, const char *pass, int retries)
 { 
   if (ssid != NULL && pass != NULL)

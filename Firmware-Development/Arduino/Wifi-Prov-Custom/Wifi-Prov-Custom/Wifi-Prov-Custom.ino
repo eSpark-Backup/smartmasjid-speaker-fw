@@ -15,7 +15,7 @@ void setup()
 {
   Serial.begin(115200);
   Device::checkMacAddress();
-  BLE::ble(&wifiProv);
+  BLE::setup(&wifiProv);
   if(wifiProv.connectWifiFromNVS())
   {
     while(!wifiProv.isTelemetrySent())
@@ -32,18 +32,20 @@ void setup()
     // switch to Bluetooth mode
     Serial.println("Switching to Bluetooth mode");
     BLE::initialize();
-    while(WiFi.status() != WL_CONNECTED);
+    while(WiFi.status() != WL_CONNECTED) 
     {
-      BLE::stop();
       delay(100);
     }
+    BLE::stop();
   }
   mqtt.setup();
   button.setup();
+  Device::timerSetup();
 }
 
 void loop() 
 { 
   button.loop();
   mqtt.loop();
+  Device::loop();
 }

@@ -4,25 +4,32 @@
 #include "SM_Json.hpp"
 #include "SM_Nvs.hpp"
 
-
 WiFiClient wifiClient;
 PubSubClient mqttClient(wifiClient);
 
-void MQTTClient::setup() 
+bool MQTTClient::setup() 
 {
-  connectToBroker();
-  subscribeTopics();
+  mqttClient.setSocketTimeout (10);
+  mqttClient.setKeepAlive (60);
+  if (connectToBroker() && subscribeTopics())
+  {
+    return true; 
+  }
+
+  return false;
 }
 
 bool MQTTClient::connectToBroker(int retries) 
 {
   while (retries--) 
   {
-    if (connectToBroker()) 
-    {
+    if (connectToBroker())
+    { 
       return true;
     }
+     delay(MQTT_RECONNECT_DELAY * 1000);
   }
+
   return false;
 }
 
@@ -34,27 +41,40 @@ bool MQTTClient::connectToBroker()
     if (mqttClient.connect("arduino_client", mqttUsername, mqttPassword)) 
     {
       Serial.println("Connected to MQTT broker");
-      isConnected = true;  // Set the connection status
+      isConnected = true; // Set the connection status
       return true;
     } 
-    else 
-    {
+    else
+     {
       Serial.println("Failed to connect to MQTT broker");
-      isConnected = false;  // Set the connection status
+      isConnected = false; // Set the connection status
       return false;
     }
   }
 }
 
-void MQTTClient::subscribeTopics() 
+bool MQTTClient::subscribeTopics() 
 {
   mqttClient.setCallback(std::bind(&MQTTClient::receiveCallback, this, std::placeholders::_1, std::placeholders::_2, std::placeholders::_3));
 
   char topicPath[50];
-  getTopicPath(topicPath, mqttTopicReset);
-  subscribe(topicPath);
-  getTopicPath(topicPath, mqttTopicWifi);
-  subscribe(topicPath);
+
+  const char* topicNames[] = 
+  {
+    mqttTopicReset,
+    mqttTopicWifi
+  };
+  
+  for (const char* topic : topicNames) 
+  {
+    getTopicPath(topicPath, topic);
+    if (!subscribe(topicPath)) 
+    {
+      return false;
+    }
+  }
+
+  return true;
 }
 
 void MQTTClient::receiveCallback(char* topic, byte* payload, unsigned int length) 
@@ -75,7 +95,7 @@ void MQTTClient::receiveCallback(char* topic, byte* payload, unsigned int length
       Device::deleteWificredentials();
       break;
 
-    case DEVICE_Wifi:
+    case DEVICE_WIFI:
       {
         Serial.println("Wifi TOPIC");
         char ssid[35];
@@ -101,11 +121,13 @@ void MQTTClient::receiveCallback(char* topic, byte* payload, unsigned int length
   }
 }
 
-void MQTTClient::loop() {
+void MQTTClient::loop() 
+{
   if (!mqttClient.connect("arduino_client", mqttUsername, mqttPassword) && Connected) 
   {
     Connected = mqttCallback();
   }
+
   mqttClient.loop();
   isConnected = false;
 }
@@ -139,8 +161,9 @@ mqttTopic MQTTClient::getTopic(const char* topic)
 
   else if (compareTopic(topic, mqttTopicWifi)) 
   {
-    return DEVICE_Wifi;
+    return DEVICE_WIFI;
   }
+  
   return UNKNOWN_TOPIC;
 }
 
@@ -211,13 +234,26 @@ void MQTTClient::getTopicPath(char* dest, const char* topicName)
   strcat(dest, topicName);
 }
 
-void MQTTClient::unsubscribeTopics() 
+bool MQTTClient::unsubscribeTopics() 
 {
   char topicPath[50];
-  getTopicPath(topicPath, mqttTopicReset);
-  unsubscribe(topicPath);
-  getTopicPath(topicPath, mqttTopicWifi);
-  unsubscribe(topicPath);
+  
+  const char* topicNames[] = 
+  {
+    mqttTopicReset,
+    mqttTopicWifi
+  };
+
+  for (const char* topic : topicNames) 
+  {
+    getTopicPath(topicPath, topic);
+    if (!unsubscribe(topicPath)) 
+    {
+      return false;
+    }
+  }
+  
+  return true;
 }
 
 bool MQTTClient::mqttCallback() 
@@ -226,10 +262,10 @@ bool MQTTClient::mqttCallback()
   {
     Serial.println("MQTT client not connected. Reconnecting...");
     printState();
-    Connected = connectToBroker(10);  // Reconnect
+    Connected = connectToBroker(10); // Reconnect
     return Connected;
   }
-  return false;  // Not reconnected
+  return false; // Not reconnected
 }
 
 void MQTTClient::printState()
