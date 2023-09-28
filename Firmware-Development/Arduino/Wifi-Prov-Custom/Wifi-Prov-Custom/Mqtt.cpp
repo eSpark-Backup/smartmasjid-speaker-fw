@@ -132,7 +132,7 @@ void MQTTClient::receiveCallback(char* topic, byte* payload, unsigned int length
         break;
       }
       
-      case DEVICE_ADHAN:
+      case DEVICE_STREAM:
       { 
         char action[50];
         char streamUrl[100];
@@ -205,7 +205,7 @@ mqttTopic MQTTClient::getTopic(const char* topic)
   
   else if (compareAdhanTopic(topic)) 
   {
-    return DEVICE_ADHAN;
+    return DEVICE_STREAM;
   }
 
   return UNKNOWN_TOPIC;
@@ -405,7 +405,7 @@ bool MQTTClient::mqttCallback()
 bool MQTTClient::compareAdhanTopic(const char* topic) 
 {
   // Check if "masjid" and "adhan" are both present in the buffer
-  if (strstr(topic, "masjid") != nullptr && strstr(topic, "adhan") != nullptr) 
+  if (strstr(topic, "masjid") != nullptr) 
   {
       return true;
   } 
