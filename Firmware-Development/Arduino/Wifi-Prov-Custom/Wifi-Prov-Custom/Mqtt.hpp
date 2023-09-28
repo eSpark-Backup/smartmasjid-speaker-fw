@@ -9,22 +9,6 @@
 #define MQTT(State)    "MQTT state : " TEXTIFY(State)
 #define MQTT_RECONNECT_DELAY 10
 
-typedef enum 
-{
-  DEVICE_RESET,
-  DEVICE_SUBSCRIBE,
-  DEVICE_UNSUBSCRIBE,
-  DEVICE_WIFI,
-  DEVICE_ADHAN,
-  UNKNOWN_TOPIC = 0xFF,
-} mqttTopic;
-
-typedef enum 
-{
-   SUBSCRIBE,
-   UNSUBSCRIBE,
-} subscription;
-
 namespace MQTT
 {
   typedef enum
@@ -41,6 +25,17 @@ namespace MQTT
     CONNECT_UNAUTHORIZED,
   }State;
 }
+
+typedef enum {
+  DEVICE_RESET,
+  DEVICE_WIFI,
+  UNKNOWN_TOPIC = 0xFF,
+} mqttTopic;
+
+typedef enum {
+  SUBSCRIBE,
+  UNSUBSCRIBE,
+} subscription;
 
 class MQTTClient 
 {

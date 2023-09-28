@@ -11,6 +11,12 @@ typedef int httpcode;
 #define HTTP_OK 200
 #define HTTP_404_ERROR 404
 
+typedef enum
+{
+ POST = 0,
+ PATCH,
+}http;
+
 class SmHttp 
 {
   private:
@@ -18,12 +24,15 @@ class SmHttp
     const char* telemetryEndpoint = "/external/device/telemetry";
     const char* adhanStartEndpoint = "/external/adhan/start";
     const char* adhanStopEndpoint = "/external/adhan/stop";
+    const char* adhanRestEndpoint = "/external/adhan/reset";
     char MASJID_TEST_ID = '3';
+
   public:
     
     httpcode startAdhan();  
     httpcode sendDeviceTelemetry(const char* macAddress, uint8_t retryInterval, uint16_t maxRetryDuration);
     httpcode sendDeviceTelemetry(const char* macAddress);
     httpcode stopAdhan(); 
-    httpcode post(const char* url,const char* json);
+    httpcode resetAdhan();
+    httpcode request(const char* url, const char* json, http request = POST);
 };

@@ -19,7 +19,7 @@ httpcode SmHttp::startAdhan()
 
   std::string jsonString = SM_Json::create("masjidId", &MASJID_TEST_ID);
 
-  return post(httpsUrl.c_str(), jsonString.c_str());
+  return request(httpsUrl.c_str(), jsonString.c_str());
 }
 
 httpcode SmHttp::sendDeviceTelemetry(const char* macAddress, uint8_t retryInterval, uint16_t maxRetry) 
@@ -56,7 +56,7 @@ httpcode SmHttp::sendDeviceTelemetry(const char* macAddress)
                   std::make_pair("macAddress", Device::macAddress));
   Serial.println(telemetryJson);
 
-  int httpCode = post(httpsUrl.c_str(), telemetryJson);
+  int httpCode = request(httpsUrl.c_str(), telemetryJson);
   if (httpCode == HTTP_OK)
     return HTTP_OK;
   else
@@ -74,18 +74,43 @@ httpcode SmHttp::stopAdhan()
   std::string jsonString = SM_Json::create("masjidId", &MASJID_TEST_ID);
   Serial.println(jsonString.c_str());
 
-  return post(httpsUrl.c_str(), jsonString.c_str());
+  return request(httpsUrl.c_str(), jsonString.c_str());
 }
 
-httpcode SmHttp::post(const char* url, const char* json) 
+httpcode SmHttp::resetAdhan() 
 {
-  WiFiClientSecure* client = new WiFiClientSecure;
-  client->setInsecure();
+  if (WiFi.status() != WL_CONNECTED)
+    return false;
+
+  std::string httpsUrl = smHost;
+  httpsUrl += adhanRestEndpoint;
+
+  std::string jsonString = SM_Json::create("masjidId", &MASJID_TEST_ID);
+  Serial.println(jsonString.c_str());
+
+  return request(httpsUrl.c_str(), jsonString.c_str(), PATCH);
+}
+
+httpcode SmHttp::request(const char* url, const char* json, http request) 
+{
+  WiFiClientSecure client ;
+  client.setInsecure();
   HTTPClient https;
-  https.begin(*client, url);
+  https.begin(client, url);
   https.addHeader("Content-Type", "application/json");
   https.addHeader("x-api-key", EXTERNAL_API_KEY);
-  int httpCode = https.POST(json);
+  int httpCode;
+
+  switch(request)
+  {
+    case POST:
+       httpCode = https.POST(json);
+       break;
+    case PATCH:
+       httpCode = https.PATCH(json);
+       break;   
+  }
+  
   const char* response = https.getString().c_str();
   https.end();
 
