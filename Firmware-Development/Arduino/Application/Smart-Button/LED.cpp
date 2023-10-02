@@ -20,7 +20,7 @@ void LED::set(int pin)
  digitalWrite(pin, HIGH);
 }
 
-void LED::reSet(int pin)
+void LED::reset(int pin)
 {
  digitalWrite(pin, LOW);
 }

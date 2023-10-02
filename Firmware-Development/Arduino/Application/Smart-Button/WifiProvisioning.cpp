@@ -59,16 +59,16 @@ void WifiProvisioning::wifiGotIP(WiFiEvent_t event, WiFiEventInfo_t info)
   Serial.println(WiFi.localIP());
   // delay(TO_MS(RETRY_INTERVAL));
   SmHttp smHttp;
-  int httpscode =  smHttp.sendDeviceTelemetry(Device::macAddress, RETRY_INTERVAL, MAX_RETRY);
+  int httpscode = smHttp.sendDeviceTelemetry(Device::macAddress, RETRY_INTERVAL, MAX_RETRY);
 
   switch(httpscode)
   {
-    case HttpStatus::OK:
-    case HttpStatus::CREATED:
+    case Http::Response::OK:
+    case Http::Response::CREATED:
       deviceTelemetryStatus = TELEMETRY_SENT;
       break;
 
-    case HttpStatus::DEVCICE_NOT_FOUND:
+    case Http::Response::DEVICE_NOT_FOUND:
       Serial.println("Device Reset");
       Device::deleteWificredentials();
       break;

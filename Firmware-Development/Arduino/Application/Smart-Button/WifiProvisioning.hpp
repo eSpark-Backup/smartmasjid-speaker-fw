@@ -10,20 +10,9 @@
 // Retry parameters
 #define  RETRY_INTERVAL 10 // 10 seconds
 #define  MAX_RETRY      6 // 6 retries
-// #define DEVCICE_NOT_FOUND 404
 #define WIFI_RETRY 3  // number of times to retry WiFi connection
 #define DEVCICE_FOUND 200
 #define TO_MS(seconds) ((seconds) * 1000)
-
-namespace HttpStatus
-{
-  typedef enum 
-  {
-    OK = 200,
-    CREATED = 201,
-    DEVCICE_NOT_FOUND = 404,
-  } httpStatusCodes;
-}
 
 typedef enum
 {
