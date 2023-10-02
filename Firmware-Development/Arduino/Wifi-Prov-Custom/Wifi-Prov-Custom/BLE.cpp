@@ -1,22 +1,38 @@
-#include "BLE.hpp"
 
-WifiProvisioning* pWifiProv = NULL;
+#include <Arduino.h>
+#include <ArduinoJson.h>
+#include <BLEDevice.h>
+#include <BLEServer.h>
+#include <BLEUtils.h>
+#include <BLE2902.h>
+#include "BLE.hpp"
+#include "Device.hpp"
+#include "SM_Json.hpp"
+#include "SM_Nvs.hpp"
+
+IWifiProvisioning* pWifiProv = NULL;
+bleStatus BLE::status = BLE_STOPPED;
 
 BLEServer *pServer = NULL;
 BLEService *pService = NULL;
 BLECharacteristic *pTxCharacteristic;
 BLECharacteristic *pDeviceCharacteristic;
 BLECharacteristic *pProvCharacteristic;
-const char* jsonPacket = "{\"device_model\": \"SSB23V1\", \"mac_address\": \"abc:123:efg:456\", \"firmware_rev\": \"1.0\"}";
-const char *ssid;
-const char *pass;
 
 class MyServerCallbacks : public BLEServerCallbacks
 {
   void onConnect(BLEServer *pServer)
   {
     Serial.println("BLE : device connected");
-    pDeviceCharacteristic->setValue(jsonPacket);
+    
+    char factoryInfoJson[100];
+    SM_Json::create(factoryInfoJson, sizeof(factoryInfoJson),
+                        std::make_pair("device_model", SM_MODEL),
+                        std::make_pair("mac_address", Device::macAddress),
+                        std::make_pair("firmware_rev", SM_FIRMWARE_VER));                                          
+    Serial.println(factoryInfoJson);
+    
+    pDeviceCharacteristic->setValue(factoryInfoJson);
     pDeviceCharacteristic->notify();
   };
 
@@ -35,49 +51,40 @@ class ProvCharacteristicsCallbacks : public BLECharacteristicCallbacks
 
     if (rxValue.length() > 0)
     {
-      // read JSON data from Bluetooth
-      StaticJsonDocument<128> doc;
-      DeserializationError error = deserializeJson(doc, rxValue);
-      if (error)
+      char ssid[32];
+      char pass[32];
+      if (SM_Json::parse(rxValue.c_str(), std::make_pair("ssid", ssid), std::make_pair("pass", pass))) 
       {
-        Serial.println("Error parsing JSON");
-        return;
-      }
-
-      ssid = doc["ssid"];
-      pass = doc["pass"];
-      pWifiProv->storeWifiCredsRAM(ssid, pass);
-      
-      const char *masjidId = doc["masjid_id"];
-
-      if (masjidId != NULL)
-      {
-        Serial.printf("Masjid ID : %s\n", masjidId);
-      }
-
-      if ((ssid != NULL) && (pass != NULL))
-      {
-        // switch to WiFi mode and connect
-        pWifiProv->connectWifi(ssid, pass);
-      }
+        if (pWifiProv->connectWifi(ssid, pass))
+        {    
+          // Store credentials in NVS
+          if (Sm_Nvs::put(DEVICE_WIFI_CREDENTIALS_NAMESPACE,
+                      std::make_pair("ssid", ssid),
+                      std::make_pair("pass", pass)))
+          {
+            Serial.println("Wifi credentials stored");
+          }
+        }
+      } 
       else
       {
-        return;
-      }        
+        Serial.println("Unable to parse wifi credentials");
+      }     
     }
   }
 };
 
-
-
-bool BLE::initialize(WifiProvisioning* wifiProv)
+void BLE::setup(IWifiProvisioning* wifiProv)
 {
   pWifiProv = wifiProv;
-  WiFi.mode(WIFI_OFF);
-  delay(100);
+}
+
+bool BLE::initialize()
+{
   // Create the BLE Device
   BLEDevice::init("SMSPK_SSB23V1");
-
+  Device::setup();
+  
   // Create the BLE Server
   pServer = BLEDevice::createServer();
   pServer->setCallbacks(new MyServerCallbacks());
@@ -106,7 +113,6 @@ bool BLE::initialize(WifiProvisioning* wifiProv)
 
   // Start the service
   pService->start();
-
   // Start advertising
   pServer->getAdvertising()->start();
   Serial.println("Waiting a client connection to notify...");

@@ -1,48 +1,47 @@
 #include "BLE.hpp"
+#include "SM_Http.hpp"
 #include "WifiProvisioning.hpp"
 #include "Mqtt.hpp"
+#include "Device.hpp"
 
 WifiProvisioning wifiProv;
-MQTTClient mqtt;
-BLE ble;
+SmHttp smHttp;
+MQTTClient mqtt(&wifiProv);
 
-void setup() {
+void setup() 
+{
   Serial.begin(115200);
-  
+  Device::checkMacAddress();
+  BLE::setup(&wifiProv);
   if(wifiProv.connectWifiFromNVS())
   {
     while(!wifiProv.isTelemetrySent())
     {
       delay(100);
     }
-    return;
+  } 
+  else
+  {
+    // Turn off wifi
+    WiFi.mode(WIFI_OFF);
+    delay(100);
+    
+    // switch to Bluetooth mode
+    Serial.println("Switching to Bluetooth mode");
+    BLE::initialize();
+    while(WiFi.status() != WL_CONNECTED) 
+    {
+      delay(100);
+    }
+    BLE::stop();   
   }
   
-  // switch to Bluetooth mode
-  Serial.println("Switching to Bluetooth mode");
-  ble.initialize(&wifiProv);
-  while(WiFi.status() != WL_CONNECTED);
-  while (1)
-  {
-    if (ble.isStarted() && wifiProv.isTelemetrySent())
-    {
-        wifiProv.storeWifiCredsNVS();
-        ble.stop();
-        return; 
-    }  
-    delay(100);
-  }
+  mqtt.setup();
+  Device::timerSetup();
 }
-
-void loop() {
-  mqtt.connectToBroker();
-  mqtt.subscribeTopics();
-  while (1)
-  {
-    if (WiFi.status() != WL_CONNECTED)
-    {
-      wifiProv.connectWifiFromNVS();
-    }
-    mqtt.loop();
-  }
+ 
+void loop() 
+{ 
+  mqtt.loop();
+  Device::loop();
 }
