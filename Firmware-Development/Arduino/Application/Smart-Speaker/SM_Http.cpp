@@ -9,26 +9,16 @@
 #include "BLE.hpp"
 #include "Mqtt.hpp"
 
-httpcode SmHttp::startAdhan() 
-{
-  if (WiFi.status() != WL_CONNECTED)
-    return false;
-
-  std::string httpsUrl = smHost;
-  httpsUrl += adhanStartEndpoint;
-
-  std::string jsonString = SM_Json::create("masjidId", &MASJID_TEST_ID);
-
-  return post(httpsUrl.c_str(),jsonString.c_str());
-}
-
 httpcode SmHttp::sendDeviceTelemetry(const char* macAddress, uint8_t retryInterval, uint16_t maxRetry)
 {
   if (WiFi.status() != WL_CONNECTED)
+  {
+    Serial.println("Wifi not connected : Unable to send request");
     return false;
-
+  }
+  
   int httpCode;
-  while (maxRetry --) 
+  while (maxRetry--) 
   {
     httpCode = sendDeviceTelemetry(macAddress);
     if ((httpCode == HttpStatus::OK) || (httpCode == HttpStatus::CREATED)) 
@@ -47,8 +37,11 @@ httpcode SmHttp::sendDeviceTelemetry(const char* macAddress, uint8_t retryInterv
 httpcode SmHttp::sendDeviceTelemetry(const char* macAddress) 
 {
   if (WiFi.status() != WL_CONNECTED)
+  {
+    Serial.println("Wifi not connected : Unable to send request");
     return false;
-
+  }
+  
   std::string httpsUrl = smHost;
   httpsUrl += telemetryEndpoint;
 
@@ -61,26 +54,12 @@ httpcode SmHttp::sendDeviceTelemetry(const char* macAddress)
   return post(httpsUrl.c_str(),telemetryJson);
 }
 
-httpcode SmHttp::stopAdhan() 
-{
-  if (WiFi.status() != WL_CONNECTED)
-    return false;
-
-  std::string httpsUrl = smHost;
-  httpsUrl += adhanStopEndpoint;
-
-  std::string jsonString = SM_Json::create("masjidId", &MASJID_TEST_ID);
-  Serial.println(jsonString.c_str());
-
-  return post(httpsUrl.c_str(),jsonString.c_str());
-}
-
 httpcode SmHttp::post(const char* url, const char* json) 
 {
-  WiFiClientSecure* client = new WiFiClientSecure;
-  client->setInsecure();
+  WiFiClientSecure client;
+  client.setInsecure();
   HTTPClient https;
-  https.begin(*client, url);
+  https.begin(client, url);
   https.addHeader("Content-Type", "application/json");
   https.addHeader("x-api-key", EXTERNAL_API_KEY);
   int httpCode = https.POST(json);
@@ -90,14 +69,13 @@ httpcode SmHttp::post(const char* url, const char* json)
   if ((httpCode == HTTP_STATUS_OK) || (httpCode == HTTP_STATUS_CREATED)) 
   {
     Serial.println("Request successful!");
-    Serial.println(response);
-    return httpCode;
   } 
   else 
   {
     Serial.print("Request failed with error code: ");
     Serial.println(httpCode);
-    Serial.println(response);
-    return httpCode;
   }
+  
+  Serial.println(response);
+  return httpCode;
 }
