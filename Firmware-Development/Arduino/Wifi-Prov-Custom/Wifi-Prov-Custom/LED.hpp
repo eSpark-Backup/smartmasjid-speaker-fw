@@ -9,5 +9,5 @@ class LED
     LED(int pin1, int pin2, int pin3);
     void setup();
     void set(int pin);
-    void reSet(int pin);
+    void reset(int pin);
 };

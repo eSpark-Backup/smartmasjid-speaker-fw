@@ -17,10 +17,10 @@ void LED::setup()
 
 void LED::set(int pin)
 {
- digitalWrite(pin, HIGH);
+  digitalWrite(pin, HIGH);
 }
 
-void LED::reSet(int pin)
+void LED::reset(int pin)
 {
- digitalWrite(pin, LOW);
+  digitalWrite(pin, LOW);
 }
