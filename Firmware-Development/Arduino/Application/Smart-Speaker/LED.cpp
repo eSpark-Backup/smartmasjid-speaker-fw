@@ -1,4 +1,3 @@
-
 #include"LED.hpp"
 
 LED::LED(int pin1, int pin2, int pin3)

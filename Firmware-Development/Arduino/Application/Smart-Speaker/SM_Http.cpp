@@ -9,7 +9,7 @@
 #include "BLE.hpp"
 #include "Mqtt.hpp"
 
-httpcode SmHttp::sendDeviceTelemetry(const char* macAddress, uint8_t retryInterval, uint16_t maxRetry)
+HttpStatusCode SmHttp::sendDeviceTelemetry(const char* macAddress, uint8_t retryInterval, uint16_t maxRetry)
 {
   if (WiFi.status() != WL_CONNECTED)
   {
@@ -17,11 +17,11 @@ httpcode SmHttp::sendDeviceTelemetry(const char* macAddress, uint8_t retryInterv
     return false;
   }
   
-  int httpCode;
+  HttpStatusCode status;
   while (maxRetry--) 
   {
-    httpCode = sendDeviceTelemetry(macAddress);
-    if ((httpCode == HttpStatus::OK) || (httpCode == HttpStatus::CREATED)) 
+    status = sendDeviceTelemetry(macAddress);
+    if (status == Http::Response::OK || status == Http::Response::CREATED)
     {
        break;
     }
@@ -31,10 +31,10 @@ httpcode SmHttp::sendDeviceTelemetry(const char* macAddress, uint8_t retryInterv
       delay(TO_MS(retryInterval));
     }
   }
-  return httpCode;
+  return status;
 }
 
-httpcode SmHttp::sendDeviceTelemetry(const char* macAddress) 
+HttpStatusCode SmHttp::sendDeviceTelemetry(const char* macAddress) 
 {
   if (WiFi.status() != WL_CONNECTED)
   {
@@ -42,8 +42,8 @@ httpcode SmHttp::sendDeviceTelemetry(const char* macAddress)
     return false;
   }
   
-  std::string httpsUrl = smHost;
-  httpsUrl += telemetryEndpoint;
+  std::string deviceTelemetryUrl = smHost;
+  deviceTelemetryUrl += telemetryEndpoint;
 
   char telemetryJson[64];
   SM_Json::create(telemetryJson, sizeof(telemetryJson),
@@ -51,10 +51,10 @@ httpcode SmHttp::sendDeviceTelemetry(const char* macAddress)
                   std::make_pair("macAddress", Device::macAddress));
   Serial.println(telemetryJson);
 
-  return post(httpsUrl.c_str(),telemetryJson);
+  return post(deviceTelemetryUrl.c_str(),telemetryJson);
 }
 
-httpcode SmHttp::post(const char* url, const char* json) 
+HttpStatusCode SmHttp::post(const char* url, const char* json) 
 {
   WiFiClientSecure client;
   client.setInsecure();
@@ -62,20 +62,20 @@ httpcode SmHttp::post(const char* url, const char* json)
   https.begin(client, url);
   https.addHeader("Content-Type", "application/json");
   https.addHeader("x-api-key", EXTERNAL_API_KEY);
-  int httpCode = https.POST(json);
+  HttpStatusCode status = https.POST(json);
   const char* response = https.getString().c_str();
   https.end();
 
-  if ((httpCode == HTTP_STATUS_OK) || (httpCode == HTTP_STATUS_CREATED)) 
+  if (status == Http::Response::OK || status == Http::Response::CREATED) 
   {
     Serial.println("Request successful!");
   } 
   else 
   {
     Serial.print("Request failed with error code: ");
-    Serial.println(httpCode);
+    Serial.println(status);
   }
   
   Serial.println(response);
-  return httpCode;
+  return status;
 }

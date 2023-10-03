@@ -15,16 +15,6 @@
 #define WIFI_RETRY 3  // number of times to retry WiFi connection
 #define TO_MS(seconds) ((seconds) * 1000)
 
-namespace HttpStatus
-{
-  typedef enum 
-  {
-    OK = 200,
-    CREATED = 201,
-    DEVCICE_NOT_FOUND = 404,
-  } httpStatusCodes;
-}
-
 typedef enum
 {
   TELEMETRY_NOTSENT,

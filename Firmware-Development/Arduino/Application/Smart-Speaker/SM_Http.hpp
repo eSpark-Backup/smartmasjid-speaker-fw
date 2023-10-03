@@ -7,7 +7,23 @@
 #define EXTERNAL_API_KEY "b8z6X5fzbjNDGHz15XtPVzEkO3h5mCT7q4Ei8AupX9DD12PxL94rhnZHarHc8O2H"
 #define TO_MS(seconds) (seconds * 1000)
 
-typedef int httpcode;
+typedef int HttpStatusCode;
+
+namespace Http
+{
+  enum Response
+  {
+    OK = 200,
+    CREATED = 201,
+    DEVICE_NOT_FOUND = 404,
+  };
+  
+  enum class RequestType
+  {
+    POST,
+    PATCH,
+  };
+}
 
 class SmHttp 
 {
@@ -16,8 +32,8 @@ class SmHttp
     const char* telemetryEndpoint = "/external/device/telemetry";
 
   public:
-    httpcode sendDeviceTelemetry(const char* macAddress, uint8_t retryInterval, uint16_t maxRetryDuration);
-    httpcode sendDeviceTelemetry(const char* macAddress);
-    httpcode post(const char* url,const char* json);
+    HttpStatusCode sendDeviceTelemetry(const char* macAddress, uint8_t retryInterval, uint16_t maxRetryDuration);
+    HttpStatusCode sendDeviceTelemetry(const char* macAddress);
+    HttpStatusCode post(const char* url,const char* json);
     
 };
