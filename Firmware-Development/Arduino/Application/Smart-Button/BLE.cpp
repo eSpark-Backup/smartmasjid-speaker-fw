@@ -102,6 +102,14 @@ bool BLE::initialize()
   // Create the BLE Service
   pService = pServer->createService(SERVICE_UUID);
 
+  //Setting macAdress on BLE Advertisement
+  BLEAdvertisementData adv;
+  BLEAdvertising* pAdvertising = pServer->getAdvertising();
+  adv.setFlags(0x06); 
+  adv.setManufacturerData(Device::macAddress);
+  pAdvertising->setAdvertisementData(adv);
+  pAdvertising->start();
+
   // Create a BLE Characteristic
   pTxCharacteristic = pService->createCharacteristic(
       CHARACTERISTIC_UUID_TX,
