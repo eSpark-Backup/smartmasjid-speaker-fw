@@ -29,3 +29,10 @@
  { "ssid":"string", "pass":"string", "masjid_id":"string" }
 9. After receiving, the device will initiate connection to internet and after successful connection, it will hit an API to tell the cloud its online and save provided credentials in EEPROM (permanent memory)
 10. For another cycle of testing, repeat all the above steps.
+
+## ESP32 Board and Libreries
+1. Esp32 Board Version     (Version : 2.0.6)
+2. PubSubClient            (Version : 2.8)
+3. WiFi                    (Version : 0.0.3)
+4. WiFiClientSecure        (Version : 1.0.0)
+5. ArduinoJson             (Version : 6.21.2)
