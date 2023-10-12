@@ -27,6 +27,7 @@ bool MQTTClient::connectToBroker(int retries)
   {
     if (connectToBroker())
     { 
+      Serial.println("Hello I am here");
       return true;
     }
      delay(MQTT_RECONNECT_DELAY * 1000);
@@ -38,21 +39,16 @@ bool MQTTClient::connectToBroker(int retries)
 bool MQTTClient::connectToBroker() 
 {
   mqttClient.setServer(mqttServer, mqttPort);
-  while (!mqttClient.connected()) 
-  {
     if (mqttClient.connect("arduino_client", mqttUsername, mqttPassword)) 
     {
       Serial.println("Connected to MQTT broker");
-      isConnected = true; // Set the connection status
       return true;
     } 
     else
      {
       Serial.println("Failed to connect to MQTT broker");
-      isConnected = false; // Set the connection status
       return false;
     }
-  }
 }
 
 bool MQTTClient::subscribeTopics()
@@ -152,13 +148,13 @@ void MQTTClient::receiveCallback(char* topic, byte* payload, unsigned int length
 
 void MQTTClient::loop() 
 {
-  if (!mqttClient.connect("arduino_client", mqttUsername, mqttPassword) && Connected) 
+  if (!mqttClient.connected())
   {
-    Connected = mqttCallback();
+    printf("connected2 %d\n: ",mqttClient.connected());
+    mqttCallback();
   }
-
   mqttClient.loop();
-  isConnected = false;
+
 }
 
 bool MQTTClient::subscribe(const char* topic) 
@@ -390,16 +386,11 @@ bool MQTTClient::unsubscribeTopics()
   return true;
 }
 
-bool MQTTClient::mqttCallback() 
+void MQTTClient::mqttCallback() 
 {
-  if (!isConnected) 
-  {
       Serial.println("MQTT client not connected. Reconnecting...");
       printState();
-      Connected = connectToBroker(10); // Reconnect
-      return Connected;
-  }
-  return false; // Not reconnected
+      connectToBroker(10); 
 }
 
 bool MQTTClient::compareAdhanTopic(const char* topic) 
