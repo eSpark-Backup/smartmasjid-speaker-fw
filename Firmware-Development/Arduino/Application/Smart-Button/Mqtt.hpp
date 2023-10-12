@@ -53,9 +53,6 @@ private:
   // MQTT topic to subscribe to
   const char* mqttTopicReset = "reset";
   const char* mqttTopicWifi = "wifi";
-  bool Connected = true;
-  bool isConnected = false;
-
 
 
 public:
@@ -76,6 +73,6 @@ public:
   void getTopicPath(char* dest, const char* topicName);
   bool compareTopic(const char* topic, const char* topicName);
   bool controlSubscription(subscription control, const char* topic);
-  bool mqttCallback();
+  void mqttCallback();
   void printState();
 };
