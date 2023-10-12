@@ -40,13 +40,13 @@ bool MQTTClient::connectToBroker(int retries)
 bool MQTTClient::connectToBroker() 
 {
   mqttClient.setServer(mqttServer, mqttPort);
-  
-  std::string cleintId = "SSB_";
-  cleintId += Device::macAddress;
-  Serial.print("Cleint id : ");
-  Serial.println(cleintId.c_str());
 
-    if (mqttClient.connect(cleintId.c_str(), mqttUsername, mqttPassword)) 
+  std::string clientId = "SSB_";
+  clientId += Device::macAddress;
+  Serial.print("Client id : ");
+  Serial.println(clientId.c_str());
+
+    if (mqttClient.connect(clientId.c_str(), mqttUsername, mqttPassword)) 
     {    
       Serial.println("Connected to MQTT broker");
       return true;
