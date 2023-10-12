@@ -13,6 +13,7 @@ bool MQTTClient::setup()
 {
   mqttClient.setSocketTimeout (10);
   mqttClient.setKeepAlive (60);
+
   if (connectToBroker() && subscribeTopics())
   {
     return true; 
@@ -39,8 +40,14 @@ bool MQTTClient::connectToBroker(int retries)
 bool MQTTClient::connectToBroker() 
 {
   mqttClient.setServer(mqttServer, mqttPort);
-    if (mqttClient.connect("arduino_client", mqttUsername, mqttPassword)) 
-    {
+  
+  std::string cleintId = "SSB_";
+  cleintId += Device::macAddress;
+  Serial.print("Cleint id : ");
+  Serial.println(cleintId.c_str());
+
+    if (mqttClient.connect(cleintId.c_str(), mqttUsername, mqttPassword)) 
+    {    
       Serial.println("Connected to MQTT broker");
       return true;
     } 
@@ -150,11 +157,9 @@ void MQTTClient::loop()
 {
   if (!mqttClient.connected())
   {
-    printf("connected2 %d\n: ",mqttClient.connected());
     mqttCallback();
   }
   mqttClient.loop();
-
 }
 
 bool MQTTClient::subscribe(const char* topic) 
