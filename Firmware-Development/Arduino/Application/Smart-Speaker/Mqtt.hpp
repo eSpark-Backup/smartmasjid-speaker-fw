@@ -8,6 +8,7 @@
 #define TEXTIFY(A) #A
 #define MQTT(State)    "MQTT state : " TEXTIFY(State)
 #define MQTT_RECONNECT_DELAY 10
+void mqttTask(void* pvParameters);
 
 typedef enum 
 {
@@ -87,4 +88,6 @@ class MQTTClient
     bool unsubscribeTopicsfromNVS();
     void mqttCallback();
     void printState();
+    void mqttCreateTask();
+
 };

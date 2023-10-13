@@ -72,6 +72,8 @@ void WifiProvisioning::wifiGotIP(WiFiEvent_t event, WiFiEventInfo_t info)
       Serial.println("Device Reset");
       Device::deleteSubscriptions();
       Device::deleteWificredentials();
+      ESP.restart();
+
       break;
 
     default:

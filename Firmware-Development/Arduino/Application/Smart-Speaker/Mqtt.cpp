@@ -11,10 +11,8 @@ PubSubClient mqttClient(wifiClient);
 
 bool MQTTClient::setup() 
 {
-  mqttClient.setSocketTimeout (10);
-  mqttClient.setKeepAlive (60);
 
-  if (connectToBroker() && subscribeTopics())
+  if (connectToBroker(5) && subscribeTopics())
   {
     return true; 
   }
@@ -28,7 +26,6 @@ bool MQTTClient::connectToBroker(int retries)
   {
     if (connectToBroker())
     { 
-      Serial.println("Hello I am here");
       return true;
     }
      delay(MQTT_RECONNECT_DELAY * 1000);
@@ -41,8 +38,7 @@ bool MQTTClient::connectToBroker()
 {
   mqttClient.setServer(mqttServer, mqttPort);
 
-  std::string clientId = "SSB_";
-  clientId += Device::macAddress;
+  std::string clientId = std::to_string(random(1000000000));
   Serial.print("Client id : ");
   Serial.println(clientId.c_str());
 
@@ -103,6 +99,7 @@ void MQTTClient::receiveCallback(char* topic, byte* payload, unsigned int length
       unsubscribeTopics();
       Device::deleteSubscriptions();
       Device::deleteWificredentials();
+      ESP.restart();
       break;
 
     case DEVICE_SUBSCRIBE:
@@ -454,4 +451,20 @@ void MQTTClient::printState()
       printf("%s\n", MQTT(CONNECT_UNAUTHORIZED));
       break;
   }
+}
+
+void MQTTClient::mqttCreateTask()
+{
+ xTaskCreatePinnedToCore (mqttTask, "mqttTask", 10000, this, 0, NULL, 0);
+}
+
+void mqttTask(void* pvParameters) 
+{
+  MQTTClient* mqtt = (MQTTClient*) pvParameters;
+  mqtt->setup();
+  while(1)
+  {
+    mqtt->loop();
+  }
+  vTaskDelete( NULL );
 }
