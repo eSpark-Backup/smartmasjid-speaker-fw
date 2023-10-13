@@ -38,14 +38,15 @@ void setup()
     }
     BLE::stop();
   }
-  mqtt.setup();
+
   button.setup();
   Device::timerSetup();
+  delay(5000);
+  mqtt.mqttCreateTask();
 }
 
 void loop() 
 { 
   button.loop();
-  mqtt.loop();
   Device::loop();
 }

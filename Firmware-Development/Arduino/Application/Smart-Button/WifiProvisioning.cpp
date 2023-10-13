@@ -71,6 +71,7 @@ void WifiProvisioning::wifiGotIP(WiFiEvent_t event, WiFiEventInfo_t info)
     case Http::Response::DEVICE_NOT_FOUND:
       Serial.println("Device Reset");
       Device::deleteWificredentials();
+      ESP.restart();
       break;
 
     default:

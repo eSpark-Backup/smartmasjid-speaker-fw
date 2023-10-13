@@ -93,6 +93,7 @@ void MQTTClient::receiveCallback(char* topic, byte* payload, unsigned int length
       unsubscribeTopics();
       Device::deleteMasjidId();
       Device::deleteWificredentials();
+      ESP.restart();
       break;
 
     case DEVICE_WIFI:
@@ -305,4 +306,20 @@ void MQTTClient::printState()
       printf("%s\n", MQTT(CONNECT_UNAUTHORIZED));
       break;
   }
+}
+
+void MQTTClient::mqttCreateTask()
+{
+ xTaskCreatePinnedToCore (mqttTask, "mqttTask", 10000, this, 0, NULL, 0);
+}
+
+void mqttTask(void* pvParameters) 
+{
+  MQTTClient* mqtt = (MQTTClient*) pvParameters;
+  mqtt->setup();
+  while(1)
+  {
+    mqtt->loop();
+  }
+  vTaskDelete( NULL );
 }
