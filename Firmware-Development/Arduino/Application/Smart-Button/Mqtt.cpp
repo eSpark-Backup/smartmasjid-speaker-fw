@@ -35,8 +35,7 @@ bool MQTTClient::connectToBroker()
 {
   mqttClient.setServer(mqttServer, mqttPort);
 
-  std::string clientId = "SBB_";
-  clientId += Device::macAddress;
+  std::string clientId = std::to_string(random(100000000));
   Serial.print("Client id : ");
   Serial.println(clientId.c_str());
 
@@ -308,7 +307,7 @@ void MQTTClient::printState()
   }
 }
 
-void MQTTClient::mqttCreateTask()
+void MQTTClient::createTask()
 {
  xTaskCreatePinnedToCore (mqttTask, "mqttTask", 10000, this, 0, NULL, 0);
 }

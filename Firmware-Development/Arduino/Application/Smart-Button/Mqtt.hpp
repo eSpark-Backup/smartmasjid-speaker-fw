@@ -76,5 +76,5 @@ public:
   bool controlSubscription(subscription control, const char* topic);
   void mqttCallback();
   void printState();
-  void mqttCreateTask();
+  void createTask();
 };
