@@ -37,11 +37,18 @@ void setup()
   }
 
   Device::timerSetup();
-  delay(5000);
-  mqtt.mqttCreateTask();
+  while(1)
+  {
+  if (wifiProv.isTelemetrySent())
+      {
+        mqtt.createTask();
+        return; 
+      } 
+    delay(100);
+  }  
 }
  
 void loop() 
 {
-  Device::loop();
+  Device::loop();   
 }

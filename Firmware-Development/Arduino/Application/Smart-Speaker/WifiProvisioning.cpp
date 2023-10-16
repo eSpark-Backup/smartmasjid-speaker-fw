@@ -73,7 +73,6 @@ void WifiProvisioning::wifiGotIP(WiFiEvent_t event, WiFiEventInfo_t info)
       Device::deleteSubscriptions();
       Device::deleteWificredentials();
       ESP.restart();
-
       break;
 
     default:

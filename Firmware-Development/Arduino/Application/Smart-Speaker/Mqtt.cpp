@@ -453,7 +453,7 @@ void MQTTClient::printState()
   }
 }
 
-void MQTTClient::mqttCreateTask()
+void MQTTClient::createTask()
 {
  xTaskCreatePinnedToCore (mqttTask, "mqttTask", 10000, this, 0, NULL, 0);
 }
