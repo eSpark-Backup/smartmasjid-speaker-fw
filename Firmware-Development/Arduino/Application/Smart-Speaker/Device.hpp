@@ -21,7 +21,7 @@ class Device
   private:
     // Variables
     static hw_timer_t * timer;      //H/W timer defining (Pointer to the Structure)
-    static bool telemetryTrigger;
+    static bool telemetryTrigger;   // static bool telemetryTrigger;
     
   public:
     // Constructor
@@ -29,7 +29,6 @@ class Device
 
     // Variables
     static char macAddress[20];
-
     // Static member methods
     static void setup();
     static void loop();

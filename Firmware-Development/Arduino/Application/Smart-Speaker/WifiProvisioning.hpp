@@ -10,9 +10,9 @@
 
 // Retry parameters
 #define SECONDS 1000
-#define RETRY_INTERVAL 10 // 10 seconds
-#define MAX_RETRY      6 // 6 retries
-#define WIFI_RETRY 3  // number of times to retry WiFi connection
+#define DEVICE_TELEMETRY_RETRY_INTERVAL 10 // 10 seconds
+#define DEVICE_TELEMETRY_MAX_RETRIES  6 // 6 retries
+#define WIFI_RETRY 10  // number of times to retry WiFi connection
 #define TO_MS(seconds) ((seconds) * 1000)
 
 typedef enum

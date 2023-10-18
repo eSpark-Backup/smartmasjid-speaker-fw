@@ -8,6 +8,7 @@
 #define TEXTIFY(A) #A
 #define MQTT(State)    "MQTT state : " TEXTIFY(State)
 #define MQTT_RECONNECT_DELAY 10
+void mqttTask(void* pvParameters);
 
 typedef enum 
 {
@@ -62,8 +63,7 @@ class MQTTClient
     const char* mqttTopicUnsubscribe  = "unsubscribe";
     const char* mqttTopicWifi  = "wifi";
     char adhan[32];
-    bool Connected = true;
-    bool isConnected = false;
+
 
   public:
     MQTTClient(IWifiProvisioning* wifiProv) : pWifiProv(wifiProv) {}
@@ -86,6 +86,8 @@ class MQTTClient
     bool controlSubscription(subscription control, const char* topic);
     bool subscribeTopicsfromNVS();
     bool unsubscribeTopicsfromNVS();
-    bool mqttCallback();
+    void mqttCallback();
     void printState();
+    void createTask();
+
 };

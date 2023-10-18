@@ -11,9 +11,8 @@ PubSubClient mqttClient(wifiClient);
 
 bool MQTTClient::setup() 
 {
-  mqttClient.setSocketTimeout (10);
-  mqttClient.setKeepAlive (60);
-  if (connectToBroker() && subscribeTopics())
+
+  if (connectToBroker(5) && subscribeTopics())
   {
     return true; 
   }
@@ -38,21 +37,21 @@ bool MQTTClient::connectToBroker(int retries)
 bool MQTTClient::connectToBroker() 
 {
   mqttClient.setServer(mqttServer, mqttPort);
-  while (!mqttClient.connected()) 
-  {
-    if (mqttClient.connect("arduino_client", mqttUsername, mqttPassword)) 
-    {
+
+  std::string clientId = std::to_string(random(1000000000));
+  Serial.print("Client id : ");
+  Serial.println(clientId.c_str());
+
+    if (mqttClient.connect(clientId.c_str(), mqttUsername, mqttPassword)) 
+    {    
       Serial.println("Connected to MQTT broker");
-      isConnected = true; // Set the connection status
       return true;
     } 
     else
      {
       Serial.println("Failed to connect to MQTT broker");
-      isConnected = false; // Set the connection status
       return false;
     }
-  }
 }
 
 bool MQTTClient::subscribeTopics()
@@ -100,6 +99,7 @@ void MQTTClient::receiveCallback(char* topic, byte* payload, unsigned int length
       unsubscribeTopics();
       Device::deleteSubscriptions();
       Device::deleteWificredentials();
+      ESP.restart();
       break;
 
     case DEVICE_SUBSCRIBE:
@@ -152,13 +152,11 @@ void MQTTClient::receiveCallback(char* topic, byte* payload, unsigned int length
 
 void MQTTClient::loop() 
 {
-  if (!mqttClient.connect("arduino_client", mqttUsername, mqttPassword) && Connected) 
+  if (!mqttClient.connected())
   {
-    Connected = mqttCallback();
+    mqttCallback();
   }
-
   mqttClient.loop();
-  isConnected = false;
 }
 
 bool MQTTClient::subscribe(const char* topic) 
@@ -390,16 +388,11 @@ bool MQTTClient::unsubscribeTopics()
   return true;
 }
 
-bool MQTTClient::mqttCallback() 
+void MQTTClient::mqttCallback() 
 {
-  if (!isConnected) 
-  {
       Serial.println("MQTT client not connected. Reconnecting...");
       printState();
-      Connected = connectToBroker(10); // Reconnect
-      return Connected;
-  }
-  return false; // Not reconnected
+      connectToBroker(10); 
 }
 
 bool MQTTClient::compareAdhanTopic(const char* topic) 
@@ -458,4 +451,20 @@ void MQTTClient::printState()
       printf("%s\n", MQTT(CONNECT_UNAUTHORIZED));
       break;
   }
+}
+
+void MQTTClient::createTask()
+{
+ xTaskCreatePinnedToCore (mqttTask, "mqttTask", 10000, this, 0, NULL, 0);
+}
+
+void mqttTask(void* pvParameters) 
+{
+  MQTTClient* mqtt = (MQTTClient*) pvParameters;
+  mqtt->setup();
+  while(1)
+  {
+    mqtt->loop();
+  }
+  vTaskDelete( NULL );
 }
