@@ -57,9 +57,9 @@ void WifiProvisioning::wifiGotIP(WiFiEvent_t event, WiFiEventInfo_t info)
   // Print network details
   Serial.print("Connected to Wi-Fi network with IP address: ");
   Serial.println(WiFi.localIP());
-  // delay(TO_MS(RETRY_INTERVAL));
+
   SmHttp smHttp;
-  int httpscode = smHttp.sendDeviceTelemetry(Device::macAddress, RETRY_INTERVAL, MAX_RETRY);
+  int httpscode = smHttp.sendDeviceTelemetry(Device::macAddress, RETRY_INTERVAL, DEVICE_TELEMETRY_MAX_RETRIES );
 
   switch(httpscode)
   {
