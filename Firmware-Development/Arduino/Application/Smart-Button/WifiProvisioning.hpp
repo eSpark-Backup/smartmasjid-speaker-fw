@@ -8,7 +8,7 @@
 #include "esp_bt_device.h"
 
 // Retry parameters
-#define RETRY_INTERVAL 10 // 10 seconds
+#define DEVICE_TELEMETRY_RETRY_INTERVAL 10 // 10 seconds
 #define DEVICE_TELEMETRY_MAX_RETRIES   6 // 6 retries
 #define WIFI_RETRY  10 // number of times to retry WiFi connection
 #define DEVCICE_FOUND 200
