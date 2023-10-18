@@ -35,15 +35,11 @@ void setup()
     }
     BLE::stop();   
   }
-  while(1)
+  while(!wifiProv.isTelemetrySent())
   {
-  if (wifiProv.isTelemetrySent())
-    {
-      mqtt.createTask();
-      return; 
-    } 
     delay(100);
-  } 
+  }
+  mqtt.createTask();
   Device::timerSetup(); 
 }
  
