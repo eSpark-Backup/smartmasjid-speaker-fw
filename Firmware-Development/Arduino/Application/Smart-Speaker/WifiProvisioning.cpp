@@ -59,7 +59,7 @@ void WifiProvisioning::wifiGotIP(WiFiEvent_t event, WiFiEventInfo_t info)
   Serial.println(WiFi.localIP());
 
   SmHttp smHttp;
-  HttpStatusCode status = smHttp.sendDeviceTelemetry(Device::macAddress, RETRY_INTERVAL, MAX_RETRY);
+  HttpStatusCode status = smHttp.sendDeviceTelemetry(Device::macAddress, RETRY_INTERVAL, DEVICE_TELEMETRY_MAX_RETRIES);
   
   switch(status)
   {
