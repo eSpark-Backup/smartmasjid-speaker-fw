@@ -4,6 +4,8 @@
 #include "Mqtt.hpp"
 #include "Device.hpp"
 
+SET_LOOP_TASK_STACK_SIZE( 16*1024 ); // 16KB
+
 WifiProvisioning wifiProv;
 SmHttp smHttp;
 MQTTClient mqtt(&wifiProv);
@@ -12,6 +14,7 @@ void setup()
 {
   Serial.begin(115200);
   Device::checkMacAddress();
+  Serial.printf("Arduino Stack was set to %d bytes\n", getArduinoLoopTaskStackSize());
   BLE::setup(&wifiProv);
   if(wifiProv.connectWifiFromNVS())
   {
