@@ -6,6 +6,8 @@
 #include "Device.hpp"
 #include "SM_Nvs.hpp"
 
+SET_LOOP_TASK_STACK_SIZE( 16*1024 ); // 16KB
+
 WifiProvisioning wifiProv;
 Button button(SMBTN_GPIO);
 SmHttp smHttp;
@@ -15,6 +17,7 @@ void setup()
 {
   Serial.begin(115200);
   Device::checkMacAddress();
+  Serial.printf("Arduino Stack was set to %d bytes\n", getArduinoLoopTaskStackSize());
   BLE::setup(&wifiProv);
   if(wifiProv.connectWifiFromNVS())
   {
