@@ -16,7 +16,7 @@
 2. Open flash download tool and select options as shown in screenshot below and click OK to proceed  
 ![image](https://user-images.githubusercontent.com/76909080/230549261-5fc7d44c-2a23-4bef-be14-1111a2dfd05e.png)
 3. Click erase button on new window that opens, to first completely wipe off the ESP32 memory.
-3. Upload the provided [binaries](https://github.com/eSpark-Consultants/smartmasjid-firmware/tree/Development/Binaries) as follows:
+3. Upload the provided [Speaker_binaries](https://github.com/eSpark-Consultants/smartmasjid-firmware/tree/Development/Binaries) or [Button_binaries](https://github.com/eSpark-Consultants/smartmasjid-firmware/tree/button-firmware/Binaries)as follows:
    * Wifi-Prov-Custom.ino.bootloader.bin -> 0x1000
    * Wifi-Prov-Custom.ino.partitions.bin -> 0x8000
    * Wifi-Prov-Custom.ino.bin            -> 0x10000
