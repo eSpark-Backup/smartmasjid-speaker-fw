@@ -11,6 +11,7 @@ bool WifiProvisioning::connectWifi(const char *ssid, const char *pass, int retri
     Serial.printf("Connecting to %s...\n", ssid);
     WiFi.onEvent(std::bind(&WifiProvisioning::wifiGotIP, this, std::placeholders::_1, std::placeholders::_2), WiFiEvent_t::ARDUINO_EVENT_WIFI_STA_GOT_IP);
     WiFi.begin(ssid, pass);
+    
     while (WiFi.status() != WL_CONNECTED && retries-- > 0)
     {
       delay(1000);
@@ -19,6 +20,7 @@ bool WifiProvisioning::connectWifi(const char *ssid, const char *pass, int retri
 
     if (WiFi.status() == WL_CONNECTED)
     {
+      WiFi.onEvent(std::bind(&WifiProvisioning::wifiReconnect, this, std::placeholders::_1, std::placeholders::_2), WiFiEvent_t::ARDUINO_EVENT_WIFI_STA_DISCONNECTED);
       return true;
     }
     else
@@ -85,3 +87,15 @@ bool WifiProvisioning::isTelemetrySent(void)
 {
   return (deviceTelemetryStatus==TELEMETRY_SENT);
 }
+
+void WifiProvisioning::wifiReconnect(WiFiEvent_t event, WiFiEventInfo_t info)
+{
+  Serial.println("Disconnected from WiFi ");
+  Serial.print("WiFi lost connection. Reason: ");
+  Serial.println(info.wifi_sta_disconnected.reason);
+  Serial.println("Trying to Reconnect");
+  WiFi.reconnect();
+}
+
+
+ 

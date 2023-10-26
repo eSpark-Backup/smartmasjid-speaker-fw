@@ -43,7 +43,7 @@ void setup()
     delay(100);
   }
   mqtt.createTask();
-  Device::timerSetup(); 
+  Device::timerSetup();
 }
  
 void loop() 

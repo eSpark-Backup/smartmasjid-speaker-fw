@@ -47,4 +47,5 @@ class WifiProvisioning : public IWifiProvisioning
     bool sendDeviceTelemetry(const char* macAddress);
     void createTelemetryJson(char* json, uint8_t size, const char* status, int battery);
     bool isTelemetrySent(void);
+    void wifiReconnect(WiFiEvent_t event, WiFiEventInfo_t info);
 };
