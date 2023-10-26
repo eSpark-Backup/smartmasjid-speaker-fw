@@ -9,7 +9,7 @@ PubSubClient mqttClient(wifiClient);
 
 bool MQTTClient::setup() 
 {
-  if (connectToBroker() && subscribeTopics())
+  if (connectToBroker(5))
   {
     return true; 
   }
@@ -21,7 +21,7 @@ bool MQTTClient::connectToBroker(int retries)
 {
   while (retries--) 
   {
-    if (connectToBroker())
+    if (connectToBroker() && subscribeTopics())
     { 
       return true;
     }
@@ -34,11 +34,13 @@ bool MQTTClient::connectToBroker(int retries)
 bool MQTTClient::connectToBroker() 
 {
   mqttClient.setServer(mqttServer, mqttPort);
-
-  std::string clientId = std::to_string(random(100000000));
-  Serial.print("Client id : ");
-  Serial.println(clientId.c_str());
-
+  static std::string clientId = "\0";
+  if (clientId == "\0")
+  {
+    clientId = std::to_string(random(1000000000));
+    Serial.print("Client id : ");
+    Serial.println(clientId.c_str());
+  }
     if (mqttClient.connect(clientId.c_str(), mqttUsername, mqttPassword)) 
     {
       Serial.println("Connected to MQTT broker");

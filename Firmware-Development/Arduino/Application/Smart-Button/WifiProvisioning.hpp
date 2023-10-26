@@ -36,4 +36,5 @@ class WifiProvisioning : public IWifiProvisioning
     bool connectWifi(const char* ssid, const char* pass, int retries = WIFI_RETRY) override;
     void wifiGotIP(WiFiEvent_t event, WiFiEventInfo_t info);
     bool isTelemetrySent(void);
+    void wifiReconnect(WiFiEvent_t event, WiFiEventInfo_t info);
 };
