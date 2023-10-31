@@ -114,10 +114,14 @@ HttpStatusCode SmHttp::request(const char* url, const char* json, Http::RequestT
 
   if (status == Http::Response::OK || status == Http::Response::CREATED) 
   {
+    Serial.print("WIFI RSSI : ");
+    Serial.println(WiFi.RSSI());
     Serial.println("Request successful!");
   } 
   else 
   {
+    Serial.print("WIFI RSSI : ");
+    Serial.println(WiFi.RSSI());
     Serial.print("Request failed with error code: ");
     Serial.println(status);
   }
