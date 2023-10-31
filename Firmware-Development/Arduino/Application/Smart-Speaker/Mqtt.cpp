@@ -395,6 +395,8 @@ void MQTTClient::mqttCallback()
 {
       Serial.println("MQTT client not connected. Reconnecting...");
       printState();
+      Serial.print("WIFI RSSI : ");
+      Serial.println(WiFi.RSSI());
       connectToBroker(10); 
 }
 

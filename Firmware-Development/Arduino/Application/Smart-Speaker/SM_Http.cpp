@@ -62,20 +62,24 @@ HttpStatusCode SmHttp::post(const char* url, const char* json)
   https.begin(client, url);
   https.addHeader("Content-Type", "application/json");
   https.addHeader("x-api-key", EXTERNAL_API_KEY);
+  
   HttpStatusCode status = https.POST(json);
   const char* response = https.getString().c_str();
   https.end();
-
+  
   if (status == Http::Response::OK || status == Http::Response::CREATED) 
   {
+    Serial.print("WIFI RSSI : ");
+    Serial.println(WiFi.RSSI());
     Serial.println("Request successful!");
   } 
   else 
   {
     Serial.print("Request failed with error code: ");
     Serial.println(status);
+    Serial.print("WIFI RSSI : ");
+    Serial.println(WiFi.RSSI());
   }
-  
   Serial.println(response);
   return status;
 }
