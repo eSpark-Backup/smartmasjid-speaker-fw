@@ -143,6 +143,8 @@ bool BLE::initialize()
 bool BLE::stop(void)
 {
   bool ret;
+  // Delete BLE server
+  BLEDevice::deinit(true);
   ret = btStop();
   if (ret)
   {

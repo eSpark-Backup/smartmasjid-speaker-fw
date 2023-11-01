@@ -94,11 +94,13 @@ HttpStatusCode SmHttp::request(const char* url, const char* json, Http::RequestT
   WiFiClientSecure client;
   client.setInsecure();
   HTTPClient https;
+  https.setReuse(false);
   https.begin(client, url);
   https.addHeader("Content-Type", "application/json");
   https.addHeader("x-api-key", EXTERNAL_API_KEY);
   HttpStatusCode status;
-
+  Serial.print("WIFI RSSI : ");
+  Serial.println(WiFi.RSSI());
   switch(request)
   {
     case Http::RequestType::POST:
@@ -114,14 +116,10 @@ HttpStatusCode SmHttp::request(const char* url, const char* json, Http::RequestT
 
   if (status == Http::Response::OK || status == Http::Response::CREATED) 
   {
-    Serial.print("WIFI RSSI : ");
-    Serial.println(WiFi.RSSI());
     Serial.println("Request successful!");
   } 
   else 
   {
-    Serial.print("WIFI RSSI : ");
-    Serial.println(WiFi.RSSI());
     Serial.print("Request failed with error code: ");
     Serial.println(status);
   }
