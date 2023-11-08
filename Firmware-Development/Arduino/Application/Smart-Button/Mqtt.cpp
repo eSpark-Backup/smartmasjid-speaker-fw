@@ -34,25 +34,21 @@ bool MQTTClient::connectToBroker(int retries)
 bool MQTTClient::connectToBroker() 
 {
   mqttClient.setServer(mqttServer, mqttPort);
-  static std::string clientId = "\0";
-  if (clientId == "\0")
-  {
-    clientId = std::to_string(random(1000000000));
-    Serial.print("Client id : ");
-    Serial.println(clientId.c_str());
-  }
-    if (mqttClient.connect(clientId.c_str(), mqttUsername, mqttPassword)) 
-    {
-      Serial.println("Connected to MQTT broker");
-      return true;
-    } 
-    else
-     {
-      Serial.println("Failed to connect to MQTT broker");
-      return false;
-    }
-}
+  static std::string clientId = std::to_string(random(1000000000));
+  Serial.print("Client id : ");
+  Serial.println(clientId.c_str());
 
+  if (mqttClient.connect(clientId.c_str(), mqttUsername, mqttPassword)) 
+  {
+    Serial.println("Connected to MQTT broker");
+    return true;
+  } 
+  else
+  {
+    Serial.println("Failed to connect to MQTT broker");
+    return false;
+  }
+}
 
 bool MQTTClient::subscribeTopics() 
 {
