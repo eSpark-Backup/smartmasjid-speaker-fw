@@ -127,18 +127,12 @@ bool BLE::initialize()
   return true;
 }
 
-bool BLE::stop(void)
+void BLE::stop(void)
 {
-  bool ret;
   // Delete BLE server
   BLEDevice::deinit(true);
-  ret = btStop();
-  if (ret)
-  {
-    Serial.println("BLE Stopped"); 
-    status = BLE_STOPPED;
-  }
-  return ret;
+  Serial.println("BLE Stopped"); 
+  status = BLE_STOPPED;
 }
 
 bool BLE::isStarted(void)
