@@ -4,7 +4,7 @@
 
 void Button::setup()
 {
-  pinMode(pin, INPUT);
+  pinMode(pin, INPUT_PULLDOWN);
   attachInterrupt(pin, std::bind(&Button::interruptHandler, this), RISING); 
 }
 

@@ -48,7 +48,7 @@ void setup()
   mqtt.createTask(); 
   button.setup();
   Device::timerSetup();
-
+  Device::createTask();
 }
 
 void loop() 

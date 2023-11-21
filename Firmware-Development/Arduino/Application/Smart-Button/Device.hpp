@@ -13,6 +13,7 @@
 #define TIMER_PRESCALAR_1MHZ 80
 #define TIMER_ONE_SECOND_COUNTS 1000000
 #define TELEMETRY_UPDATE_TIME 1 * 60 // telemetry update time in seconds
+void memoryMonitoringTask(void* pvParameters);
 
 class Device 
 {
@@ -38,6 +39,7 @@ class Device
     static void getDeviceMacAddress(char* bleMacAddress);
     static bool checkMacAddress();
     static bool storeMacAddress();
+    static void createTask();
 
     // ISR
     static void IRAM_ATTR triggerTelemetryUpdate();
