@@ -7,13 +7,13 @@
 #define MASJID_ID_TEST 3
 #define DEVICE_FACTORY_INFO_NAMESPACE "factoryInfo"
 #define DEVICE_WIFI_CREDENTIALS_NAMESPACE "credentials"
+#define DEVICE_MEMORY_INFO_PRINT_INTERVAL 5000
 
 // Timer Settings
 #define TIMER_NO 0
 #define TIMER_PRESCALAR_1MHZ 80
 #define TIMER_ONE_SECOND_COUNTS 1000000
 #define TELEMETRY_UPDATE_TIME 1 * 60 // telemetry update time in seconds
-void memoryMonitoringTask(void* pvParameters);
 
 class Device 
 {
@@ -21,7 +21,6 @@ class Device
     // Variables
     static hw_timer_t * timer;      //H/W timer defining (Pointer to the Structure)
     static bool telemetryTrigger;
-  
   public:
     // Constructor
     Device() = delete; // Disable constructor
@@ -39,7 +38,7 @@ class Device
     static void getDeviceMacAddress(char* bleMacAddress);
     static bool checkMacAddress();
     static bool storeMacAddress();
-    static void createTask();
+    static void memoryMonitoring();
 
     // ISR
     static void IRAM_ATTR triggerTelemetryUpdate();
