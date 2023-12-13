@@ -16,7 +16,7 @@ bool MQTTClient::setup()
   {
     return true; 
   }
-
+  
   return false;
 }
 
@@ -137,9 +137,8 @@ void MQTTClient::receiveCallback(char* topic, byte* payload, unsigned int length
         char streamUrl[100];
         SM_Json::parse((const char*)payload,
                        std::make_pair("action", action), std::make_pair("streamUrl", streamUrl));
-                       
-        Amplifier amplifier;
-        amplifier.stream(action, streamUrl);
+
+        Amplifier::stream(action, streamUrl);
         break;
       }
 

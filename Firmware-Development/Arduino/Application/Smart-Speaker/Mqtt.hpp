@@ -64,7 +64,6 @@ class MQTTClient
     const char* mqttTopicWifi  = "wifi";
     char adhan[32];
 
-
   public:
     MQTTClient(IWifiProvisioning* wifiProv) : pWifiProv(wifiProv) {}
     bool setup();

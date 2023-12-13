@@ -50,13 +50,11 @@ HttpStatusCode SmHttp::sendDeviceTelemetry(const char* macAddress)
                   std::make_pair("battery", BATTERY_HEALTH),
                   std::make_pair("macAddress", Device::macAddress));
   Serial.println(telemetryJson);
-
   return post(deviceTelemetryUrl.c_str(),telemetryJson);
 }
 
 HttpStatusCode SmHttp::post(const char* url, const char* json) 
 {
-  
   WiFiClientSecure client;
   client.setInsecure();
   HTTPClient https;

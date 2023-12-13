@@ -62,7 +62,6 @@ void WifiProvisioning::wifiGotIP(WiFiEvent_t event, WiFiEventInfo_t info)
 
   SmHttp smHttp;
   HttpStatusCode status = smHttp.sendDeviceTelemetry(Device::macAddress, DEVICE_TELEMETRY_RETRY_INTERVAL, DEVICE_TELEMETRY_MAX_RETRIES);
-  
   switch(status)
   {
     case Http::Response::OK:

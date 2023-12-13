@@ -3,6 +3,7 @@
 #include "WifiProvisioning.hpp"
 #include "Mqtt.hpp"
 #include "Device.hpp"
+#include"Amplifier.hpp"
 
 SET_LOOP_TASK_STACK_SIZE( 16*1024 ); // 16KB
 
@@ -14,6 +15,7 @@ void setup()
 {
   Serial.begin(115200);
   Device::checkMacAddress();
+  Amplifier::setup();
   Serial.printf("Arduino Stack was set to %d bytes\n", getArduinoLoopTaskStackSize());
   BLE::setup(&wifiProv);
   if(wifiProv.connectWifiFromNVS())
@@ -43,6 +45,7 @@ void setup()
     delay(100);
   }
   mqtt.createTask();
+  Amplifier::createTask();
   Device::timerSetup();
 }
  
