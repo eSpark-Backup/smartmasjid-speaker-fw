@@ -11,17 +11,18 @@ void amplifier(void* pvParameters);
 class Amplifier
 {
   private:
-    static Audio audio;
-    // Set Speaker volume
-    static uint8_t volume;  //default 0.....21
     
-    static void start(const char* url = NULL);
-    static void stop();
+    // Set Speaker volume
+    uint8_t volume = 5 ;  //default 0.....21
+    void start(const char* url = NULL);
+    void stop();
     
   public:  
-    static char currentAction[30];
-    static void stream(const char* action, const char* url);
-    static void setup();
-    static void loop();
-    static void createTask();
+    char currentAction[15];
+    void stream(const char* action, const char* url);
+    void setup();
+    void loop();
+    void createTask();
 };
+
+extern Amplifier amp;

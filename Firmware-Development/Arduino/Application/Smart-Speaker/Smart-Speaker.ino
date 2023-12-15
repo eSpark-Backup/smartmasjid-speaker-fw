@@ -15,7 +15,6 @@ void setup()
 {
   Serial.begin(115200);
   Device::checkMacAddress();
-  Amplifier::setup();
   Serial.printf("Arduino Stack was set to %d bytes\n", getArduinoLoopTaskStackSize());
   BLE::setup(&wifiProv);
   if(wifiProv.connectWifiFromNVS())
@@ -45,7 +44,8 @@ void setup()
     delay(100);
   }
   mqtt.createTask();
-  Amplifier::createTask();
+  amp.setup();
+  amp.createTask();
   Device::timerSetup();
 }
  

@@ -138,7 +138,7 @@ void MQTTClient::receiveCallback(char* topic, byte* payload, unsigned int length
         SM_Json::parse((const char*)payload,
                        std::make_pair("action", action), std::make_pair("streamUrl", streamUrl));
 
-        Amplifier::stream(action, streamUrl);
+        amp.stream(action, streamUrl);
         break;
       }
 
