@@ -162,6 +162,9 @@ void Device::memoryMonitoring()
     Serial.println(uxTaskGetStackHighWaterMark(NULL));
     Serial.print("Free Heap Space: ");
     Serial.println(ESP.getFreeHeap());
+    esp_get_minimum_free_heap_size();
+    Serial.print("Minimum Free Heap Space: ");
+    Serial.println(esp_get_minimum_free_heap_size());
     lastExecution = currentTime;
   }
 }

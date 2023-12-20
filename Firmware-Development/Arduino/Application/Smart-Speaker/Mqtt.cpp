@@ -11,7 +11,6 @@ PubSubClient mqttClient(wifiClient);
 
 bool MQTTClient::setup() 
 {
-
   if (connectToBroker(5))
   {
     return true; 
@@ -455,7 +454,7 @@ void MQTTClient::printState()
 
 void MQTTClient::createTask()
 {
- xTaskCreatePinnedToCore (mqttTask, "mqttTask", 10000, this, 0, NULL, 1);
+ xTaskCreatePinnedToCore (mqttTask, "mqttTask", 8000, this, 0, NULL, 0);
 }
 
 void mqttTask(void* pvParameters) 

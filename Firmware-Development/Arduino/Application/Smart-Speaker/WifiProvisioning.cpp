@@ -11,8 +11,11 @@ bool WifiProvisioning::connectWifi(const char *ssid, const char *pass, int retri
 { 
   if (ssid != NULL && pass != NULL)
   {
+   
     Serial.printf("Connecting to %s...\n", ssid);
+   
     WiFi.onEvent(std::bind(&WifiProvisioning::wifiGotIP, this, std::placeholders::_1, std::placeholders::_2), WiFiEvent_t::ARDUINO_EVENT_WIFI_STA_GOT_IP);
+    
     // int coreID = xPortGetCoreID();
     // Serial.print("Current Core ID: ");
     // Serial.println(coreID);
@@ -27,7 +30,8 @@ bool WifiProvisioning::connectWifi(const char *ssid, const char *pass, int retri
     if (WiFi.status() == WL_CONNECTED)
     {
       // WiFi.onEvent(std::bind(&WifiProvisioning::wifiGotIP, this, std::placeholders::_1, std::placeholders::_2), WiFiEvent_t::ARDUINO_EVENT_WIFI_STA_GOT_IP);
-      // WiFi.onEvent(std::bind(&WifiProvisioning::connectWifiFromNVS, this), WiFiEvent_t::ARDUINO_EVENT_WIFI_STA_DISCONNECTED);      return true;
+      // WiFi.onEvent(std::bind(&WifiProvisioning::connectWifiFromNVS, this), WiFiEvent_t::ARDUINO_EVENT_WIFI_STA_DISCONNECTED);     
+       return true;
     }
     else
     {
@@ -38,10 +42,10 @@ bool WifiProvisioning::connectWifi(const char *ssid, const char *pass, int retri
   return false;
 }
 
-bool WifiProvisioning::connectWifiFromNVS(void)
+bool WifiProvisioning:: connectWifiFromNVS(void)
 {
-  char ssid[32];
-  char pass[32];
+  // char ssid[32];
+  // char pass[32];
   
   // bool ret = Sm_Nvs::get(DEVICE_WIFI_CREDENTIALS_NAMESPACE,
   //                       std::make_pair("ssid", ssid),
@@ -53,11 +57,11 @@ bool WifiProvisioning::connectWifiFromNVS(void)
   // }
   //else 
   if (connectWifi("eSpark Wifi", "47356880"))
+  //  if (connectWifi("realme C2", "12345678"))
+  // else if (connectWifi(ssid, ssid))
   {
-    
     return true;
   }
-  
   return false;
 }
 
@@ -109,8 +113,8 @@ void WifiProvisioning::wifiReconnect(WiFiEvent_t event, WiFiEventInfo_t info)
 }
 
 void WifiProvisioning::createTask()
-{
-  xTaskCreatePinnedToCore(wifiProvisioning, "wifiProvisioning", 8000, this, 0, &wifiProvisioningTaskHandle, 1);
+{ Serial.print("Amplifier------------------------->TaskCreated");
+  xTaskCreatePinnedToCore(wifiProvisioning, "wifiProvisioning", 10000, this, 0, NULL, 1);
 }
 
 void wifiProvisioning(void* pvParameters) 
@@ -120,23 +124,24 @@ void wifiProvisioning(void* pvParameters)
   SmHttp smHttp;
   HttpStatusCode status = smHttp.sendDeviceTelemetry(Device::macAddress, DEVICE_TELEMETRY_RETRY_INTERVAL, DEVICE_TELEMETRY_MAX_RETRIES);
 
-  switch(status)
-  {
-    case Http::Response::OK:
-    case Http::Response::CREATED:
-      deviceTelemetryStatus = TELEMETRY_SENT;
-      break;
+  // switch(status)
+  // {
+    // case Http::Response::OK:
+    // case Http::Response::CREATED:
+    //   deviceTelemetryStatus = TELEMETRY_SENT;
+    //   break;
 
-    case Http::Response::DEVICE_NOT_FOUND:
-      Serial.println("Device Reset");
-      // Device::deleteSubscriptions();
-      // Device::deleteWificredentials();
-      // ESP.restart();
-      break;
+    // case Http::Response::DEVICE_NOT_FOUND:
+    //   Serial.println("Device Reset");
+    //   // Device::deleteSubscriptions();
+    //   // Device::deleteWificredentials();
+    //   // ESP.restart();
+    //   break;
 
-    default:
-      ble.initialize();
-      break;
-  }
+    // default:
+    //   ble.initialize();
+    //   break;
+  // }
+  Serial.println("*****************************************************************************************+++++++++++++++++++++++++++++++++++++++++******************************1");
   vTaskDelete(NULL);
 }
