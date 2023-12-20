@@ -12,7 +12,8 @@ void Amplifier::setup()
   {
     Serial.println("Amplifier is not initilized");
   }
-  Serial.println("Amplifier is initilized");
+  else
+    Serial.println("Amplifier is initilized");
   audio->setVolume(volume);
   Serial.print("volume is set to ");
   Serial.println(volume);
@@ -20,6 +21,7 @@ void Amplifier::setup()
 
 void Amplifier::loop()
 {
+  //Serial.print("L");
   audio->loop();
 }
 void Amplifier::start(const char* url)
@@ -27,7 +29,7 @@ void Amplifier::start(const char* url)
   Serial.println("Amplifier is Started...");
   Serial.print("Streaming from url : ");
   Serial.println(url);
-  if(!audio->connecttohost("https://www.islamcan.com/audio/adhan/azan2.mp3"))
+  if(!audio->connecttohost(url))
   { 
     Serial.println("Faild to connect the host");
   }
@@ -55,13 +57,16 @@ void Amplifier::stream(const char* action, const char* url)
 void Amplifier::createTask()
 {
   Serial.println ("Task#Created");
- xTaskCreatePinnedToCore (amplifier, "amplifier", 10000, NULL, 0, NULL, 0);
+  xTaskCreatePinnedToCore (amplifier, "amplifier", 10000, NULL, 0, NULL, 0);
 }
 
 void amplifier(void* pvParameters) 
 {
+    int coreID = xPortGetCoreID();
+    Serial.print("Current Core ID: ");
+    Serial.println(coreID);
 while (1)
-  {   
+  {  //Serial.print(".");
   if (!strcmp(amp.currentAction,"START"))
     {
       amp.loop();

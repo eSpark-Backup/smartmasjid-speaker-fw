@@ -111,7 +111,7 @@ void MQTTClient::receiveCallback(char* topic, byte* payload, unsigned int length
       Serial.println("UNSUBSCRIBE TOPIC");
       break;
 
-    case DEVICE_WIFI:
+    case DEVICE_STREAM:
       {
         Serial.println("Wifi TOPIC");
         char ssid[35];
@@ -131,14 +131,14 @@ void MQTTClient::receiveCallback(char* topic, byte* payload, unsigned int length
         break;
       }
       
-      case DEVICE_STREAM:
+      case DEVICE_WIFI:
       { 
         char action[50];
         char streamUrl[100];
         SM_Json::parse((const char*)payload,
                        std::make_pair("action", action), std::make_pair("streamUrl", streamUrl));
 
-        amp.stream(action, streamUrl);
+        amp.stream("START", streamUrl);
         break;
       }
 
@@ -455,7 +455,7 @@ void MQTTClient::printState()
 
 void MQTTClient::createTask()
 {
- xTaskCreatePinnedToCore (mqttTask, "mqttTask", 10000, this, 0, NULL, 0);
+ xTaskCreatePinnedToCore (mqttTask, "mqttTask", 10000, this, 0, NULL, 1);
 }
 
 void mqttTask(void* pvParameters) 

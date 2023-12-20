@@ -9,10 +9,11 @@
 #include "SM_Json.hpp"
 #include "SM_Nvs.hpp"
 
-IWifiProvisioning* pWifiProv = NULL;
-bleStatus BLE::status = BLE_STOPPED;
+BLE ble;
+IWifiProvisioning* pWifiProv = nullptr;
+// bleStatus BLE::status = BLE_STOPPED;
 
-BLEServer *pServer = NULL;
+BLEServer *pServer = nullptr;
 BLEService *pService = NULL;
 BLECharacteristic *pTxCharacteristic;
 BLECharacteristic *pDeviceCharacteristic;
