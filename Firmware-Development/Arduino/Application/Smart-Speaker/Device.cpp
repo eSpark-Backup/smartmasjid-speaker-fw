@@ -158,13 +158,22 @@ void Device::memoryMonitoring()
   static unsigned long lastExecution = 0;
   if (currentTime - lastExecution >= DEVICE_MEMORY_INFO_PRINT_INTERVAL)
    {
-    Serial.print("Free Stack Space: ");
+    Serial.print("1- Free Stack Space: ");
     Serial.println(uxTaskGetStackHighWaterMark(NULL));
-    Serial.print("Free Heap Space: ");
+
+    Serial.print("2- Heap Space size : ");
+    Serial.println(ESP.getHeapSize());
+
+    Serial.print("3- Maximum allocated Heap : ");
+    Serial.println(ESP.getMaxAllocHeap());
+
+    Serial.print("4- Free Heap Space: ");
     Serial.println(ESP.getFreeHeap());
-    esp_get_minimum_free_heap_size();
-    Serial.print("Minimum Free Heap Space: ");
+
+    Serial.print("5- Minimum Free Heap Space: ");
     Serial.println(esp_get_minimum_free_heap_size());
+    Serial.print("\n");
+    
     lastExecution = currentTime;
   }
 }

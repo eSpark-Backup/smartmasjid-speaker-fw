@@ -37,3 +37,5 @@ class SmHttp
     HttpStatusCode post(const char* url,const char* json);
     
 };
+
+extern SemaphoreHandle_t httpsSemaphore;

@@ -57,25 +57,33 @@ HttpStatusCode SmHttp::post(const char* url, const char* json)
 {
   WiFiClientSecure client;
   client.setInsecure();
-  HTTPClient https;
-  https.setReuse(false);
-  https.begin(client, url);
-  https.addHeader("Content-Type", "application/json");
-  https.addHeader("x-api-key", EXTERNAL_API_KEY);
-  HttpStatusCode status = https.POST(json);
-  const char* response = https.getString().c_str();
-  https.end();
-  Serial.print("WIFI RSSI : ");
-  Serial.println(WiFi.RSSI());
-  if (status == Http::Response::OK || status == Http::Response::CREATED) 
-  {
-    Serial.println("Request successful!");
-  } 
-  else 
-  {
-    Serial.print("Request failed with error code: ");
-    Serial.println(status);
-  }
-  Serial.println(response);
-  return status;
+  // Take the semaphore (lock)
+  // if (xSemaphoreTake(httpsSemaphore, portMAX_DELAY) == pdTRUE) 
+  // {
+    HTTPClient https;
+    https.setReuse(false);
+    https.begin(client, url);
+    https.addHeader("Content-Type", "application/json");
+    https.addHeader("x-api-key", EXTERNAL_API_KEY);
+    HttpStatusCode status = https.POST(json);
+    const char* response = https.getString().c_str();
+    https.end();
+    Serial.print("WIFI RSSI : ");
+    Serial.println(WiFi.RSSI());
+
+    if (status == Http::Response::OK || status == Http::Response::CREATED) 
+    {
+      Serial.println("Request successful!");
+    } 
+    else 
+    {
+      Serial.print("Request failed with error code: ");
+      Serial.println(status);
+    }
+
+    Serial.println(response);
+     // Give back the semaphore (unlock)
+    // xSemaphoreGive(httpsSemaphore);
+    return status;
+   
 }

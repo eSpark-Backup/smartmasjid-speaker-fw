@@ -5,6 +5,7 @@
 #include "SM_Nvs.hpp"
 #include "Device.hpp"
 #include"Amplifier.hpp"
+#include <freertos/semphr.h>
 
 WiFiClient wifiClient;
 PubSubClient mqttClient(wifiClient);
@@ -110,7 +111,7 @@ void MQTTClient::receiveCallback(char* topic, byte* payload, unsigned int length
       Serial.println("UNSUBSCRIBE TOPIC");
       break;
 
-    case DEVICE_STREAM:
+    case DEVICE_WIFI:
       {
         Serial.println("Wifi TOPIC");
         char ssid[35];
@@ -130,14 +131,20 @@ void MQTTClient::receiveCallback(char* topic, byte* payload, unsigned int length
         break;
       }
       
-      case DEVICE_WIFI:
+      case DEVICE_STREAM:
       { 
         char action[50];
         char streamUrl[100];
         SM_Json::parse((const char*)payload,
                        std::make_pair("action", action), std::make_pair("streamUrl", streamUrl));
-
-        amp.stream("START", streamUrl);
+        delay(3000);
+        // if (xSemaphoreTake(ampSemaphore, portMAX_DELAY) == pdTRUE) 
+        // {
+          amp.stream("START", "https://www.islamcan.com/audio/adhan/azan2.mp3");
+          // amp.stream("START", "http://192.168.18.160:3000/azan2.mp3");
+          
+          // xSemaphoreGive(ampSemaphore);
+        // } 
         break;
       }
 
@@ -454,7 +461,7 @@ void MQTTClient::printState()
 
 void MQTTClient::createTask()
 {
- xTaskCreatePinnedToCore (mqttTask, "mqttTask", 8000, this, 0, NULL, 0);
+ xTaskCreatePinnedToCore (mqttTask, "mqttTask", 6000, this, 0, NULL, 0);
 }
 
 void mqttTask(void* pvParameters) 

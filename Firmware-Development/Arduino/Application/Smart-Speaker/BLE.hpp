@@ -24,6 +24,6 @@ class BLE
      bool initialize();
      void stop(void);
      bool isStarted(void);
-};
+}; 
 
 extern BLE ble;

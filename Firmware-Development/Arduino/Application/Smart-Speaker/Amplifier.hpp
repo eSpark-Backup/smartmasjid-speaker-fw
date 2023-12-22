@@ -22,7 +22,6 @@ class Amplifier
     void stream(const char* action, const char* url);
     void setup();
     void loop();
-    void createTask();
 };
 
 extern Amplifier amp;
