@@ -36,3 +36,4 @@
 3. WiFi                    (Version : 0.0.3)
 4. WiFiClientSecure        (Version : 1.0.0)
 5. ArduinoJson             (Version : 6.21.2)
+6. ESP32-audioI2S-master   
