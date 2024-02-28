@@ -3,6 +3,7 @@
 
 Amplifier amp; 
 Audio* audio = NULL;
+uint8_t Amplifier:: volume = 5; 
 
 void Amplifier::setup()
 {
@@ -54,6 +55,41 @@ void Amplifier::stream(const char* action, const char* url)
       stop();
 
   strncpy(currentAction, action, strlen(action));  
+}
+
+void Amplifier::volumeUp()
+{
+  volume++;
+  if (volume > MAX_DEFAULT_VOLUME)
+    volume = MAX_DEFAULT_VOLUME;
+  audio->setVolume(volume);
+  // Serial.println("Volume : up");
+  // Serial.println(volume);
+  // delay(100);
+}
+
+void Amplifier::volumeDown()
+{
+
+  if (volume >= (MIN_DEFAULT_VOLUME+1) && volume <= MAX_DEFAULT_VOLUME)
+      volume--;
+  else if (volume > MAX_DEFAULT_VOLUME)
+      volume = MAX_DEFAULT_VOLUME;
+  else    
+       volume = 0;
+  audio->setVolume(volume);
+  // Serial.println("Volume : down");
+  // Serial.println(volume);
+  // delay(100);
+}
+
+void Amplifier::muteVolume()
+{
+  volume = MIN_DEFAULT_VOLUME;
+  audio->setVolume(volume);
+  // Serial.println("Volume mute : ");
+  // Serial.println(volume);
+  // delay(100);
 }
 
 void amplifier(void* pvParameters) 

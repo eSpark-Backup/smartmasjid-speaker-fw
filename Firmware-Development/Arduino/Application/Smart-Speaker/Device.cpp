@@ -1,3 +1,4 @@
+
 #include <WiFi.h>
 #include "SM_Json.hpp"
 #include "SM_Nvs.hpp"
@@ -5,12 +6,15 @@
 #include "Device.hpp"
 #include "esp_bt_main.h"
 #include "esp_bt_device.h"
+#include"Amplifier.hpp"
 
 char Device::macAddress[20] = "";
 bool Device::telemetryTrigger = false;
 hw_timer_t* Device::timer = NULL;
+// MQTTClient* pMqtt = nullptr;
 
-void IRAM_ATTR Device::triggerTelemetryUpdate() {      //Defining Inerrupt function with IRAM_ATTR for faster access
+void IRAM_ATTR Device::triggerTelemetryUpdate() 
+{      //Defining Inerrupt function with IRAM_ATTR for faster access
   telemetryTrigger= true;
 }
 
@@ -44,6 +48,9 @@ void Device::loop()
     smHttp.sendDeviceTelemetry(Device::macAddress);
     telemetryTrigger= false;
   }
+  // upbutton();
+  // downbutton();
+  // mutebutton();
 }
 
 
@@ -130,8 +137,7 @@ bool Device::checkMacAddress()
 }
 
 bool Device::storeMacAddress()
-{
-  
+{ 
   if (Sm_Nvs::put(DEVICE_FACTORY_INFO_NAMESPACE, std::make_pair("macaddress", Device::macAddress)))
   {
     Serial.print("Updated MAC address in NVS: ");
@@ -177,3 +183,76 @@ void Device::memoryMonitoring()
     lastExecution = currentTime;
   }
 }
+
+void Device::volumeUpWrapper() 
+{
+  amp.volumeUp();
+ 
+}
+
+void Device::volumeDownWrapper() 
+{
+  amp.volumeDown();
+}
+
+void Device::volumeMuteWrapper() 
+{
+  amp.muteVolume();
+}
+
+// void Device::resetWrapper() 
+// {
+
+//     // pMqtt->unsubscribeTopics();
+//     // MQTTClient::unsubscribeTopics();
+//     // deleteSubscriptions();
+//     // deleteWificredentials();
+//     // ESP.restart();
+
+// }
+
+void Device::buttonSetup()
+{
+  pinMode (UP_BUTTON, INPUT);
+  pinMode (DOWN_BUTTON, INPUT);
+  pinMode (MUTE_BUTTON, INPUT);
+  // pinMode (RESET_BUTTON, INPUT);
+
+  attachInterrupt(digitalPinToInterrupt(UP_BUTTON), Device::volumeUpWrapper, FALLING);
+  attachInterrupt(digitalPinToInterrupt(DOWN_BUTTON), Device::volumeDownWrapper, FALLING);
+  attachInterrupt(digitalPinToInterrupt(MUTE_BUTTON), Device::volumeMuteWrapper, FALLING);
+  // attachInterrupt(digitalPinToInterrupt(RESET_BUTTON), Device::resetWrapper, FALLING);
+}
+
+
+
+// void Device::upbutton()
+// {
+//   if(digitalRead(UP_BUTTON)== LOW)
+//     amp.volumeUp();
+// }
+
+// void Device::downbutton()
+// {
+//   if(digitalRead(DOWN_BUTTON)== LOW)
+//     amp.volumeDown();
+// }
+
+// void Device::mutebutton()
+// {
+//   if(digitalRead(MUTE_BUTTON)== LOW)
+//     amp.muteVolume();
+// }
+
+
+// void Device::resetbutton()
+// {
+  // if(digitalRead(RESET_BUTTON )== LOW)
+  // {
+  //   // pMqtt->unsubscribeTopics();
+  //   // MQTTClient::unsubscribeTopics();
+  //   deleteSubscriptions();
+  //   deleteWificredentials();
+  //   ESP.restart();
+  // }
+// }

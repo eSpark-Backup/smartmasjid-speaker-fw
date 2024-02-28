@@ -1,3 +1,4 @@
+
 #include "BLE.hpp"
 #include "SM_Http.hpp"
 #include "WifiProvisioning.hpp"
@@ -48,8 +49,9 @@ void setup()
   }
   amp.setup();
   mqtt.createTask();
+  // Device::getMqttInstance(&mqtt);
+  Device::buttonSetup();
   Device::timerSetup();
-  
 }
  
 void loop() 
@@ -57,5 +59,6 @@ void loop()
   Device::loop();   
   Device::memoryMonitoring();
 }
+
 
 
