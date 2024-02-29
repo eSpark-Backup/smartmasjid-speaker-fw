@@ -5,13 +5,14 @@
 #include "Mqtt.hpp"
 #include "Device.hpp"
 #include"Amplifier.hpp"
+#include "Button.hpp"
 
 SET_LOOP_TASK_STACK_SIZE( 16*1024 ); // 16KB
 // SemaphoreHandle_t ampSemaphore = NULL;  // Declare the semaphore handle globally
 WifiProvisioning wifiProv;
 // // SmHttp smHttp;
 MQTTClient mqtt(&wifiProv);
-
+Button button;
 
 void setup() 
 {
@@ -50,13 +51,15 @@ void setup()
   amp.setup();
   mqtt.createTask();
   // Device::getMqttInstance(&mqtt);
-  Device::buttonSetup();
+  // Device::buttonSetup();
   Device::timerSetup();
+  button.setUp();
 }
  
 void loop() 
 {
-  Device::loop();   
+  Device::loop();  
+  button.loop(); 
   Device::memoryMonitoring();
 }
 

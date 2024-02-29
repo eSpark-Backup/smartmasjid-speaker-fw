@@ -17,11 +17,17 @@
 #define TIMER_ONE_SECOND_COUNTS 1000000
 #define TELEMETRY_UPDATE_TIME 1 * 60 // telemetry update time in seconds
 
-// Button Configuration
-#define UP_BUTTON   14
-#define DOWN_BUTTON 16
-#define MUTE_BUTTON 13
-// #define RESET_BUTTON 7
+// // Button Configuration
+// #define UP_BUTTON   14
+// #define DOWN_BUTTON 16
+// #define MUTE_BUTTON 13
+// // #define RESET_BUTTON 7
+
+// // Button Configuration
+// #define UP_BUTTON_LED   19
+// #define DOWN_BUTTON_LED 18
+// #define MUTE_BUTTON_LED 4
+// #define RESET_BUTTON_LED 7
 
 class Device 
 {
@@ -29,6 +35,11 @@ class Device
     // Variables
     static hw_timer_t * timer;      //H/W timer defining (Pointer to the Structure)
     static bool telemetryTrigger;   // static bool telemetryTrigger;
+    // static  byte stateUpButtonLed ;
+    // static  byte stateDownButtonLed;
+    // static  byte stateMuteButtonLed;
+    // static  byte stateResetButtonLed;
+    
     
   public:
     // Constructor
@@ -51,15 +62,15 @@ class Device
     static bool checkMacAddress();
     static bool storeMacAddress();
     static void memoryMonitoring();
-    static void buttonSetup();
-    static void upbutton();
-    static void downbutton();
-    static void mutebutton();
+    // static void buttonSetup();
+    // static void upbutton();
+    // static void downbutton();
+    // static void mutebutton();
     //  void getMqttInstance(MQTTClient* mqtt);
-    static void resetbutton();
-    static void volumeUpWrapper();
-    static void volumeDownWrapper(); 
-    static void volumeMuteWrapper();
+    // static void resetbutton();
+    // static void volumeUpWrapper();
+    // static void volumeDownWrapper(); 
+    // static void volumeMuteWrapper();
     // static void resetWrapper();
     // ISR
     static void IRAM_ATTR triggerTelemetryUpdate();

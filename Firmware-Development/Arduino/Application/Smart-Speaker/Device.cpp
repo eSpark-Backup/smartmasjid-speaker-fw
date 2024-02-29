@@ -6,12 +6,16 @@
 #include "Device.hpp"
 #include "esp_bt_main.h"
 #include "esp_bt_device.h"
-#include"Amplifier.hpp"
+// #include"Amplifier.hpp"
 
 char Device::macAddress[20] = "";
 bool Device::telemetryTrigger = false;
 hw_timer_t* Device::timer = NULL;
 // MQTTClient* pMqtt = nullptr;
+// byte Device::stateUpButtonLed = LOW;
+// byte Device::stateDownButtonLed = LOW;
+// byte Device::stateMuteButtonLed = LOW;
+// byte Device::stateResetButtonLed = LOW;
 
 void IRAM_ATTR Device::triggerTelemetryUpdate() 
 {      //Defining Inerrupt function with IRAM_ATTR for faster access
@@ -48,6 +52,9 @@ void Device::loop()
     smHttp.sendDeviceTelemetry(Device::macAddress);
     telemetryTrigger= false;
   }
+  // digitalWrite(UP_BUTTON_LED, !Device::stateUpButtonLed);
+  // digitalWrite(DOWN_BUTTON_LED, !Device::stateDownButtonLed);
+  // digitalWrite(MUTE_BUTTON_LED, !Device::stateMuteButtonLed);
   // upbutton();
   // downbutton();
   // mutebutton();
@@ -184,21 +191,24 @@ void Device::memoryMonitoring()
   }
 }
 
-void Device::volumeUpWrapper() 
-{
-  amp.volumeUp();
+// void Device::volumeUpWrapper() 
+// {
+//   amp.volumeUp();
+//   Device::stateUpButtonLed = !Device::stateUpButtonLed;
  
-}
+// }
 
-void Device::volumeDownWrapper() 
-{
-  amp.volumeDown();
-}
+// void Device::volumeDownWrapper() 
+// {
+//   amp.volumeDown();
+//   Device::stateDownButtonLed = !Device::stateDownButtonLed;
+// }
 
-void Device::volumeMuteWrapper() 
-{
-  amp.muteVolume();
-}
+// void Device::volumeMuteWrapper() 
+// {
+//   amp.muteVolume();
+//   Device::stateMuteButtonLed = !Device::stateMuteButtonLed;
+// }
 
 // void Device::resetWrapper() 
 // {
@@ -211,18 +221,23 @@ void Device::volumeMuteWrapper()
 
 // }
 
-void Device::buttonSetup()
-{
-  pinMode (UP_BUTTON, INPUT);
-  pinMode (DOWN_BUTTON, INPUT);
-  pinMode (MUTE_BUTTON, INPUT);
-  // pinMode (RESET_BUTTON, INPUT);
+// void Device::buttonSetup()
+// {
+//   pinMode (UP_BUTTON, INPUT);
+//   pinMode (DOWN_BUTTON, INPUT);
+//   pinMode (MUTE_BUTTON, INPUT);
 
-  attachInterrupt(digitalPinToInterrupt(UP_BUTTON), Device::volumeUpWrapper, FALLING);
-  attachInterrupt(digitalPinToInterrupt(DOWN_BUTTON), Device::volumeDownWrapper, FALLING);
-  attachInterrupt(digitalPinToInterrupt(MUTE_BUTTON), Device::volumeMuteWrapper, FALLING);
-  // attachInterrupt(digitalPinToInterrupt(RESET_BUTTON), Device::resetWrapper, FALLING);
-}
+//   pinMode(UP_BUTTON_LED, OUTPUT);//led
+//   pinMode(DOWN_BUTTON_LED, OUTPUT);//led
+//   pinMode(MUTE_BUTTON_LED, OUTPUT);//led
+//   // pinMode(19, OUTPUT);//led
+//   // pinMode (RESET_BUTTON, INPUT);
+
+//   attachInterrupt(digitalPinToInterrupt(UP_BUTTON), Device::volumeUpWrapper, CHANGE);
+//   attachInterrupt(digitalPinToInterrupt(DOWN_BUTTON), Device::volumeDownWrapper, CHANGE);
+//   // attachInterrupt(digitalPinToInterrupt(MUTE_BUTTON), Device::volumeMuteWrapper, CHANGE);
+//   // attachInterrupt(digitalPinToInterrupt(RESET_BUTTON), Device::resetWrapper, CHANGE);
+// }
 
 
 
