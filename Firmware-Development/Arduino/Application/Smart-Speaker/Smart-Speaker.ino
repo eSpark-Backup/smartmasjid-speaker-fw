@@ -53,7 +53,7 @@ void setup()
   // Device::getMqttInstance(&mqtt);
   // Device::buttonSetup();
   Device::timerSetup();
-  button.setUp();
+  button.setUp(&mqtt);
 }
  
 void loop() 

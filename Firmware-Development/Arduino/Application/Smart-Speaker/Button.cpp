@@ -1,17 +1,20 @@
 #include"Button.hpp"
 #include"Amplifier.hpp"
+#include"Device.hpp"
 
 volatile byte Button::stateUpButtonLed = LOW;
 volatile byte Button::stateDownButtonLed = LOW;
 volatile byte Button::stateMuteButtonLed = LOW;
 volatile byte Button::stateResetButtonLed = LOW;
 
-const uint8_t Button::RESET_BUTTON;
-const uint32_t Button::LONG_PRESS_DURATION;
+const uint32_t Button::PRESS_DURATION;
 bool Button::resetButtonPressed = false;
+MQTTClient* Button::pMqtt = nullptr;
 
-void Button::setUp()
+void Button::setUp(MQTTClient* mqtt)
 {
+  pMqtt = mqtt;
+
   pinMode (UP_BUTTON, INPUT);
   pinMode (DOWN_BUTTON, INPUT);
   pinMode (MUTE_BUTTON, INPUT);
@@ -20,32 +23,21 @@ void Button::setUp()
   pinMode(UP_BUTTON_LED_1, OUTPUT);//led
   pinMode(DOWN_BUTTON_LED_2, OUTPUT);//led
   pinMode(MUTE_BUTTON_LED_3, OUTPUT);//led
-  // pinMode(RESET_BUTTON_LED, OUTPUT);//led
-  // pinMode(19, OUTPUT);//led
+  // pinMode(RESET_BUTTON_LED_4, OUTPUT);//led
+
 
   attachInterrupt(digitalPinToInterrupt(UP_BUTTON), Button::volumeUpWrapper, CHANGE);
   attachInterrupt(digitalPinToInterrupt(DOWN_BUTTON), Button::volumeDownWrapper, CHANGE);
-  // attachInterrupt(digitalPinToInterrupt(MUTE_BUTTON), Button::volumeMuteWrapper, CHANGE);
-  // attachInterrupt(digitalPinToInterrupt(RESET_BUTTON), Button::resetWrapper, CHANGE);
-  attachInterrupt(digitalPinToInterrupt(RESET_BUTTON), resetButtonISR, FALLING);
-
-  // Create the reset button task
-  xTaskCreate(
-      resetButtonTask,   // Task function
-      "ResetButtonTask", // Task name
-      1000,              // Stack size (bytes)
-      NULL,              // Task parameters
-      1,                 // Priority (0 is the lowest priority)
-      NULL               // Task handle
-  );
+  attachInterrupt(digitalPinToInterrupt(MUTE_BUTTON), Button::volumeMuteWrapper, CHANGE);
+  // attachInterrupt(digitalPinToInterrupt(RESET_BUTTON), Button::resetButtonISR, CHANGE); 
 }
 
 void Button::loop()
 {
   digitalWrite(UP_BUTTON_LED_1, !Button::stateUpButtonLed);
   digitalWrite(DOWN_BUTTON_LED_2, !Button::stateDownButtonLed);
-  // digitalWrite(MUTE_BUTTON_LED_3, !Device::stateMuteButtonLed);
-  // digitalWrite(RESET_BUTTON_LED_4, !Device::stateResetButtonLed);
+  digitalWrite(MUTE_BUTTON_LED_3, !Button::stateMuteButtonLed);
+  // digitalWrite(RESET_BUTTON_LED_4, !Button::stateResetButtonLed);
 }
 
 void Button::volumeUpWrapper() 
@@ -73,30 +65,39 @@ void Button::resetButtonTask(void *parameter)
     if (resetButtonPressed)
     {
       // Check if the button is still pressed after 5 seconds
-      vTaskDelay(pdMS_TO_TICKS(LONG_PRESS_DURATION));
+      vTaskDelay(pdMS_TO_TICKS(PRESS_DURATION));
       if (digitalRead(RESET_BUTTON) == LOW)
       {
         Serial.println("Device is reset after 5 seconds");
-        // Perform reset actions here
+        pMqtt->unsubscribeTopics();
+        Device::deleteSubscriptions();
+        Device::deleteWificredentials();
+        ESP.restart();
+        break;
       }
-
       // Reset the flag
-      resetButtonPressed = false;
+      resetButtonPressed = false; 
     }
-
     vTaskDelay(pdMS_TO_TICKS(100)); // Check the button status every 100ms
   }
+  Serial.println("Reset Button Task deleted");
+  vTaskDelete(NULL);
 }
 
 void IRAM_ATTR Button::resetButtonISR()
 {
+  // Create the reset button task
+  xTaskCreate(
+      resetButtonTask,   // Task function
+      "ResetButtonTask", // Task name
+      2000,              // Stack size (bytes)
+      NULL,              // Task parameters
+      1,                 // Priority (0 is the lowest priority)
+      NULL               // Task handle
+  );
   // Set the flag indicating that the reset button is pressed
   resetButtonPressed = true;
-}
-
-void Button::resetButtonPressedHandler()
-{
-  // This function is empty and can be implemented to handle other actions when the reset button is pressed
+  Button::stateResetButtonLed = !Button::stateResetButtonLed;
 }
 
 
