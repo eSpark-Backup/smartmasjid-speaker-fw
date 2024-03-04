@@ -53,6 +53,7 @@ void setup()
 void loop() 
 { 
   button.loop();
+  // button.interruptHandlerStateChange();
   Device::loop();
   Device::memoryMonitoring();
 }
