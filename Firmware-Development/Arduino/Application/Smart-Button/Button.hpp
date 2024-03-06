@@ -16,6 +16,8 @@ enum buttonState
 #define TO_MS(seconds) ((seconds) * 1000)
 #define ADHAN_MAX_DURATION TO_MS(5*60)
 
+void resetTask(void* pvParameters);
+
 class Button 
 {
   private:
@@ -25,12 +27,15 @@ class Button
     void interruptHandler();
     
     uint32_t adhanStartTime= 0;
-    static int counter;
     
+    void createTask();
+
   public:
     Button(uint8_t pin) : pin(pin) {}
     void interruptHandlerStateChange();
     void setup(); 
     void loop();
+    static bool resetFlag; 
+    static int counter; 
 
 };
