@@ -47,13 +47,13 @@ void setup()
   }
   mqtt.createTask(); 
   button.setup();
-  Device::timerSetup();
+  // Device::timerSetup();
 }
 
 void loop() 
 { 
   button.loop();
   // button.interruptHandlerStateChange();
-  Device::loop();
+  // Device::loop();
   // Device::memoryMonitoring();
 }

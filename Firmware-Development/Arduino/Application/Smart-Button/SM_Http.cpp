@@ -99,7 +99,7 @@ HttpStatusCode SmHttp::request(const char* url, const char* json, Http::RequestT
   https.addHeader("Content-Type", "application/json");
   https.addHeader("x-api-key", EXTERNAL_API_KEY);
   HttpStatusCode status;
-  Serial.print("WIFI RSSI : ");
+  Serial.print("\nWIFI RSSI : ");
   Serial.println(WiFi.RSSI());
   switch(request)
   {

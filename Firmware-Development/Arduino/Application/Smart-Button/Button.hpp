@@ -6,11 +6,12 @@
 
 enum buttonState
 {
-  UNPRESSED,
+  UNPRESSED ,
   ADHAN_START_REQUESTED,
   ADHAN_STARTED,
   ADHAN_STOP_REQUESTED,
-  ADHAN_STOPPED
+  ADHAN_STOPPED,
+  ADHAN_RESET = 10
 };
 
 #define TO_MS(seconds) ((seconds) * 1000)
@@ -22,8 +23,8 @@ class Button
 {
   private:
     uint8_t pin;
-    volatile buttonState state = UNPRESSED;
-    SmHttp smHttp;
+     volatile buttonState state;
+    
     void interruptHandler();
     
     uint32_t adhanStartTime= 0;
@@ -32,10 +33,11 @@ class Button
 
   public:
     Button(uint8_t pin) : pin(pin) {}
-    void interruptHandlerStateChange();
     void setup(); 
     void loop();
     static bool resetFlag; 
-    static int counter; 
+    static volatile int counter; 
+    static bool isTaskDeleted;
 
 };
+extern SmHttp smHttp;

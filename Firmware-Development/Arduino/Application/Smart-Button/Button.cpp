@@ -2,69 +2,43 @@
 #include "FunctionalInterrupt.h"
 #include "Button.hpp"
 
-int Button::counter =-1;
+volatile int Button::counter = -1;
 bool Button::resetFlag = false;
+bool Button::isTaskDeleted = false;
+extern volatile buttonState state = UNPRESSED;
+
 
 void Button::setup()
 {
   pinMode(pin, INPUT_PULLDOWN);
   createTask();
-  attachInterrupt(pin, std::bind(&Button::interruptHandler, this), CHANGE); 
-  
+  attachInterrupt(pin, std::bind(&Button::interruptHandler, this), RISING);  
 }
 
 void Button::interruptHandler() 
 {
- counter ++;
+ Button::counter++;
  Button::resetFlag = true;
-//  interruptHandlerStateChange();
-}
-
-void Button::interruptHandlerStateChange() 
-{ 
-  state = (buttonState)counter;
-  switch(state)
-  {
-    case UNPRESSED: 
-      // Serial.println("Unpressed"); 
-      break;
-
-    case ADHAN_STOP_REQUESTED: 
-      // Serial.println("ADHAN_STOP_REQUESTED"); 
-      break;
-
-    case ADHAN_STOPPED: 
-      // Serial.println("ADHAN_STOPPED"); 
-      state = ADHAN_START_REQUESTED;
-      counter =0; 
-      break; 
-
-    case ADHAN_START_REQUESTED: 
-      // Serial.println("ADHAN_START_REQUESTED"); 
-      break;
-    case ADHAN_STARTED: 
-      // Serial.println("ADHAN_START_REQUESTED"); 
-      state = ADHAN_STOP_REQUESTED;
-      break;
-
-    default:
-        // Serial.println("Default"); 
-        break;
-  }
 }
 
 void Button::loop()
 {
   state = (buttonState)counter;
+  // Serial.print("+++++++++++++++++++++++++++++++++++++++++=======================");
+  // Serial.println(Button::counter);
   switch(state)
   {
     case ADHAN_START_REQUESTED:
       smHttp.startAdhan();
       adhanStartTime = millis();
-      Serial.print("ADHAN_START_REQUESTED_");
-      Serial.println(counter);
+      Serial.print("ADHAN_START");
       state = ADHAN_STARTED;
-      // counter ++;
+      if (Button::isTaskDeleted)
+        {
+          createTask();
+          Button::isTaskDeleted = false;
+        }
+      Button::counter ++;
       break;
 
     case ADHAN_STARTED:
@@ -72,50 +46,61 @@ void Button::loop()
       {
          state = ADHAN_STOP_REQUESTED;
       }
-      // Serial.print("ADHAN_STARTED_");
-      // Serial.println(counter);
       break;
 
     case ADHAN_STOP_REQUESTED:
       smHttp.stopAdhan();
       state = ADHAN_STOPPED;
-      Serial.print("ADHAN_STOP_REQUESTED_");
-      Serial.println(counter);
-      counter = 0;
+      Serial.print("ADHAN_STOP");
+      Button::counter = 0;
+      break;
+
+    case ADHAN_RESET:
+      smHttp.resetAdhan();
+      Serial.print("ADHAN_RESET");
+      Button::counter = 0;
       break;
 
     default:
-      // Serial.print("Unpressed_");
-      // Serial.println(counter);
       break;
-  }
+      }
 }
 
 void Button::createTask()
 {
-  Serial.println("Task Created:");
-  xTaskCreatePinnedToCore (resetTask, "resetTask", 1000, this, 0, NULL, 0);
+  Serial.println("\nReset Button Task Created.");
+  xTaskCreatePinnedToCore (resetTask, "resetTask", 4000, this, 17, NULL, 0);
 }
 
 void resetTask(void* pvParameters)
 {
+  TickType_t buttonPressStartTime = 0;
   while(1)
   {
-    if (Button::resetFlag)
+    if (digitalRead(SMBTN_GPIO) == LOW)
     {
-      // Check if the button is still pressed after 5 seconds
-      vTaskDelay(pdMS_TO_TICKS(5000));// should be update 
-      if (digitalRead(SMBTN_GPIO) == LOW)
+      if (buttonPressStartTime == 0)
       {
-        Serial.println("Adhan is reset after 5 seconds");
-        break;
+        buttonPressStartTime = xTaskGetTickCount();
       }
-      // Reset the flag
-      Button::resetFlag = false; 
+      else if ((xTaskGetTickCount() - buttonPressStartTime) >= pdMS_TO_TICKS(5000))
+      {
+         Serial.println("\nAdhan reset API called after 5 seconds of button hold\n\n");
+         Button::resetFlag = true;
+         state = ADHAN_RESET;
+         Button::counter = 10;
+         break;
+      }
     }
-    vTaskDelay(pdMS_TO_TICKS(100)); // Check the button status every 100ms
+    else
+    {
+      buttonPressStartTime = 0;
+    }
+
+    vTaskDelay(pdMS_TO_TICKS(100)); 
   }
-  Serial.println("Reset Button Task deleted");
-  // vTaskDelete(NULL);
-  vTaskSuspend(NULL);
+
+  Serial.println("Reset Button Task Deleted.\n\n");
+  Button::isTaskDeleted = true;
+  vTaskDelete(NULL);
 }
