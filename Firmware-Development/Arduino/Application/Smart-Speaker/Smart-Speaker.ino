@@ -50,8 +50,6 @@ void setup()
   }
   amp.setup();
   mqtt.createTask();
-  // Device::getMqttInstance(&mqtt);
-  // Device::buttonSetup();
   Device::timerSetup();
   button.setUp(&mqtt);
 }
