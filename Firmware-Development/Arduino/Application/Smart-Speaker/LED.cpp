@@ -1,25 +1,57 @@
 #include"LED.hpp"
 
-LED::LED(int pin1, int pin2, int pin3)
+LED rgb;
+CRGBPalette16 LED::currentPalette;
+
+void LED::setColor(CRGB color)
 {
-  ledPin1 = pin1;
-  ledPin2 = pin2;
-  ledPin3 = pin3;
+    currentPalette = CRGBPalette16(color, color, CRGB::Black,  CRGB::Black);
 }
 
 void LED::setup()
 {
-  pinMode(ledPin1, OUTPUT);
-  pinMode(ledPin2, OUTPUT);
-  pinMode(ledPin3, OUTPUT);
+ FastLED.addLeds<TM1803, DATA_PIN, GRB>(leds, NUM_LEDS);
+ FastLED.setBrightness(  BRIGHTNESS );
 }
 
-void LED::set(int pin)
+void LED::showSolidColor(CRGB color)
 {
-  digitalWrite(pin, HIGH);
+  setColor(color);
+  uint8_t colorIndex =0, brightness = 255;
+  for (int i = 0; i < NUM_LEDS; ++i) 
+    {
+        leds[i] = ColorFromPalette(currentPalette, colorIndex, brightness, currentBlending);
+        FastLED.show();
+    }
 }
 
-void LED::reset(int pin)
+void circleBlinking(CRGB color, Speed speed)
 {
-  digitalWrite(pin, LOW);
+    uint8_t brightness = 255;
+    uint8_t colorIndex = 1;
+    setColor(color);
+
+    for (int i = 0; i < NUM_LEDS; ++i) 
+    {
+        fill_solid(leds, NUM_LEDS, CRGB::Black);
+        leds[i] = ColorFromPalette(currentPalette, colorIndex, brightness, currentBlending);
+        FastLED.show();
+
+        // Map speed enum to delay time
+        int delayTime;
+        switch (speed) {
+            case FAST: delayTime = 30; break;  // 10000*3/ UPDATES_PER_SECOND
+            case MEDIUM: delayTime = 100; break;  // 100000/ UPDATES_PER_SECOND
+            case SLOW: delayTime = 500; break;  // 100000*5/ UPDATES_PER_SECOND
+            default: delayTime = 0; break;
+        }
+
+        if (delayTime > 0)
+            FastLED.delay(delayTime);
+        else
+            setColor(CRGB::Black);
+    }
 }
+
+
+

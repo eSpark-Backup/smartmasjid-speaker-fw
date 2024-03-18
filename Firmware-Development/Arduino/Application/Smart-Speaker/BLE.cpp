@@ -9,6 +9,7 @@
 #include "SM_Json.hpp"
 #include "SM_Nvs.hpp"
 
+
 BLE ble;
 IWifiProvisioning* pWifiProv = nullptr;
 // bleStatus BLE::status = BLE_STOPPED;
@@ -48,7 +49,7 @@ class ProvCharacteristicsCallbacks : public BLECharacteristicCallbacks
   void onWrite(BLECharacteristic *pCharacteristic)
   {
     std::string rxValue = pCharacteristic->getValue();
-
+    
     if (rxValue.length() > 0)
     {
       char ssid[32];
@@ -63,6 +64,7 @@ class ProvCharacteristicsCallbacks : public BLECharacteristicCallbacks
                       std::make_pair("pass", pass)))
           {
             Serial.println("Wifi credentials stored");
+            // rgb.showSolidColor(rgb.orange);
           }
         }
       } 

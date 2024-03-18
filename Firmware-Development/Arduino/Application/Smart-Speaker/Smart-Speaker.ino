@@ -6,6 +6,7 @@
 #include "Device.hpp"
 #include"Amplifier.hpp"
 #include "Button.hpp"
+#include "LED.hpp"
 
 SET_LOOP_TASK_STACK_SIZE( 16*1024 ); // 16KB
 // SemaphoreHandle_t ampSemaphore = NULL;  // Declare the semaphore handle globally
@@ -18,6 +19,7 @@ void setup()
 {
 
   Serial.begin(115200);
+  
   // ampSemaphore = xSemaphoreCreateMutex();  // Initialize the semaphore
   Device::checkMacAddress();
   Serial.printf("Arduino Stack was set to %d bytes\n", getArduinoLoopTaskStackSize());
@@ -26,6 +28,7 @@ void setup()
     {
       while(!wifiProv.isTelemetrySent())
       {
+        
         delay(100);
       }
     } 
@@ -40,6 +43,8 @@ void setup()
       ble.initialize();
       while(WiFi.status() != WL_CONNECTED) 
       {
+        // Serial.println("*");
+        // rgb.circleBlinking(rgb.orange, "MEDIUM");
         delay(100);
       }
       ble.stop();   
@@ -52,6 +57,15 @@ void setup()
   mqtt.createTask();
   Device::timerSetup();
   button.setUp(&mqtt);
+  // delay(3000);
+  // rgb.setup();
+  // rgb.orange = CHSV (HUE_ORANGE, 255, 255);
+  // rgb.showSolidColor(rgb.orange);
+  // while(1)
+  // {
+  //   // rgb.circleBlinking(rgb.orange, Speed::MEDIUM );
+  // }
+
 }
  
 void loop() 
