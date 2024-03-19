@@ -9,15 +9,21 @@
 #define COLOR_ORDER GRB
 #define UPDATES_PER_SECOND 1000
 
-enum Speed 
+typedef enum MODE 
 { 
-  FAST, 
-  MEDIUM, 
-  SLOW 
-};
+  BLE, 
+  WIFI_CONNECTED,
+  WIFI_DISCONNECTED,
+  ADHAN_STREAMING, 
+  CHARGING_BATTRY,
+  LOW_BATTERY,
+  RGB_OFF
+}MODE;
 
 
 extern CRGBPalette16 myRedWhiteBluePalette;
+
+void rgbLedTask(void* pvParameters);
 
 class LED
 {
@@ -32,11 +38,15 @@ class LED
     CRGB green;
     CRGB red;
     CRGB leds[NUM_LEDS];
+    static MODE currentMode;
+    static MODE previousMode;
 
     void setup();
     void showSolidColor(CRGB color);
     void setColor(CRGB color);
-    void circleBlinking(CRGB color, const char* speed); // speed can be FAST , MEDIUM and SLOW other than these argument , the led will not lit
+    void circleBlinking(CRGB color, const char* speed); // speed can be FAST , MEDIUM and SLOW ,any Argument other than these arguments , the led will not lit
+    void turnOffLeds();
+    void createTask();
 };
 
 extern LED rgb;

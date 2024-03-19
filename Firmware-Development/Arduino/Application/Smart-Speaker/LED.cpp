@@ -2,6 +2,8 @@
 
 LED rgb;
 CRGBPalette16 LED::currentPalette;
+MODE LED::currentMode = MODE::RGB_OFF;
+MODE LED::previousMode = MODE::RGB_OFF;
 
 void LED::setColor(CRGB color)
 {
@@ -25,33 +27,85 @@ void LED::showSolidColor(CRGB color)
     }
 }
 
-void circleBlinking(CRGB color, Speed speed)
+void LED::circleBlinking(CRGB color, const char* speed)
 {
     uint8_t brightness = 255;
     uint8_t colorIndex = 1;
-    setColor(color);
-
+    CRGB black = CRGB::Black;
+    CRGBPalette16 currentPalette_Black = black;
+    currentPalette = CRGBPalette16(color, color, CRGB::Black,  CRGB::Black);
+    // setColor(color);
     for (int i = 0; i < NUM_LEDS; ++i) 
     {
+        // Turn off all LEDs
         fill_solid(leds, NUM_LEDS, CRGB::Black);
+        // Turn on the current LED
         leds[i] = ColorFromPalette(currentPalette, colorIndex, brightness, currentBlending);
         FastLED.show();
 
-        // Map speed enum to delay time
-        int delayTime;
-        switch (speed) {
-            case FAST: delayTime = 30; break;  // 10000*3/ UPDATES_PER_SECOND
-            case MEDIUM: delayTime = 100; break;  // 100000/ UPDATES_PER_SECOND
-            case SLOW: delayTime = 500; break;  // 100000*5/ UPDATES_PER_SECOND
-            default: delayTime = 0; break;
-        }
-
-        if (delayTime > 0)
-            FastLED.delay(delayTime);
+        if (speed == "FAST")
+         FastLED.delay(10000*3/ UPDATES_PER_SECOND);
+        else if (speed == "MEDIUM")
+         FastLED.delay(100000/ UPDATES_PER_SECOND);
+        else if (speed == "SLOW")
+         FastLED.delay(100000*5/ UPDATES_PER_SECOND);
         else
-            setColor(CRGB::Black);
+        {
+          setColor(black);
+        }    
     }
 }
 
+void LED::turnOffLeds()
+{
+  // Turn off all LEDs
+  fill_solid(leds, NUM_LEDS, CRGB::Black);
+}
+
+void LED::createTask()
+{
+ xTaskCreatePinnedToCore (rgbLedTask, "rgbLedTask", 6000, this, 0, NULL, 0);
+}
+
+void rgbLedTask(void* pvParameters) 
+{
+  delay(3000);
+  rgb.setup();
+  rgb.orange = CHSV (HUE_ORANGE, 255, 255);
+  rgb.red = CHSV (HUE_RED, 255, 255);
+  rgb.green = CHSV (HUE_GREEN, 255, 255);
+  // rgb.turnOffLeds();
+  
+  while(1)
+  {
+   switch (LED::currentMode)
+    {
+    case MODE::BLE:
+        rgb.circleBlinking(rgb.orange, "MEDIUM");  //LED behavior is Orange circle blinking at medium speed
+        break;
+
+    case MODE::WIFI_CONNECTED:
+        rgb.showSolidColor(rgb.orange);            //the board gets connected to WiFi but is sitting idle 
+        break;
+
+    case MODE::ADHAN_STREAMING:
+        rgb.circleBlinking(rgb.green, "SLOW");     // LED behavior should be Green circle blinking slowly
+        break;
+
+    case MODE::CHARGING_BATTRY:
+        rgb.showSolidColor(rgb.green);             //It should show Green light constantly if USB power is plugged in
+        break;
+
+    case MODE::LOW_BATTERY:
+        rgb.showSolidColor(rgb.red);                //LED behavior is Red constant only when there is no USB charger plugged in
+        break;
+
+    default:
+        rgb.turnOffLeds();
+        break;
+    }
+  }
+  vTaskDelete( NULL );
+}
 
 

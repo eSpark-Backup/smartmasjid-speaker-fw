@@ -19,16 +19,15 @@ void setup()
 {
 
   Serial.begin(115200);
-  
+  rgb.createTask();
   // ampSemaphore = xSemaphoreCreateMutex();  // Initialize the semaphore
   Device::checkMacAddress();
   Serial.printf("Arduino Stack was set to %d bytes\n", getArduinoLoopTaskStackSize());
-  ble.setup(&wifiProv);
+  BLE::setup(&wifiProv);
   if(wifiProv.connectWifiFromNVS())
     {
       while(!wifiProv.isTelemetrySent())
       {
-        
         delay(100);
       }
     } 
@@ -40,14 +39,12 @@ void setup()
       
       // switch to Bluetooth mode
       Serial.println("Switching to Bluetooth mode");
-      ble.initialize();
+      BLE::initialize();
       while(WiFi.status() != WL_CONNECTED) 
       {
-        // Serial.println("*");
-        // rgb.circleBlinking(rgb.orange, "MEDIUM");
         delay(100);
       }
-      ble.stop();   
+      BLE::stop();   
     }
   while(!wifiProv.isTelemetrySent())
   {
@@ -57,15 +54,7 @@ void setup()
   mqtt.createTask();
   Device::timerSetup();
   button.setUp(&mqtt);
-  // delay(3000);
-  // rgb.setup();
-  // rgb.orange = CHSV (HUE_ORANGE, 255, 255);
-  // rgb.showSolidColor(rgb.orange);
-  // while(1)
-  // {
-  //   // rgb.circleBlinking(rgb.orange, Speed::MEDIUM );
-  // }
-
+  
 }
  
 void loop() 

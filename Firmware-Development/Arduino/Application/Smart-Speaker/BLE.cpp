@@ -10,9 +10,9 @@
 #include "SM_Nvs.hpp"
 
 
-BLE ble;
+// BLE ble;
 IWifiProvisioning* pWifiProv = nullptr;
-// bleStatus BLE::status = BLE_STOPPED;
+bleStatus BLE::status = BLE_STOPPED;
 
 BLEServer *pServer = nullptr;
 BLEService *pService = NULL;
@@ -64,7 +64,6 @@ class ProvCharacteristicsCallbacks : public BLECharacteristicCallbacks
                       std::make_pair("pass", pass)))
           {
             Serial.println("Wifi credentials stored");
-            // rgb.showSolidColor(rgb.orange);
           }
         }
       } 
@@ -125,7 +124,7 @@ bool BLE::initialize()
   // Start advertising
   pServer->getAdvertising()->start();
   Serial.println("Waiting a client connection to notify...");
-
+  rgb.currentMode = MODE::BLE;
   status = BLE_STARTED;
   return true;
 }
@@ -134,7 +133,8 @@ void BLE::stop(void)
 {
   // Delete BLE server
   BLEDevice::deinit(true);
-  Serial.println("BLE Stopped"); 
+  Serial.println("BLE Stopped");
+  rgb.currentMode = MODE::WIFI_CONNECTED; 
   status = BLE_STOPPED;
 }
 

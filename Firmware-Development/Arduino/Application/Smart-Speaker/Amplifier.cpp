@@ -1,5 +1,6 @@
 #include "WiFi.h"
 #include"Amplifier.hpp"
+#include "LED.hpp"
 
 Amplifier amp; 
 Audio* audio = NULL;
@@ -7,7 +8,6 @@ uint8_t Amplifier:: volume = 5;
 
 void Amplifier::setup()
 {
-  Serial.print("Amplifier");
   audio = new Audio;
   if(!audio->setPinout(I2S_BCLK, I2S_LRC, I2S_DOUT))
   {
@@ -36,6 +36,8 @@ void Amplifier::start(const char* url)
   else
   {
     Serial.println("connected to  the host");
+    rgb.previousMode = rgb.currentMode;
+    rgb.currentMode = MODE::ADHAN_STREAMING;
     xTaskCreatePinnedToCore(amplifier, "amplifier", 9000, NULL, 2, NULL, 0);
   }
 }
@@ -44,6 +46,7 @@ void Amplifier::stop()
 {
   Serial.println("Amplifier is Stoped...");
   audio->stopSong();
+  rgb.currentMode = rgb.previousMode;
 }
 
 void Amplifier::stream(const char* action, const char* url)

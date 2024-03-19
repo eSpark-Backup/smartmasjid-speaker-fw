@@ -3,6 +3,7 @@
 #include "BLE.hpp"
 #include "SM_Http.hpp"
 #include "SM_Nvs.hpp"
+#include "LED.hpp"
 
 telemetryStatus deviceTelemetryStatus = TELEMETRY_NOTSENT;
 
@@ -22,7 +23,7 @@ bool WifiProvisioning::connectWifi(const char *ssid, const char *pass, int retri
 
     if (WiFi.status() == WL_CONNECTED)
     {
-      // WiFi.onEvent(std::bind(&WifiProvisioning::wifiGotIP, this, std::placeholders::_1, std::placeholders::_2), WiFiEvent_t::ARDUINO_EVENT_WIFI_STA_GOT_IP);  
+       WiFi.onEvent(std::bind(&WifiProvisioning::wifiGotIP, this, std::placeholders::_1, std::placeholders::_2), WiFiEvent_t::ARDUINO_EVENT_WIFI_STA_GOT_IP);  
        return true;
     }
     else
@@ -47,10 +48,9 @@ bool WifiProvisioning:: connectWifiFromNVS(void)
   {
     Serial.println("No values saved for ssid or password");
   }
-  // else if (connectWifi("eSpark Wifi", "47356880"))
-  //  if (connectWifi("realme C2", "12345678"))
   else if (connectWifi(ssid, pass))
   {
+    rgb.currentMode = MODE::WIFI_CONNECTED; 
     return true;
   }
   return false;
@@ -102,7 +102,7 @@ void wifiProvisioning(void* pvParameters)
       break;
 
     default:
-      ble.initialize();
+      BLE::initialize();
       break;
   }
   vTaskDelete(NULL);
