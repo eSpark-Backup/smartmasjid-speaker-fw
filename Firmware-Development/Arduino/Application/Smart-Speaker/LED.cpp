@@ -3,11 +3,12 @@
 LED rgb;
 CRGBPalette16 LED::currentPalette;
 MODE LED::currentMode = MODE::RGB_OFF;
-MODE LED::previousMode = MODE::RGB_OFF;
+ADHAN_STATUS LED::ADHAN_FLAG = ADHAN_STATUS::NO_STREAMING;
 
 void LED::setColor(CRGB color)
 {
     currentPalette = CRGBPalette16(color, color, CRGB::Black,  CRGB::Black);
+    FastLED.setBrightness(BRIGHTNESS);
 }
 
 void LED::setup()
@@ -19,10 +20,10 @@ void LED::setup()
 void LED::showSolidColor(CRGB color)
 {
   setColor(color);
-  uint8_t colorIndex =0, brightness = 255;
+  uint8_t colorIndex =0; 
   for (int i = 0; i < NUM_LEDS; ++i) 
     {
-        leds[i] = ColorFromPalette(currentPalette, colorIndex, brightness, currentBlending);
+        leds[i] = ColorFromPalette(currentPalette, colorIndex, BRIGHTNESS, currentBlending);
         FastLED.show();
     }
 }
@@ -33,8 +34,9 @@ void LED::circleBlinking(CRGB color, const char* speed)
     uint8_t colorIndex = 1;
     CRGB black = CRGB::Black;
     CRGBPalette16 currentPalette_Black = black;
-    currentPalette = CRGBPalette16(color, color, CRGB::Black,  CRGB::Black);
-    // setColor(color);
+    // currentPalette = CRGBPalette16(color, color, CRGB::Black,  CRGB::Black);
+    setColor(color);
+    
     for (int i = 0; i < NUM_LEDS; ++i) 
     {
         // Turn off all LEDs
@@ -58,8 +60,9 @@ void LED::circleBlinking(CRGB color, const char* speed)
 
 void LED::turnOffLeds()
 {
-  // Turn off all LEDs
+  FastLED.setBrightness(0);
   fill_solid(leds, NUM_LEDS, CRGB::Black);
+  FastLED.show();
 }
 
 void LED::createTask()
@@ -92,7 +95,7 @@ void rgbLedTask(void* pvParameters)
         rgb.circleBlinking(rgb.green, "SLOW");     // LED behavior should be Green circle blinking slowly
         break;
 
-    case MODE::CHARGING_BATTRY:
+    case MODE::BATTRY_IS_CHARGING:
         rgb.showSolidColor(rgb.green);             //It should show Green light constantly if USB power is plugged in
         break;
 

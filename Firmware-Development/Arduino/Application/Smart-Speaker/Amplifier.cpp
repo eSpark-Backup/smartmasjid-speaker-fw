@@ -29,16 +29,17 @@ void Amplifier::start(const char* url)
   Serial.println("Amplifier is Started...");
   Serial.print("Streaming from url : ");
   Serial.println(url);
-  if(!audio->connecttohost(url))
+  // if(!audio->connecttohost(url))
+  if(false)
   { 
     Serial.println("Faild to connect the host");
   }
   else
   {
     Serial.println("connected to  the host");
-    rgb.previousMode = rgb.currentMode;
+    xTaskCreatePinnedToCore(amplifier, "amplifier", 10000, NULL, 0, NULL, 0);
+    rgb.ADHAN_FLAG = ADHAN_STATUS::STREAMING; 
     rgb.currentMode = MODE::ADHAN_STREAMING;
-    xTaskCreatePinnedToCore(amplifier, "amplifier", 9000, NULL, 2, NULL, 0);
   }
 }
 
@@ -46,7 +47,9 @@ void Amplifier::stop()
 {
   Serial.println("Amplifier is Stoped...");
   audio->stopSong();
-  rgb.currentMode = rgb.previousMode;
+
+  rgb.ADHAN_FLAG = ADHAN_STATUS::NO_STREAMING;
+  // rgb.currentMode = rgb.turnOffLeds();
 }
 
 void Amplifier::stream(const char* action, const char* url)

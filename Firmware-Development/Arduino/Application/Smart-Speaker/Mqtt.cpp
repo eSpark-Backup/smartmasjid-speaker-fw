@@ -137,7 +137,7 @@ void MQTTClient::receiveCallback(char* topic, byte* payload, unsigned int length
         char streamUrl[100];
         SM_Json::parse((const char*)payload,
                        std::make_pair("action", action), std::make_pair("streamUrl", streamUrl));
-        delay(3000);
+        
         // if (xSemaphoreTake(ampSemaphore, portMAX_DELAY) == pdTRUE) 
         // {
           amp.stream("START", "https://www.islamcan.com/audio/adhan/azan2.mp3");
@@ -461,7 +461,7 @@ void MQTTClient::printState()
 
 void MQTTClient::createTask()
 {
- xTaskCreatePinnedToCore (mqttTask, "mqttTask", 6000, this, 0, NULL, 0);
+ xTaskCreatePinnedToCore (mqttTask, "mqttTask", 10000, this, 0, NULL, 0);
 }
 
 void mqttTask(void* pvParameters) 

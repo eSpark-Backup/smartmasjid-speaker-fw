@@ -6,21 +6,21 @@
 #include "Device.hpp"
 #include"Amplifier.hpp"
 #include "Button.hpp"
-#include "LED.hpp"
+#include "Battery.hpp"
 
 SET_LOOP_TASK_STACK_SIZE( 16*1024 ); // 16KB
-// SemaphoreHandle_t ampSemaphore = NULL;  // Declare the semaphore handle globally
+
 WifiProvisioning wifiProv;
-// // SmHttp smHttp;
 MQTTClient mqtt(&wifiProv);
 Button button;
+Battery battery;
 
 void setup() 
 {
 
   Serial.begin(115200);
   rgb.createTask();
-  // ampSemaphore = xSemaphoreCreateMutex();  // Initialize the semaphore
+  battery.setUp();
   Device::checkMacAddress();
   Serial.printf("Arduino Stack was set to %d bytes\n", getArduinoLoopTaskStackSize());
   BLE::setup(&wifiProv);
@@ -61,6 +61,7 @@ void loop()
 {
   Device::loop();  
   button.loop(); 
+  battery.loop();
   Device::memoryMonitoring();
 }
 
