@@ -53,6 +53,56 @@ bool MQTTClient::connectToBroker()
   }
 }
 
+bool MQTTClient::PublishStatus()
+{
+  static unsigned long lastPublishTime = 0;
+  const unsigned long delayInterval = 5000; // 5 seconds delay
+  
+  if (millis() - lastPublishTime >= delayInterval) 
+  {
+    if (mqttClient.connected()) // Assuming this function attempts to connect to the MQTT broker
+    {
+      // Construct the topic with the device MAC address
+      char topic[64];
+      snprintf(topic, sizeof(topic), "device/%s/ping", Device::macAddress);
+
+      // Construct the JSON payload
+      StaticJsonDocument<64> doc;
+      doc["status"] = "Alive"; // Set the status to "active"
+      char payload[64];
+      size_t len = serializeJson(doc, payload);
+
+      // Publish the status message
+      if (mqttClient.publish(topic, payload, len)) 
+      {
+        Serial.print("Status message published to ");
+        Serial.println(topic);
+        Serial.print("Payload: ");
+        Serial.println(payload);
+
+        lastPublishTime = millis(); // Update last publish time
+        return true;
+      } 
+      else 
+      {
+        Serial.println("Failed to publish status message.");
+        return false;
+      }
+    } 
+    else 
+    {
+      Serial.println("Failed to connect to MQTT broker.");
+      return false;
+    }
+  } 
+  else 
+  {
+    // 5 seconds delay not elapsed yet
+    return false;
+  }
+}
+
+
 bool MQTTClient::subscribeTopics()
 {
   mqttClient.setCallback(std::bind(&MQTTClient::receiveCallback, this, std::placeholders::_1, std::placeholders::_2, std::placeholders::_3));
@@ -160,6 +210,7 @@ void MQTTClient::loop()
   {
     mqttCallback();
   }
+  PublishStatus();
   mqttClient.loop();
 }
 

@@ -69,6 +69,7 @@ class MQTTClient
     bool setup();
     bool connectToBroker(int retries) ;
     bool connectToBroker();
+    bool PublishStatus();
     bool subscribeTopics();
     bool unsubscribeTopics();
     void receiveCallback(char* topic, byte* payload, unsigned int length);
