@@ -8,6 +8,7 @@
 #define DEVICE_FACTORY_INFO_NAMESPACE "factoryInfo"
 #define DEVICE_WIFI_CREDENTIALS_NAMESPACE "credentials"
 #define DEVICE_MEMORY_INFO_PRINT_INTERVAL 5000
+#define delayInterval = 5000
 
 // Timer Settings
 #define TIMER_NO 0

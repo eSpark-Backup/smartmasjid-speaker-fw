@@ -50,10 +50,10 @@ bool MQTTClient::connectToBroker()
   }
 }
 
-bool MQTTClient::PublishStatus()
+bool MQTTClient::publishStatus()
 {
   static unsigned long lastPublishTime = 0;
-  const unsigned long delayInterval = 5000; // 5 seconds delay
+  const unsigned long delayInterval; // 5 seconds delay
   
   if (millis() - lastPublishTime >= delayInterval) 
   {
@@ -88,7 +88,7 @@ bool MQTTClient::PublishStatus()
     } 
     else 
     {
-      Serial.println("Failed to connect to MQTT broker.");
+      Serial.println("Ping: MQTT broker not connected.");
       return false;
     }
   } 
@@ -174,7 +174,7 @@ void MQTTClient::loop()
   if (!mqttClient.connected()) 
       mqttCallback();
     
-  PublishStatus();
+  publishStatus();
   mqttClient.loop();
 }
 
