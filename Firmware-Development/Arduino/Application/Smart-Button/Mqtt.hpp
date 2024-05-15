@@ -61,6 +61,7 @@ public:
   bool setup();
   bool connectToBroker();
   bool connectToBroker(int retries);
+  bool PublishStatus();
   bool subscribeTopics();
   bool unsubscribeTopics();
   void receiveCallback(char* topic, byte* payload, unsigned int length);
