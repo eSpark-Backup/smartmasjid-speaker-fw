@@ -24,6 +24,7 @@ class IWifiProvisioning
 {
   public:
     virtual bool connectWifi(const char* ssid, const char* pass, int retries = WIFI_RETRY) = 0;
+    virtual bool isTelemetrySent(void) = 0;
 };
 
 class WifiProvisioning : public IWifiProvisioning
@@ -35,6 +36,6 @@ class WifiProvisioning : public IWifiProvisioning
     bool connectWifiFromNVS(void);
     bool connectWifi(const char* ssid, const char* pass, int retries = WIFI_RETRY) override;
     void wifiGotIP(WiFiEvent_t event, WiFiEventInfo_t info);
-    bool isTelemetrySent(void);
+    bool isTelemetrySent(void) override; 
     void wifiReconnect(WiFiEvent_t event, WiFiEventInfo_t info);
 };

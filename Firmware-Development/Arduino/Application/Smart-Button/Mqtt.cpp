@@ -53,9 +53,9 @@ bool MQTTClient::connectToBroker()
 bool MQTTClient::publishStatus()
 {
   static unsigned long lastPublishTime = 0;
-  const unsigned long delayInterval; // 5 seconds delay
+  // const unsigned long delayInterval; // 5 seconds delay
   
-  if (millis() - lastPublishTime >= delayInterval) 
+  if (millis() - lastPublishTime >= DELAY_INTERVAL) 
   {
     if (mqttClient.connected()) // Assuming this function attempts to connect to the MQTT broker
     {
@@ -109,7 +109,8 @@ bool MQTTClient::subscribeTopics()
   const char* topicNames[] = 
   {
     mqttTopicReset,
-    mqttTopicWifi
+    mqttTopicWifi,
+    mqttTopicPing  
   };
   
   for (const char* topic : topicNames) 
@@ -163,6 +164,18 @@ void MQTTClient::receiveCallback(char* topic, byte* payload, unsigned int length
         break;
       }
 
+      case DEVICE_PING:
+      {
+       if (publishStatus())
+       {
+        while(!pWifiProv->isTelemetrySent())
+        {
+          delay(100);
+        }
+       }
+        break;
+      }
+
     default:
       Serial.println("UNKNOWN TOPIC");
       break;
@@ -174,7 +187,7 @@ void MQTTClient::loop()
   if (!mqttClient.connected()) 
       mqttCallback();
     
-  publishStatus();
+  // publishStatus();
   mqttClient.loop();
 }
 
@@ -208,6 +221,11 @@ mqttTopic MQTTClient::getTopic(const char* topic)
   else if (compareTopic(topic, mqttTopicWifi)) 
   {
     return DEVICE_WIFI;
+  }
+
+  else if (compareTopic(topic, mqttTopicPing)) 
+  {
+    return DEVICE_PING;
   }
   
   return UNKNOWN_TOPIC;
@@ -287,7 +305,8 @@ bool MQTTClient::unsubscribeTopics()
   const char* topicNames[] = 
   {
     mqttTopicReset,
-    mqttTopicWifi
+    mqttTopicWifi,
+    mqttTopicPing  
   };
 
   for (const char* topic : topicNames) 

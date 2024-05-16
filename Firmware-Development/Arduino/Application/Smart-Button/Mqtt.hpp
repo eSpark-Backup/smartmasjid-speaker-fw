@@ -30,12 +30,14 @@ namespace MQTT
 typedef enum {
   DEVICE_RESET,
   DEVICE_WIFI,
+  DEVICE_PING,
   UNKNOWN_TOPIC = 0xFF,
 } mqttTopic;
 
 typedef enum {
   SUBSCRIBE,
   UNSUBSCRIBE,
+  
 } subscription;
 
 class MQTTClient 
@@ -54,6 +56,7 @@ private:
   // MQTT topic to subscribe to
   const char* mqttTopicReset = "reset";
   const char* mqttTopicWifi = "wifi";
+  const char* mqttTopicPing  = "ping";
 
 
 public:
