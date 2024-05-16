@@ -27,6 +27,7 @@ class IWifiProvisioning
 {
   public:
     virtual bool connectWifi(const char* ssid, const char* pass, int retries = WIFI_RETRY) = 0;
+    virtual bool isTelemetrySent(void) = 0;
 };
 
 class WifiProvisioning : public IWifiProvisioning
@@ -48,7 +49,7 @@ class WifiProvisioning : public IWifiProvisioning
     bool sendDeviceTelemetry(const char* macAddress, uint8_t retryInterval, uint16_t maxRetryDuration);
     bool sendDeviceTelemetry(const char* macAddress);
     void createTelemetryJson(char* json, uint8_t size, const char* status, int battery);
-    bool isTelemetrySent(void);
+    bool isTelemetrySent(void) override; 
     void wifiReconnect(WiFiEvent_t event, WiFiEventInfo_t info);
     void createTask(void);
 };
