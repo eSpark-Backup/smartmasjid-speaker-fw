@@ -29,8 +29,7 @@ void Amplifier::start(const char* url)
   Serial.println("Amplifier is Started...");
   Serial.print("Streaming from url : ");
   Serial.println(url);
-  // if(!audio->connecttohost(url))
-  if(false)
+  if(!audio->connecttohost(url))
   { 
     Serial.println("Faild to connect the host");
   }
