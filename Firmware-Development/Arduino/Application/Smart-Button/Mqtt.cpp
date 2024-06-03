@@ -3,6 +3,7 @@
 #include "WifiProvisioning.hpp"
 #include "SM_Json.hpp"
 #include "SM_Nvs.hpp"
+#include "SM_Http.hpp"
 
 WiFiClient wifiClient;
 PubSubClient mqttClient(wifiClient);
@@ -116,11 +117,8 @@ void MQTTClient::receiveCallback(char* topic, byte* payload, unsigned int length
 
       case DEVICE_PING:
       {
-        while(!pWifiProv->isTelemetrySent())
-        {
-          delay(100);
-        }
-        break;
+        SmHttp smHttp;
+        smHttp.sendDeviceTelemetry(Device::macAddress);
       }
 
     default:
