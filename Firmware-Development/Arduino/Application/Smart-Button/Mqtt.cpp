@@ -4,6 +4,7 @@
 #include "SM_Json.hpp"
 #include "SM_Nvs.hpp"
 #include "SM_Http.hpp"
+#include"AWS_OTA.hpp"
 
 WiFiClient wifiClient;
 PubSubClient mqttClient(wifiClient);
@@ -61,7 +62,8 @@ bool MQTTClient::subscribeTopics()
   {
     mqttTopicReset,
     mqttTopicWifi,
-    mqttTopicPing  
+    mqttTopicPing,
+    mqttTopicOta 
   };
   
   for (const char* topic : topicNames) 
@@ -119,6 +121,15 @@ void MQTTClient::receiveCallback(char* topic, byte* payload, unsigned int length
       {
         SmHttp smHttp;
         smHttp.sendDeviceTelemetry(Device::macAddress);
+        break;
+      }
+      
+      case DEVICE_OTA_UPDATE:
+      {
+        AWS_OTA ota;
+        ota.setUp();
+        ota.UpdateStart();
+        break;
       }
 
     default:
@@ -172,7 +183,10 @@ mqttTopic MQTTClient::getTopic(const char* topic)
   {
     return DEVICE_PING;
   }
-  
+  else if (compareTopic(topic, mqttTopicOta)) 
+  {
+    return DEVICE_OTA_UPDATE;
+  }
   return UNKNOWN_TOPIC;
 }
 
