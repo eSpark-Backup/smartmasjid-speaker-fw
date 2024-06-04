@@ -7,6 +7,7 @@
 #include "Device.hpp"
 #include"Amplifier.hpp"
 #include <freertos/semphr.h>
+#include"AWS_OTA.hpp"
 
 WiFiClient wifiClient;
 PubSubClient mqttClient(wifiClient);
@@ -66,6 +67,7 @@ bool MQTTClient::subscribeTopics()
     mqttTopicSubscribe,
     mqttTopicUnsubscribe,
     mqttTopicWifi,
+    mqttTopicOta,
     mqttTopicPing
   };
 
@@ -137,6 +139,15 @@ void MQTTClient::receiveCallback(char* topic, byte* payload, unsigned int length
       {
         SmHttp smHttp;
         smHttp.sendDeviceTelemetry(Device::macAddress);
+        break;
+      }
+
+      case DEVICE_OTA_UPDATE:
+      {
+       AWS_OTA ota;
+       ota.setUp();
+       ota.UpdateStart();
+       break;
       }
 
       case DEVICE_STREAM:
@@ -219,7 +230,10 @@ mqttTopic MQTTClient::getTopic(const char* topic)
   {
     return DEVICE_PING;
   }
-  
+  else if (compareTopic(topic, mqttTopicOta)) 
+  {
+    return DEVICE_OTA_UPDATE;
+  }
   else if (compareAdhanTopic(topic)) 
   {
     return DEVICE_STREAM;

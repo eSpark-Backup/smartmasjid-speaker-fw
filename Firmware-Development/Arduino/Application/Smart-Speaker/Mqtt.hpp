@@ -18,6 +18,7 @@ typedef enum
   DEVICE_WIFI,
   DEVICE_STREAM,
   DEVICE_PING,
+  DEVICE_OTA_UPDATE,
   UNKNOWN_TOPIC = 0xFF,
 } mqttTopic;
 
@@ -64,6 +65,7 @@ class MQTTClient
     const char* mqttTopicUnsubscribe  = "unsubscribe";
     const char* mqttTopicWifi  = "wifi";
     const char* mqttTopicPing  = "ping";
+    const char* mqttTopicOta  = "ota"; //topic name is not confirm 
     char adhan[32];
 
   public:
