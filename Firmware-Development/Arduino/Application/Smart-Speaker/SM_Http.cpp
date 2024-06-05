@@ -53,19 +53,39 @@ HttpStatusCode SmHttp::sendDeviceTelemetry(const char* macAddress)
   return post(deviceTelemetryUrl.c_str(),telemetryJson);
 }
 
-HttpStatusCode SmHttp::post(const char* url, const char* json) 
+HttpStatusCode SmHttp::put(const char* macAddress) 
 {
-  WiFiClientSecure client;
-  client.setInsecure();
-  // Take the semaphore (lock)
-  // if (xSemaphoreTake(httpsSemaphore, portMAX_DELAY) == pdTRUE) 
-  // {
+  if (WiFi.status() != WL_CONNECTED)
+  {
+    Serial.println("Wifi not connected : Unable to send request");
+    return false;
+  }
+  
+  std::string updateOnLoadUrl = smHost;
+  updateOnLoadUrl += OtaUpdateEndpoint;
+
+  char updateOnLoadUrlJson[64];
+  SM_Json::create(updateOnLoadUrlJson, sizeof(updateOnLoadUrlJson),
+                  std::make_pair("macAddress", Device::macAddress),
+                  std::make_pair("firmwareVersion", SM_FIRMWARE_VER));
+  Serial.println(updateOnLoadUrlJson);
+  return post(updateOnLoadUrl.c_str(), updateOnLoadUrlJson, Http::RequestType::PUT);
+}
+
+HttpStatusCode SmHttp::post(const char* url, const char* json, Http::RequestType request) 
+{
+    WiFiClientSecure client;
+    client.setInsecure();
     HTTPClient https;
     https.setReuse(false);
     https.begin(client, url);
     https.addHeader("Content-Type", "application/json");
     https.addHeader("x-api-key", EXTERNAL_API_KEY);
-    HttpStatusCode status = https.POST(json);
+    HttpStatusCode status;
+    if (request == Http::RequestType::PUT)
+      status = https.PUT(json);
+    else
+      status = https.POST(json);
     const char* response = https.getString().c_str();
     https.end();
     Serial.print("WIFI RSSI : ");
@@ -82,8 +102,6 @@ HttpStatusCode SmHttp::post(const char* url, const char* json)
     }
 
     Serial.println(response);
-     // Give back the semaphore (unlock)
-    // xSemaphoreGive(httpsSemaphore);
     return status;
-   
 }
+

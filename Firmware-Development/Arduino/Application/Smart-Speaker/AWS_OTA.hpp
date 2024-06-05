@@ -39,6 +39,6 @@ class AWS_OTA
 {
   public:
    static void HttpEvent(HttpEvent_t *event);
-   void setUp();
-   void UpdateStart();
+   void setUp(const char* url);
+   bool UpdateStart();
 };
