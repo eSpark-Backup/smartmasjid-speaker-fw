@@ -16,7 +16,7 @@ void AWS_OTA::HttpEvent(HttpEvent_t *event)
   }
 }
 
-void AWS_OTA::setUp()
+void AWS_OTA::setUp(const char* url)
 {
   HttpsOTA.onHttpEvent(HttpEvent);
   Serial.println("Starting OTA");
@@ -24,18 +24,19 @@ void AWS_OTA::setUp()
   Serial.println("Please Wait it takes some time ...");
 }
 
-void AWS_OTA::UpdateStart()
+bool AWS_OTA::UpdateStart()
 {
   otastatus = HttpsOTA.status();
   if (otastatus == HTTPS_OTA_SUCCESS) 
   {
     Serial.println("Firmware written successfully. To reboot device, call API ESP.restart() or PUSH restart button on device");
-    ESP.restart();
+    return true;
   }  
   else if (otastatus == HTTPS_OTA_FAIL) 
   {
     Serial.println("Firmware Upgrade Fail");
+    return false;
   }
   delay(1000);
-  // ESP.restart();
+  return false;
 }

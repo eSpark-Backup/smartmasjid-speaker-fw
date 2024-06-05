@@ -37,7 +37,7 @@ static HttpsOTAStatus_t otastatus;
 class AWS_OTA
 {
   public:
-   static void HttpEvent(HttpEvent_t *event);
-   void setUp();
-   void UpdateStart();
+    static void HttpEvent(HttpEvent_t *event);
+    void setUp(const char* url);
+    bool UpdateStart();
 };

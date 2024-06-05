@@ -89,6 +89,20 @@ HttpStatusCode SmHttp::resetAdhan()
   return request(resetAdhanUrl.c_str(), jsonString.c_str(), Http::RequestType::PATCH);
 }
 
+HttpStatusCode SmHttp::put(const char* macAddress) 
+{  
+  std::string updateOnLoadUrl = smHost;
+  updateOnLoadUrl += OtaUpdateEndpoint;
+
+  char updateOnLoadUrlJson[64];
+  snprintf(updateOnLoadUrlJson, sizeof(updateOnLoadUrlJson), "{\"macAddress\":\"%s\",\"firmwareVersion\":\"%s\"}", Device::macAddress, SM_FIRMWARE_VER);
+  // SM_Json::create(updateOnLoadUrlJson, sizeof(updateOnLoadUrlJson), std::make_pair("macAddress", Device::macAddress), std::make_pair("firmwareVersion", SM_FIRMWARE_VER));
+  Serial.println(updateOnLoadUrlJson);
+  return request(updateOnLoadUrl.c_str(), updateOnLoadUrlJson, Http::RequestType::PUT);
+  // return -1;
+}
+
+
 HttpStatusCode SmHttp::request(const char* url, const char* json, Http::RequestType request) 
 {
   WiFiClientSecure client;
@@ -108,7 +122,10 @@ HttpStatusCode SmHttp::request(const char* url, const char* json, Http::RequestT
        break;
     case Http::RequestType::PATCH:
        status = https.PATCH(json);
-       break;   
+       break;
+    case Http::RequestType::PUT: 
+        status = https.PUT(json);
+        break;  
   }
   
   const char* response = https.getString().c_str();

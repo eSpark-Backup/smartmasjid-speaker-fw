@@ -58,7 +58,7 @@ private:
   const char* mqttTopicReset = "reset";
   const char* mqttTopicWifi = "wifi";
   const char* mqttTopicPing  = "ping";
-  const char* mqttTopicOta  = "ota"; // topic name is not confirm
+  const char* mqttTopicOta  = "update on load";
 
 
 public:

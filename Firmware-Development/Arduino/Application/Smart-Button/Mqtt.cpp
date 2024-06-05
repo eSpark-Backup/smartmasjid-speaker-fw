@@ -126,9 +126,19 @@ void MQTTClient::receiveCallback(char* topic, byte* payload, unsigned int length
       
       case DEVICE_OTA_UPDATE:
       {
+        char url[50];
+        SM_Json::parse((const char*)payload, std::make_pair("url", url));
         AWS_OTA ota;
-        ota.setUp();
-        ota.UpdateStart();
+        ota.setUp(url);
+        if(ota.UpdateStart())
+        {
+          SmHttp http;
+          if(http.put(Device::macAddress))
+          {
+            Serial.println("Device update reported successfully");
+            ESP.restart();
+          }
+        }
         break;
       }
 
