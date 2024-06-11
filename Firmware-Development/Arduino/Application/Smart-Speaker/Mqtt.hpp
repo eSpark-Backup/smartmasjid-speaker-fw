@@ -10,6 +10,7 @@
 #define MQTT_RECONNECT_DELAY 10
 void mqttTask(void* pvParameters);
 
+
 typedef enum 
 {
   DEVICE_RESET,
@@ -69,6 +70,7 @@ class MQTTClient
     char adhan[32];
 
   public:
+    bool otaUpdated = false;
     MQTTClient(IWifiProvisioning* wifiProv) : pWifiProv(wifiProv) {}
     bool setup();
     bool connectToBroker(int retries) ;

@@ -77,7 +77,7 @@ void WifiProvisioning::wifiReconnect(WiFiEvent_t event, WiFiEventInfo_t info)
 
 void WifiProvisioning::createTask()
 { 
-  xTaskCreatePinnedToCore(wifiProvisioning, "wifiProvisioning", 7000, this, 0, NULL, 1);
+  xTaskCreatePinnedToCore(wifiProvisioning, "wifiProvisioning", 4000, this, 0, NULL, 1);
 }
 
 void wifiProvisioning(void* pvParameters) 

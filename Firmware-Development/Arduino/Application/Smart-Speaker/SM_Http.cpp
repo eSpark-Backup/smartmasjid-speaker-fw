@@ -82,10 +82,18 @@ HttpStatusCode SmHttp::post(const char* url, const char* json, Http::RequestType
     https.addHeader("Content-Type", "application/json");
     https.addHeader("x-api-key", EXTERNAL_API_KEY);
     HttpStatusCode status;
-    if (request == Http::RequestType::PUT)
-      status = https.PUT(json);
-    else
-      status = https.POST(json);
+    switch(request)
+  {
+    case Http::RequestType::POST:
+       status = https.POST(json);
+       break;
+    case Http::RequestType::PATCH:
+       status = https.PATCH(json);
+       break;
+    case Http::RequestType::PUT: 
+        status = https.PUT(json);
+        break;  
+  }
     const char* response = https.getString().c_str();
     https.end();
     Serial.print("WIFI RSSI : ");
