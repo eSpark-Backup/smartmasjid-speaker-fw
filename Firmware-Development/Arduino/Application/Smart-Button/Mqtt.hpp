@@ -62,6 +62,7 @@ private:
 
 
 public:
+  bool otaUpdating = false;
   MQTTClient(IWifiProvisioning* wifiProv): pWifiProv(wifiProv) {}
   bool setup();
   bool connectToBroker();

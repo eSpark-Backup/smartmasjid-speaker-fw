@@ -1,5 +1,7 @@
 #include"AWS_OTA.hpp"
+#include "SM_Http.hpp"
 
+AWS_OTA ota;
 
 void AWS_OTA::HttpEvent(HttpEvent_t *event) 
 {
@@ -26,17 +28,55 @@ void AWS_OTA::setUp(const char* url)
 
 bool AWS_OTA::UpdateStart()
 {
-  otastatus = HttpsOTA.status();
-  if (otastatus == HTTPS_OTA_SUCCESS) 
-  {
-    Serial.println("Firmware written successfully. To reboot device, call API ESP.restart() or PUSH restart button on device");
-    return true;
-  }  
-  else if (otastatus == HTTPS_OTA_FAIL) 
-  {
-    Serial.println("Firmware Upgrade Fail");
-    return false;
-  }
-  delay(1000);
+
+    otastatus = HttpsOTA.status();
+    Serial.print("Ota Status = ");
+    Serial.println(otastatus);
+    if (otastatus == HTTPS_OTA_SUCCESS) 
+    {
+      Serial.println("Firmware written successfully. To reboot device, call API ESP.restart() or PUSH restart button on device");
+      OTA_UPDATED = true;
+      return true;
+    }  
+    else if (otastatus == HTTPS_OTA_FAIL) 
+    {
+      Serial.println("Firmware Upgrade Fail");
+      // return false;
+    }
+     else if (otastatus == HTTPS_OTA_UPDATING) 
+    {
+      Serial.println("HTTPS OTA is UPDATING");
+    }
+    else if (otastatus == HTTPS_OTA_IDLE) 
+    {
+      Serial.println("HTTPS OTA is IDLE");
+    }
+    delay(1000);
+
   return false;
+}
+
+void AWS_OTA::createTask(const char* url)
+{
+  URL= url;
+ xTaskCreatePinnedToCore (awsOtaTask, "awsOtaTask", 8000, this, 20, NULL, 1);
+}
+
+void awsOtaTask(void* pvParameters) 
+{
+  ota.setUp(ota.URL);
+  while(1)
+  {
+    ota.UpdateStart();
+    if(ota.OTA_UPDATED)
+        {
+          SmHttp http;
+          if(http.put(Device::macAddress))
+          {
+            Serial.println("Device update reported successfully");
+            ESP.restart();
+          }
+        }
+  }
+  vTaskDelete( NULL );
 }

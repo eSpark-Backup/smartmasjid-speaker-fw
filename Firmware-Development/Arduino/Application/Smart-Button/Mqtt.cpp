@@ -128,17 +128,8 @@ void MQTTClient::receiveCallback(char* topic, byte* payload, unsigned int length
       {
         char url[50];
         SM_Json::parse((const char*)payload, std::make_pair("url", url));
-        AWS_OTA ota;
-        ota.setUp(url);
-        if(ota.UpdateStart())
-        {
-          SmHttp http;
-          if(http.put(Device::macAddress))
-          {
-            Serial.println("Device update reported successfully");
-            ESP.restart();
-          }
-        }
+        ota.createTask("https://192.168.18.160:4448/firmware.bin");
+        otaUpdating = true;
         break;
       }
 
@@ -358,6 +349,8 @@ void mqttTask(void* pvParameters)
   while(1)
   {
     mqtt->loop();
+    if(mqtt->otaUpdating)
+      vTaskDelete( NULL );
   }
   vTaskDelete( NULL );
 }
