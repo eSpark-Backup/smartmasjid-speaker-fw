@@ -8,7 +8,6 @@
 
 typedef int HttpStatusCode;
 
-
 namespace Http
 {
   enum Response
@@ -22,9 +21,9 @@ namespace Http
   {
     POST,
     PATCH,
+    PUT,
   };
 }
-
 
 class SmHttp 
 {
@@ -34,6 +33,7 @@ class SmHttp
     const char* adhanStartEndpoint = "/external/adhan/start";
     const char* adhanStopEndpoint = "/external/adhan/stop";
     const char* adhanResetEndpoint = "/external/adhan/reset";
+    const char* OtaUpdateEndpoint = "/external/device/update";
     char MASJID_TEST_ID = '3';
 
   public:
@@ -43,5 +43,6 @@ class SmHttp
     HttpStatusCode sendDeviceTelemetry(const char* macAddress);
     HttpStatusCode stopAdhan(); 
     HttpStatusCode resetAdhan();
+    HttpStatusCode put(const char* macAddress);
     HttpStatusCode request(const char* url, const char* json, Http::RequestType request = Http::RequestType::POST);
 };

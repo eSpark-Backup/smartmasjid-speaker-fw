@@ -90,6 +90,7 @@ void BLE::setup(IWifiProvisioning* wifiProv)
 {
   pWifiProv = wifiProv;
 }
+
 bool BLE::initialize()
 {
   // Create the BLE Device
@@ -150,5 +151,5 @@ void BLE::stop(void)
 
 bool BLE::isStarted(void)
 {
-  return (status==BLE_STARTED);
+  return (status == BLE_STARTED);
 }

@@ -53,6 +53,7 @@ bool Device::deleteMasjidId()
   Serial.println("Masjid Id Removed");
   return true;
 }
+
 bool Device::deleteWificredentials() 
 {
   if (!Sm_Nvs::del(DEVICE_WIFI_CREDENTIALS_NAMESPACE, "ssid", "pass")) 
@@ -106,21 +107,17 @@ void Device::getDeviceMacAddress(char* bleMacAddress)
     sprintf(bleMacAddress, "%02X:%02X:%02X:%02X:%02X:%02X", (int)point[0],(int)point[1],(int)point[2],(int)point[3],(int)point[4],(int)point[5]);
 }
 
-void Device::createTask()
+void Device::memoryMonitoring() 
 {
- xTaskCreatePinnedToCore(memoryMonitoringTask, "memoryMonitoringTask", 10000, NULL, 0, NULL, 0);
-}
-
-void memoryMonitoringTask(void* pvParameters) 
-{
-  while(1)
-  {
+  unsigned long currentTime = millis();
+  static unsigned long lastExecution = 0;
+  if (currentTime - lastExecution >= DEVICE_MEMORY_INFO_PRINT_INTERVAL)
+   {
     Serial.print("Free Stack Space: ");
     Serial.println(uxTaskGetStackHighWaterMark(NULL));
     Serial.print("Free Heap Space: ");
     Serial.println(ESP.getFreeHeap());
-    delay(5000);
+    lastExecution = currentTime;
   }
-  vTaskDelete( NULL );
 }
 
