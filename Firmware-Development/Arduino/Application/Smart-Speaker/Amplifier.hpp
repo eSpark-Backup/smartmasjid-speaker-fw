@@ -1,5 +1,5 @@
 #pragma once
-#include<Arduino.h>
+#include <Arduino.h>
 #include "Audio.h"
 
 //MAX98357AETE+T Amplifier IC pin
@@ -18,7 +18,6 @@ void amplifier(void* pvParameters);
 class Amplifier
 {
   private:
-    
     // Set Speaker volume
     static uint8_t volume;  //default 0.....21
     void start(const char* url = NULL);

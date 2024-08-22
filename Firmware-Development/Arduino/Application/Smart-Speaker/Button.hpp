@@ -3,14 +3,14 @@
 #undef IRAM_ATTR
 #define IRAM_ATTR
 
-#include<Arduino.h>
+#include <Arduino.h>
 #include "Mqtt.hpp"
 
 // Button Configuration
 #define UP_BUTTON   14
 #define DOWN_BUTTON 13
 #define MUTE_BUTTON 16
-#define RESET_BUTTON 0 //button is not decideed in the board
+#define RESET_BUTTON -1 //button is not decideed in the board
 
 // Button LED Configuration
 #define UP_BUTTON_LED_1   19

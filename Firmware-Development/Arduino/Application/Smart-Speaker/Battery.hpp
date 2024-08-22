@@ -8,20 +8,20 @@
 #define  DETECTION 33
 #define  LOW_BATTERY_THRESHOLD_VOLTAGE 20  //20 percent is set
 
-typedef enum BATTERY_STATUS
+typedef enum BatteryStatus
 {
   USB_POWER_PLUGED_IN,
   USB_POWER_PLUGED_OUT,
   LOW_BATERY,
   DEFAULT_
-} BATTERY_STATUS;
+} BatteryStatus;
 
 class Battery
 {
   private:
     float getVoltage();
     bool plugInOutStatus();
-    BATTERY_STATUS Status();
+    BatteryStatus getStatus();
 
   public:
     void setUp();

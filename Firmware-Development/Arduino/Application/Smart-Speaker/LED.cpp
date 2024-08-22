@@ -1,34 +1,34 @@
-#include"LED.hpp"
+#include "LED.hpp"
 
 LED rgb;
 CRGBPalette16 LED::currentPalette;
 MODE LED::currentMode = MODE::RGB_OFF;
-ADHAN_STATUS LED::ADHAN_FLAG = ADHAN_STATUS::NO_STREAMING;
+AdhanStatus LED::ADHAN_FLAG = AdhanStatus::NO_STREAMING;
 
 void LED::setColor(CRGB color)
 {
-    currentPalette = CRGBPalette16(color, color, CRGB::Black,  CRGB::Black);
+    currentPalette = CRGBPalette16(color, color, CRGB::Black, CRGB::Black);
     FastLED.setBrightness(BRIGHTNESS);
 }
 
 void LED::setup()
 {
- FastLED.addLeds<TM1803, DATA_PIN, GRB>(leds, NUM_LEDS);
- FastLED.setBrightness(  BRIGHTNESS );
+    FastLED.addLeds<TM1803, DATA_PIN, GRB>(leds, NUM_LEDS);
+    FastLED.setBrightness(BRIGHTNESS);
 }
 
 void LED::showSolidColor(CRGB color)
 {
-  setColor(color);
-  uint8_t colorIndex =0; 
-  for (int i = 0; i < NUM_LEDS; ++i) 
+    setColor(color);
+    uint8_t colorIndex = 0;
+    for (int i = 0; i < NUM_LEDS; ++i)
     {
         leds[i] = ColorFromPalette(currentPalette, colorIndex, BRIGHTNESS, currentBlending);
         FastLED.show();
     }
 }
 
-void LED::circleBlinking(CRGB color, const char* speed)
+void LED::circleBlinking(CRGB color, const char *speed)
 {
     uint8_t brightness = 255;
     uint8_t colorIndex = 1;
@@ -36,8 +36,8 @@ void LED::circleBlinking(CRGB color, const char* speed)
     CRGBPalette16 currentPalette_Black = black;
     // currentPalette = CRGBPalette16(color, color, CRGB::Black,  CRGB::Black);
     setColor(color);
-    
-    for (int i = 0; i < NUM_LEDS; ++i) 
+
+    for (int i = 0; i < NUM_LEDS; ++i)
     {
         // Turn off all LEDs
         fill_solid(leds, NUM_LEDS, CRGB::Black);
@@ -46,69 +46,68 @@ void LED::circleBlinking(CRGB color, const char* speed)
         FastLED.show();
 
         if (speed == "FAST")
-         FastLED.delay(10000*3/ UPDATES_PER_SECOND);
+            FastLED.delay(10000 * 3 / UPDATES_PER_SECOND);
         else if (speed == "MEDIUM")
-         FastLED.delay(100000/ UPDATES_PER_SECOND);
+            FastLED.delay(100000 / UPDATES_PER_SECOND);
         else if (speed == "SLOW")
-         FastLED.delay(100000*5/ UPDATES_PER_SECOND);
+            FastLED.delay(100000 * 5 / UPDATES_PER_SECOND);
         else
         {
-          setColor(black);
-        }    
+            setColor(black);
+        }
     }
 }
 
 void LED::turnOffLeds()
 {
-  FastLED.setBrightness(0);
-  fill_solid(leds, NUM_LEDS, CRGB::Black);
-  FastLED.show();
+    FastLED.setBrightness(0);
+    fill_solid(leds, NUM_LEDS, CRGB::Black);
+    FastLED.show();
 }
 
 void LED::createTask()
 {
- xTaskCreatePinnedToCore (rgbLedTask, "rgbLedTask", 6000, this, 0, NULL, 0);
+    xTaskCreatePinnedToCore(rgbLedTask, "rgbLedTask", 6000, this, 0, NULL, 0);
 }
 
-void rgbLedTask(void* pvParameters) 
+void rgbLedTask(void *pvParameters)
 {
-  delay(3000);
-  rgb.setup();
-  rgb.orange = CHSV (HUE_ORANGE, 255, 255);
-  rgb.red = CHSV (HUE_RED, 255, 255);
-  rgb.green = CHSV (HUE_GREEN, 255, 255);
-  // rgb.turnOffLeds();
-  
-  while(1)
-  {
-   switch (LED::currentMode)
+    delay(3000);
+    rgb.setup();
+    rgb.orange = CHSV(HUE_ORANGE, 255, 255);
+    rgb.red = CHSV(HUE_RED, 255, 255);
+    rgb.green = CHSV(HUE_GREEN, 255, 255);
+    // rgb.turnOffLeds();
+
+    while (1)
     {
-    case MODE::BLE:
-        rgb.circleBlinking(rgb.orange, "MEDIUM");  //LED behavior is Orange circle blinking at medium speed
-        break;
+        switch (LED::currentMode)
+        {
+            case MODE::BLE:
+                rgb.circleBlinking(rgb.orange, "MEDIUM"); // LED behavior is Orange circle blinking at medium speed
+                break;
 
-    case MODE::WIFI_CONNECTED:
-        rgb.showSolidColor(rgb.orange);            //the board gets connected to WiFi but is sitting idle 
-        break;
+            case MODE::WIFI_CONNECTED:
+                rgb.showSolidColor(rgb.orange); // the board gets connected to WiFi but is sitting idle
+                break;
 
-    case MODE::ADHAN_STREAMING:
-        rgb.circleBlinking(rgb.green, "SLOW");     // LED behavior should be Green circle blinking slowly
-        break;
+            case MODE::ADHAN_STREAMING:
+                rgb.circleBlinking(rgb.green, "SLOW"); // LED behavior should be Green circle blinking slowly
+                break;
 
-    case MODE::BATTRY_IS_CHARGING:
-        rgb.showSolidColor(rgb.green);             //It should show Green light constantly if USB power is plugged in
-        break;
+            case MODE::BATTRY_IS_CHARGING:
+                rgb.showSolidColor(rgb.green); // It should show Green light constantly if USB power is plugged in
+                break;
 
-    case MODE::LOW_BATTERY:
-        rgb.showSolidColor(rgb.red);                //LED behavior is Red constant only when there is no USB charger plugged in
-        break;
+            case MODE::LOW_BATTERY:
+                rgb.showSolidColor(rgb.red); // LED behavior is Red constant only when there is no USB charger plugged in
+                break;
 
-    default:
-        rgb.turnOffLeds();
-        break;
+            default:
+                rgb.turnOffLeds();
+                break;
+        }
     }
-  }
-  vTaskDelete( NULL );
+
+    vTaskDelete(NULL);
 }
-
-

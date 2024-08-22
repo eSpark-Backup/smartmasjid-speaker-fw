@@ -4,7 +4,7 @@
 #include "WifiProvisioning.hpp"
 #include "Mqtt.hpp"
 #include "Device.hpp"
-#include"Amplifier.hpp"
+#include "Amplifier.hpp"
 #include "Button.hpp"
 #include "Battery.hpp"
 
@@ -15,10 +15,8 @@ MQTTClient mqtt(&wifiProv);
 Button button;
 Battery battery;
 
-
 void setup() 
 {
-
   Serial.begin(115200);
   rgb.createTask();
   battery.setUp();
@@ -55,7 +53,6 @@ void setup()
   mqtt.createTask();
   Device::timerSetup();
   button.setUp(&mqtt);
-  
 }
  
 void loop() 

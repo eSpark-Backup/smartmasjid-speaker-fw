@@ -21,7 +21,7 @@ typedef enum
 {
   TELEMETRY_NOTSENT,
   TELEMETRY_SENT,
-} telemetryStatus;
+} TelemetryStatus;
 
 class IWifiProvisioning 
 {
@@ -39,7 +39,7 @@ class WifiProvisioning : public IWifiProvisioning
      
     char gSsid[32];
     char gPass[32];
-    // telemetryStatus deviceTelemetryStatus = TELEMETRY_NOTSENT;
+    // TelemetryStatus deviceTelemetryStatus = TELEMETRY_NOTSENT;
     
   public:
     

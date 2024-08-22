@@ -12,7 +12,7 @@
 
 // BLE ble;
 IWifiProvisioning* pWifiProv = nullptr;
-bleStatus BLE::status = BLE_STOPPED;
+BleStatus BLE::status = BLE_STOPPED;
 
 BLEServer *pServer = nullptr;
 BLEService *pService = NULL;

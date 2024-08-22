@@ -58,6 +58,7 @@ void Button::volumeMuteWrapper()
   Button::stateMuteButtonLed = !Button::stateMuteButtonLed;
 }
 
+// Will not work as expected
 void Button::resetButtonTask(void *parameter)
 {
   while(1)

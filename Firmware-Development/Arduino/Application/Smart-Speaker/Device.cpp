@@ -12,9 +12,8 @@ char Device::macAddress[20] = "";
 bool Device::telemetryTrigger = false;
 hw_timer_t* Device::timer = NULL;
 
-
 void IRAM_ATTR Device::triggerTelemetryUpdate() 
-{      //Defining Inerrupt function with IRAM_ATTR for faster access
+{
   telemetryTrigger= true;
 }
 
@@ -48,7 +47,6 @@ void Device::loop()
     smHttp.sendDeviceTelemetry(Device::macAddress);
     telemetryTrigger= false;
   }
-
 }
 
 
@@ -58,7 +56,6 @@ bool Device::storeSubscription(const char* topic)
   if (!Sm_Nvs::get(DEVICE_SUBSCRIPTION_NAMESPACE,
                    std::make_pair("count", &count)))
     return false;
-
 
   if (!Sm_Nvs::put(DEVICE_SUBSCRIPTION_NAMESPACE,
                    std::make_pair(String(count, DEC).c_str(), topic)))
@@ -161,7 +158,7 @@ void Device::memoryMonitoring()
   unsigned long currentTime = millis();
   static unsigned long lastExecution = 0;
   if (currentTime - lastExecution >= DEVICE_MEMORY_INFO_PRINT_INTERVAL)
-   {
+  {
     Serial.print("1- Free Stack Space: ");
     Serial.println(uxTaskGetStackHighWaterMark(NULL));
 

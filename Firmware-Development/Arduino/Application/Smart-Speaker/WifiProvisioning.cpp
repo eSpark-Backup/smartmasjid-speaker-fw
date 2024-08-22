@@ -5,7 +5,7 @@
 #include "SM_Nvs.hpp"
 #include "LED.hpp"
 
-telemetryStatus deviceTelemetryStatus = TELEMETRY_NOTSENT;
+TelemetryStatus deviceTelemetryStatus = TELEMETRY_NOTSENT;
 
 bool WifiProvisioning::connectWifi(const char *ssid, const char *pass, int retries)
 { 
@@ -63,7 +63,7 @@ void WifiProvisioning::wifiGotIP(WiFiEvent_t event, WiFiEventInfo_t info)
 
 bool WifiProvisioning::isTelemetrySent(void)
 {
-  return (deviceTelemetryStatus==TELEMETRY_SENT);
+  return (deviceTelemetryStatus == TELEMETRY_SENT);
 }
 
 void WifiProvisioning::wifiReconnect(WiFiEvent_t event, WiFiEventInfo_t info)
@@ -105,5 +105,6 @@ void wifiProvisioning(void* pvParameters)
       BLE::initialize();
       break;
   }
+  
   vTaskDelete(NULL);
 }

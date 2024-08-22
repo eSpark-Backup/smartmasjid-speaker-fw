@@ -12,9 +12,10 @@ void Amplifier::setup()
   if(!audio->setPinout(I2S_BCLK, I2S_LRC, I2S_DOUT))
   {
     Serial.println("Amplifier is not initilized");
+    return;
   }
-  else
-    Serial.println("Amplifier is initilized");
+
+  Serial.println("Amplifier is initilized");
   audio->setVolume(volume);
   Serial.print("volume is set to ");
   Serial.println(volume);
@@ -37,7 +38,7 @@ void Amplifier::start(const char* url)
   {
     Serial.println("connected to  the host");
     xTaskCreatePinnedToCore(amplifier, "amplifier", 10000, NULL, 0, NULL, 0);
-    rgb.ADHAN_FLAG = ADHAN_STATUS::STREAMING; 
+    rgb.ADHAN_FLAG = AdhanStatus::STREAMING; 
     rgb.currentMode = MODE::ADHAN_STREAMING;
   }
 }
@@ -47,7 +48,7 @@ void Amplifier::stop()
   Serial.println("Amplifier is Stoped...");
   audio->stopSong();
 
-  rgb.ADHAN_FLAG = ADHAN_STATUS::NO_STREAMING;
+  rgb.ADHAN_FLAG = AdhanStatus::NO_STREAMING;
   // rgb.currentMode = rgb.turnOffLeds();
 }
 
@@ -101,11 +102,12 @@ void amplifier(void* pvParameters)
 {
   while (1)
   {  
-      amp.loop();
-      if (!strcmp(amp.currentAction,"STOP"))
-      {
-          break;
-      }
+    amp.loop();
+    if (!strcmp(amp.currentAction,"STOP"))
+    {
+        break;
+    }
   }
+
   vTaskDelete(NULL);
 }

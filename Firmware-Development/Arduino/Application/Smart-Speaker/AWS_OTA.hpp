@@ -32,15 +32,12 @@ static const char *server_certificate = "-----BEGIN CERTIFICATE-----\n"
 static HttpsOTAStatus_t otastatus;
 void awsOtaTask(void* pvParameters);
 
-
-
 class AWS_OTA
 { 
-   
   public:
    const char* URL;
    bool OTA_UPDATED = false;
-   static void HttpEvent(HttpEvent_t *event);
+   static void httpEventHandler(HttpEvent_t *event);
    void setUp(const char* url);
    bool UpdateStart();
    void createTask(const char* url);

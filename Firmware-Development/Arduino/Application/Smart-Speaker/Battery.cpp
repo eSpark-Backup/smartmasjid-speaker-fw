@@ -1,6 +1,6 @@
 #include "Battery.hpp"
 
-BATTERY_STATUS state;
+BatteryStatus state;
 
 void Battery::setUp()
 {
@@ -19,45 +19,45 @@ bool Battery::plugInOutStatus()
   return !digitalRead(DETECTION);
 }
 
-BATTERY_STATUS Battery::Status()
+BatteryStatus Battery::getStatus()
 {
   bool isPlugIn = plugInOutStatus();
   // float batteryTerminalVoltage = getVoltage(); // this should be used instead of the next line
   float batteryTerminalVoltageInPercent = 21; 
 
-  if (rgb.ADHAN_FLAG == ADHAN_STATUS::STREAMING)
-    return BATTERY_STATUS::DEFAULT_;
+  if (rgb.ADHAN_FLAG == AdhanStatus::STREAMING)
+    return BatteryStatus::DEFAULT_;
 
   else if(isPlugIn && batteryTerminalVoltageInPercent <= LOW_BATTERY_THRESHOLD_VOLTAGE)
-    return BATTERY_STATUS::USB_POWER_PLUGED_IN;
+    return BatteryStatus::USB_POWER_PLUGED_IN;
 
   else if(batteryTerminalVoltageInPercent <= LOW_BATTERY_THRESHOLD_VOLTAGE)
-    return BATTERY_STATUS::LOW_BATERY;
+    return BatteryStatus::LOW_BATERY;
 
   else if (!isPlugIn)
-    return BATTERY_STATUS::USB_POWER_PLUGED_OUT;
+    return BatteryStatus::USB_POWER_PLUGED_OUT;
 
   else if(isPlugIn)
-    return BATTERY_STATUS::USB_POWER_PLUGED_IN;
+    return BatteryStatus::USB_POWER_PLUGED_IN;
 
   else 
-     return BATTERY_STATUS::DEFAULT_;
+     return BatteryStatus::DEFAULT_;
 }
 
 void Battery::loop()
 {
-  state = Status();
+  state = getStatus();
   switch(state)
   {
-    case BATTERY_STATUS::USB_POWER_PLUGED_IN:
+    case BatteryStatus::USB_POWER_PLUGED_IN:
         rgb.currentMode = MODE::BATTRY_IS_CHARGING;
         break;
 
-    case BATTERY_STATUS::USB_POWER_PLUGED_OUT:
+    case BatteryStatus::USB_POWER_PLUGED_OUT:
         rgb.currentMode = MODE::WIFI_CONNECTED; 
         break;
         
-    case BATTERY_STATUS::LOW_BATERY:
+    case BatteryStatus::LOW_BATERY:
         rgb.currentMode = MODE::LOW_BATTERY; 
         break;
   }

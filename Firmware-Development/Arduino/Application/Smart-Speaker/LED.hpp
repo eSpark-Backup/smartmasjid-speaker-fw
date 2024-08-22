@@ -18,13 +18,13 @@ typedef enum MODE
   BATTRY_IS_CHARGING,//3
   LOW_BATTERY,//4
   RGB_OFF//5
-}MODE;
+} MODE;
 
-typedef enum ADHAN_STATUS 
+typedef enum AdhanStatus 
 { 
   STREAMING,
   NO_STREAMING
-}ADHAN_STATUS;
+} AdhanStatus;
 
 
 extern CRGBPalette16 myRedWhiteBluePalette;
@@ -35,7 +35,7 @@ class LED
 {
   private:
     static CRGBPalette16 currentPalette;
-    TBlendType    currentBlending;
+    TBlendType currentBlending;
 
   public:
     CRGB orange;
@@ -43,7 +43,7 @@ class LED
     CRGB red;
     CRGB leds[NUM_LEDS];
     static MODE currentMode;
-    static ADHAN_STATUS ADHAN_FLAG;
+    static AdhanStatus ADHAN_FLAG;
 
     void setup();
     void showSolidColor(CRGB color);
