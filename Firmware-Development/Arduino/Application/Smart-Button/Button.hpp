@@ -17,7 +17,6 @@ enum buttonState
 #define TO_MS(seconds) ((seconds) * 1000)
 #define ADHAN_MAX_DURATION TO_MS(5*60)
 
-
 class Button 
 {
   private:
@@ -28,12 +27,11 @@ class Button
     volatile buttonState state;
     void interruptHandler();
     
-
   public:
     Button(uint8_t pin) : pin(pin) {}
     void setup(); 
     void loop();
-    
 
 };
+
 extern SmHttp smHttp;

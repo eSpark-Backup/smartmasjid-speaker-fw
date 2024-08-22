@@ -5,86 +5,70 @@
 volatile int Button::counter = 0;
 bool Button::resetFlag = false;
 extern volatile buttonState state = UNPRESSED;
-uint32_t Button::adhanStartTime= 0;
+uint32_t Button::adhanStartTime = 0;
 TickType_t buttonPressStartTime = 0;
 
 void Button::setup()
 {
   pinMode(pin, INPUT_PULLUP);
-  attachInterrupt(pin, std::bind(&Button::interruptHandler, this), FALLING);  
+  attachInterrupt(pin, std::bind(&Button::interruptHandler, this), FALLING);
 }
 
-void Button::interruptHandler() 
+void Button::interruptHandler()
 {
- Button::counter++;
+  Button::counter++;
 }
 
 void Button::loop()
 {
-  
   if (digitalRead(SMBTN_GPIO) == LOW)
+  {
+    if (buttonPressStartTime == 0)
     {
-      if (buttonPressStartTime == 0)
-      {
-        buttonPressStartTime = xTaskGetTickCount();
-      }
-      else if ((xTaskGetTickCount() - buttonPressStartTime) >= pdMS_TO_TICKS(5000) && (xTaskGetTickCount() - buttonPressStartTime) <= pdMS_TO_TICKS(5050))
-      {
-         Serial.print(".");
-         Serial.println("\nAdhan is Reset\n\n");
-         smHttp.resetAdhan();
-         Button::resetFlag = true;
-             
-        //  break;
-      }
-      // Serial.println("\n**********************************************************\n\n");
+      buttonPressStartTime = xTaskGetTickCount();
     }
-    else if (Button::resetFlag)
+    else if ((xTaskGetTickCount() - buttonPressStartTime) >= pdMS_TO_TICKS(5000))
     {
-      
-      Button::counter = 0; 
-      Button::resetFlag = false;
-    }
-    else
-    {
-      // Serial.print("Here in .......");
-      // Serial.println(Button::counter);
+      Serial.print(".");
+      Serial.println("\nAdhan is Reset\n\n");
+      smHttp.resetAdhan();
+      Button::resetFlag = true;
+      Button::counter = 0;
       buttonPressStartTime = 0;
-      state = (buttonState)Button::counter;
-      switch(state)
-      {
-        case ADHAN_START_REQUESTED:
-          smHttp.startAdhan();
-          Button::adhanStartTime = millis();
-          Serial.print("ADHAN_START");
-          state = ADHAN_STARTED;
-          Button::counter ++;
-          break;
-
-        case ADHAN_STARTED:
-          if((millis() - Button::adhanStartTime) > ADHAN_MAX_DURATION)
-          {
-              state = ADHAN_STOP_REQUESTED;
-          }
-          break;
-
-        case ADHAN_STOP_REQUESTED:
-          smHttp.stopAdhan();
-          state = ADHAN_STOPPED;
-          Serial.print("ADHAN_STOP");
-          Button::counter = 0;
-          break;
-
-        case ADHAN_RESET:
-          
-          break;
-
-        default:
-          break;
-          } 
     }
+  }
+  else
+  {
+    buttonPressStartTime = 0;
+    state = (buttonState)Button::counter;
+    switch (state)
+    {
+      case ADHAN_START_REQUESTED:
+        smHttp.startAdhan();
+        Button::adhanStartTime = millis();
+        Serial.print("ADHAN_START");
+        state = ADHAN_STARTED;
+        Button::counter++;
+        break;
 
-    vTaskDelay(pdMS_TO_TICKS(100)); 
+      case ADHAN_STARTED:
+        if ((millis() - Button::adhanStartTime) > ADHAN_MAX_DURATION)
+        {
+          state = ADHAN_STOP_REQUESTED;
+        }
+        break;
+
+      case ADHAN_STOP_REQUESTED:
+        smHttp.stopAdhan();
+        state = ADHAN_STOPPED;
+        Serial.print("ADHAN_STOP");
+        Button::counter = 0;
+        break;
+
+      default:
+        break;
+    }
+  }
+
+  vTaskDelay(pdMS_TO_TICKS(100));
 }
-
-

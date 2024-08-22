@@ -8,7 +8,6 @@
 
 typedef int HttpStatusCode;
 
-
 namespace Http
 {
   enum Response
@@ -25,7 +24,6 @@ namespace Http
     PUT,
   };
 }
-
 
 class SmHttp 
 {

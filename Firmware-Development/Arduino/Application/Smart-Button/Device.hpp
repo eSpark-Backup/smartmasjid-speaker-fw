@@ -22,6 +22,7 @@ class Device
     // Variables
     static hw_timer_t * timer;      //H/W timer defining (Pointer to the Structure)
     static bool telemetryTrigger;
+    
   public:
     // Constructor
     Device() = delete; // Disable constructor

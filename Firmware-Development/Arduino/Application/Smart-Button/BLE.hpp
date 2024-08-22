@@ -18,7 +18,6 @@ class BLE
     static bleStatus status ;
     
   public:
-
     static void setup(IWifiProvisioning* wifiProv);
     static bool initialize();
     static void stop(void);

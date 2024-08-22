@@ -24,7 +24,7 @@ namespace MQTT
     CONNECT_UNAVAILIABLE,
     CONNECT_BAD_CREDENTIALS,
     CONNECT_UNAUTHORIZED,
-  }State;
+  } State;
 }
 
 typedef enum {
@@ -33,13 +33,12 @@ typedef enum {
   DEVICE_PING,
   DEVICE_OTA_UPDATE,
   UNKNOWN_TOPIC = 0xFF,
-} mqttTopic;
+} MqttTopic;
 
 typedef enum {
   SUBSCRIBE,
   UNSUBSCRIBE,
-  
-} subscription;
+} Subscription;
 
 class MQTTClient 
 {
@@ -73,13 +72,13 @@ public:
   void loop();
   bool subscribe(const char* topic);
   bool unsubscribe(const char* topic);
-  mqttTopic getTopic(const char* topic);
-  bool extractTopicAndControlSubscription(subscription control, const char* message);
+  MqttTopic getTopic(const char* topic);
+  bool extractTopicAndControlSubscription(Subscription control, const char* message);
   bool extractTopicAndSubscribe(const char* message);
   bool extractTopicAndUnsubscribe(const char* message);
   void getTopicPath(char* dest, const char* topicName);
   bool compareTopic(const char* topic, const char* topicName);
-  bool controlSubscription(subscription control, const char* topic);
+  bool controlSubscription(Subscription control, const char* topic);
   void mqttCallback();
   void printState();
   void createTask();

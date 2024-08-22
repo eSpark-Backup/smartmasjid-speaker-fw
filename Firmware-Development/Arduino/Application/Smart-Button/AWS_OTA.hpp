@@ -4,8 +4,6 @@
 #include "WiFi.h"
 #include "HttpsOTAUpdate.h"
 
-
-
 // static const char *url = "https://192.168.18.160:4440/firmware.bin";  //state url of your firmware image
 
 static const char *server_certificate = "-----BEGIN CERTIFICATE-----\n" 
@@ -32,17 +30,14 @@ static const char *server_certificate = "-----BEGIN CERTIFICATE-----\n"
 static HttpsOTAStatus_t otastatus;
 void awsOtaTask(void* pvParameters);
 
-
-
 class AWS_OTA
 { 
-   
   public:
    const char* URL;
    bool OTA_UPDATED = false;
    static void HttpEvent(HttpEvent_t *event);
    void setUp(const char* url);
-   bool UpdateStart();
+   bool updateStart();
    void createTask(const char* url);
 };
 

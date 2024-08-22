@@ -11,9 +11,6 @@
 
 HttpStatusCode SmHttp::startAdhan() 
 {
-  if (WiFi.status() != WL_CONNECTED)
-    return false;
-
   std::string startAdhanUrl = smHost;
   startAdhanUrl += adhanStartEndpoint;
 
@@ -24,9 +21,6 @@ HttpStatusCode SmHttp::startAdhan()
 
 HttpStatusCode SmHttp::sendDeviceTelemetry(const char* macAddress, uint8_t retryInterval, uint16_t maxRetry) 
 {
-  if (WiFi.status() != WL_CONNECTED)
-    return false;
-
   HttpStatusCode status;
   while (maxRetry--) 
   {
@@ -46,9 +40,6 @@ HttpStatusCode SmHttp::sendDeviceTelemetry(const char* macAddress, uint8_t retry
 
 HttpStatusCode SmHttp::sendDeviceTelemetry(const char* macAddress) 
 {
-  if (WiFi.status() != WL_CONNECTED)
-    return false;
-
   std::string deviceTelemetryUrl = smHost;
   deviceTelemetryUrl += telemetryEndpoint;
 
@@ -63,9 +54,6 @@ HttpStatusCode SmHttp::sendDeviceTelemetry(const char* macAddress)
 
 HttpStatusCode SmHttp::stopAdhan() 
 {
-  if (WiFi.status() != WL_CONNECTED)
-    return false;
-
   std::string stopAdhanUrl = smHost;
   stopAdhanUrl += adhanStopEndpoint;
 
@@ -99,12 +87,17 @@ HttpStatusCode SmHttp::put(const char* macAddress)
   // SM_Json::create(updateOnLoadUrlJson, sizeof(updateOnLoadUrlJson), std::make_pair("macAddress", Device::macAddress), std::make_pair("firmwareVersion", SM_FIRMWARE_VER));
   Serial.println(updateOnLoadUrlJson);
   return request(updateOnLoadUrl.c_str(), updateOnLoadUrlJson, Http::RequestType::PUT);
-  // return -1;
 }
 
 
 HttpStatusCode SmHttp::request(const char* url, const char* json, Http::RequestType request) 
 {
+  if (WiFi.status() != WL_CONNECTED)
+  {
+    Serial.println("Wifi not connected : Unable to send request");
+    return false;
+  }
+
   WiFiClientSecure client;
   client.setInsecure();
   HTTPClient https;

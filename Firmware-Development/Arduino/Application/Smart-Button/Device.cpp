@@ -53,6 +53,7 @@ bool Device::deleteMasjidId()
   Serial.println("Masjid Id Removed");
   return true;
 }
+
 bool Device::deleteWificredentials() 
 {
   if (!Sm_Nvs::del(DEVICE_WIFI_CREDENTIALS_NAMESPACE, "ssid", "pass")) 
