@@ -22,6 +22,7 @@ namespace Http
   {
     POST,
     PATCH,
+    PUT,
   };
 }
 
@@ -30,10 +31,14 @@ class SmHttp
   private:
     const char* smHost = "https://smartmasjid-api-qa.futuriklabs.com";
     const char* telemetryEndpoint = "/external/device/telemetry";
+    const char* OtaUpdateEndpoint = "/external/device/update";
 
   public:
     HttpStatusCode sendDeviceTelemetry(const char* macAddress, uint8_t retryInterval, uint16_t maxRetryDuration);
     HttpStatusCode sendDeviceTelemetry(const char* macAddress);
-    HttpStatusCode post(const char* url,const char* json);
-    
+    HttpStatusCode notifyOTAUpdate(const char* macAddress);
+    HttpStatusCode request(const char* url, const char* json, Http::RequestType request =  Http::RequestType::POST);
+
 };
+
+extern SemaphoreHandle_t httpsSemaphore;

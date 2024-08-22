@@ -3,6 +3,9 @@
 #include "BLE.hpp"
 #include "SM_Http.hpp"
 #include "SM_Nvs.hpp"
+#include "LED.hpp"
+
+TelemetryStatus deviceTelemetryStatus = TELEMETRY_NOTSENT;
 
 bool WifiProvisioning::connectWifi(const char *ssid, const char *pass, int retries)
 { 
@@ -20,8 +23,8 @@ bool WifiProvisioning::connectWifi(const char *ssid, const char *pass, int retri
 
     if (WiFi.status() == WL_CONNECTED)
     {
-      WiFi.onEvent(std::bind(&WifiProvisioning::wifiReconnect, this, std::placeholders::_1, std::placeholders::_2), WiFiEvent_t::ARDUINO_EVENT_WIFI_STA_DISCONNECTED);
-      return true;
+       WiFi.onEvent(std::bind(&WifiProvisioning::wifiGotIP, this, std::placeholders::_1, std::placeholders::_2), WiFiEvent_t::ARDUINO_EVENT_WIFI_STA_GOT_IP);  
+       return true;
     }
     else
     {
@@ -32,7 +35,7 @@ bool WifiProvisioning::connectWifi(const char *ssid, const char *pass, int retri
   return false;
 }
 
-bool WifiProvisioning::connectWifiFromNVS(void)
+bool WifiProvisioning:: connectWifiFromNVS(void)
 {
   char ssid[32];
   char pass[32];
@@ -47,22 +50,43 @@ bool WifiProvisioning::connectWifiFromNVS(void)
   }
   else if (connectWifi(ssid, pass))
   {
-    
+    rgb.currentMode = MODE::WIFI_CONNECTED; 
     return true;
   }
-  
   return false;
 }
 
 void WifiProvisioning::wifiGotIP(WiFiEvent_t event, WiFiEventInfo_t info) 
 {
-  // Print network details
+  createTask();
+}
+
+bool WifiProvisioning::isTelemetrySent(void)
+{
+  return (deviceTelemetryStatus == TELEMETRY_SENT);
+}
+
+void WifiProvisioning::wifiReconnect(WiFiEvent_t event, WiFiEventInfo_t info)
+{
+  Serial.println("Disconnected from WiFi ");
+  Serial.print("WiFi lost connection. Reason: ");
+  Serial.println(info.wifi_sta_disconnected.reason);
+  Serial.println("Trying to Reconnect");
+  WiFi.reconnect();
+}
+
+void WifiProvisioning::createTask()
+{ 
+  xTaskCreatePinnedToCore(wifiProvisioning, "wifiProvisioning", 4000, this, 0, NULL, 1);
+}
+
+void wifiProvisioning(void* pvParameters) 
+{
   Serial.print("Connected to Wi-Fi network with IP address: ");
   Serial.println(WiFi.localIP());
-
   SmHttp smHttp;
   HttpStatusCode status = smHttp.sendDeviceTelemetry(Device::macAddress, DEVICE_TELEMETRY_RETRY_INTERVAL, DEVICE_TELEMETRY_MAX_RETRIES);
-  
+
   switch(status)
   {
     case Http::Response::OK:
@@ -81,21 +105,6 @@ void WifiProvisioning::wifiGotIP(WiFiEvent_t event, WiFiEventInfo_t info)
       BLE::initialize();
       break;
   }
+  
+  vTaskDelete(NULL);
 }
-
-bool WifiProvisioning::isTelemetrySent(void)
-{
-  return (deviceTelemetryStatus==TELEMETRY_SENT);
-}
-
-void WifiProvisioning::wifiReconnect(WiFiEvent_t event, WiFiEventInfo_t info)
-{
-  Serial.println("Disconnected from WiFi ");
-  Serial.print("WiFi lost connection. Reason: ");
-  Serial.println(info.wifi_sta_disconnected.reason);
-  Serial.println("Trying to Reconnect");
-  WiFi.reconnect();
-}
-
-
- 

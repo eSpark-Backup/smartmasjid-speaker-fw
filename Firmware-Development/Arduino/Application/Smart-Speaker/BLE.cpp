@@ -9,10 +9,12 @@
 #include "SM_Json.hpp"
 #include "SM_Nvs.hpp"
 
-IWifiProvisioning* pWifiProv = NULL;
-bleStatus BLE::status = BLE_STOPPED;
 
-BLEServer *pServer = NULL;
+// BLE ble;
+IWifiProvisioning* pWifiProv = nullptr;
+BleStatus BLE::status = BLE_STOPPED;
+
+BLEServer *pServer = nullptr;
 BLEService *pService = NULL;
 BLECharacteristic *pTxCharacteristic;
 BLECharacteristic *pDeviceCharacteristic;
@@ -47,7 +49,7 @@ class ProvCharacteristicsCallbacks : public BLECharacteristicCallbacks
   void onWrite(BLECharacteristic *pCharacteristic)
   {
     std::string rxValue = pCharacteristic->getValue();
-
+    
     if (rxValue.length() > 0)
     {
       char ssid[32];
@@ -122,7 +124,7 @@ bool BLE::initialize()
   // Start advertising
   pServer->getAdvertising()->start();
   Serial.println("Waiting a client connection to notify...");
-
+  rgb.currentMode = MODE::BLE;
   status = BLE_STARTED;
   return true;
 }
@@ -131,7 +133,8 @@ void BLE::stop(void)
 {
   // Delete BLE server
   BLEDevice::deinit(true);
-  Serial.println("BLE Stopped"); 
+  Serial.println("BLE Stopped");
+  rgb.currentMode = MODE::WIFI_CONNECTED; 
   status = BLE_STOPPED;
 }
 

@@ -1,3 +1,4 @@
+
 #include <WiFi.h>
 #include "SM_Json.hpp"
 #include "SM_Nvs.hpp"
@@ -5,12 +6,14 @@
 #include "Device.hpp"
 #include "esp_bt_main.h"
 #include "esp_bt_device.h"
+// #include"Amplifier.hpp"
 
 char Device::macAddress[20] = "";
 bool Device::telemetryTrigger = false;
 hw_timer_t* Device::timer = NULL;
 
-void IRAM_ATTR Device::triggerTelemetryUpdate() {      //Defining Inerrupt function with IRAM_ATTR for faster access
+void IRAM_ATTR Device::triggerTelemetryUpdate() 
+{
   telemetryTrigger= true;
 }
 
@@ -53,7 +56,6 @@ bool Device::storeSubscription(const char* topic)
   if (!Sm_Nvs::get(DEVICE_SUBSCRIPTION_NAMESPACE,
                    std::make_pair("count", &count)))
     return false;
-
 
   if (!Sm_Nvs::put(DEVICE_SUBSCRIPTION_NAMESPACE,
                    std::make_pair(String(count, DEC).c_str(), topic)))
@@ -130,8 +132,7 @@ bool Device::checkMacAddress()
 }
 
 bool Device::storeMacAddress()
-{
-  
+{ 
   if (Sm_Nvs::put(DEVICE_FACTORY_INFO_NAMESPACE, std::make_pair("macaddress", Device::macAddress)))
   {
     Serial.print("Updated MAC address in NVS: ");
@@ -150,4 +151,30 @@ void Device::getDeviceMacAddress(char* bleMacAddress)
   const uint8_t* point = esp_bt_dev_get_address();
   if (point != NULL)
       sprintf(bleMacAddress, "%02X:%02X:%02X:%02X:%02X:%02X", (int)point[0],(int)point[1],(int)point[2],(int)point[3],(int)point[4],(int)point[5]);
+}
+
+void Device::memoryMonitoring() 
+{
+  unsigned long currentTime = millis();
+  static unsigned long lastExecution = 0;
+  if (currentTime - lastExecution >= DEVICE_MEMORY_INFO_PRINT_INTERVAL)
+  {
+    Serial.print("1- Free Stack Space: ");
+    Serial.println(uxTaskGetStackHighWaterMark(NULL));
+
+    Serial.print("2- Heap Space size : ");
+    Serial.println(ESP.getHeapSize());
+
+    Serial.print("3- Maximum allocated Heap : ");
+    Serial.println(ESP.getMaxAllocHeap());
+
+    Serial.print("4- Free Heap Space: ");
+    Serial.println(ESP.getFreeHeap());
+
+    Serial.print("5- Minimum Free Heap Space: ");
+    Serial.println(esp_get_minimum_free_heap_size());
+    Serial.print("\n");
+    
+    lastExecution = currentTime;
+  }
 }

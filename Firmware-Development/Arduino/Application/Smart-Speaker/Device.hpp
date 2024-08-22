@@ -9,6 +9,8 @@
 #define DEVICE_FACTORY_INFO_NAMESPACE "factoryInfo"
 #define DEVICE_WIFI_CREDENTIALS_NAMESPACE "credentials"
 #define DEVICE_SUBSCRIPTION_NAMESPACE "subscription"
+#define DEVICE_MEMORY_INFO_PRINT_INTERVAL 5000
+#define DELAY_INTERVAL  5000
 
 // Timer Settings
 #define TIMER_NO 0
@@ -20,13 +22,12 @@ class Device
 {
   private:
     // Variables
-    static hw_timer_t * timer;      //H/W timer defining (Pointer to the Structure)
+    static hw_timer_t* timer;      //H/W timer defining (Pointer to the Structure)
     static bool telemetryTrigger;   // static bool telemetryTrigger;
     
   public:
     // Constructor
     Device() = delete;  // Disable constructor
-
     // Variables
     static char macAddress[20];
     // Static member methods
@@ -41,6 +42,7 @@ class Device
     static void getDeviceMacAddress(char* bleMacAddress);
     static bool checkMacAddress();
     static bool storeMacAddress();
+    static void memoryMonitoring();
 
     // ISR
     static void IRAM_ATTR triggerTelemetryUpdate();

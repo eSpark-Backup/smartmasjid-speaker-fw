@@ -3,20 +3,22 @@
 #include "WifiProvisioning.hpp"
 #include "SM_Json.hpp"
 #include "SM_Nvs.hpp"
+#include "SM_Http.hpp"
 #include "Device.hpp"
 #include"Amplifier.hpp"
+#include <freertos/semphr.h>
+#include"AWS_OTA.hpp"
 
 WiFiClient wifiClient;
 PubSubClient mqttClient(wifiClient);
 
 bool MQTTClient::setup() 
 {
-
   if (connectToBroker(5))
   {
     return true; 
   }
-
+  
   return false;
 }
 
@@ -24,7 +26,7 @@ bool MQTTClient::connectToBroker(int retries)
 {
   while (retries--) 
   {
-    if (connectToBroker()&&subscribeTopics())
+    if (connectToBroker() && subscribeTopics())
     { 
       return true;
     }
@@ -64,7 +66,9 @@ bool MQTTClient::subscribeTopics()
     mqttTopicReset,
     mqttTopicSubscribe,
     mqttTopicUnsubscribe,
-    mqttTopicWifi
+    mqttTopicWifi,
+    mqttTopicOta,
+    mqttTopicPing
   };
 
   for (const char* topic : topicNames) 
@@ -112,37 +116,57 @@ void MQTTClient::receiveCallback(char* topic, byte* payload, unsigned int length
       break;
 
     case DEVICE_WIFI:
+    {
+      Serial.println("Wifi TOPIC");
+      char ssid[35];
+      char pass[35];
+      SM_Json::parse((const char*)payload, std::make_pair("ssid", ssid), std::make_pair("password", pass));
+      Device::updateWifiCredential(ssid, pass);
+      if (pWifiProv->connectWifi(ssid, pass, 10)) 
       {
-        Serial.println("Wifi TOPIC");
-        char ssid[35];
-        char pass[35];
-        SM_Json::parse((const char*)payload, std::make_pair("ssid", ssid), std::make_pair("password", pass));
-        Device::updateWifiCredential(ssid, pass);
-        if (pWifiProv->connectWifi(ssid, pass, 10)) 
-        {
-          // Setup MQTT again
-          setup();
-        } 
-        else 
-        {
-          Serial.println("Restart ESP.....");
-          ESP.restart();
-        };
-        break;
-      }
-      
-      case DEVICE_STREAM:
-      { 
-        char action[50];
-        char streamUrl[100];
-        SM_Json::parse((const char*)payload,
-                       std::make_pair("action", action), std::make_pair("streamUrl", streamUrl));
-                       
-        Amplifier amplifier;
-        amplifier.stream(action, streamUrl);
-        break;
-      }
+        setup();
+      } 
+      else 
+      {
+        Serial.println("Restart ESP.....");
+        ESP.restart();
+      };
+      break;
+    }
 
+    case DEVICE_PING:
+    {
+      SmHttp smHttp;
+      smHttp.sendDeviceTelemetry(Device::macAddress);
+      break;
+    }
+
+    case DEVICE_OTA_UPDATE:
+    {
+      char url[50];
+      SM_Json::parse((const char*)payload, std::make_pair("url", url));
+      ota.createTask("https://192.168.18.160:4448/firmware.bin");
+      otaUpdated = true;
+      break;
+    }
+
+    case DEVICE_STREAM:
+    { 
+      char action[50];
+      char streamUrl[100];
+      SM_Json::parse((const char*)payload,
+                      std::make_pair("action", action), std::make_pair("streamUrl", streamUrl));
+      
+      // if (xSemaphoreTake(ampSemaphore, portMAX_DELAY) == pdTRUE) 
+      // {
+        amp.stream("START", "https://www.islamcan.com/audio/adhan/azan2.mp3");
+        // amp.stream("START", "http://192.168.18.160:3000/azan2.mp3");
+        
+        // xSemaphoreGive(ampSemaphore);
+      // } 
+      break;
+    }
+    
     default:
       Serial.println("UNKNOWN TOPIC");
       break;
@@ -178,7 +202,7 @@ bool MQTTClient::unsubscribe(const char* topic)
   return false;
 }
 
-mqttTopic MQTTClient::getTopic(const char* topic) 
+MqttTopic MQTTClient::getTopic(const char* topic) 
 {
   if (compareTopic(topic, mqttTopicReset)) 
   {
@@ -199,7 +223,15 @@ mqttTopic MQTTClient::getTopic(const char* topic)
   {
     return DEVICE_WIFI;
   }
-  
+
+  else if (compareTopic(topic, mqttTopicPing)) 
+  {
+    return DEVICE_PING;
+  }
+  else if (compareTopic(topic, mqttTopicOta)) 
+  {
+    return DEVICE_OTA_UPDATE;
+  }
   else if (compareAdhanTopic(topic)) 
   {
     return DEVICE_STREAM;
@@ -225,7 +257,7 @@ bool MQTTClient::extractTopicAndUnsubscribe(const char* message)
   return extractTopicAndControlSubscription(UNSUBSCRIBE, message);
 }
 
-bool MQTTClient::extractTopicAndControlSubscription(subscription control, const char* message) 
+bool MQTTClient::extractTopicAndControlSubscription(Subscription control, const char* message) 
 {
   bool ret = false;
   char topic[64];
@@ -240,7 +272,7 @@ bool MQTTClient::extractTopicAndControlSubscription(subscription control, const 
   return ret;
 }
 
-bool MQTTClient::controlSubscription(subscription control, const char* topic) 
+bool MQTTClient::controlSubscription(Subscription control, const char* topic) 
 {
   bool ret = false;
   switch (control) 
@@ -456,16 +488,22 @@ void MQTTClient::printState()
 
 void MQTTClient::createTask()
 {
- xTaskCreatePinnedToCore (mqttTask, "mqttTask", 10000, this, 0, NULL, 0);
+  xTaskCreatePinnedToCore(mqttTask, "mqttTask", 7000, this, 0, NULL, 0);
 }
 
 void mqttTask(void* pvParameters) 
 {
   MQTTClient* mqtt = (MQTTClient*) pvParameters;
   mqtt->setup();
+
   while(1)
   {
     mqtt->loop();
+    if(mqtt->otaUpdated)
+    {
+      break;
+    }     
   }
+
   vTaskDelete( NULL );
 }

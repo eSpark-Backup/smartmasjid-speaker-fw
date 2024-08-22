@@ -10,13 +10,7 @@
 #include "Mqtt.hpp"
 
 HttpStatusCode SmHttp::sendDeviceTelemetry(const char* macAddress, uint8_t retryInterval, uint16_t maxRetry)
-{
-  if (WiFi.status() != WL_CONNECTED)
-  {
-    Serial.println("Wifi not connected : Unable to send request");
-    return false;
-  }
-  
+{  
   HttpStatusCode status;
   while (maxRetry--) 
   {
@@ -36,12 +30,6 @@ HttpStatusCode SmHttp::sendDeviceTelemetry(const char* macAddress, uint8_t retry
 
 HttpStatusCode SmHttp::sendDeviceTelemetry(const char* macAddress) 
 {
-  if (WiFi.status() != WL_CONNECTED)
-  {
-    Serial.println("Wifi not connected : Unable to send request");
-    return false;
-  }
-  
   std::string deviceTelemetryUrl = smHost;
   deviceTelemetryUrl += telemetryEndpoint;
 
@@ -50,13 +38,36 @@ HttpStatusCode SmHttp::sendDeviceTelemetry(const char* macAddress)
                   std::make_pair("battery", BATTERY_HEALTH),
                   std::make_pair("macAddress", Device::macAddress));
   Serial.println(telemetryJson);
-
-  return post(deviceTelemetryUrl.c_str(),telemetryJson);
+  return request(deviceTelemetryUrl.c_str(),telemetryJson);
 }
 
-HttpStatusCode SmHttp::post(const char* url, const char* json) 
+HttpStatusCode SmHttp::notifyOTAUpdate(const char* macAddress) 
 {
+  if (WiFi.status() != WL_CONNECTED)
+  {
+    Serial.println("Wifi not connected : Unable to send request");
+    return false;
+  }
   
+  std::string updateOnLoadUrl = smHost;
+  updateOnLoadUrl += OtaUpdateEndpoint;
+
+  char updateOnLoadUrlJson[64];
+  SM_Json::create(updateOnLoadUrlJson, sizeof(updateOnLoadUrlJson),
+                  std::make_pair("macAddress", Device::macAddress),
+                  std::make_pair("firmwareVersion", SM_FIRMWARE_VER));
+  Serial.println(updateOnLoadUrlJson);
+  return request(updateOnLoadUrl.c_str(), updateOnLoadUrlJson, Http::RequestType::PUT);
+}
+
+HttpStatusCode SmHttp::request(const char* url, const char* json, Http::RequestType request) 
+{
+  if (WiFi.status() != WL_CONNECTED)
+  {
+    Serial.println("Wifi not connected : Unable to send request");
+    return false;
+  }
+
   WiFiClientSecure client;
   client.setInsecure();
   HTTPClient https;
@@ -64,11 +75,26 @@ HttpStatusCode SmHttp::post(const char* url, const char* json)
   https.begin(client, url);
   https.addHeader("Content-Type", "application/json");
   https.addHeader("x-api-key", EXTERNAL_API_KEY);
-  HttpStatusCode status = https.POST(json);
+
+  HttpStatusCode status;
+  switch(request)
+  {
+    case Http::RequestType::POST:
+       status = https.POST(json);
+       break;
+    case Http::RequestType::PATCH:
+       status = https.PATCH(json);
+       break;
+    case Http::RequestType::PUT: 
+        status = https.PUT(json);
+        break;  
+  }
+
   const char* response = https.getString().c_str();
   https.end();
   Serial.print("WIFI RSSI : ");
   Serial.println(WiFi.RSSI());
+
   if (status == Http::Response::OK || status == Http::Response::CREATED) 
   {
     Serial.println("Request successful!");
@@ -78,6 +104,8 @@ HttpStatusCode SmHttp::post(const char* url, const char* json)
     Serial.print("Request failed with error code: ");
     Serial.println(status);
   }
+
   Serial.println(response);
   return status;
 }
+

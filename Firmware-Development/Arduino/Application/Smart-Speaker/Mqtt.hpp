@@ -17,14 +17,16 @@ typedef enum
   DEVICE_UNSUBSCRIBE,
   DEVICE_WIFI,
   DEVICE_STREAM,
+  DEVICE_PING,
+  DEVICE_OTA_UPDATE,
   UNKNOWN_TOPIC = 0xFF,
-} mqttTopic;
+} MqttTopic;
 
 typedef enum 
 {
-   SUBSCRIBE,
-   UNSUBSCRIBE,
-} subscription;
+  SUBSCRIBE,
+  UNSUBSCRIBE,
+} Subscription;
 
 namespace MQTT
 {
@@ -40,7 +42,7 @@ namespace MQTT
     CONNECT_UNAVAILIABLE,
     CONNECT_BAD_CREDENTIALS,
     CONNECT_UNAUTHORIZED,
-  }State;
+  } State;
 }
 
 class MQTTClient
@@ -62,10 +64,12 @@ class MQTTClient
     const char* mqttTopicSubscribe  = "subscribe";
     const char* mqttTopicUnsubscribe  = "unsubscribe";
     const char* mqttTopicWifi  = "wifi";
+    const char* mqttTopicPing  = "ping";
+    const char* mqttTopicOta  = "update on load"; 
     char adhan[32];
 
-
   public:
+    bool otaUpdated = false;
     MQTTClient(IWifiProvisioning* wifiProv) : pWifiProv(wifiProv) {}
     bool setup();
     bool connectToBroker(int retries) ;
@@ -76,14 +80,14 @@ class MQTTClient
     void loop();
     bool subscribe(const char* topic);
     bool unsubscribe(const char* topic);
-    mqttTopic getTopic(const char* topic);
-    bool extractTopicAndControlSubscription(subscription control, const char* message);
+    MqttTopic getTopic(const char* topic);
+    bool extractTopicAndControlSubscription(Subscription control, const char* message);
     bool extractTopicAndSubscribe(const char* message);
     bool extractTopicAndUnsubscribe(const char* message);
     void getTopicPath(char* dest, const char* topicName);
     bool compareAdhanTopic(const char* topic); 
     bool compareTopic(const char* topic, const char* topicName);
-    bool controlSubscription(subscription control, const char* topic);
+    bool controlSubscription(Subscription control, const char* topic);
     bool subscribeTopicsfromNVS();
     bool unsubscribeTopicsfromNVS();
     void mqttCallback();
@@ -91,3 +95,5 @@ class MQTTClient
     void createTask();
 
 };
+
+// extern SemaphoreHandle_t ampSemaphore;
