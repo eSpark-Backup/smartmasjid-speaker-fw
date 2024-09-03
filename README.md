@@ -3,6 +3,8 @@
 
 ## API Swagger Documentation
 [Swagger](http://smartmasjid-api-qa.futuriklabs.com/swagger-ui/index.html#/)
+#### Bearer Token
+eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJtdWRhc3Npci5zYWlmaUBnbWFpbC5jb20iLCJ1c2VySWQiOjIsIm1hc2ppZElkIjowLCJ1c2VyVHlwZSI6eyJpZCI6MywibmFtZSI6IlN5c3RlbSBBZG1pbiIsImNhdGVnb3J5IjoiQWRtaW4iLCJwZXJtaXNzaW9ucyI6bnVsbH0sImlhdCI6MTcyNDc5Mzk5MiwiZXhwIjoxNzQwNjA1MTkyfQ.GbKtdr789PhP3dLlLYjFeiZc-LKIcw2wC8lk0g0LKJRb4ETHm13sfRmJF0opESy5cCsRzlBVXMLLUJI7xW0lHA
 
 ## Firmware Flowchart
 [DrawIO Flowchart](https://app.diagrams.net/#G1D794t6WH5X4qnHniXaRM_4V8VDZjGsNo#%7B%22pageId%22%3A%22XOtjJPAAMMDfJb9Jv2DV%22%7D)
