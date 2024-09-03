@@ -60,6 +60,25 @@ HttpStatusCode SmHttp::notifyOTAUpdate(const char* macAddress)
   return request(updateOnLoadUrl.c_str(), updateOnLoadUrlJson, Http::RequestType::PUT);
 }
 
+HttpStatusCode SmHttp::put(const char* macAddress, char* status)
+{
+  if (WiFi.status() != WL_CONNECTED)
+  {
+    Serial.println("Wifi not connected : Unable to send request");
+    return false;
+  }
+
+  std::string updateOnLoadUrl = smHost;
+  updateOnLoadUrl += OtaEndpoint;
+
+  char updateOnLoadUrlJson[64];
+  SM_Json::create(updateOnLoadUrlJson, sizeof(updateOnLoadUrlJson),
+                  std::make_pair("macAddress", Device::macAddress),
+                  std::make_pair("status", status));
+  Serial.println(updateOnLoadUrlJson);
+  return request(updateOnLoadUrl.c_str(), updateOnLoadUrlJson, Http::RequestType::PUT);
+}
+
 HttpStatusCode SmHttp::request(const char* url, const char* json, Http::RequestType request) 
 {
   if (WiFi.status() != WL_CONNECTED)

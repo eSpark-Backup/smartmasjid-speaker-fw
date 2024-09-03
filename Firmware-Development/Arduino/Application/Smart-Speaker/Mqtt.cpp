@@ -143,10 +143,15 @@ void MQTTClient::receiveCallback(char* topic, byte* payload, unsigned int length
 
     case DEVICE_OTA_UPDATE:
     {
-      char url[50];
-      SM_Json::parse((const char*)payload, std::make_pair("url", url));
+      //char url[50];
+      // char* url = new char[strlen((const char*)payload)];
+      // SM_Json::parseDynamic((const char*)payload, std::make_pair("url", url));
+      char* url = SM_Json::parseDynamic((const char*)payload);
+      //ota.createTask(url);
       ota.createTask("https://192.168.18.160:4448/firmware.bin");
       otaUpdated = true;
+      url = nullptr;
+      delete[] url;
       break;
     }
 

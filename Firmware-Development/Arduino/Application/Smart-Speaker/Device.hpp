@@ -18,6 +18,7 @@
 #define TIMER_ONE_SECOND_COUNTS 1000000
 #define TELEMETRY_UPDATE_TIME 1 * 60 // telemetry update time in seconds
 
+
 class Device 
 {
   private:

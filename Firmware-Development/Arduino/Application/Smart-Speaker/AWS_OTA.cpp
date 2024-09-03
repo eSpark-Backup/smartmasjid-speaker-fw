@@ -1,7 +1,10 @@
 #include"AWS_OTA.hpp"
 #include "SM_Http.hpp"
+#include"crtSpiff.hpp"
 
 AWS_OTA ota;
+#define OTA_ROLL_BACK "R"
+#define OTA_SUCCESS "C"
 
 void AWS_OTA::httpEventHandler(HttpEvent_t *event) 
 {
@@ -20,6 +23,19 @@ void AWS_OTA::httpEventHandler(HttpEvent_t *event)
 
 void AWS_OTA::setUp(const char* url)
 {
+  SPIFFSHandler spiffsHandler;
+  spiffsHandler.setUp();
+  spiffsHandler.check();
+  //spiffsHandler.write(server_certificate);  // Write new content to the file
+  //url = spiffsHandler.get();
+  server_certificate = spiffsHandler.get();  // Get the content of the file as a char array
+  if (server_certificate) 
+  {
+    Serial.print("server_certificate content via get(): ");
+    Serial.println(server_certificate);
+    //delete[] server_certificate;  
+  }
+
   HttpsOTA.onHttpEvent(httpEventHandler);
   Serial.println("Starting OTA");
   HttpsOTA.begin(url, server_certificate);
@@ -57,13 +73,18 @@ bool AWS_OTA::UpdateStart()
 
 void AWS_OTA::createTask(const char* url)
 {
-  URL= url;
+  // size_t len = strlen(url) + 1;
+  // URL = new char[len];
+  // memcpy(URL, url, len);
+  URL = url;
+  Serial.println(URL);
   xTaskCreatePinnedToCore (awsOtaTask, "awsOtaTask", 8000, this, 20, NULL, 1);
 }
 
 void awsOtaTask(void* pvParameters) 
 {
   ota.setUp(ota.URL);
+  SmHttp http;
   while(1)
   {
     ota.UpdateStart();
@@ -73,9 +94,15 @@ void awsOtaTask(void* pvParameters)
           if(http.notifyOTAUpdate(Device::macAddress))
           {
             Serial.println("Device update reported successfully");
+            http.put(Device::macAddress, OTA_SUCCESS);
             ESP.restart();
           }
+          http.put(Device::macAddress, OTA_ROLL_BACK);
+          ota.OTA_UPDATED = false;
+          delete ota.URL;
+          ota.URL = nullptr;
+          Serial.print("TAsk Deleted +++++++++++\n");
+          vTaskDelete( NULL );
         }
   }
-  vTaskDelete( NULL );
 }
