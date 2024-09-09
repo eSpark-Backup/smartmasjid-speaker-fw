@@ -30,7 +30,7 @@ void SPIFFSHandler::check()
 // Method to write new content to the file
 void SPIFFSHandler::write(const char* content) 
 {
-  File file = SPIFFS.open("/test_example.txt", FILE_WRITE);
+  File file = SPIFFS.open(FILE_TITLE, FILE_WRITE);
   if (!file) 
   {
     Serial.println("Failed to open file for writing");
@@ -44,7 +44,7 @@ void SPIFFSHandler::write(const char* content)
 // Method to read and print the content of the file
 void SPIFFSHandler::print() 
 {
-  File file = SPIFFS.open("/test_example.txt", FILE_READ);
+  File file = SPIFFS.open(FILE_TITLE, FILE_READ);
   if (!file) 
   {
     Serial.println("Failed to open file for reading");

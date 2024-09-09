@@ -143,15 +143,11 @@ void MQTTClient::receiveCallback(char* topic, byte* payload, unsigned int length
 
     case DEVICE_OTA_UPDATE:
     {
-      //char url[50];
-      // char* url = new char[strlen((const char*)payload)];
-      // SM_Json::parseDynamic((const char*)payload, std::make_pair("url", url));
       char* url = SM_Json::parseDynamic((const char*)payload);
-      //ota.createTask(url);
-      ota.createTask("https://192.168.18.160:4448/firmware.bin");
-      otaUpdated = true;
-      url = nullptr;
-      delete[] url;
+      ota.createTask(url);
+      //otaUpdated = true;
+       url = nullptr;
+       delete[] url;
       break;
     }
 
@@ -164,6 +160,7 @@ void MQTTClient::receiveCallback(char* topic, byte* payload, unsigned int length
       
       // if (xSemaphoreTake(ampSemaphore, portMAX_DELAY) == pdTRUE) 
       // {
+        amp.setup();
         amp.stream("START", "https://www.islamcan.com/audio/adhan/azan2.mp3");
         // amp.stream("START", "http://192.168.18.160:3000/azan2.mp3");
         

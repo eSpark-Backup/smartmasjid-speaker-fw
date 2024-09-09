@@ -47,6 +47,7 @@ bool WifiProvisioning:: connectWifiFromNVS(void)
   if (!ret)
   {
     Serial.println("No values saved for ssid or password");
+    return false;
   }
   else if (connectWifi(ssid, pass))
   {
