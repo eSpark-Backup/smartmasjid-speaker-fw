@@ -31,14 +31,14 @@ class SmHttp
   private:
     const char* smHost = "https://smartmasjid-api-qa.futuriklabs.com";
     const char* telemetryEndpoint = "/external/device/telemetry";
-    const char* OtaUpdateEndpoint = "/external/device/update";
-    const char* OtaEndpoint = "/external/device/ota";
+    const char* otaUpdateEndpoint = "/external/device/update";
+    const char* otaEndpoint = "/external/device/ota";
 
   public:
     HttpStatusCode sendDeviceTelemetry(const char* macAddress, uint8_t retryInterval, uint16_t maxRetryDuration);
     HttpStatusCode sendDeviceTelemetry(const char* macAddress);
     HttpStatusCode notifyOTAUpdate(const char* macAddress);
-    HttpStatusCode put(const char* macAddress, char* status);
+    HttpStatusCode updateDeviceStatus(const char* macAddress, char* status);
     HttpStatusCode request(const char* url, const char* json, Http::RequestType request =  Http::RequestType::POST);
 
 };

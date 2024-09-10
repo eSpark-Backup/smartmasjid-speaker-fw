@@ -1,6 +1,6 @@
 #include"AWS_OTA.hpp"
 #include "SM_Http.hpp"
-#include"crtSpiff.hpp"
+#include"CertificateHandler.hpp"
 #include "Device.hpp"
 
 AWS_OTA ota;
@@ -22,7 +22,7 @@ void AWS_OTA::httpEventHandler(HttpEvent_t *event)
   }
 }
 
-void AWS_OTA::setUp(const char* url)
+void AWS_OTA::setup(const char* url)
 {
   HttpsOTA.onHttpEvent(httpEventHandler);
   Serial.println("Starting OTA");
@@ -30,7 +30,7 @@ void AWS_OTA::setUp(const char* url)
   Serial.println("Please Wait it takes some time ...");
 }
 
-bool AWS_OTA::UpdateStart()
+bool AWS_OTA::updateStart()
 {
   otastatus = HttpsOTA.status();
   Serial.print("Ota Status = ");
@@ -43,7 +43,7 @@ bool AWS_OTA::UpdateStart()
   else if (otastatus == HTTPS_OTA_FAIL) 
   {
     Serial.println("Firmware Upgrade Fail");
-    OTA_UPDATED = false;
+    updated = false;
     return false;
   }
     else if (otastatus == HTTPS_OTA_UPDATING) 
@@ -64,12 +64,11 @@ void AWS_OTA::createTask(const char* url)
   URL = url;
   Serial.println(URL);
   
-  SPIFFSHandler spiffsHandler;
-  spiffsHandler.setUp();
-  spiffsHandler.check();
-  //spiffsHandler.write(server_certificate);  // Write new content to the file
-  // url = spiffsHandler.get();
-  server_certificate = spiffsHandler.get();  // Get the content of the file as a char array
+  CertificateHandler certificateHandler;
+  certificateHandler.setup();
+  certificateHandler.isExist();
+  //certificateHandler.write(server_certificate);  // Write new content to the file
+  server_certificate = certificateHandler.get();  // Get the content of the file as a char array
   if (server_certificate) 
   {
     Serial.print("server_certificate content via get(): ");
@@ -82,28 +81,28 @@ void AWS_OTA::createTask(const char* url)
 
 void awsOtaTask(void* pvParameters) 
 {
-  ota.setUp(ota.URL);
+  ota.setup(ota.URL);
   SmHttp http;
 
   while (true) 
   {
     Serial.printf("Device::otaUpdating %d\n", Device::otaUpdating);
-    if (ota.UpdateStart()) 
+    if (ota.updateStart()) 
     {
       if (http.notifyOTAUpdate(Device::macAddress)) 
       {
         Serial.println("Device update reported successfully");
-        http.put(Device::macAddress, OTA_SUCCESS);
+        http.updateDeviceStatus(Device::macAddress, OTA_SUCCESS);
         ESP.restart();
       } 
       else 
       {
         Serial.println("Failed to report update to server");
-        http.put(Device::macAddress, OTA_ROLL_BACK);
+        http.updateDeviceStatus(Device::macAddress, OTA_ROLL_BACK);
       }
       break;
     }
-    if(!ota.OTA_UPDATED) 
+    if(!ota.updated) 
       break;
  
   }

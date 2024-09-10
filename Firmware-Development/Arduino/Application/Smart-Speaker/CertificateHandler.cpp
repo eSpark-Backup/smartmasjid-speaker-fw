@@ -1,8 +1,8 @@
 
-#include"crtSpiff.hpp"
+#include"CertificateHandler.hpp"
 
 // Method to initialize SPIFFS
-void SPIFFSHandler::setUp() 
+void CertificateHandler::setup() 
 {
   if (!SPIFFS.begin(true)) 
   {
@@ -15,7 +15,7 @@ void SPIFFSHandler::setUp()
 }
 
 // Method to check if the file exists
-void SPIFFSHandler::check() 
+void CertificateHandler::isExist() 
 {
   if (SPIFFS.exists(FILE_TITLE)) 
   {
@@ -28,7 +28,7 @@ void SPIFFSHandler::check()
 }
 
 // Method to write new content to the file
-void SPIFFSHandler::write(const char* content) 
+void CertificateHandler::write(const char* content) 
 {
   File file = SPIFFS.open(FILE_TITLE, FILE_WRITE);
   if (!file) 
@@ -42,7 +42,7 @@ void SPIFFSHandler::write(const char* content)
 }
 
 // Method to read and print the content of the file
-void SPIFFSHandler::print() 
+void CertificateHandler::print() 
 {
   File file = SPIFFS.open(FILE_TITLE, FILE_READ);
   if (!file) 
@@ -50,22 +50,30 @@ void SPIFFSHandler::print()
     Serial.println("Failed to open file for reading");
     return;
   }
-
-  char crt[50];  // Adjust the size as needed for your specific content
-  int i = 0;
-  while (file.available() && i < sizeof(crt) - 1) 
+   
+  size_t bufferSize = file.size();  // Get the size of the file
+  if (bufferSize == 0) 
   {
-    crt[i] = file.read();
-    i++;
+    Serial.println("File is empty");
+    file.close();
+    return;
   }
-  crt[i] = '\0';  // Null-terminate the string
+  char buffer[bufferSize + 1];   // +1 for null terminator
 
   Serial.println("File Content:");
-  Serial.println(crt);
+
+  while (file.available()) 
+  {
+    // Read up to bufferSize bytes from the file
+    size_t bytesRead = file.readBytes(buffer, bufferSize);
+    buffer[bytesRead] = '\0';
+    Serial.print(buffer);  
+  }
   file.close();
+  Serial.println();
 }
 
-char* SPIFFSHandler::get() {
+char* CertificateHandler::get() {
   File file = SPIFFS.open(FILE_TITLE, FILE_READ);
   if (!file) 
   {
@@ -80,10 +88,16 @@ char* SPIFFSHandler::get() {
     file.close();
     return nullptr;
   }
+  char* content = new char[size + 1]; 
+  if (content == nullptr) 
+  {
+    Serial.println("Failed to allocate memory");
+    file.close();
+    return nullptr;
+  }
 
-  char* content = new char[size + 1];  // Allocate memory for the content (+1 for null terminator)
   file.readBytes(content, size);
-  content[size] = '\0';  // Null-terminate the string
+  content[size] = '\0';
 
   file.close();
   return content;

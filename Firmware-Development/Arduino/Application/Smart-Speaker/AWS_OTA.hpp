@@ -12,10 +12,10 @@ class AWS_OTA
 { 
   public:
    const char* URL;
-   bool OTA_UPDATED = true;
+   bool updated = true;
    static void httpEventHandler(HttpEvent_t *event);
-   void setUp(const char* url);
-   bool UpdateStart();
+   void setup(const char* url);
+   bool updateStart();
    void createTask(const char* url);
 };
 

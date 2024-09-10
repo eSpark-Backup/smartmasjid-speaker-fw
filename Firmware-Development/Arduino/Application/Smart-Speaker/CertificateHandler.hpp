@@ -2,11 +2,11 @@
 #include "SPIFFS.h"
 
 #define FILE_TITLE "/server.crt"
-class SPIFFSHandler 
+class CertificateHandler 
 {
   public:
-    void setUp(); 
-    void check(); 
+    void setup(); 
+    void isExist(); 
     void write(const char* content); 
     void print(); 
     char* get();

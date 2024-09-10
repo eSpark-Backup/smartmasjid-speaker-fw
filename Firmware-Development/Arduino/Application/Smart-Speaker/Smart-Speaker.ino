@@ -1,6 +1,5 @@
 
 #include "BLE.hpp"
-//#include "SM_Http.hpp"
 #include "WifiProvisioning.hpp"
 #include "Mqtt.hpp"
 #include "Device.hpp"

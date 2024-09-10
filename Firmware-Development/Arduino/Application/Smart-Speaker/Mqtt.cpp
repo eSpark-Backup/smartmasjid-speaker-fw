@@ -146,8 +146,9 @@ void MQTTClient::receiveCallback(char* topic, byte* payload, unsigned int length
       char* url = SM_Json::parseDynamic((const char*)payload);
       ota.createTask(url);
       //otaUpdated = true;
-       url = nullptr;
        delete[] url;
+       url = nullptr;
+      
       break;
     }
 

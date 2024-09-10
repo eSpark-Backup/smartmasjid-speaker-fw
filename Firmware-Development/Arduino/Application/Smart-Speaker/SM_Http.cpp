@@ -50,17 +50,17 @@ HttpStatusCode SmHttp::notifyOTAUpdate(const char* macAddress)
   }
   
   std::string updateOnLoadUrl = smHost;
-  updateOnLoadUrl += OtaUpdateEndpoint;
+  updateOnLoadUrl += otaUpdateEndpoint;
 
-  char updateOnLoadUrlJson[64];
-  SM_Json::create(updateOnLoadUrlJson, sizeof(updateOnLoadUrlJson),
+  char payload[64];
+  SM_Json::create(payload, sizeof(payload),
                   std::make_pair("macAddress", Device::macAddress),
                   std::make_pair("firmwareVersion", SM_FIRMWARE_VER));
-  Serial.println(updateOnLoadUrlJson);
-  return request(updateOnLoadUrl.c_str(), updateOnLoadUrlJson, Http::RequestType::PUT);
+  Serial.println(payload);
+  return request(updateOnLoadUrl.c_str(), payload, Http::RequestType::PUT);
 }
 
-HttpStatusCode SmHttp::put(const char* macAddress, char* status)
+HttpStatusCode SmHttp::updateDeviceStatus(const char* macAddress, char* status)
 {
   if (WiFi.status() != WL_CONNECTED)
   {
@@ -69,14 +69,14 @@ HttpStatusCode SmHttp::put(const char* macAddress, char* status)
   }
 
   std::string updateOnLoadUrl = smHost;
-  updateOnLoadUrl += OtaEndpoint;
+  updateOnLoadUrl += otaEndpoint;
 
-  char updateOnLoadUrlJson[64];
-  SM_Json::create(updateOnLoadUrlJson, sizeof(updateOnLoadUrlJson),
+  char payload[64];
+  SM_Json::create(payload, sizeof(payload),
                   std::make_pair("macAddress", Device::macAddress),
                   std::make_pair("status", status));
-  Serial.println(updateOnLoadUrlJson);
-  return request(updateOnLoadUrl.c_str(), updateOnLoadUrlJson, Http::RequestType::PUT);
+  Serial.println(payload);
+  return request(updateOnLoadUrl.c_str(), payload, Http::RequestType::PUT);
 }
 
 HttpStatusCode SmHttp::request(const char* url, const char* json, Http::RequestType request) 

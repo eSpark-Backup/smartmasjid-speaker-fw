@@ -20,6 +20,7 @@ class Amplifier
   private:
     // Set Speaker volume
     static uint8_t volume;  //default 0.....21
+    static bool initilize;  //Initilization status
     void start(const char* url = NULL);
     void stop();
     

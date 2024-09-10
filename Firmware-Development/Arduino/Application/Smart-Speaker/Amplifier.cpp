@@ -5,20 +5,24 @@
 Amplifier amp; 
 Audio* audio = NULL;
 uint8_t Amplifier:: volume = 5; 
+bool Amplifier::initilize = false;
 
 void Amplifier::setup()
 {
-  audio = new Audio;
-  if(!audio->setPinout(I2S_BCLK, I2S_LRC, I2S_DOUT))
+  if(!initilize)
   {
-    Serial.println("Amplifier is not initilized");
-    return;
+    audio = new Audio;
+    if(!audio->setPinout(I2S_BCLK, I2S_LRC, I2S_DOUT))
+    {
+      Serial.println("Amplifier is not initilized");
+      return;
+    }
+    initilize = true;
+    Serial.println("Amplifier is initilized");
+    audio->setVolume(volume);
+    Serial.print("volume is set to ");
+    Serial.println(volume);
   }
-
-  Serial.println("Amplifier is initilized");
-  audio->setVolume(volume);
-  Serial.print("volume is set to ");
-  Serial.println(volume);
 }
 
 void Amplifier::loop()
