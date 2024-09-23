@@ -4,8 +4,6 @@
 #include "Device.hpp"
 
 AWS_OTA ota;
-#define OTA_ROLL_BACK "R"
-#define OTA_SUCCESS "C"
 
 void AWS_OTA::httpEventHandler(HttpEvent_t *event) 
 {
@@ -22,47 +20,52 @@ void AWS_OTA::httpEventHandler(HttpEvent_t *event)
   }
 }
 
-void AWS_OTA::setup(const char* url)
+void AWS_OTA::setup()
 {
   HttpsOTA.onHttpEvent(httpEventHandler);
   Serial.println("Starting OTA");
-  HttpsOTA.begin(URL, server_certificate);
+  HttpsOTA.begin(deviceOtaUrl, server_certificate);
   Serial.println("Please Wait it takes some time ...");
 }
 
-bool AWS_OTA::updateStart()
+bool AWS_OTA::getStatus()
 {
   otastatus = HttpsOTA.status();
   Serial.print("Ota Status = ");
   Serial.println(otastatus);
-  if (otastatus == HTTPS_OTA_SUCCESS) 
+
+  switch (otastatus)
   {
-    Serial.println("Firmware written successfully. To reboot device, call API ESP.restart() or PUSH restart button on device");
-    return true;
-  }  
-  else if (otastatus == HTTPS_OTA_FAIL) 
-  {
-    Serial.println("Firmware Upgrade Fail");
-    updated = false;
-    return false;
+    case HTTPS_OTA_SUCCESS:
+      Serial.println("Firmware written successfully. To reboot device, call API ESP.restart() or PUSH restart button on device");
+      return true;
+
+    case HTTPS_OTA_FAIL:
+      Serial.println("Firmware Upgrade Fail");
+      updated = false;
+      return false;
+
+    case HTTPS_OTA_UPDATING:
+      Serial.println("HTTPS OTA is UPDATING");
+      break;
+
+    case HTTPS_OTA_IDLE:
+      Serial.println("HTTPS OTA is IDLE");
+      break;
+
+    default:
+      Serial.println("Unknown OTA Status");
+      break;
   }
-    else if (otastatus == HTTPS_OTA_UPDATING) 
-  {
-    Serial.println("HTTPS OTA is UPDATING");
-  }
-  else if (otastatus == HTTPS_OTA_IDLE) 
-  {
-    Serial.println("HTTPS OTA is IDLE");
-  }
-  delay(1000);
 
   return false;
 }
 
-void AWS_OTA::createTask(const char* url)
+
+void AWS_OTA::startFirmwareUpdate(const char* url)
 {
-  URL = url;
-  Serial.println(URL);
+  deviceOtaUrl = url;
+  Serial.println(deviceOtaUrl);
   
   CertificateHandler certificateHandler;
   certificateHandler.setup();
@@ -73,41 +76,50 @@ void AWS_OTA::createTask(const char* url)
   {
     Serial.print("server_certificate content via get(): ");
     Serial.println(server_certificate);
+    Device::otaUpdating = true;
+    xTaskCreatePinnedToCore (awsOtaTask, "awsOtaTask", 10000, this, 20, NULL, 1);
     //delete[] server_certificate;  
   }
-  Device::otaUpdating = true;
-  xTaskCreatePinnedToCore (awsOtaTask, "awsOtaTask", 10000, this, 20, NULL, 1);
+  
 }
-
 void awsOtaTask(void* pvParameters) 
 {
-  ota.setup(ota.URL);
+  ota.setup();
   SmHttp http;
+  char otaStatus[5];  // Array to hold the OTA status
 
   while (true) 
   {
     Serial.printf("Device::otaUpdating %d\n", Device::otaUpdating);
-    if (ota.updateStart()) 
+
+    if (ota.getStatus()) 
     {
       if (http.notifyOTAUpdate(Device::macAddress)) 
       {
         Serial.println("Device update reported successfully");
-        http.updateDeviceStatus(Device::macAddress, OTA_SUCCESS);
+        strcpy(otaStatus, OTA_SUCCESS);  // Use strcpy to copy "C" into otaStatus
         ESP.restart();
       } 
       else 
       {
         Serial.println("Failed to report update to server");
-        http.updateDeviceStatus(Device::macAddress, OTA_ROLL_BACK);
+        strcpy(otaStatus, OTA_ROLL_BACK);  // Use strcpy to copy "R" into otaStatus
       }
       break;
     }
-    if(!ota.updated) 
+    
+    if (!ota.updated) 
       break;
- 
+
+    delay(1000);
   }
+
+  http.updateDeviceStatus(Device::macAddress, otaStatus);
+
   Device::otaUpdating = false;
   Serial.printf("Device::otaUpdating %d\n", Device::otaUpdating);
   Serial.println("OTA Task Deleted");
   vTaskDelete(NULL);
 }
+
+

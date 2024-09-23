@@ -4,6 +4,9 @@
 #include "WiFi.h"
 #include "HttpsOTAUpdate.h"
 
+#define OTA_ROLL_BACK "R"
+#define OTA_SUCCESS "C"
+
 static const char *server_certificate;
 static HttpsOTAStatus_t otastatus;
 void awsOtaTask(void* pvParameters);
@@ -11,12 +14,12 @@ void awsOtaTask(void* pvParameters);
 class AWS_OTA
 { 
   public:
-   const char* URL;
+   const char* deviceOtaUrl;
    bool updated = true;
    static void httpEventHandler(HttpEvent_t *event);
-   void setup(const char* url);
-   bool updateStart();
-   void createTask(const char* url);
+   void setup();
+   bool getStatus();
+   void startFirmwareUpdate(const char* url);
 };
 
 extern AWS_OTA ota;

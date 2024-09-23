@@ -144,11 +144,9 @@ void MQTTClient::receiveCallback(char* topic, byte* payload, unsigned int length
     case DEVICE_OTA_UPDATE:
     {
       char* url = SM_Json::parseDynamic((const char*)payload);
-      ota.createTask(url);
-      //otaUpdated = true;
-       delete[] url;
-       url = nullptr;
-      
+      ota.startFirmwareUpdate(url);
+      delete[] url;
+      url = nullptr;
       break;
     }
 
@@ -158,15 +156,8 @@ void MQTTClient::receiveCallback(char* topic, byte* payload, unsigned int length
       char streamUrl[100];
       SM_Json::parse((const char*)payload,
                       std::make_pair("action", action), std::make_pair("streamUrl", streamUrl));
-      
-      // if (xSemaphoreTake(ampSemaphore, portMAX_DELAY) == pdTRUE) 
-      // {
-        amp.setup();
-        amp.stream("START", "https://www.islamcan.com/audio/adhan/azan2.mp3");
-        // amp.stream("START", "http://192.168.18.160:3000/azan2.mp3");
-        
-        // xSemaphoreGive(ampSemaphore);
-      // } 
+      amp.setup();
+      amp.stream("START", "https://www.islamcan.com/audio/adhan/azan2.mp3");
       break;
     }
     
@@ -502,10 +493,7 @@ void mqttTask(void* pvParameters)
   while(1)
   {
     mqtt->loop();
-    if(mqtt->otaUpdated)
-    {
-      break;
-    }     
+    
   }
 
   vTaskDelete( NULL );
