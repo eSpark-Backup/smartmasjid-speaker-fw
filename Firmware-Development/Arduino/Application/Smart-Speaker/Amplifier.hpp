@@ -18,6 +18,7 @@ void amplifier(void* pvParameters);
 class Amplifier
 {
   private:
+    Amplifier() {}
     // Set Speaker volume
     static uint8_t volume;  //default 0.....21
     static bool initilize;  //Initilization status
@@ -25,6 +26,11 @@ class Amplifier
     void stop();
     
   public:  
+
+    Amplifier(const Amplifier&) = delete;
+    Amplifier& operator=(const Amplifier&) = delete;
+    static Amplifier* getInstance(); 
+    static Amplifier* instance;
     char currentAction[15];
     void stream(const char* action, const char* url);
     void setup();
@@ -34,4 +40,3 @@ class Amplifier
     void muteVolume();
 };
 
-extern Amplifier amp;

@@ -2,10 +2,19 @@
 #include"Amplifier.hpp"
 #include "LED.hpp"
 
-Amplifier amp; 
 Audio* audio = NULL;
 uint8_t Amplifier:: volume = 5; 
 bool Amplifier::initilize = false;
+Amplifier* Amplifier::instance = nullptr;
+
+Amplifier* Amplifier::getInstance()
+{
+  if (!instance) 
+      {
+        instance = new Amplifier();
+      }
+      return instance;
+}
 
 void Amplifier::setup()
 {
@@ -29,6 +38,7 @@ void Amplifier::loop()
 {
   audio->loop();
 }
+
 void Amplifier::start(const char* url)
 {
   Serial.println("Amplifier is Started...");
@@ -42,6 +52,7 @@ void Amplifier::start(const char* url)
   {
     Serial.println("connected to  the host");
     xTaskCreatePinnedToCore(amplifier, "amplifier", 10000, NULL, 0, NULL, 0);
+    LED& rgb = *LED::getInstance();
     rgb.ADHAN_FLAG = AdhanStatus::STREAMING; 
     rgb.currentMode = MODE::ADHAN_STREAMING;
   }
@@ -51,7 +62,7 @@ void Amplifier::stop()
 {
   Serial.println("Amplifier is Stoped...");
   audio->stopSong();
-
+  LED& rgb = *LED::getInstance();
   rgb.ADHAN_FLAG = AdhanStatus::NO_STREAMING;
   // rgb.currentMode = rgb.turnOffLeds();
 }
@@ -104,6 +115,7 @@ void Amplifier::muteVolume()
 
 void amplifier(void* pvParameters) 
 {
+  Amplifier& amp = *Amplifier::getInstance();
   while (1)
   {  
     amp.loop();

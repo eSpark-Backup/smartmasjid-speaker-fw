@@ -50,6 +50,7 @@ bool WifiProvisioning:: connectWifiFromNVS(void)
   }
   else if (connectWifi(ssid, pass))
   {
+    LED& rgb = *LED::getInstance();
     rgb.currentMode = MODE::WIFI_CONNECTED; 
     return true;
   }
@@ -105,6 +106,5 @@ void wifiProvisioning(void* pvParameters)
       BLE::initialize();
       break;
   }
-  
   vTaskDelete(NULL);
 }

@@ -3,7 +3,16 @@
 #include"CertificateHandler.hpp"
 #include "Device.hpp"
 
-AWS_OTA ota;
+AWS_OTA* AWS_OTA::instance = nullptr;
+
+AWS_OTA* AWS_OTA::getInstance()
+{
+  if (!instance) 
+      {
+        instance = new AWS_OTA();
+      }
+      return instance;
+}
 
 void AWS_OTA::httpEventHandler(HttpEvent_t *event) 
 {
@@ -70,7 +79,7 @@ void AWS_OTA::startFirmwareUpdate(const char* url)
   CertificateHandler certificateHandler;
   certificateHandler.setup();
   certificateHandler.isExist();
-  //certificateHandler.write(server_certificate);  // Write new content to the file
+  //certificateHandler.write(server_certificate);  // Write new content in  to the file
   server_certificate = certificateHandler.get();  // Get the content of the file as a char array
   if (server_certificate) 
   {
@@ -82,11 +91,13 @@ void AWS_OTA::startFirmwareUpdate(const char* url)
   }
   
 }
+
 void awsOtaTask(void* pvParameters) 
 {
+  AWS_OTA& ota = *AWS_OTA::getInstance();
   ota.setup();
   SmHttp http;
-  char otaStatus[5];  // Array to hold the OTA status
+  char otaStatus[10];  
 
   while (true) 
   {
@@ -98,28 +109,29 @@ void awsOtaTask(void* pvParameters)
       {
         Serial.println("Device update reported successfully");
         strcpy(otaStatus, OTA_SUCCESS);  // Use strcpy to copy "C" into otaStatus
-        ESP.restart();
+        break;
       } 
       else 
       {
         Serial.println("Failed to report update to server");
         strcpy(otaStatus, OTA_ROLL_BACK);  // Use strcpy to copy "R" into otaStatus
+        break;
       }
-      break;
     }
-    
     if (!ota.updated) 
       break;
-
     delay(1000);
   }
-
   http.updateDeviceStatus(Device::macAddress, otaStatus);
+
+  if (strcmp(otaStatus, OTA_SUCCESS) == 0) 
+    ESP.restart();
 
   Device::otaUpdating = false;
   Serial.printf("Device::otaUpdating %d\n", Device::otaUpdating);
   Serial.println("OTA Task Deleted");
   vTaskDelete(NULL);
 }
+
 
 

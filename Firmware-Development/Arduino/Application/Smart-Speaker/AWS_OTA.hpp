@@ -14,12 +14,18 @@ void awsOtaTask(void* pvParameters);
 class AWS_OTA
 { 
   public:
-   const char* deviceOtaUrl;
-   bool updated = true;
-   static void httpEventHandler(HttpEvent_t *event);
-   void setup();
-   bool getStatus();
-   void startFirmwareUpdate(const char* url);
+
+    AWS_OTA() {}
+    AWS_OTA(const AWS_OTA&) = delete;
+    AWS_OTA& operator=(const AWS_OTA&) = delete;
+    static AWS_OTA* getInstance(); 
+    static AWS_OTA* instance;
+    const char* deviceOtaUrl;
+    bool updated = true;
+    static void httpEventHandler(HttpEvent_t *event);
+    void setup();
+    bool getStatus();
+    void startFirmwareUpdate(const char* url);
 };
 
-extern AWS_OTA ota;
+// extern AWS_OTA ota;

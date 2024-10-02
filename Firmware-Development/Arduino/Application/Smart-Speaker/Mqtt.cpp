@@ -143,6 +143,7 @@ void MQTTClient::receiveCallback(char* topic, byte* payload, unsigned int length
 
     case DEVICE_OTA_UPDATE:
     {
+      AWS_OTA& ota = *AWS_OTA::getInstance();
       char* url = SM_Json::parseDynamic((const char*)payload);
       ota.startFirmwareUpdate(url);
       delete[] url;
@@ -156,6 +157,8 @@ void MQTTClient::receiveCallback(char* topic, byte* payload, unsigned int length
       char streamUrl[100];
       SM_Json::parse((const char*)payload,
                       std::make_pair("action", action), std::make_pair("streamUrl", streamUrl));
+      
+      Amplifier& amp = *Amplifier::getInstance();
       amp.setup();
       amp.stream("START", "https://www.islamcan.com/audio/adhan/azan2.mp3");
       break;

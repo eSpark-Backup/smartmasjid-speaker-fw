@@ -95,5 +95,3 @@ class MQTTClient
     void createTask();
 
 };
-
-// extern SemaphoreHandle_t ampSemaphore;

@@ -42,18 +42,21 @@ void Button::loop()
 
 void Button::volumeUpWrapper() 
 {
+  Amplifier& amp = *Amplifier::getInstance();
   amp.volumeUp();
   Button::stateUpButtonLed = !Button::stateUpButtonLed;
 }
 
 void Button::volumeDownWrapper() 
 {
+  Amplifier& amp = *Amplifier::getInstance();
   amp.volumeDown();
   Button::stateDownButtonLed = !Button::stateDownButtonLed;
 }
 
 void Button::volumeMuteWrapper() 
 {
+  Amplifier& amp = *Amplifier::getInstance();
   amp.muteVolume();
   Button::stateMuteButtonLed = !Button::stateMuteButtonLed;
 }

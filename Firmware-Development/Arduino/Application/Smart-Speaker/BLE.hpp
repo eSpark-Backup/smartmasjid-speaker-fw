@@ -25,4 +25,3 @@ class BLE
      static void stop(void);
      static bool isStarted(void);
 }; 
-// extern BLE ble;

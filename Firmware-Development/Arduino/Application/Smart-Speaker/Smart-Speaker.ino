@@ -13,9 +13,11 @@ MQTTClient mqtt(&wifiProv);
 Button button;
 Battery battery;
 
+
 void setup() 
 {
   Serial.begin(115200);
+  LED& rgb = *LED::getInstance();
   rgb.createTask();
   battery.setUp();
   Device::checkMacAddress();

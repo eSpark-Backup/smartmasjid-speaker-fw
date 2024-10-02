@@ -43,4 +43,3 @@ class SmHttp
 
 };
 
-extern SemaphoreHandle_t httpsSemaphore;
