@@ -1,6 +1,5 @@
 #include "BLE.hpp"
 #include "Button.hpp"
-#include "SM_Http.hpp"
 #include "WifiProvisioning.hpp"
 #include "Mqtt.hpp"
 #include "Device.hpp"
@@ -10,7 +9,6 @@ SET_LOOP_TASK_STACK_SIZE( 16*1024 ); // 16KB
 
 WifiProvisioning wifiProv;
 Button button(SMBTN_GPIO);
-SmHttp smHttp;
 MQTTClient mqtt(&wifiProv);
 
 void setup() 

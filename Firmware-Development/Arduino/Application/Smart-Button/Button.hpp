@@ -1,7 +1,5 @@
 #pragma once
 
-#include "SM_Http.hpp"
-
 #define SMBTN_GPIO 16
 
 enum buttonState
@@ -34,4 +32,4 @@ class Button
 
 };
 
-extern SmHttp smHttp;
+

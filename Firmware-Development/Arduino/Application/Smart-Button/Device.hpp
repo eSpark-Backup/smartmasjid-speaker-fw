@@ -29,7 +29,7 @@ class Device
 
     // Variables
     static char macAddress[20];
-
+    static bool otaUpdating;       //device updating flag
     // Static member methods
     static void setup(); 
     static void loop();

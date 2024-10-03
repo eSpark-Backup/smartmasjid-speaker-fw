@@ -123,10 +123,11 @@ void MQTTClient::receiveCallback(char* topic, byte* payload, unsigned int length
     
     case DEVICE_OTA_UPDATE:
     {
-      char url[50];
-      SM_Json::parse((const char*)payload, std::make_pair("url", url));
-      ota.createTask("https://192.168.18.160:4448/firmware.bin");
-      otaUpdating = true;
+      AWS_OTA& ota = *AWS_OTA::getInstance();
+      char* url = SM_Json::parseDynamic((const char*)payload);
+      ota.startFirmwareUpdate(url);
+      delete[] url;
+      url = nullptr;
       break;
     }
 

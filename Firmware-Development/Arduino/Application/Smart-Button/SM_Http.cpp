@@ -77,7 +77,7 @@ HttpStatusCode SmHttp::resetAdhan()
   return request(resetAdhanUrl.c_str(), jsonString.c_str(), Http::RequestType::PATCH);
 }
 
-HttpStatusCode SmHttp::put(const char* macAddress) 
+HttpStatusCode SmHttp::notifyOTAUpdate(const char* macAddress) 
 {  
   std::string updateOnLoadUrl = smHost;
   updateOnLoadUrl += OtaUpdateEndpoint;
@@ -89,6 +89,24 @@ HttpStatusCode SmHttp::put(const char* macAddress)
   return request(updateOnLoadUrl.c_str(), updateOnLoadUrlJson, Http::RequestType::PUT);
 }
 
+HttpStatusCode SmHttp::updateDeviceStatus(const char* macAddress, char* status)
+{
+  if (WiFi.status() != WL_CONNECTED)
+  {
+    Serial.println("Wifi not connected : Unable to send request");
+    return false;
+  }
+
+  std::string updateOnLoadUrl = smHost;
+  updateOnLoadUrl += otaEndpoint;
+
+  char payload[64];
+  SM_Json::create(payload, sizeof(payload),
+                  std::make_pair("macAddress", Device::macAddress),
+                  std::make_pair("status", status));
+  Serial.println(payload);
+  return request(updateOnLoadUrl.c_str(), payload, Http::RequestType::PUT);
+}
 
 HttpStatusCode SmHttp::request(const char* url, const char* json, Http::RequestType request) 
 {
