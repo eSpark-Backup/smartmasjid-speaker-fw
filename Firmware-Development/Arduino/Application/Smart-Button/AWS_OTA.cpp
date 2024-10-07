@@ -114,6 +114,8 @@ void awsOtaTask(void* pvParameters)
       {
         Serial.println("Failed to report update to server");
         strcpy(otaStatus, OTA_ROLL_BACK);  // Use strcpy to copy "R" into otaStatus
+        delete[] ota.deviceOtaUrl;
+        ota.deviceOtaUrl = nullptr;
         break;
       }
     }

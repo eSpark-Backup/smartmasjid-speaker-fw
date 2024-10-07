@@ -126,8 +126,6 @@ void MQTTClient::receiveCallback(char* topic, byte* payload, unsigned int length
       AWS_OTA& ota = *AWS_OTA::getInstance();
       char* url = SM_Json::parseDynamic((const char*)payload);
       ota.startFirmwareUpdate(url);
-      delete[] url;
-      url = nullptr;
       break;
     }
 
