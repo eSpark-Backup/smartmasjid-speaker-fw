@@ -26,7 +26,6 @@ typedef enum AdhanStatus
   NO_STREAMING
 } AdhanStatus;
 
-
 void rgbLedTask(void* pvParameters);
 
 class LED
@@ -56,5 +55,3 @@ class LED
     void turnOffLeds();
     void createTask();
 };
-
-

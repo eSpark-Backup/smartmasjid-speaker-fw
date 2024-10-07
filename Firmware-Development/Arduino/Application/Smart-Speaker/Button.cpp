@@ -11,7 +11,7 @@ const uint32_t Button::PRESS_DURATION;
 bool Button::resetButtonPressed = false;
 MQTTClient* Button::pMqtt = nullptr;
 
-void Button::setUp(MQTTClient* mqtt)
+void Button::setup(MQTTClient* mqtt)
 {
   pMqtt = mqtt;
 

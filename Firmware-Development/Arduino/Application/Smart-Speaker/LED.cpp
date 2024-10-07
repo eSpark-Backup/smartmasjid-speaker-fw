@@ -5,7 +5,6 @@ CRGBPalette16 LED::currentPalette;
 MODE LED::currentMode = MODE::RGB_OFF;
 AdhanStatus LED::ADHAN_FLAG = AdhanStatus::NO_STREAMING;
 
-
 LED* LED::instance = nullptr;
 
 LED* LED::getInstance()

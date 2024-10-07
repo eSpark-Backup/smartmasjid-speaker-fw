@@ -2,7 +2,7 @@
 
 BatteryStatus state;
 
-void Battery::setUp()
+void Battery::setup()
 {
   pinMode(BAT_ADC, INPUT);
   pinMode(BAT_STAT, OUTPUT);

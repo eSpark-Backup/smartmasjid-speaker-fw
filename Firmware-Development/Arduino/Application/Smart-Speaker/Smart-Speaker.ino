@@ -13,13 +13,12 @@ MQTTClient mqtt(&wifiProv);
 Button button;
 Battery battery;
 
-
 void setup() 
 {
   Serial.begin(115200);
   LED& rgb = *LED::getInstance();
   rgb.createTask();
-  battery.setUp();
+  battery.setup();
   Device::checkMacAddress();
   Serial.printf("Arduino Stack was set to %d bytes\n", getArduinoLoopTaskStackSize());
   BLE::setup(&wifiProv);
@@ -51,7 +50,7 @@ void setup()
   }
   mqtt.createTask();
   Device::timerSetup();
-  button.setUp(&mqtt);
+  button.setup(&mqtt);
 }
  
 void loop() 
