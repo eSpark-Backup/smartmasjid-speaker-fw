@@ -27,5 +27,3 @@ class AWS_OTA
     bool getStatus();
     void startFirmwareUpdate(const char* url);
 };
-
-// extern AWS_OTA ota;

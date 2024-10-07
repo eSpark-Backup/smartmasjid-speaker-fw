@@ -2,6 +2,7 @@
 #include "SPIFFS.h"
 
 #define FILE_TITLE "/server.crt"
+
 class CertificateHandler 
 {
   public:

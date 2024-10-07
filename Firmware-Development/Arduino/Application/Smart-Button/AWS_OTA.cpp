@@ -70,7 +70,6 @@ bool AWS_OTA::getStatus()
   return false;
 }
 
-
 void AWS_OTA::startFirmwareUpdate(const char* url)
 {
   deviceOtaUrl = url;
@@ -132,6 +131,3 @@ void awsOtaTask(void* pvParameters)
   Serial.println("OTA Task Deleted");
   vTaskDelete(NULL);
 }
-
-
-

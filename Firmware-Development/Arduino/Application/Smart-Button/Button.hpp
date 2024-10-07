@@ -31,5 +31,3 @@ class Button
     void loop();
 
 };
-
-

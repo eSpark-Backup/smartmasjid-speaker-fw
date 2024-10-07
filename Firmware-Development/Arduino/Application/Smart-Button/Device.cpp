@@ -122,4 +122,3 @@ void Device::memoryMonitoring()
     lastExecution = currentTime;
   }
 }
-
