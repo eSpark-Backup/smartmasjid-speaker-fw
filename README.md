@@ -18,10 +18,10 @@ eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJtdWRhc3Npci5zYWlmaUBnbWFpbC5jb20iLCJ1c2VySWQiOjI
 2. Open flash download tool and select options as shown in screenshot below and click OK to proceed  
 ![image](https://user-images.githubusercontent.com/76909080/230549261-5fc7d44c-2a23-4bef-be14-1111a2dfd05e.png)
 3. Click erase button on new window that opens, to first completely wipe off the ESP32 memory.
-3. Upload the provided [Speaker_binaries](https://github.com/eSpark-Consultants/smartmasjid-firmware/tree/ota-sequence-smart-spk-smart-btn/Binaries) or [Button_binaries](https://github.com/eSpark-Consultants/smartmasjid-firmware/tree/ota-sequence-smart-btn/Binaries) as follows:
-   * Wifi-Prov-Custom.ino.bootloader.bin -> 0x1000
-   * Wifi-Prov-Custom.ino.partitions.bin -> 0x8000
-   * Wifi-Prov-Custom.ino.bin            -> 0x10000
+3. Upload the provided [smartmasjid-firmware/Binaries(spk)](https://github.com/eSpark-Consultants/smartmasjid-firmware/tree/ota-sequence-smart-spk-smart-btn/Binaries) or [smartmasjid-firmware/Binaries(btn)](https://github.com/eSpark-Consultants/smartmasjid-firmware/tree/ota-sequence-smart-btn/Binaries) as follows:
+   * Smart-Speaker.ino.bootloader.bin  OR  Smart-Button.ino.bootloader.bin -> 0x1000
+   * Smart-Speaker.ino.partitions.bin  OR  Smart-Button.ino.partitions.bin -> 0x8000
+   * Smart-Speaker.ino.bin             OR  Smart-Button.ino.bin            -> 0x10000
 4. Press the start button to start the flashing process as shown in screenshot below:
 ![image](https://user-images.githubusercontent.com/76909080/230550704-18c84a62-4963-4835-9ee2-a672fda23945.png)
 5. Once finished, close the software and reset the ESP32 using EN button on the Dev Module.
