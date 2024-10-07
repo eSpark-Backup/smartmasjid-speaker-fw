@@ -18,7 +18,7 @@ eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJtdWRhc3Npci5zYWlmaUBnbWFpbC5jb20iLCJ1c2VySWQiOjI
 2. Open flash download tool and select options as shown in screenshot below and click OK to proceed  
 ![image](https://user-images.githubusercontent.com/76909080/230549261-5fc7d44c-2a23-4bef-be14-1111a2dfd05e.png)
 3. Click erase button on new window that opens, to first completely wipe off the ESP32 memory.
-3. Upload the provided [Speaker_binaries](https://github.com/eSpark-Consultants/smartmasjid-firmware/tree/Development/Binaries) or [Button_binaries](https://github.com/eSpark-Consultants/smartmasjid-firmware/tree/button-firmware/Binaries)as follows:
+3. Upload the provided [Speaker_binaries](https://github.com/eSpark-Consultants/smartmasjid-firmware/tree/ota-sequence-smart-spk-smart-btn/Binaries) or [Button_binaries](https://github.com/eSpark-Consultants/smartmasjid-firmware/tree/ota-sequence-smart-btn/Binaries) as follows:
    * Wifi-Prov-Custom.ino.bootloader.bin -> 0x1000
    * Wifi-Prov-Custom.ino.partitions.bin -> 0x8000
    * Wifi-Prov-Custom.ino.bin            -> 0x10000
@@ -38,4 +38,14 @@ eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJtdWRhc3Npci5zYWlmaUBnbWFpbC5jb20iLCJ1c2VySWQiOjI
 3. WiFi                    (Version : 0.0.3)
 4. WiFiClientSecure        (Version : 1.0.0)
 5. ArduinoJson             (Version : 6.21.2)
-6. ESP32-audioI2S-master   
+6. ESP32-audioI2S-master
+7. SPIFFS 
+8. FastLED  
+
+## Upload server.crt to SPIFFS
+To upload the server.crt file to SPIFFS:
+
+1. Install the ESP32 Filesystem Uploader plugin for Arduino IDE([1.8.x](https://forum.arduino.cc/t/using-the-filesystem-spiffs-with-arduino-ide-2-0-x-is-problematic/1162671)). Follow the instructions in [this guide](https://randomnerdtutorials.com/install-esp32-filesystem-uploader-arduino-ide/).
+2. Place the server.crt file inside the data/ folder of your project directory.
+3. Open Arduino IDE, then go to Tools > ESP32 Sketch Data Upload to upload the server.crt to the device's SPIFFS. 
+
