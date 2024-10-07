@@ -57,7 +57,7 @@ private:
   const char* mqttTopicReset = "reset";
   const char* mqttTopicWifi = "wifi";
   const char* mqttTopicPing  = "ping";
-  const char* mqttTopicOta  = "update on load";
+  const char* mqttTopicOta  = "update";
 
 
 public:

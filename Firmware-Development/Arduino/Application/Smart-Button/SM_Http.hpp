@@ -34,6 +34,7 @@ class SmHttp
     const char* adhanStopEndpoint = "/external/adhan/stop";
     const char* adhanResetEndpoint = "/external/adhan/reset";
     const char* OtaUpdateEndpoint = "/external/device/update";
+    const char* otaEndpoint = "/external/device/ota";
     char MASJID_TEST_ID = '3';
 
   public:
@@ -43,6 +44,7 @@ class SmHttp
     HttpStatusCode sendDeviceTelemetry(const char* macAddress);
     HttpStatusCode stopAdhan(); 
     HttpStatusCode resetAdhan();
-    HttpStatusCode put(const char* macAddress);
+    HttpStatusCode notifyOTAUpdate(const char* macAddress);
+    HttpStatusCode updateDeviceStatus(const char* macAddress, char* status);
     HttpStatusCode request(const char* url, const char* json, Http::RequestType request = Http::RequestType::POST);
 };

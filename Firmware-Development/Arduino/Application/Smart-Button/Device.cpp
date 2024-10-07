@@ -5,7 +5,8 @@
 #include "esp_bt_device.h"
 
 char Device::macAddress[20] = "";
-bool Device::telemetryTrigger = false;  
+bool Device::telemetryTrigger = false; 
+bool Device::otaUpdating = false; 
 hw_timer_t* Device::timer = NULL; 
 
 void IRAM_ATTR Device::triggerTelemetryUpdate() 
@@ -36,8 +37,9 @@ void Device::timerSetup()
 
 void Device::loop() 
 {
-  if(telemetryTrigger)
+  if(telemetryTrigger && !Device::otaUpdating)
   {
+    Serial.println("OTA is not Updating....");
     Serial.println("Updating Telemetry");
     SmHttp smHttp;
     smHttp.sendDeviceTelemetry(Device::macAddress);
@@ -120,4 +122,3 @@ void Device::memoryMonitoring()
     lastExecution = currentTime;
   }
 }
-
