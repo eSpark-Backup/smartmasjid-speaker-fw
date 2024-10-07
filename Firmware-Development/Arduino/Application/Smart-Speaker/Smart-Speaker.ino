@@ -1,10 +1,8 @@
 
 #include "BLE.hpp"
-#include "SM_Http.hpp"
 #include "WifiProvisioning.hpp"
 #include "Mqtt.hpp"
 #include "Device.hpp"
-#include "Amplifier.hpp"
 #include "Button.hpp"
 #include "Battery.hpp"
 
@@ -18,8 +16,9 @@ Battery battery;
 void setup() 
 {
   Serial.begin(115200);
+  LED& rgb = *LED::getInstance();
   rgb.createTask();
-  battery.setUp();
+  battery.setup();
   Device::checkMacAddress();
   Serial.printf("Arduino Stack was set to %d bytes\n", getArduinoLoopTaskStackSize());
   BLE::setup(&wifiProv);
@@ -49,10 +48,9 @@ void setup()
   {
     delay(100);
   }
-  amp.setup();
   mqtt.createTask();
   Device::timerSetup();
-  button.setUp(&mqtt);
+  button.setup(&mqtt);
 }
  
 void loop() 
@@ -62,6 +60,3 @@ void loop()
   battery.loop();
   Device::memoryMonitoring();
 }
-
-
-

@@ -2,7 +2,7 @@
 
 BatteryStatus state;
 
-void Battery::setUp()
+void Battery::setup()
 {
   pinMode(BAT_ADC, INPUT);
   pinMode(BAT_STAT, OUTPUT);
@@ -24,7 +24,7 @@ BatteryStatus Battery::getStatus()
   bool isPlugIn = plugInOutStatus();
   // float batteryTerminalVoltage = getVoltage(); // this should be used instead of the next line
   float batteryTerminalVoltageInPercent = 21; 
-
+  LED& rgb = *LED::getInstance();
   if (rgb.ADHAN_FLAG == AdhanStatus::STREAMING)
     return BatteryStatus::DEFAULT_;
 
@@ -46,6 +46,7 @@ BatteryStatus Battery::getStatus()
 
 void Battery::loop()
 {
+  LED& rgb = *LED::getInstance();
   state = getStatus();
   switch(state)
   {

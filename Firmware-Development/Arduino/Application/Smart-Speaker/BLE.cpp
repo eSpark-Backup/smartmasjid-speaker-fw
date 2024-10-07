@@ -20,6 +20,7 @@ BLECharacteristic *pTxCharacteristic;
 BLECharacteristic *pDeviceCharacteristic;
 BLECharacteristic *pProvCharacteristic;
 
+
 class MyServerCallbacks : public BLEServerCallbacks
 {
   void onConnect(BLEServer *pServer)
@@ -124,6 +125,7 @@ bool BLE::initialize()
   // Start advertising
   pServer->getAdvertising()->start();
   Serial.println("Waiting a client connection to notify...");
+  LED& rgb = *LED::getInstance();
   rgb.currentMode = MODE::BLE;
   status = BLE_STARTED;
   return true;
@@ -134,6 +136,7 @@ void BLE::stop(void)
   // Delete BLE server
   BLEDevice::deinit(true);
   Serial.println("BLE Stopped");
+  LED& rgb = *LED::getInstance();
   rgb.currentMode = MODE::WIFI_CONNECTED; 
   status = BLE_STOPPED;
 }

@@ -5,6 +5,17 @@ CRGBPalette16 LED::currentPalette;
 MODE LED::currentMode = MODE::RGB_OFF;
 AdhanStatus LED::ADHAN_FLAG = AdhanStatus::NO_STREAMING;
 
+LED* LED::instance = nullptr;
+
+LED* LED::getInstance()
+{
+  if (!instance) 
+      {
+        instance = new LED();
+      }
+      return instance;
+}
+
 void LED::setColor(CRGB color)
 {
     currentPalette = CRGBPalette16(color, color, CRGB::Black, CRGB::Black);

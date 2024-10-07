@@ -24,7 +24,7 @@ class Battery
     BatteryStatus getStatus();
 
   public:
-    void setUp();
+    void setup();
     void loop();    
 };
 

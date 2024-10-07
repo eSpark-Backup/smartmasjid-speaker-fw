@@ -1,7 +1,18 @@
 #include"AWS_OTA.hpp"
 #include "SM_Http.hpp"
+#include"CertificateHandler.hpp"
+#include "Device.hpp"
 
-AWS_OTA ota;
+AWS_OTA* AWS_OTA::instance = nullptr;
+
+AWS_OTA* AWS_OTA::getInstance()
+{
+  if (!instance) 
+      {
+        instance = new AWS_OTA();
+      }
+      return instance;
+}
 
 void AWS_OTA::httpEventHandler(HttpEvent_t *event) 
 {
@@ -18,64 +29,109 @@ void AWS_OTA::httpEventHandler(HttpEvent_t *event)
   }
 }
 
-void AWS_OTA::setUp(const char* url)
+void AWS_OTA::setup()
 {
   HttpsOTA.onHttpEvent(httpEventHandler);
   Serial.println("Starting OTA");
-  HttpsOTA.begin(url, server_certificate);
+  HttpsOTA.begin(deviceOtaUrl, server_certificate);
   Serial.println("Please Wait it takes some time ...");
 }
 
-bool AWS_OTA::UpdateStart()
+bool AWS_OTA::getStatus()
 {
   otastatus = HttpsOTA.status();
   Serial.print("Ota Status = ");
   Serial.println(otastatus);
-  if (otastatus == HTTPS_OTA_SUCCESS) 
+
+  switch (otastatus)
   {
-    Serial.println("Firmware written successfully. To reboot device, call API ESP.restart() or PUSH restart button on device");
-    OTA_UPDATED = true;
-    return true;
-  }  
-  else if (otastatus == HTTPS_OTA_FAIL) 
-  {
-    Serial.println("Firmware Upgrade Fail");
-    // return false;
+    case HTTPS_OTA_SUCCESS:
+      Serial.println("Firmware written successfully. To reboot device, call API ESP.restart() or PUSH restart button on device");
+      return true;
+
+    case HTTPS_OTA_FAIL:
+      Serial.println("Firmware Upgrade Fail");
+      updated = false;
+      return false;
+
+    case HTTPS_OTA_UPDATING:
+      Serial.println("HTTPS OTA is UPDATING");
+      break;
+
+    case HTTPS_OTA_IDLE:
+      Serial.println("HTTPS OTA is IDLE");
+      break;
+
+    default:
+      Serial.println("Unknown OTA Status");
+      break;
   }
-    else if (otastatus == HTTPS_OTA_UPDATING) 
-  {
-    Serial.println("HTTPS OTA is UPDATING");
-  }
-  else if (otastatus == HTTPS_OTA_IDLE) 
-  {
-    Serial.println("HTTPS OTA is IDLE");
-  }
-  delay(1000);
 
   return false;
 }
 
-void AWS_OTA::createTask(const char* url)
+
+void AWS_OTA::startFirmwareUpdate(const char* url)
 {
-  URL= url;
-  xTaskCreatePinnedToCore (awsOtaTask, "awsOtaTask", 8000, this, 20, NULL, 1);
+  deviceOtaUrl = url;
+  Serial.println(deviceOtaUrl);
+  
+  CertificateHandler certificateHandler;
+  certificateHandler.setup();
+  certificateHandler.isExist();
+  //certificateHandler.write(server_certificate);  // Write new content in  to the file
+  server_certificate = certificateHandler.get();  // Get the content of the file as a char array
+  if (server_certificate) 
+  {
+    Serial.print("server_certificate content via get(): ");
+    Serial.println(server_certificate);
+    Device::otaUpdating = true;
+    xTaskCreatePinnedToCore (awsOtaTask, "awsOtaTask", 10000, this, 20, NULL, 1);
+    //delete[] server_certificate;  
+  }
+  
 }
 
 void awsOtaTask(void* pvParameters) 
 {
-  ota.setUp(ota.URL);
-  while(1)
+  AWS_OTA& ota = *AWS_OTA::getInstance();
+  ota.setup();
+  SmHttp http;
+  char otaStatus[10];  
+
+  while (true) 
   {
-    ota.UpdateStart();
-    if(ota.OTA_UPDATED)
-        {
-          SmHttp http;
-          if(http.notifyOTAUpdate(Device::macAddress))
-          {
-            Serial.println("Device update reported successfully");
-            ESP.restart();
-          }
-        }
+    Serial.printf("Device::otaUpdating %d\n", Device::otaUpdating);
+
+    if (ota.getStatus()) 
+    {
+      if (http.notifyOTAUpdate(Device::macAddress)) 
+      {
+        Serial.println("Device update reported successfully");
+        strcpy(otaStatus, OTA_SUCCESS);  // Use strcpy to copy "C" into otaStatus
+        break;
+      } 
+      else 
+      {
+        Serial.println("Failed to report update to server");
+        strcpy(otaStatus, OTA_ROLL_BACK);  // Use strcpy to copy "R" into otaStatus
+        break;
+      }
+    }
+    if (!ota.updated) 
+      break;
+    delay(1000);
   }
-  vTaskDelete( NULL );
+  http.updateDeviceStatus(Device::macAddress, otaStatus);
+
+  if (strcmp(otaStatus, OTA_SUCCESS) == 0) 
+    ESP.restart();
+
+  Device::otaUpdating = false;
+  Serial.printf("Device::otaUpdating %d\n", Device::otaUpdating);
+  Serial.println("OTA Task Deleted");
+  vTaskDelete(NULL);
 }
+
+
+

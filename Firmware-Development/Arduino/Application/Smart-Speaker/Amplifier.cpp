@@ -2,29 +2,43 @@
 #include"Amplifier.hpp"
 #include "LED.hpp"
 
-Amplifier amp; 
 Audio* audio = NULL;
 uint8_t Amplifier:: volume = 5; 
+bool Amplifier::initilize = false;
+Amplifier* Amplifier::instance = nullptr;
+
+Amplifier* Amplifier::getInstance()
+{
+  if (!instance) 
+      {
+        instance = new Amplifier();
+      }
+      return instance;
+}
 
 void Amplifier::setup()
 {
-  audio = new Audio;
-  if(!audio->setPinout(I2S_BCLK, I2S_LRC, I2S_DOUT))
+  if(!initilize)
   {
-    Serial.println("Amplifier is not initilized");
-    return;
+    audio = new Audio;
+    if(!audio->setPinout(I2S_BCLK, I2S_LRC, I2S_DOUT))
+    {
+      Serial.println("Amplifier is not initilized");
+      return;
+    }
+    initilize = true;
+    Serial.println("Amplifier is initilized");
+    audio->setVolume(volume);
+    Serial.print("volume is set to ");
+    Serial.println(volume);
   }
-
-  Serial.println("Amplifier is initilized");
-  audio->setVolume(volume);
-  Serial.print("volume is set to ");
-  Serial.println(volume);
 }
 
 void Amplifier::loop()
 {
   audio->loop();
 }
+
 void Amplifier::start(const char* url)
 {
   Serial.println("Amplifier is Started...");
@@ -38,6 +52,7 @@ void Amplifier::start(const char* url)
   {
     Serial.println("connected to  the host");
     xTaskCreatePinnedToCore(amplifier, "amplifier", 10000, NULL, 0, NULL, 0);
+    LED& rgb = *LED::getInstance();
     rgb.ADHAN_FLAG = AdhanStatus::STREAMING; 
     rgb.currentMode = MODE::ADHAN_STREAMING;
   }
@@ -47,7 +62,7 @@ void Amplifier::stop()
 {
   Serial.println("Amplifier is Stoped...");
   audio->stopSong();
-
+  LED& rgb = *LED::getInstance();
   rgb.ADHAN_FLAG = AdhanStatus::NO_STREAMING;
   // rgb.currentMode = rgb.turnOffLeds();
 }
@@ -100,6 +115,7 @@ void Amplifier::muteVolume()
 
 void amplifier(void* pvParameters) 
 {
+  Amplifier& amp = *Amplifier::getInstance();
   while (1)
   {  
     amp.loop();

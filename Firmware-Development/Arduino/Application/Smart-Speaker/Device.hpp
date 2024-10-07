@@ -24,12 +24,13 @@ class Device
     // Variables
     static hw_timer_t* timer;      //H/W timer defining (Pointer to the Structure)
     static bool telemetryTrigger;   // static bool telemetryTrigger;
-    
+     
   public:
     // Constructor
     Device() = delete;  // Disable constructor
     // Variables
     static char macAddress[20];
+    static bool otaUpdating;       //device updating flag
     // Static member methods
     static void setup();
     static void loop();

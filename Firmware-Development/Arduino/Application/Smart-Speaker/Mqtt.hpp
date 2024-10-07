@@ -65,7 +65,7 @@ class MQTTClient
     const char* mqttTopicUnsubscribe  = "unsubscribe";
     const char* mqttTopicWifi  = "wifi";
     const char* mqttTopicPing  = "ping";
-    const char* mqttTopicOta  = "update on load"; 
+    const char* mqttTopicOta  = "update"; 
     char adhan[32];
 
   public:
@@ -95,5 +95,3 @@ class MQTTClient
     void createTask();
 
 };
-
-// extern SemaphoreHandle_t ampSemaphore;

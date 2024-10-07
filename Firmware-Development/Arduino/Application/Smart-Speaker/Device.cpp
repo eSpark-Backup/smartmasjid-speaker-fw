@@ -10,6 +10,7 @@
 
 char Device::macAddress[20] = "";
 bool Device::telemetryTrigger = false;
+bool Device::otaUpdating = false;
 hw_timer_t* Device::timer = NULL;
 
 void IRAM_ATTR Device::triggerTelemetryUpdate() 
@@ -32,16 +33,17 @@ void Device::setup()
 
 void Device::timerSetup() 
 {
-  Device::timer = timerBegin(TIMER_NO, TIMER_PRESCALAR_1MHZ, true);
-  timerAttachInterrupt(Device::timer, &Device::triggerTelemetryUpdate, true); 
-  timerAlarmWrite(Device::timer, TELEMETRY_UPDATE_TIME * TIMER_ONE_SECOND_COUNTS, true);
-  timerAlarmEnable(Device::timer);
+    Device::timer = timerBegin(TIMER_NO, TIMER_PRESCALAR_1MHZ, true);
+    timerAttachInterrupt(Device::timer, &Device::triggerTelemetryUpdate, true); 
+    timerAlarmWrite(Device::timer, TELEMETRY_UPDATE_TIME * TIMER_ONE_SECOND_COUNTS, true);
+    timerAlarmEnable(Device::timer);
 }
 
 void Device::loop() 
 {
-  if(telemetryTrigger)
+  if(telemetryTrigger && !Device::otaUpdating)
   {
+    Serial.println("OTA is not Updating....");
     Serial.println("Updating Telemetry");
     SmHttp smHttp;
     smHttp.sendDeviceTelemetry(Device::macAddress);

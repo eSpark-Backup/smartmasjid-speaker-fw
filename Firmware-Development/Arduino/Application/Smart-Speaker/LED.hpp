@@ -26,9 +26,6 @@ typedef enum AdhanStatus
   NO_STREAMING
 } AdhanStatus;
 
-
-extern CRGBPalette16 myRedWhiteBluePalette;
-
 void rgbLedTask(void* pvParameters);
 
 class LED
@@ -44,6 +41,12 @@ class LED
     CRGB leds[NUM_LEDS];
     static MODE currentMode;
     static AdhanStatus ADHAN_FLAG;
+    
+    LED() {}
+    LED(const LED&) = delete;
+    LED& operator=(const LED&) = delete;
+    static LED* getInstance(); 
+    static LED* instance;
 
     void setup();
     void showSolidColor(CRGB color);
@@ -52,5 +55,3 @@ class LED
     void turnOffLeds();
     void createTask();
 };
-
-extern LED rgb;

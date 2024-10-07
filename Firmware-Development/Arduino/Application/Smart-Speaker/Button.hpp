@@ -35,7 +35,7 @@ class Button
     static MQTTClient* pMqtt;
 
   public:
-    void setUp(MQTTClient* mqtt);
+    void setup(MQTTClient* mqtt);
     void loop();
     static void resetButtonTask(void *parameter);
     static void IRAM_ATTR resetButtonISR();

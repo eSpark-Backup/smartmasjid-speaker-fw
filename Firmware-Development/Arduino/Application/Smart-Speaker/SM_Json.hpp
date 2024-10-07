@@ -32,6 +32,31 @@ class SM_Json
       bool result = parseValues(doc, args...);
       return result;
     }
+
+    static char* parseDynamic(const char* json) 
+    {
+        // Create a temporary DynamicJsonDocument to handle parsing
+        size_t capacity = JSON_OBJECT_SIZE(10) + strlen(json) + 1; // Adjust size based on expected JSON structure
+        DynamicJsonDocument doc(capacity);
+        DeserializationError error = deserializeJson(doc, json);
+        if (error) 
+        {
+            Serial.println("Error parsing JSON");
+            return nullptr; // Return nullptr in case of error
+        }
+        const char* url = doc["url"]; //'url' is a key in the JSON object
+        if (url == nullptr) 
+        {
+            Serial.println("URL not found in JSON");
+            return nullptr;
+        }
+
+        size_t len = strlen(url) + 1;
+        char* result = new char[len];
+        memcpy(result, url, len);
+
+        return result; 
+    }
   
   private:
     template <typename T>
