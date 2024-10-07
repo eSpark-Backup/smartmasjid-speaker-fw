@@ -47,6 +47,6 @@ To upload the server.crt file to SPIFFS:
 
 1. Install the ESP32 Filesystem Uploader plugin for Arduino IDE([1.8.x](https://forum.arduino.cc/t/using-the-filesystem-spiffs-with-arduino-ide-2-0-x-is-problematic/1162671)). Follow the instructions in [this guide](https://randomnerdtutorials.com/install-esp32-filesystem-uploader-arduino-ide/).
 2. Place the server.crt file inside the data/ folder of your project directory.
-3. Select 8MB with spiffs in the partition table.
-4. Open Arduino IDE, then go to Tools > ESP32 Sketch Data Upload to upload the server.crt to the device's SPIFFS. 
+3. Open Arduino IDE, then go to partition Scheme select 8MB with spiffs.
+4. Then go to Tools > ESP32 Sketch Data Upload to upload the server.crt to the device's SPIFFS. 
 
