@@ -42,6 +42,28 @@ eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJtdWRhc3Npci5zYWlmaUBnbWFpbC5jb20iLCJ1c2VySWQiOjI
 7. SPIFFS 
 8. FastLED  
 
+## Steps to Add, Build, and Flash an ESP32 Project in Arduino IDE
+1. Open Arduino IDE.
+2. Go to File > Preferences and add the following URL under Additional Boards Manager [URLs](https://raw.githubusercontent.com/espressif/arduino-esp32/gh-pages/package_esp32_index.json):
+3. Select your ESP32 board and the correct port from Tools
+4. Click the Verify button to compile the code and check for errors.
+5. Connect your ESP32 via Voltlink or USB.
+6. Click Upload to flash the firmware onto the ESP32.
+   Note : Getting Problem to installing Esp32 then go to [this link](https://randomnerdtutorials.com/installing-the-esp32-board-in-arduino-ide-windows-instructions/)
+
+## Steps to Add a Library in Arduino IDE
+1. Go to Sketch > Include Library > Manage Libraries.
+2. Use the search bar to find the desired library.
+3. Click on the library and then click the Install button.
+4. Add the library to your sketch using Sketch > Include Library and select the installed library.
+
+## Steps to Add a ZIP Library in Arduino IDE
+1. Obtain the library ZIP file from a trusted source..
+2. Open Arduino IDEy.
+3. Go to Sketch > Include Library > Add .ZIP Library.
+4. Navigate to the downloaded ZIP file and click Open.
+5. The library will be installed, and you can include it in your sketch as needed.
+
 ## Upload server.crt to SPIFFS
 To upload the server.crt file to SPIFFS:
 
@@ -49,4 +71,7 @@ To upload the server.crt file to SPIFFS:
 2. Place the server.crt file inside the data/ folder of your project directory.
 3. Open Arduino IDE, then go to partition Scheme select 8MB with spiffs.
 4. Then go to Tools > ESP32 Sketch Data Upload to upload the server.crt to the device's SPIFFS. 
+
+## Important file
+info.json
 
