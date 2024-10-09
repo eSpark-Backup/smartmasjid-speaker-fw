@@ -72,6 +72,7 @@ To upload the server.crt file to SPIFFS:
 3. Open Arduino IDE, then go to partition Scheme select 8MB with spiffs.
 4. Then go to Tools > ESP32 Sketch Data Upload to upload the server.crt to the device's SPIFFS. 
 
-## Important file
-info.json
+## info.json files
+1. [info.json](https://github.com/eSpark-Consultants/smartmasjid-firmware/blob/button-firmware/Binaries/info.json) for Button
+2. [info.json](https://github.com/eSpark-Consultants/smartmasjid-firmware/blob/Development/Binaries/info.json) for Speaker
 
