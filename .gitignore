@@ -1,4 +1,4 @@
-*.json
+
 *.cfg
 *esp32.svd
 /Smart-Button/
