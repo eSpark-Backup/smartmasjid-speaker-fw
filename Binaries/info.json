@@ -7,15 +7,15 @@
     "binaries": [
         {
             "address": "0x1000",
-            "file": "Smart-Speaker.ino.bootloader.bin"
+            "file": "Smart-Button.ino.bootloader.bin"
         },
         {
             "address": " 0x10000",
-            "file": "Smart-Speaker.ino.bin"
+            "file": "Smart-Button.ino.bin"
         },
         {
             "address": "0x8000",
-            "file": "Smart-Speaker.ino.partitions.bin"
+            "file": "Smart-Button.ino.partitions.bin"
         }
     ]
 }
