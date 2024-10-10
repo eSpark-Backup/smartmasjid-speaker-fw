@@ -15,22 +15,20 @@ eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJtdWRhc3Npci5zYWlmaUBnbWFpbC5jb20iLCJ1c2VySWQiOjI
 
 ### Testing procedure
 1. Connect the ESP32 Dev Module to the PC via MicroUSB cable.
-2. Open flash download tool and select options as shown in screenshot below and click OK to proceed  
-![image](https://user-images.githubusercontent.com/76909080/230549261-5fc7d44c-2a23-4bef-be14-1111a2dfd05e.png)
-3. Click erase button on new window that opens, to first completely wipe off the ESP32 memory.
-3. Upload the provided [smartmasjid-firmware/Binaries(spk)](https://github.com/eSpark-Consultants/smartmasjid-firmware/tree/ota-sequence-smart-spk-smart-btn/Binaries) or [smartmasjid-firmware/Binaries(btn)](https://github.com/eSpark-Consultants/smartmasjid-firmware/tree/ota-sequence-smart-btn/Binaries) as follows:
+2. Open flash download tool and select *Chip Type* as *ESP32* and *WorkMode* as *Develop*. Press *OK* to move to the next screen. 
+3. Select correct *COM Port* and set *Baud rate* to *921600* and then click erase button on new window that opens, to first completely wipe off the ESP32 memory.
+4. Upload the provided binaries as follows:
    * Smart-Speaker.ino.bootloader.bin  OR  Smart-Button.ino.bootloader.bin -> 0x1000
    * Smart-Speaker.ino.partitions.bin  OR  Smart-Button.ino.partitions.bin -> 0x8000
    * Smart-Speaker.ino.bin             OR  Smart-Button.ino.bin            -> 0x10000
-4. Press the start button to start the flashing process as shown in screenshot below:
-![image](https://user-images.githubusercontent.com/76909080/230550704-18c84a62-4963-4835-9ee2-a672fda23945.png)
-5. Once finished, close the software and reset the ESP32 using EN button on the Dev Module.
-6. Open termite serial terminal and connect to ESP32 serial port at baud rate of 115200 in order to observe console log.
-7. The ESP32 will first go into WiFi mode and search its memory for stored WiFi credentials, failing to find any, it will fallback to BLE mode.
-8. Supply the WiFi credentials using nRF Connect app at READ characteristic in JSON format as below:  
+5. Press the start button to start the flashing process.
+6. Once finished, close the software and reset the ESP32 using EN button on the Dev Module. For the custom board, you can power cycle the board (turning power ON/OFF)
+7. Open termite serial terminal and connect to ESP32 serial port at baud rate of 115200 in order to observe console log.
+8. The ESP32 will first go into WiFi mode and search its memory for stored WiFi credentials, failing to find any, it will fallback to BLE mode.
+9. Supply the WiFi credentials using Smart Masjid App or alternatively nRF Connect app at READ characteristic in JSON format as below:  
  { "ssid":"string", "pass":"string", "masjid_id":"string" }
-9. After receiving, the device will initiate connection to internet and after successful connection, it will hit an API to tell the cloud its online and save provided credentials in EEPROM (permanent memory)
-10. For another cycle of testing, repeat all the above steps.
+10. After receiving, the device will initiate connection to internet and after successful connection, it will hit an API to tell the cloud its online and save provided credentials in EEPROM (permanent memory)
+11. For another cycle of testing, repeat all the above steps.
 
 ## ESP32 Board and Libreries
 1. Esp32 Board Version     (Version : 2.0.6)
@@ -45,8 +43,8 @@ eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJtdWRhc3Npci5zYWlmaUBnbWFpbC5jb20iLCJ1c2VySWQiOjI
 ## Steps to Add, Build, and Flash an ESP32 Project in Arduino IDE
 1. Open Arduino IDE.
 2. Go to File > Preferences and add the following URL under Additional Boards Manager [URLs](https://raw.githubusercontent.com/espressif/arduino-esp32/gh-pages/package_esp32_index.json):
-3. Select your ESP32 board and the correct port from Tools
-4. Click the Verify button to compile the code and check for errors.
+3. Select your ESP32 board and the correct port from Tools.
+4. Click the Verify button to compile the code and check for errors. Make sure all the correct libraires are already added as shared above
 5. Connect your ESP32 via Voltlink or USB.
 6. Click Upload to flash the firmware onto the ESP32.
    Note : Getting Problem to installing Esp32 then go to [this link](https://randomnerdtutorials.com/installing-the-esp32-board-in-arduino-ide-windows-instructions/)
@@ -71,8 +69,4 @@ To upload the server.crt file to SPIFFS:
 2. Place the server.crt file inside the data/ folder of your project directory.
 3. Open Arduino IDE, then go to partition Scheme select 8MB with spiffs.
 4. Then go to Tools > ESP32 Sketch Data Upload to upload the server.crt to the device's SPIFFS. 
-
-## info.json files
-1. [info.json](https://github.com/eSpark-Consultants/smartmasjid-firmware/blob/button-firmware/Binaries/info.json) for Button
-2. [info.json](https://github.com/eSpark-Consultants/smartmasjid-firmware/blob/Development/Binaries/info.json) for Speaker
 
