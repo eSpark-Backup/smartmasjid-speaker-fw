@@ -22,7 +22,7 @@ bool Battery::plugInOutStatus()
 BatteryStatus Battery::getStatus()
 {
   bool isPlugIn = plugInOutStatus();
-  // float batteryTerminalVoltage = getVoltage(); // this should be used instead of the next line
+  //float batteryTerminalVoltage = getVoltage(); // this should be used instead of the next line
   float batteryTerminalVoltageInPercent = 21; 
   LED& rgb = *LED::getInstance();
   if (rgb.ADHAN_FLAG == AdhanStatus::STREAMING)
