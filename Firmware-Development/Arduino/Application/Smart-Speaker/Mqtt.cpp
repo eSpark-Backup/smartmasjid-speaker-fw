@@ -158,7 +158,10 @@ void MQTTClient::receiveCallback(char* topic, byte* payload, unsigned int length
       
       Amplifier& amp = *Amplifier::getInstance();
       amp.setup();
-      amp.stream(action, streamUrl); //amp.stream("START", "https://www.islamcan.com/audio/adhan/azan2.mp3");
+      // amp.stream(action, streamUrl); http://s1.knixx.fm/dein_webradio_64.aac https://www.islamcan.com/audio/adhan/azan2.mp3
+      //amp.stream("START", "http://s1.knixx.fm/dein_webradio_64.aac");
+      //amp.stream("START", "https://www.islamcan.com/audio/adhan/azan2.mp3");
+      amp.stream(action, streamUrl);
       break;
     }
     

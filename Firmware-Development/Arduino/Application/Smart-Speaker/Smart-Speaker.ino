@@ -50,13 +50,12 @@ void setup()
   }
   mqtt.createTask();
   Device::timerSetup();
-  button.setup(&mqtt);
+   button.setup(&mqtt);
 }
  
 void loop() 
 {
   Device::loop();  
-  button.loop(); 
   battery.loop();
   Device::memoryMonitoring();
 }

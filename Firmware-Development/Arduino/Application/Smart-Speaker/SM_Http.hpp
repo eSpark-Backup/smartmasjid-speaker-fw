@@ -1,7 +1,6 @@
 #pragma once
 
-#include <WiFiClientSecure.h>
-#include "Mqtt.hpp"
+
 #define HTTP_STATUS_OK 200
 #define HTTP_STATUS_CREATED 201
 #define EXTERNAL_API_KEY "b8z6X5fzbjNDGHz15XtPVzEkO3h5mCT7q4Ei8AupX9DD12PxL94rhnZHarHc8O2H"

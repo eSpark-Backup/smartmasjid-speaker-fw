@@ -176,6 +176,14 @@ void Device::memoryMonitoring()
     Serial.print("5- Minimum Free Heap Space: ");
     Serial.println(esp_get_minimum_free_heap_size());
     Serial.print("\n");
+
+    Serial.print("Total PSRAM: ");
+    Serial.print(ESP.getPsramSize() / 1024);
+    Serial.println(" KB");
+    
+    Serial.print("Free PSRAM: ");
+    Serial.print(ESP.getFreePsram() / 1024);
+    Serial.println(" KB");
     
     lastExecution = currentTime;
   }

@@ -3,7 +3,7 @@
 #include "LED.hpp"
 
 Audio* audio = NULL;
-uint8_t Amplifier:: volume = 5; 
+uint8_t Amplifier:: volume = 14; 
 bool Amplifier::initilize = false;
 Amplifier* Amplifier::instance = nullptr;
 
@@ -51,7 +51,7 @@ void Amplifier::start(const char* url)
   else
   {
     Serial.println("connected to  the host");
-    xTaskCreatePinnedToCore(amplifier, "amplifier", 10000, NULL, 0, NULL, 0);
+    xTaskCreatePinnedToCore(amplifier, "amplifier", 12000, NULL, 0, NULL, 0);
     LED& rgb = *LED::getInstance();
     rgb.ADHAN_FLAG = AdhanStatus::STREAMING; 
     rgb.currentMode = MODE::ADHAN_STREAMING;
@@ -84,7 +84,7 @@ void Amplifier::volumeUp()
   if (volume > MAX_DEFAULT_VOLUME)
     volume = MAX_DEFAULT_VOLUME;
   audio->setVolume(volume);
-  // Serial.println("Volume : up");
+  printf("Volume: up %d\n", volume);
   // Serial.println(volume);
   // delay(100);
 }
@@ -92,13 +92,14 @@ void Amplifier::volumeUp()
 void Amplifier::volumeDown()
 {
 
-  if (volume >= (MIN_DEFAULT_VOLUME+1) && volume <= MAX_DEFAULT_VOLUME)
+  if ((volume >= MIN_DEFAULT_VOLUME+1) && (volume <= MAX_DEFAULT_VOLUME))
       volume--;
   else if (volume > MAX_DEFAULT_VOLUME)
       volume = MAX_DEFAULT_VOLUME;
   else    
-       volume = 0;
+      volume = 0;
   audio->setVolume(volume);
+  printf("Volume: up %d\n", volume);
   // Serial.println("Volume : down");
   // Serial.println(volume);
   // delay(100);
@@ -121,7 +122,8 @@ void amplifier(void* pvParameters)
     amp.loop();
     if (!strcmp(amp.currentAction,"STOP"))
     {
-        break;
+      vTaskDelete(NULL);
+      break;
     }
   }
 

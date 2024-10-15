@@ -2,10 +2,10 @@
 #include"Amplifier.hpp"
 #include"Device.hpp"
 
-volatile byte Button::stateUpButtonLed = LOW;
-volatile byte Button::stateDownButtonLed = LOW;
-volatile byte Button::stateMuteButtonLed = LOW;
-volatile byte Button::stateResetButtonLed = LOW;
+//volatile byte Button::stateUpButtonLed = LOW;
+//volatile byte Button::stateDownButtonLed = LOW;
+//volatile byte Button::stateMuteButtonLed = LOW;
+//volatile byte Button::stateResetButtonLed = LOW;
 
 const uint32_t Button::PRESS_DURATION;
 bool Button::resetButtonPressed = false;
@@ -17,51 +17,39 @@ void Button::setup(MQTTClient* mqtt)
 
   pinMode (UP_BUTTON, INPUT);
   pinMode (DOWN_BUTTON, INPUT);
-  pinMode (MUTE_BUTTON, INPUT);
+//  pinMode (MUTE_BUTTON, INPUT);
   // pinMode (RESET_BUTTON, INPUT);
-
-  pinMode(UP_BUTTON_LED_1, OUTPUT);//led
-  pinMode(DOWN_BUTTON_LED_2, OUTPUT);//led
-  pinMode(MUTE_BUTTON_LED_3, OUTPUT);//led
-  // pinMode(RESET_BUTTON_LED_4, OUTPUT);//led
 
 
   attachInterrupt(digitalPinToInterrupt(UP_BUTTON), Button::volumeUpWrapper, CHANGE);
   attachInterrupt(digitalPinToInterrupt(DOWN_BUTTON), Button::volumeDownWrapper, CHANGE);
-  attachInterrupt(digitalPinToInterrupt(MUTE_BUTTON), Button::volumeMuteWrapper, CHANGE);
+//  attachInterrupt(digitalPinToInterrupt(MUTE_BUTTON), Button::volumeMuteWrapper, CHANGE);
   // attachInterrupt(digitalPinToInterrupt(RESET_BUTTON), Button::resetButtonISR, CHANGE); 
 }
 
-void Button::loop()
-{
-  digitalWrite(UP_BUTTON_LED_1, !Button::stateUpButtonLed);
-  digitalWrite(DOWN_BUTTON_LED_2, !Button::stateDownButtonLed);
-  digitalWrite(MUTE_BUTTON_LED_3, !Button::stateMuteButtonLed);
-  // digitalWrite(RESET_BUTTON_LED_4, !Button::stateResetButtonLed);
-}
 
 void Button::volumeUpWrapper() 
 {
   Amplifier& amp = *Amplifier::getInstance();
   amp.volumeUp();
-  Button::stateUpButtonLed = !Button::stateUpButtonLed;
+//  Button::stateUpButtonLed = !Button::stateUpButtonLed;
 }
 
 void Button::volumeDownWrapper() 
 {
   Amplifier& amp = *Amplifier::getInstance();
   amp.volumeDown();
-  Button::stateDownButtonLed = !Button::stateDownButtonLed;
+//  Button::stateDownButtonLed = !Button::stateDownButtonLed;
 }
 
 void Button::volumeMuteWrapper() 
 {
   Amplifier& amp = *Amplifier::getInstance();
   amp.muteVolume();
-  Button::stateMuteButtonLed = !Button::stateMuteButtonLed;
+//  Button::stateMuteButtonLed = !Button::stateMuteButtonLed;
 }
 
-// Will not work as expected
+//// Will not work as expected
 void Button::resetButtonTask(void *parameter)
 {
   while(1)
@@ -103,5 +91,3 @@ void IRAM_ATTR Button::resetButtonISR()
   resetButtonPressed = true;
   Button::stateResetButtonLed = !Button::stateResetButtonLed;
 }
-
-

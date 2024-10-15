@@ -1,13 +1,10 @@
-#include <Arduino.h>
+
 #include <WiFi.h>
 #include <HTTPClient.h>
 #include <WiFiClientSecure.h>
-#include <ArduinoJson.h>
 #include "SM_Http.hpp"
 #include "SM_Json.hpp"
 #include "Device.hpp"
-#include "BLE.hpp"
-#include "Mqtt.hpp"
 
 HttpStatusCode SmHttp::sendDeviceTelemetry(const char* macAddress, uint8_t retryInterval, uint16_t maxRetry)
 {  
