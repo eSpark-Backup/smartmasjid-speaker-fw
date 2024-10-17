@@ -5,13 +5,15 @@
 #include "Device.hpp"
 #include "Button.hpp"
 #include "Battery.hpp"
+#include"Amplifier.hpp"
 
 SET_LOOP_TASK_STACK_SIZE( 16*1024 ); // 16KB
 
 WifiProvisioning wifiProv;
 MQTTClient mqtt(&wifiProv);
-Button button;
+// Button button;
 Battery battery;
+Amplifier& amp = *Amplifier::getInstance();
 
 void setup() 
 {
@@ -49,8 +51,10 @@ void setup()
     delay(100);
   }
   mqtt.createTask();
-  Device::timerSetup();
-   button.setup(&mqtt);
+   Device::timerSetup();
+   amp.setup();
+  Button::setup(&mqtt);
+   
 }
  
 void loop() 
@@ -58,4 +62,6 @@ void loop()
   Device::loop();  
   battery.loop();
   Device::memoryMonitoring();
+  amp.volumeLoop();
+  
 }

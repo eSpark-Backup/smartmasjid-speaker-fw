@@ -1,9 +1,10 @@
 #include "WiFi.h"
 #include"Amplifier.hpp"
 #include "LED.hpp"
+#include "Button.hpp"
 
 Audio* audio = NULL;
-uint8_t Amplifier:: volume = 14; 
+volatile float Amplifier:: volume = 14; 
 bool Amplifier::initilize = false;
 Amplifier* Amplifier::instance = nullptr;
 
@@ -51,7 +52,7 @@ void Amplifier::start(const char* url)
   else
   {
     Serial.println("connected to  the host");
-    xTaskCreatePinnedToCore(amplifier, "amplifier", 12000, NULL, 0, NULL, 0);
+    xTaskCreatePinnedToCore(amplifier, "amplifier", 15000, NULL, 0, NULL, 0);
     LED& rgb = *LED::getInstance();
     rgb.ADHAN_FLAG = AdhanStatus::STREAMING; 
     rgb.currentMode = MODE::ADHAN_STREAMING;
@@ -64,7 +65,6 @@ void Amplifier::stop()
   audio->stopSong();
   LED& rgb = *LED::getInstance();
   rgb.ADHAN_FLAG = AdhanStatus::NO_STREAMING;
-  // rgb.currentMode = rgb.turnOffLeds();
 }
 
 void Amplifier::stream(const char* action, const char* url)
@@ -80,38 +80,54 @@ void Amplifier::stream(const char* action, const char* url)
 
 void Amplifier::volumeUp()
 {
-  volume++;
+  volume += 0.5;
   if (volume > MAX_DEFAULT_VOLUME)
     volume = MAX_DEFAULT_VOLUME;
   audio->setVolume(volume);
-  printf("Volume: up %d\n", volume);
-  // Serial.println(volume);
-  // delay(100);
 }
 
 void Amplifier::volumeDown()
 {
-
   if ((volume >= MIN_DEFAULT_VOLUME+1) && (volume <= MAX_DEFAULT_VOLUME))
-      volume--;
+      volume -= 0.5;
   else if (volume > MAX_DEFAULT_VOLUME)
       volume = MAX_DEFAULT_VOLUME;
   else    
       volume = 0;
   audio->setVolume(volume);
-  printf("Volume: up %d\n", volume);
-  // Serial.println("Volume : down");
-  // Serial.println(volume);
-  // delay(100);
 }
 
 void Amplifier::muteVolume()
 {
   volume = MIN_DEFAULT_VOLUME;
   audio->setVolume(volume);
-  // Serial.println("Volume mute : ");
-  // Serial.println(volume);
-  // delay(100);
+}
+
+void Amplifier::volumeLoop()
+{
+  if (Button::volumeUpFlag) 
+  {
+    volumeUp();
+    Button::volumeUpFlag = false;
+    Serial.print("volume :");
+    Serial.println(volume);
+  }
+
+  if (Button::volumeDownFlag) 
+  {
+    volumeDown();
+    Button::volumeDownFlag = false;
+    Serial.print("volume :");
+    Serial.println(volume);
+  }
+
+  if(Button::volumeMuteFlag)
+  {
+    muteVolume();
+    Button::volumeMuteFlag = false;
+    Serial.print("volume :");
+    Serial.println(volume);
+  }
 }
 
 void amplifier(void* pvParameters) 
@@ -126,6 +142,5 @@ void amplifier(void* pvParameters)
       break;
     }
   }
-
   vTaskDelete(NULL);
 }

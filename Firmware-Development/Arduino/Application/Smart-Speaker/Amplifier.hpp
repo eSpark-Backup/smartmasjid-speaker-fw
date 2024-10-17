@@ -20,13 +20,17 @@ class Amplifier
   private:
     Amplifier() {}
     // Set Speaker volume
-    static uint8_t volume;  //default 0.....21
+    
     static bool initilize;  //Initilization status
     void start(const char* url = NULL);
     void stop();
+    void volumeUp();
+    void volumeDown();
+    void muteVolume();
     
   public:  
-
+    
+    static volatile float volume;  //default 0.....21
     Amplifier(const Amplifier&) = delete;
     Amplifier& operator=(const Amplifier&) = delete;
     static Amplifier* getInstance(); 
@@ -35,8 +39,6 @@ class Amplifier
     void stream(const char* action, const char* url);
     void setup();
     void loop();
-    void volumeUp();
-    void volumeDown();
-    void muteVolume();
+    void volumeLoop();
 };
 

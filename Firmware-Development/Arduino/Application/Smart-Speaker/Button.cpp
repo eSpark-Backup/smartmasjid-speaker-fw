@@ -2,10 +2,9 @@
 #include"Amplifier.hpp"
 #include"Device.hpp"
 
-//volatile byte Button::stateUpButtonLed = LOW;
-//volatile byte Button::stateDownButtonLed = LOW;
-//volatile byte Button::stateMuteButtonLed = LOW;
-//volatile byte Button::stateResetButtonLed = LOW;
+volatile bool Button::volumeUpFlag = false;
+volatile bool Button::volumeDownFlag = false;
+volatile bool Button::volumeMuteFlag = false;
 
 const uint32_t Button::PRESS_DURATION;
 bool Button::resetButtonPressed = false;
@@ -15,79 +14,87 @@ void Button::setup(MQTTClient* mqtt)
 {
   pMqtt = mqtt;
 
-  pinMode (UP_BUTTON, INPUT);
-  pinMode (DOWN_BUTTON, INPUT);
-//  pinMode (MUTE_BUTTON, INPUT);
-  // pinMode (RESET_BUTTON, INPUT);
+  pinMode (UP_BUTTON, INPUT_PULLUP);
+  pinMode (DOWN_BUTTON, INPUT_PULLUP);
+  // pinMode (MUTE_BUTTON, INPUT_PULLUP);
+  pinMode (RESET_BUTTON, INPUT_PULLUP);
 
-
-  attachInterrupt(digitalPinToInterrupt(UP_BUTTON), Button::volumeUpWrapper, CHANGE);
-  attachInterrupt(digitalPinToInterrupt(DOWN_BUTTON), Button::volumeDownWrapper, CHANGE);
-//  attachInterrupt(digitalPinToInterrupt(MUTE_BUTTON), Button::volumeMuteWrapper, CHANGE);
-  // attachInterrupt(digitalPinToInterrupt(RESET_BUTTON), Button::resetButtonISR, CHANGE); 
+  Button::interruptHandler();
 }
 
 
 void Button::volumeUpWrapper() 
 {
-  Amplifier& amp = *Amplifier::getInstance();
-  amp.volumeUp();
-//  Button::stateUpButtonLed = !Button::stateUpButtonLed;
+ volumeUpFlag = true;
 }
 
 void Button::volumeDownWrapper() 
 {
-  Amplifier& amp = *Amplifier::getInstance();
-  amp.volumeDown();
-//  Button::stateDownButtonLed = !Button::stateDownButtonLed;
+  volumeDownFlag = true;
 }
 
 void Button::volumeMuteWrapper() 
 {
-  Amplifier& amp = *Amplifier::getInstance();
-  amp.muteVolume();
-//  Button::stateMuteButtonLed = !Button::stateMuteButtonLed;
+  volumeMuteFlag = true;
 }
 
-//// Will not work as expected
 void Button::resetButtonTask(void *parameter)
 {
-  while(1)
+  TickType_t pressStartTime = 0; 
+  bool isButtonHeld = false;      
+
+  while (1)
   {
     if (resetButtonPressed)
     {
-      // Check if the button is still pressed after 5 seconds
-      vTaskDelay(pdMS_TO_TICKS(PRESS_DURATION));
+      if (!isButtonHeld)
+      {
+        pressStartTime = xTaskGetTickCount();  
+        isButtonHeld = true; 
+      }
+
       if (digitalRead(RESET_BUTTON) == LOW)
       {
-        Serial.println("Device is reset after 5 seconds");
-        pMqtt->unsubscribeTopics();
-        Device::deleteSubscriptions();
-        Device::deleteWificredentials();
-        ESP.restart();
-        break;
+        Serial.println("Device is reset a4 seconds");
+
+        if ((xTaskGetTickCount() - pressStartTime) >= pdMS_TO_TICKS(PRESS_DURATION))
+        {
+          Serial.println("Device is reset after 5 seconds");
+          pMqtt->unsubscribeTopics();
+          Device::deleteSubscriptions();
+          Device::deleteWificredentials();
+          ESP.restart();  // Restart the device
+          break;
+        }
       }
-      // Reset the flag
-      resetButtonPressed = false; 
+      else
+      {
+        resetButtonPressed = false;
+        isButtonHeld = false; 
+      }
     }
-    vTaskDelay(pdMS_TO_TICKS(100)); // Check the button status every 100ms
+    vTaskDelay(pdMS_TO_TICKS(10)); 
   }
+
   Serial.println("Reset Button Task deleted");
-  vTaskDelete(NULL);
+  vTaskDelete(NULL);  
 }
+
 
 void IRAM_ATTR Button::resetButtonISR()
 {
-  // Create the reset button task
-  xTaskCreate(
-      resetButtonTask,   // Task function
-      "ResetButtonTask", // Task name
-      2000,              // Stack size (bytes)
-      NULL,              // Task parameters
-      1,                 // Priority (0 is the lowest priority)
-      NULL               // Task handle
-  );
-  // Set the flag indicating that the reset button is pressed
-  resetButtonPressed = true;
-  Button::stateResetButtonLed = !Button::stateResetButtonLed;
+  if (!resetButtonPressed) 
+  {
+    xTaskCreate(resetButtonTask,"ResetButtonTask", 2000, NULL, 0, NULL);
+    resetButtonPressed = true;
+    Serial.println("Reset button ISR triggered");
+  }
+}
+
+void Button::interruptHandler()
+{
+  attachInterrupt(digitalPinToInterrupt(UP_BUTTON), Button::volumeUpWrapper, FALLING);
+  attachInterrupt(digitalPinToInterrupt(DOWN_BUTTON), Button::volumeDownWrapper, FALLING);
+  // attachInterrupt(digitalPinToInterrupt(MUTE_BUTTON), Button::volumeMuteWrapper, FALLING);
+  attachInterrupt(digitalPinToInterrupt(RESET_BUTTON), Button::resetButtonISR, FALLING);
 }
