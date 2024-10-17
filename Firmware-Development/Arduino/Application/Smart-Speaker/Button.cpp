@@ -80,7 +80,6 @@ void Button::resetButtonTask(void *parameter)
   vTaskDelete(NULL);  
 }
 
-
 void IRAM_ATTR Button::resetButtonISR()
 {
   if (!resetButtonPressed) 
