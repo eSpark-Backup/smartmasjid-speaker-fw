@@ -17,7 +17,7 @@ eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJtdWRhc3Npci5zYWlmaUBnbWFpbC5jb20iLCJ1c2VySWQiOjI
 1. Connect the ESP32 Dev Module to the PC via MicroUSB cable.
 2. Open flash download tool and select *Chip Type* as *ESP32* and *WorkMode* as *Develop*. Press *OK* to move to the next screen. 
 3. Select correct *COM Port* and set *Baud rate* to *921600* and then click erase button on new window that opens, to first completely wipe off the ESP32 memory.
-4. Upload the provided binaries as follows:
+4. Upload the provided binaries(Smart_speaker) and (Smart_Button) as follows:
    * Smart-Speaker.ino.bootloader.bin  OR  Smart-Button.ino.bootloader.bin -> 0x1000
    * Smart-Speaker.ino.partitions.bin  OR  Smart-Button.ino.partitions.bin -> 0x8000
    * Smart-Speaker.ino.bin             OR  Smart-Button.ino.bin            -> 0x10000
