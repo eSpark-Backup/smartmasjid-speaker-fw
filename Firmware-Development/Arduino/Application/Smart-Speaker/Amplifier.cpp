@@ -52,7 +52,7 @@ void Amplifier::start(const char* url)
   else
   {
     Serial.println("connected to  the host");
-    xTaskCreatePinnedToCore(amplifier, "amplifier", 15000, NULL, 0, NULL, 0);
+    xTaskCreatePinnedToCore(amplifier, "amplifier", 30000, NULL, 0, NULL, 0);
     LED& rgb = *LED::getInstance();
     rgb.ADHAN_FLAG = AdhanStatus::STREAMING; 
     rgb.currentMode = MODE::ADHAN_STREAMING;
@@ -80,7 +80,7 @@ void Amplifier::stream(const char* action, const char* url)
 
 void Amplifier::volumeUp()
 {
-  volume += 0.5;
+  volume += 1;
   if (volume > MAX_DEFAULT_VOLUME)
     volume = MAX_DEFAULT_VOLUME;
   audio->setVolume(volume);
@@ -89,7 +89,7 @@ void Amplifier::volumeUp()
 void Amplifier::volumeDown()
 {
   if ((volume >= MIN_DEFAULT_VOLUME+1) && (volume <= MAX_DEFAULT_VOLUME))
-      volume -= 0.5;
+      volume -= 1;
   else if (volume > MAX_DEFAULT_VOLUME)
       volume = MAX_DEFAULT_VOLUME;
   else    
@@ -111,6 +111,7 @@ void Amplifier::volumeLoop()
     Button::volumeUpFlag = false;
     Serial.print("volume :");
     Serial.println(volume);
+    vTaskDelay(pdMS_TO_TICKS(100));  // Delay to prevent multiple triggers
   }
 
   if (Button::volumeDownFlag) 
@@ -119,6 +120,7 @@ void Amplifier::volumeLoop()
     Button::volumeDownFlag = false;
     Serial.print("volume :");
     Serial.println(volume);
+    vTaskDelay(pdMS_TO_TICKS(100));  // Delay to prevent multiple triggers
   }
 
   if(Button::volumeMuteFlag)
@@ -127,6 +129,7 @@ void Amplifier::volumeLoop()
     Button::volumeMuteFlag = false;
     Serial.print("volume :");
     Serial.println(volume);
+    vTaskDelay(pdMS_TO_TICKS(100));  // Delay to prevent multiple triggers
   }
 }
 

@@ -12,6 +12,7 @@
 //#define MUTE_BUTTON -1  //GPIO 16 can not be used because of PSRAM (GPIO16 = CS pin)
 #define RESET_BUTTON 22 
 
+#define DEBOUNCE_DELAY 50  // 50 ms debounce delay
 
 class Button
 {

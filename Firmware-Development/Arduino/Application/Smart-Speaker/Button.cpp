@@ -5,6 +5,8 @@
 volatile bool Button::volumeUpFlag = false;
 volatile bool Button::volumeDownFlag = false;
 volatile bool Button::volumeMuteFlag = false;
+volatile unsigned long lastUpPressTime = 0;
+volatile unsigned long lastDownPressTime = 0;
 
 const uint32_t Button::PRESS_DURATION;
 bool Button::resetButtonPressed = false;
@@ -25,12 +27,22 @@ void Button::setup(MQTTClient* mqtt)
 
 void Button::volumeUpWrapper() 
 {
- volumeUpFlag = true;
+  unsigned long currentTime = millis();
+  if (currentTime - lastUpPressTime > DEBOUNCE_DELAY)  // Check for debounce delay
+  {
+    volumeUpFlag = true;
+    lastUpPressTime = currentTime;
+  }
 }
 
 void Button::volumeDownWrapper() 
 {
-  volumeDownFlag = true;
+  unsigned long currentTime = millis();
+  if (currentTime - lastDownPressTime > DEBOUNCE_DELAY)  // Check for debounce delay
+  {
+    volumeDownFlag = true;
+    lastDownPressTime = currentTime;
+  }
 }
 
 void Button::volumeMuteWrapper() 
