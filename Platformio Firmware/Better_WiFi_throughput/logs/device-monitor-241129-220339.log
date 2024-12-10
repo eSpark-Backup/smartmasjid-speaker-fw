@@ -1,0 +1,389 @@
+ets Jul 29 2019 12:21:46
+
+rst:0x1 (POWERON_RESET),boot:0x13 (SPI_FAST_FLASH_BOOT)
+configsip: 153911750, SPIWP:0xee
+clk_drv:0x00,q_drv:0x00,d_drv:0x00,cs0_drv:0x00,hd_drv:0x00,wp_drv:0x00
+mode:DIO, clock div:2
+load:0x3fff0030,len:6652
+ho 0 tail 12 room 4
+load:0x40078000,len:15060
+load:0x40080400,len:3836
+entry 0x4008069c
+[0;32mI (30) boot: ESP-IDF 4.4.6 2nd stage bootloader[0m
+[0;32mI (30) boot: compile time 20:47:51[0m
+[0;32mI (30) boot: Multicore bootloader[0m
+[0;32mI (33) boot: chip revision: v3.1[0m
+[0;32mI (37) boot.esp32: SPI Speed      : 40MHz[0m
+[0;32mI (41) boot.esp32: SPI Mode       : DIO[0m
+[0;32mI (46) boot.esp32: SPI Flash Size : 4MB[0m
+[0;32mI (51) boot: Enabling RNG early entropy source...[0m
+[0;32mI (56) boot: Partition Table:[0m
+[0;32mI (60) boot: ## Label            Usage          Type ST Offset   Length[0m
+[0;32mI (67) boot:  0 otadata          OTA data         01 00 0000e000 00002000[0m
+[0;32mI (74) boot:  1 nvs              WiFi data        01 02 00010000 00040000[0m
+[0;32mI (82) boot:  2 app0             OTA app          00 10 00050000 003a0000[0m
+[0;32mI (89) boot:  3 coredump         Unknown data     01 03 003f0000 00010000[0m
+[0;32mI (97) boot: End of partition table[0m
+[0;32mI (101) esp_image: segment 0: paddr=00050020 vaddr=3f400020 size=6f074h (454772) map[0m
+[0;32mI (274) esp_image: segment 1: paddr=000bf09c vaddr=3ffbdb60 size=00f7ch (  3964) load[0m
+[0;32mI (276) esp_image: segment 2: paddr=000c0020 vaddr=400d0020 size=132b8ch (1256332) map[0m
+[0;32mI (734) esp_image: segment 3: paddr=001f2bb4 vaddr=3ffbeadc size=04398h ( 17304) load[0m
+[0;32mI (741) esp_image: segment 4: paddr=001f6f54 vaddr=40080000 size=1f8ech (129260) load[0m
+[0;32mI (810) boot: Loaded app from partition at offset 0x50000[0m
+[0;32mI (810) boot: Disabling RNG early entropy source...[0m
+[0;32mI (822) cpu_start: Multicore app[0m
+[0;32mI (822) psram: This chip is ESP32-D0WDR2-V3[0m
+[0;32mI (822) spiram: Found 16MBit SPI RAM device[0m
+[0;32mI (826) spiram: SPI RAM mode: flash 40m sram 40m[0m
+[0;32mI (832) spiram: PSRAM initialized, cache is in low/high (2-core) mode.[0m
+[0;32mI (839) cpu_start: Pro cpu up.[0m
+[0;32mI (843) cpu_start: Starting app cpu, entry point is 0x40083fbc[0m
+[0;32mI (0) cpu_start: App cpu up.[0m
+[0;32mI (1296) spiram: SPI SRAM memory test OK[0m
+[0;32mI (1304) cpu_start: Pro cpu start user code[0m
+[0;32mI (1305) cpu_start: cpu freq: 240000000[0m
+[0;32mI (1305) cpu_start: Application information:[0m
+[0;32mI (1308) cpu_start: Project name:     Better_WiFi_throughput[0m
+[0;32mI (1314) cpu_start: App version:      1[0m
+[0;32mI (1318) cpu_start: Compile time:     Nov 29 2024 20:42:39[0m
+[0;32mI (1325) cpu_start: ELF file SHA256:  fac14045460a9dcc...[0m
+[0;32mI (1331) cpu_start: ESP-IDF:          4.4.6[0m
+[0;32mI (1336) cpu_start: Min chip rev:     v3.0[0m
+[0;32mI (1340) cpu_start: Max chip rev:     v3.99 [0m
+[0;32mI (1345) cpu_start: Chip rev:         v3.1[0m
+[0;32mI (1350) heap_init: Initializing. RAM available for dynamic allocation:[0m
+[0;32mI (1357) heap_init: At 3FFAFF10 len 000000F0 (0 KiB): DRAM[0m
+[0;32mI (1363) heap_init: At 3FFB6388 len 00001C78 (7 KiB): DRAM[0m
+[0;32mI (1370) heap_init: At 3FFB9A20 len 00004108 (16 KiB): DRAM[0m
+[0;32mI (1376) heap_init: At 3FFCD4C8 len 00012B38 (74 KiB): DRAM[0m
+[0;32mI (1382) heap_init: At 3FFE0440 len 00003AE0 (14 KiB): D/IRAM[0m
+[0;32mI (1389) heap_init: At 3FFE4350 len 0001BCB0 (111 KiB): D/IRAM[0m
+[0;32mI (1395) heap_init: At 4009F8EC len 00000714 (1 KiB): IRAM[0m
+[0;32mI (1401) spiram: Adding pool of 2047K of external SPI memory to heap allocator[0m
+[0;32mI (1410) spi_flash: detected chip: gd[0m
+[0;32mI (1414) spi_flash: flash io: dio[0m
+[0;33mW (1418) spi_flash: Detected size(8192k) larger than the size in the binary image header(4096k). Using the size in the binary image header.[0m
+[0;32mI (1433) cpu_start: Starting scheduler on PRO CPU.[0m
+[0;32mI (0) cpu_start: Starting scheduler on APP CPU.[0m
+[0;32mI (1446) spiram: Reserving pool of 32K of internal memory for DMA/internal allocations[0m
+[0;32m[    49][I][esp32-hal-psram.c:96] psramInit(): PSRAM enabled[0m
+[0;32mI ([0;32mI (1512) gpio: GPIO[17]| InputEn: 1| OutputEn: 0| OpenDrain: 0| Pullup: 0| Pulldown: 0| Intr:0 [0m
+[0;31mE (1512) gpio: GPIO can only be used as input mode[0m
+[0;31m[   109][E][esp32-hal-gpio.c:130] __pinMode(): GPIO config failed[0m
+[0;32mI (1534) gpio: GPIO[33]| InputEn: 1| OutputEn: 0| OpenDrain: 0| Pullup: 0| Pulldown: 0| Intr:0 [0m
+Arduino Stack was set to 16384 bytes
+Connecting to StormFiber-E290...
+I (1552) wifi:wifi driver task: 3ffdfa34, prio:23, stack:6656, core=0
+I (1563) wifi:wifi firmware version: 1ba8b6a
+I (1564) wifi:wifi certification version: v7.0
+I (1564) wifi:config NVS flash: enabled
+I (1564) wifi:config nano formating: disabled
+I (1569) wifi:Init data frame dynamic rx buffer num: 32
+I (1573) wifi:Init management frame dynamic rx buffer num: 32
+I (1579) wifi:Init management short buffer num: 32
+I (1583) wifi:Init dynamic tx buffer num: 32
+I (1588) wifi:Init tx cache buffer num: 4
+I (1591) wifi:Init static rx buffer size: 1600
+I (1595) wifi:Init static rx buffer num: 4
+I (1599) wifi:Init dynamic rx buffer num: 32
+[0;32mI (1604) wifi_init: rx ba win: 6[0m
+[0;32mI (1607) wifi_init: tcpip mbox: 32[0m
+[0;32mI (1611) wifi_init: udp mbox: 6[0m
+[0;32mI (1615) wifi_init: tcp mbox: 32[0m
+[0;32mI (1619) wifi_init: tcp tx win: 8192[0m
+[0;32mI (1623) wifi_init: tcp rx win: 32768[0m
+[0;32mI (1627) wifi_init: tcp mss: 1460[0m
+[0;32mI (1631) wifi_init: WiFi IRAM OP enabled[0m
+[0;32mI (1636) wifi_init: WiFi RX IRAM OP enabled[0m
+[0;32mI (1643) phy_init: phy_version 4771,450c73b,Aug 16 2023,11:03:10[0m
+I (1711) wifi:mode : sta (d0:ef:76:2a:0b:4c)
+I (1712) wifi:enable tsf
+I (1713) wifi:Set ps type: 1
+
+I (1745) wifi:new:<6,0>, old:<1,0>, ap:<255,255>, sta:<6,0>, prof:1
+I (1747) wifi:state: init -> auth (b0)
+I (1759) wifi:state: auth -> assoc (0)
+I (1774) wifi:state: assoc -> run (10)
+I (1794) wifi:connected with StormFiber-E290, aid = 1, channel 6, BW20, bssid = 6c:49:a6:fd:e2:91
+I (1795) wifi:security: WPA2-PSK, phy: bgn, rssi: -52
+I (1801) wifi:pm start, type: 1
+
+I (1957) wifi:AP's beacon interval = 102400 us, DTIM period = 1
+.[0;32mI (3306) esp_netif_handlers: sta ip: 192.168.100.2, mask: 255.255.255.0, gw: 192.168.100.1[0m
+Connected to Wi-Fi network with IP address: 192.168.100.2
+{"battery":90,"macAddress":"D0:EF:76:2A:0B:4E"}
+I (3329) wifi:<ba-add>idx:0 (ifx:0, 6c:49:a6:fd:e2:91), tid:0, ssn:0, winSize:64
+I (3332) wifi:<ba-add>idx:1 (ifx:0, 6c:49:a6:fd:e2:91), tid:6, ssn:0, winSize:64
+.ets Jul 29 2019 12:21:46
+
+rst:0x1 (POWERON_RESET),boot:0x13 (SPI_FAST_FLASH_BOOT)
+configsip: 153911750, SPIWP:0xee
+clk_drv:0x00,q_drv:0x00,d_drv:0x00,cs0_drv:0x00,hd_drv:0x00,wp_drv:0x00
+mode:DIO, clock div:2
+load:0x3fff0030,len:6652
+ho 0 tail 12 room 4
+load:0x40078000,len:15060
+load:0x40080400,len:3836
+entry 0x4008069c
+[0;32mI (30) boot: ESP-IDF 4.4.6 2nd stage bootloader[0m
+[0;32mI (30) boot: compile time 20:47:51[0m
+[0;32mI (30) boot: Multicore bootloader[0m
+[0;32mI (33) boot: chip revision: v3.1[0m
+[0;32mI (37) boot.esp32: SPI Speed      : 40MHz[0m
+[0;32mI (41) boot.esp32: SPI Mode       : DIO[0m
+[0;32mI (46) boot.esp32: SPI Flash Size : 4MB[0m
+[0;32mI (51) boot: Enabling RNG early entropy source...[0m
+[0;32mI (56) boot: Partition Table:[0m
+[0;32mI (60) boot: ## Label            Usage          Type ST Offset   Length[0m
+[0;32mI (67) boot:  0 otadata          OTA data         01 00 0000e000 00002000[0m
+[0;32mI (74) boot:  1 nvs              WiFi data        01 02 00010000 00040000[0m
+[0;32mI (82) boot:  2 app0             OTA app          00 10 00050000 003a0000[0m
+[0;32mI (89) boot:  3 coredump         Unknown data     01 03 003f0000 00010000[0m
+[0;32mI (97) boot: End of partition table[0m
+[0;32mI (101) esp_image: segment 0: paddr=00050020 vaddr=3f400020 size=6f074h (454772) map[0m
+[0;32mI (274) esp_image: segment 1: paddr=000bf09c vaddr=3ffbdb60 size=00f7ch (  3964) load[0m
+[0;32mI (276) esp_image: segment 2: paddr=000c0020 vaddr=400d0020 size=132b8ch (1256332) map[0m
+[0;32mI (734) esp_image: segment 3: paddr=001f2bb4 vaddr=3ffbeadc size=04398h ( 17304) load[0m
+[0;32mI (741) esp_image: segment 4: paddr=001f6f54 vaddr=40080000 size=1f8ech (129260) load[0m
+[0;32mI (810) boot: Loaded app from partition at offset 0x50000[0m
+[0;32mI (810) boot: Disabling RNG early entropy source...[0m
+[0;32mI (822) cpu_start: Multicore app[0m
+[0;32mI (822) psram: This chip is ESP32-D0WDR2-V3[0m
+[0;32mI (822) spiram: Found 16MBit SPI RAM device[0m
+[0;32mI (826) spiram: SPI RAM mode: flash 40m sram 40m[0m
+[0;32mI (832) spiram: PSRAM initialized, cache is in low/high (2-core) mode.[0m
+[0;32mI (839) cpu_start: Pro cpu up.[0m
+[0;32mI (843) cpu_start: Starting app cpu, entry point is 0x40083fbc[0m
+[0;32mI (0) cpu_start: App cpu up.[0m
+[0;32mI (1296) spiram: SPI SRAM memory test OK[0m
+[0;32mI (1304) cpu_start: Pro cpu start user code[0m
+[0;32mI (1305) cpu_start: cpu freq: 240000000[0m
+[0;32mI (1305) cpu_start: Application information:[0m
+[0;32mI (1308) cpu_start: Project name:     Better_WiFi_throughput[0m
+[0;32mI (1314) cpu_start: App version:      1[0m
+[0;32mI (1318) cpu_start: Compile time:     Nov 29 2024 20:42:39[0m
+[0;32mI (1325) cpu_start: ELF file SHA256:  fac14045460a9dcc...[0m
+[0;32mI (1331) cpu_start: ESP-IDF:          4.4.6[0m
+[0;32mI (1336) cpu_start: Min chip rev:     v3.0[0m
+[0;32mI (1340) cpu_start: Max chip rev:     v3.99 [0m
+[0;32mI (1345) cpu_start: Chip rev:         v3.1[0m
+[0;32mI (1350) heap_init: Initializing. RAM available for dynamic allocation:[0m
+[0;32mI (1357) heap_init: At 3FFAFF10 len 000000F0 (0 KiB): DRAM[0m
+[0;32mI (1363) heap_init: At 3FFB6388 len 00001C78 (7 KiB): DRAM[0m
+[0;32mI (1370) heap_init: At 3FFB9A20 len 00004108 (16 KiB): DRAM[0m
+[0;32mI (1376) heap_init: At 3FFCD4C8 len 00012B38 (74 KiB): DRAM[0m
+[0;32mI (1382) heap_init: At 3FFE0440 len 00003AE0 (14 KiB): D/IRAM[0m
+[0;32mI (1389) heap_init: At 3FFE4350 len 0001BCB0 (111 KiB): D/IRAM[0m
+[0;32mI (1395) heap_init: At 4009F8EC len 00000714 (1 KiB): IRAM[0m
+[0;32mI (1401) spiram: Adding pool of 2047K of external SPI memory to heap allocator[0m
+[0;32mI (1410) spi_flash: detected chip: gd[0m
+[0;32mI (1414) spi_flash: flash io: dio[0m
+[0;33mW (1418) spi_flash: Detected size(8192k) larger than the size in the binary image header(4096k). Using the size in the binary image header.[0m
+[0;32mI (1433) cpu_start: Starting scheduler on PRO CPU.[0m
+[0;32mI (0) cpu_start: Starting scheduler on APP CPU.[0m
+[0;32mI (1446) spiram: Reserving pool of 32K of internal memory for DMA/internal allocations[0m
+[0;32m[    49][I][esp32-hal-psram.c:96] psramInit(): PSRAM enabled[0m
+[0;32mI ([0;32mI (1512) gpio: GPIO[17]| InputEn: 1| OutputEn: 0| OpenDrain: 0| Pullup: 0| Pulldown: 0| Intr:0 [0m
+[0;31mE (1512) gpio: GPIO can only be used as input mode[0m
+[0;31m[   110][E][esp32-hal-gpio.c:130] __pinMode(): GPIO config failed[0m
+[0;32mI (1534) gpio: GPIO[33]| InputEn: 1| OutputEn: 0| OpenDrain: 0| Pullup: 0| Pulldown: 0| Intr:0 [0m
+Arduino Stack was set to 16384 bytes
+Connecting to StormFiber-E290...
+I (1552) wifi:wifi driver task: 3ffdfa34, prio:23, stack:6656, core=0
+I (1563) wifi:wifi firmware version: 1ba8b6a
+I (1564) wifi:wifi certification version: v7.0
+I (1564) wifi:config NVS flash: enabled
+I (1564) wifi:config nano formating: disabled
+I (1569) wifi:Init data frame dynamic rx buffer num: 32
+I (1573) wifi:Init management frame dynamic rx buffer num: 32
+I (1579) wifi:Init management short buffer num: 32
+I (1583) wifi:Init dynamic tx buffer num: 32
+I (1588) wifi:Init tx cache buffer num: 4
+I (1591) wifi:Init static rx buffer size: 1600
+I (1595) wifi:Init static rx buffer num: 4
+I (1599) wifi:Init dynamic rx buffer num: 32
+[0;32mI (1604) wifi_init: rx ba win: 6[0m
+[0;32mI (1607) wifi_init: tcpip mbox: 32[0m
+[0;32mI (1611) wifi_init: udp mbox: 6[0m
+[0;32mI (1615) wifi_init: tcp mbox: 32[0m
+[0;32mI (1619) wifi_init: tcp tx win: 8192[0m
+[0;32mI (1623) wifi_init: tcp rx win: 32768[0m
+[0;32mI (1627) wifi_init: tcp mss: 1460[0m
+[0;32mI (1631) wifi_init: WiFi IRAM OP enabled[0m
+[0;32mI (1636) wifi_init: WiFi RX IRAM OP enabled[0m
+[0;32mI (1643) phy_init: phy_version 4771,450c73b,Aug 16 2023,11:03:10[0m
+I (1717) wifi:mode : sta (d0:ef:76:2a:0b:4c)
+I (1718) wifi:enable tsf
+I (1719) wifi:Set ps type: 1
+
+I (1743) wifi:new:<6,0>, old:<1,0>, ap:<255,255>, sta:<6,0>, prof:1
+I (1745) wifi:state: init -> auth (b0)
+I (1751) wifi:state: auth -> assoc (0)
+I (1761) wifi:state: assoc -> run (10)
+I (1774) wifi:connected with StormFiber-E290, aid = 1, channel 6, BW20, bssid = 6c:49:a6:fd:e2:91
+I (1774) wifi:security: WPA2-PSK, phy: bgn, rssi: -52
+I (1780) wifi:pm start, type: 1
+
+I (1871) wifi:AP's beacon interval = 102400 us, DTIM period = 1
+.[0;32mI (2786) esp_netif_handlers: sta ip: 192.168.100.2, mask: 255.255.255.0, gw: 192.168.100.1[0m
+Connected to Wi-Fi network with IP address: 192.168.100.2
+{"battery":90,"macAddress":"D0:EF:76:2A:0B:4E"}
+I (2810) wifi:<ba-add>idx:0 (ifx:0, 6c:49:a6:fd:e2:91), tid:0, ssn:0, winSize:64
+I (2815) wifi:<ba-add>idx:1 (ifx:0, 6c:49:a6:fd:e2:91), tid:6, ssn:0, winSize:64
+.[0;31m[  8403][E][WiFiGeneric.cpp:1583] hostByName(): DNS Failed for smartmasjid-api-qa.futuriklabs.com[0m
+[0;33m[  8413][W][HTTPClient.cpp:1483] returnError(): error(-1): connection refused[0m
+[0;33m[  8421][W][HTTPClient.cpp:1483] returnError(): error(-4): not connected[0m
+WIFI RSSI : -59
+Request failed with error code: 
+Failed to send telemetry, retrying in 10 seconds...
+ets Jul 29 2019 12:21:46
+
+rst:0x1 (POWERON_RESET),boot:0x13 (SPI_FAST_FLASH_BOOT)
+configsip: 153911750, SPIWP:0xee
+clk_drv:0x00,q_drv:0x00,d_drv:0x00,cs0_drv:0x00,hd_drv:0x00,wp_drv:0x00
+mode:DIO, clock div:2
+load:0x3fff0030,len:6652
+ho 0 tail 12 room 4
+load:0x40078000,len:15060
+load:0x40080400,len:3836
+entry 0x4008069c
+[0;32mI (30) boot: ESP-IDF 4.4.6 2nd stage bootloader[0m
+[0;32mI (30) boot: compile time 20:47:51[0m
+[0;32mI (30) boot: Multicore bootloader[0m
+[0;32mI (33) boot: chip revision: v3.1[0m
+[0;32mI (37) boot.esp32: SPI Speed      : 40MHz[0m
+[0;32mI (41) boot.esp32: SPI Mode       : DIO[0m
+[0;32mI (46) boot.esp32: SPI Flash Size : 4MB[0m
+[0;32mI (51) boot: Enabling RNG early entropy source...[0m
+[0;32mI (56) boot: Partition Table:[0m
+[0;32mI (60) boot: ## Label            Usage          Type ST Offset   Length[0m
+[0;32mI (67) boot:  0 otadata          OTA data         01 00 0000e000 00002000[0m
+[0;32mI (74) boot:  1 nvs              WiFi data        01 02 00010000 00040000[0m
+[0;32mI (82) boot:  2 app0             OTA app          00 10 00050000 003a0000[0m
+[0;32mI (89) boot:  3 coredump         Unknown data     01 03 003f0000 00010000[0m
+[0;32mI (97) boot: End of partition table[0m
+[0;32mI (101) esp_image: segment 0: paddr=00050020 vaddr=3f400020 size=6f074h (454772) map[0m
+[0;32mI (274) esp_image: segment 1: paddr=000bf09c vaddr=3ffbdb60 size=00f7ch (  3964) load[0m
+[0;32mI (276) esp_image: segment 2: paddr=000c0020 vaddr=400d0020 size=132b8ch (1256332) map[0m
+[0;32mI (734) esp_image: segment 3: paddr=001f2bb4 vaddr=3ffbeadc size=04398h ( 17304) load[0m
+[0;32mI (741) esp_image: segment 4: paddr=001f6f54 vaddr=40080000 size=1f8ech (129260) load[0m
+[0;32mI (810) boot: Loaded app from partition at offset 0x50000[0m
+[0;32mI (810) boot: Disabling RNG early entropy source...[0m
+[0;32mI (822) cpu_start: Multicore app[0m
+[0;32mI (822) psram: This chip is ESP32-D0WDR2-V3[0m
+[0;32mI (822) spiram: Found 16MBit SPI RAM device[0m
+[0;32mI (826) spiram: SPI RAM mode: flash 40m sram 40m[0m
+[0;32mI (832) spiram: PSRAM initialized, cache is in low/high (2-core) mode.[0m
+[0;32mI (839) cpu_start: Pro cpu up.[0m
+[0;32mI (843) cpu_start: Starting app cpu, entry point is 0x40083fbc[0m
+[0;32mI (0) cpu_start: App cpu up.[0m
+[0;32mI (1296) spiram: SPI SRAM memory test OK[0m
+[0;32mI (1304) cpu_start: Pro cpu start user code[0m
+[0;32mI (1305) cpu_start: cpu freq: 240000000[0m
+[0;32mI (1305) cpu_start: Application information:[0m
+[0;32mI (1308) cpu_start: Project name:     Better_WiFi_throughput[0m
+[0;32mI (1314) cpu_start: App version:      1[0m
+[0;32mI (1318) cpu_start: Compile time:     Nov 29 2024 20:42:39[0m
+[0;32mI (1325) cpu_start: ELF file SHA256:  fac14045460a9dcc...[0m
+[0;32mI (1331) cpu_start: ESP-IDF:          4.4.6[0m
+[0;32mI (1336) cpu_start: Min chip rev:     v3.0[0m
+[0;32mI (1340) cpu_start: Max chip rev:     v3.99 [0m
+[0;32mI (1345) cpu_start: Chip rev:         v3.1[0m
+[0;32mI (1350) heap_init: Initializing. RAM available for dynamic allocation:[0m
+[0;32mI (1357) heap_init: At 3FFAFF10 len 000000F0 (0 KiB): DRAM[0m
+[0;32mI (1363) heap_init: At 3FFB6388 len 00001C78 (7 KiB): DRAM[0m
+[0;32mI (1370) heap_init: At 3FFB9A20 len 00004108 (16 KiB): DRAM[0m
+[0;32mI (1376) heap_init: At 3FFCD4C8 len 00012B38 (74 KiB): DRAM[0m
+[0;32mI (1382) heap_init: At 3FFE0440 len 00003AE0 (14 KiB): D/IRAM[0m
+[0;32mI (1389) heap_init: At 3FFE4350 len 0001BCB0 (111 KiB): D/IRAM[0m
+[0;32mI (1395) heap_init: At 4009F8EC len 00000714 (1 KiB): IRAM[0m
+[0;32mI (1401) spiram: Adding pool of 2047K of external SPI memory to heap allocator[0m
+[0;32mI (1410) spi_flash: detected chip: gd[0m
+[0;32mI (1414) spi_flash: flash io: dio[0m
+[0;33mW (1418) spi_flash: Detected size(8192k) larger than the size in the binary image header(4096k). Using the size in the binary image header.[0m
+[0;32mI (1433) cpu_start: Starting scheduler on PRO CPU.[0m
+[0;32mI (0) cpu_start: Starting scheduler on APP CPU.[0m
+[0;32mI (1446) spiram: Reserving pool of 32K of internal memory for DMA/internal allocations[0m
+[0;32m[    49][I][esp32-hal-psram.c:96] psramInit(): PSRAM enabled[0m
+[0;32mI ([0;32mI (1512) gpio: GPIO[17]| InputEn: 1| OutputEn: 0| OpenDrain: 0| Pullup: 0| Pulldown: 0| Intr:0 [0m
+[0;31mE (1512) gpio: GPIO can only be used as input mode[0m
+[0;31m[   110][E][esp32-hal-gpio.c:130] __pinMode(): GPIO config failed[0m
+[0;32mI (1534) gpio: GPIO[33]| InputEn: 1| OutputEn: 0| OpenDrain: 0| Pullup: 0| Pulldown: 0| Intr:0 [0m
+Arduino Stack was set to 16384 bytes
+Connecting to StormFiber-E290...
+I (1552) wifi:wifi driver task: 3ffdfa34, prio:23, stack:6656, core=0
+I (1563) wifi:wifi firmware version: 1ba8b6a
+I (1564) wifi:wifi certification version: v7.0
+I (1564) wifi:config NVS flash: enabled
+I (1564) wifi:config nano formating: disabled
+I (1569) wifi:Init data frame dynamic rx buffer num: 32
+I (1573) wifi:Init management frame dynamic rx buffer num: 32
+I (1579) wifi:Init management short buffer num: 32
+I (1583) wifi:Init dynamic tx buffer num: 32
+I (1588) wifi:Init tx cache buffer num: 4
+I (1591) wifi:Init static rx buffer size: 1600
+I (1595) wifi:Init static rx buffer num: 4
+I (1599) wifi:Init dynamic rx buffer num: 32
+[0;32mI (1604) wifi_init: rx ba win: 6[0m
+[0;32mI (1607) wifi_init: tcpip mbox: 32[0m
+[0;32mI (1611) wifi_init: udp mbox: 6[0m
+[0;32mI (1615) wifi_init: tcp mbox: 32[0m
+[0;32mI (1619) wifi_init: tcp tx win: 8192[0m
+[0;32mI (1623) wifi_init: tcp rx win: 32768[0m
+[0;32mI (1627) wifi_init: tcp mss: 1460[0m
+[0;32mI (1631) wifi_init: WiFi IRAM OP enabled[0m
+[0;32mI (1636) wifi_init: WiFi RX IRAM OP enabled[0m
+[0;32mI (1643) phy_init: phy_version 4771,450c73b,Aug 16 2023,11:03:10[0m
+I (1711) wifi:mode : sta (d0:ef:76:2a:0b:4c)
+I (1712) wifi:enable tsf
+I (1713) wifi:Set ps type: 1
+
+I (1732) wifi:new:<6,0>, old:<1,0>, ap:<255,255>, sta:<6,0>, prof:1
+I (1734) wifi:state: init -> auth (b0)
+I (1738) wifi:state: auth -> assoc (0)
+I (1747) wifi:state: assoc -> run (10)
+I (1761) wifi:connected with StormFiber-E290, aid = 1, channel 6, BW20, bssid = 6c:49:a6:fd:e2:91
+I (1762) wifi:security: WPA2-PSK, phy: bgn, rssi: -58
+I (1768) wifi:pm start, type: 1
+
+I (1857) wifi:AP's beacon interval = 102400 us, DTIM period = 1
+.[0;32mI (2773) esp_netif_handlers: sta ip: 192.168.100.2, mask: 255.255.255.0, gw: 192.168.100.1[0m
+Connected to Wi-Fi network with IP address: 192.168.100.2
+{"battery":90,"macAddress":"D0:EF:76:2A:0B:4E"}
+I (2798) wifi:<ba-add>idx:0 (ifx:0, 6c:49:a6:fd:e2:91), tid:0, ssn:0, winSize:64
+I (2804) wifi:<ba-add>idx:1 (ifx:0, 6c:49:a6:fd:e2:91), tid:6, ssn:0, winSize:64
+.[0;31m[  8390][E][WiFiGeneric.cpp:1583] hostByName(): DNS Failed for smartmasjid-api-qa.futuriklabs.com[0m
+[0;33m[  8400][W][HTTPClient.cpp:1483] returnError(): error(-1): connection refused[0m
+[0;33m[  8408][W][HTTPClient.cpp:1483] returnError(): error(-4): not connected[0m
+WIFI RSSI : -56
+Request failed with error code: 
+Failed to send telemetry, retrying in 10 seconds...
+{"battery":90,"macAddress":"D0:EF:76:2A:0B:4E"}
+[0;31m[ 25429][E][WiFiGeneric.cpp:1583] hostByName(): DNS Failed for smartmasjid-api-qa.futuriklabs.com[0m
+[0;33m[ 25439][W][HTTPClient.cpp:1483] returnError(): error(-1): connection refused[0m
+[0;33m[ 25447][W][HTTPClient.cpp:1483] returnError(): error(-4): not connected[0m
+WIFI RSSI : -55
+Request failed with error code: 
+Failed to send telemetry, retrying in 10 seconds...
+{"battery":90,"macAddress":"D0:EF:76:2A:0B:4E"}
+[0;31m[ 42467][E][WiFiGeneric.cpp:1583] hostByName(): DNS Failed for smartmasjid-api-qa.futuriklabs.com[0m
+[0;33m[ 42477][W][HTTPClient.cpp:1483] returnError(): error(-1): connection refused[0m
+[0;33m[ 42485][W][HTTPClient.cpp:1483] returnError(): error(-4): not connected[0m
+WIFI RSSI : -59
+Request failed with error code: 
+Failed to send telemetry, retrying in 10 seconds...
+{"battery":90,"macAddress":"D0:EF:76:2A:0B:4E"}
+[0;31m[ 59505][E][WiFiGeneric.cpp:1583] hostByName(): DNS Failed for smartmasjid-api-qa.futuriklabs.com[0m
+[0;33m[ 59515][W][HTTPClient.cpp:1483] returnError(): error(-1): connection refused[0m
+[0;33m[ 59523][W][HTTPClient.cpp:1483] returnError(): error(-4): not connected[0m
+WIFI RSSI : -60
+Request failed with error code: 
+Failed to send telemetry, retrying in 10 seconds...
+{"battery":90,"macAddress":"D0:EF:76:2A:0B:4E"}
+[0;31m[ 76543][E][WiFiGeneric.cpp:1583] hostByName(): DNS Failed for smartmasjid-api-qa.futuriklabs.com[0m
+[0;33m[ 76553][W][HTTPClient.cpp:1483] returnError(): error(-1): connection refused[0m
+[0;33m[ 76561][W][HTTPClient.cpp:1483] returnError(): error(-4): not connected[0m
+WIFI RSSI : -54
+Request failed with error code: 
+Failed to send telemetry, retrying in 10 seconds...
+{"battery":90,"macAddress":"D0:EF:76:2A:0B:4E"}

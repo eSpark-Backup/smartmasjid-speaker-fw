@@ -1,0 +1,1216 @@
+ets Jul 29 2019 12:21:46
+
+rst:0x1 (POWERON_RESET),boot:0x13 (SPI_FAST_FLASH_BOOT)
+configsip: 153911750, SPIWP:0xee
+clk_drv:0x00,q_drv:0x00,d_drv:0x00,cs0_drv:0x00,hd_drv:0x00,wp_drv:0x00
+mode:DIO, clock div:2
+load:0x3fff0030,len:6652
+ho 0 tail 12 room 4
+load:0x40078000,len:15060
+load:0x40080400,len:3836
+entry 0x4008069c
+[0;32mI (30) boot: ESP-IDF 4.4.6 2nd stage bootloader[0m
+[0;32mI (30) boot: compile time 16:58:32[0m
+[0;32mI (30) boot: Multicore bootloader[0m
+[0;32mI (33) boot: chip revision: v3.1[0m
+[0;32mI (37) boot.esp32: SPI Speed      : 40MHz[0m
+[0;32mI (41) boot.esp32: SPI Mode       : DIO[0m
+[0;32mI (46) boot.esp32: SPI Flash Size : 4MB[0m
+[0;32mI (51) boot: Enabling RNG early entropy source...[0m
+[0;32mI (56) boot: Partition Table:[0m
+[0;32mI (60) boot: ## Label            Usage          Type ST Offset   Length[0m
+[0;32mI (67) boot:  0 otadata          OTA data         01 00 0000e000 00002000[0m
+[0;32mI (74) boot:  1 nvs              WiFi data        01 02 00010000 00040000[0m
+[0;32mI (82) boot:  2 app0             OTA app          00 10 00050000 003a0000[0m
+[0;32mI (89) boot:  3 coredump         Unknown data     01 03 003f0000 00010000[0m
+[0;32mI (97) boot: End of partition table[0m
+[0;32mI (101) esp_image: segment 0: paddr=00050020 vaddr=3f400020 size=6f11ch (454940) map[0m
+[0;32mI (274) esp_image: segment 1: paddr=000bf144 vaddr=3ffbdb60 size=00ed4h (  3796) load[0m
+[0;32mI (276) esp_image: segment 2: paddr=000c0020 vaddr=400d0020 size=132cd8h (1256664) map[0m
+[0;32mI (735) esp_image: segment 3: paddr=001f2d00 vaddr=3ffbea34 size=04440h ( 17472) load[0m
+[0;32mI (742) esp_image: segment 4: paddr=001f7148 vaddr=40080000 size=1f8ech (129260) load[0m
+[0;32mI (810) boot: Loaded app from partition at offset 0x50000[0m
+[0;32mI (810) boot: Disabling RNG early entropy source...[0m
+[0;32mI (822) cpu_start: Multicore app[0m
+[0;32mI (822) psram: This chip is ESP32-D0WDR2-V3[0m
+[0;32mI (823) spiram: Found 16MBit SPI RAM device[0m
+[0;32mI (827) spiram: SPI RAM mode: flash 40m sram 40m[0m
+[0;32mI (832) spiram: PSRAM initialized, cache is in low/high (2-core) mode.[0m
+[0;32mI (839) cpu_start: Pro cpu up.[0m
+[0;32mI (843) cpu_start: Starting app cpu, entry point is 0x40083fbc[0m
+[0;32mI (0) cpu_start: App cpu up.[0m
+[0;32mI (1297) spiram: SPI SRAM memory test OK[0m
+[0;32mI (1305) cpu_start: Pro cpu start user code[0m
+[0;32mI (1305) cpu_start: cpu freq: 240000000[0m
+[0;32mI (1305) cpu_start: Application information:[0m
+[0;32mI (1308) cpu_start: Project name:     Better_WiFi_throughput[0m
+[0;32mI (1314) cpu_start: App version:      1[0m
+[0;32mI (1319) cpu_start: Compile time:     Dec  3 2024 16:51:20[0m
+[0;32mI (1325) cpu_start: ELF file SHA256:  1d93c3624fa68596...[0m
+[0;32mI (1331) cpu_start: ESP-IDF:          4.4.6[0m
+[0;32mI (1336) cpu_start: Min chip rev:     v3.0[0m
+[0;32mI (1341) cpu_start: Max chip rev:     v3.99 [0m
+[0;32mI (1345) cpu_start: Chip rev:         v3.1[0m
+[0;32mI (1351) heap_init: Initializing. RAM available for dynamic allocation:[0m
+[0;32mI (1358) heap_init: At 3FFAFF10 len 000000F0 (0 KiB): DRAM[0m
+[0;32mI (1364) heap_init: At 3FFB6388 len 00001C78 (7 KiB): DRAM[0m
+[0;32mI (1370) heap_init: At 3FFB9A20 len 00004108 (16 KiB): DRAM[0m
+[0;32mI (1376) heap_init: At 3FFCD4C8 len 00012B38 (74 KiB): DRAM[0m
+[0;32mI (1382) heap_init: At 3FFE0440 len 00003AE0 (14 KiB): D/IRAM[0m
+[0;32mI (1389) heap_init: At 3FFE4350 len 0001BCB0 (111 KiB): D/IRAM[0m
+[0;32mI (1395) heap_init: At 4009F8EC len 00000714 (1 KiB): IRAM[0m
+[0;32mI (1402) spiram: Adding pool of 2047K of external SPI memory to heap allocator[0m
+[0;32mI (1410) spi_flash: detected chip: gd[0m
+[0;32mI (1414) spi_flash: flash io: dio[0m
+[0;33mW (1418) spi_flash: Detected size(8192k) larger than the size in the binary image header(4096k). Using the size in the binary image header.[0m
+[0;32mI (1433) cpu_start: Starting scheduler on PRO CPU.[0m
+[0;32mI (0) cpu_start: Starting scheduler on APP CPU.[0m
+[0;32mI (1447) spiram: Reserving pool of 32K of internal memory for DMA/internal allocations[0m
+[0;32m[    49][I][esp32-hal-psram.c:96] psramInit(): PSRAM enabled[0m
+[0;32mI ([0;32mI (1583) gpio: GPIO[17]| InputEn: 1| OutputEn: 0| OpenDrain: 0| Pullup: 0| Pulldown: 0| Intr:0 [0m
+[0;31mE (1583) gpio: GPIO can only be used as input mode[0m
+[0;31m[   180][E][esp32-hal-gpio.c:130] __pinMode(): GPIO config failed[0m
+[0;32mI (1605) gpio: GPIO[33]| InputEn: 1| OutputEn: 0| OpenDrain: 0| Pullup: 0| Pulldown: 0| Intr:0 [0m
+Arduino Stack was set to 16384 bytes
+[0;31m[   200][E][Preferences.cpp:483] getString(): nvs_get_str len fail: ssid NOT_FOUND[0m
+No values saved for ssid or password
+Switching to Bluetooth mode
+[0;32mI (1726) BTDM_INIT: BT controller compile version [7b24543][0m
+[0;32mI (1728) system_api: Base MAC address is not set[0m
+[0;32mI (1729) system_api: read default base MAC address from EFUSE[0m
+[0;32mI (1735) BTDM_INIT: Bluetooth MAC: d0:ef:76:2a:0b:4e[0m
+[0;32mI (1743) phy_init: phy_version 4771,450c73b,Aug 16 2023,11:03:10[0m
+D0:EF:76:2A:0B:4E
+[0;32m[   856][I][BLEDevice.cpp:577] getAdvertising(): create advertising[0m
+Waiting a client connection to notify...
+BLE : device connected
+{"device_model":"SSB23V1","mac_address":"D0:EF:76:2A:0B:4E","firmware_rev":"1.0"}
+Connecting to StormFiber-E290...
+I (9989) wifi:wifi driver task: 3ffd40d8, prio:23, stack:6656, core=0
+I (9993) wifi:wifi firmware version: 1ba8b6a
+I (9993) wifi:wifi certification version: v7.0
+I (9993) wifi:config NVS flash: enabled
+I (9996) wifi:config nano formating: disabled
+I (10000) wifi:Init data frame dynamic rx buffer num: 32
+I (10005) wifi:Init management frame dynamic rx buffer num: 32
+I (10011) wifi:Init management short buffer num: 32
+I (10015) wifi:Init dynamic tx buffer num: 32
+I (10020) wifi:Init tx cache buffer num: 4
+I (10023) wifi:Init static rx buffer size: 1600
+I (10028) wifi:Init static rx buffer num: 4
+I (10031) wifi:Init dynamic rx buffer num: 32
+[0;32mI (10036) wifi_init: rx ba win: 6[0m
+[0;32mI (10039) wifi_init: tcpip mbox: 32[0m
+[0;32mI (10044) wifi_init: udp mbox: 6[0m
+[0;32mI (10048) wifi_init: tcp mbox: 32[0m
+[0;32mI (10052) wifi_init: tcp tx win: 8192[0m
+[0;32mI (10056) wifi_init: tcp rx win: 32768[0m
+[0;32mI (10060) wifi_init: tcp mss: 1460[0m
+[0;32mI (10064) wifi_init: WiFi IRAM OP enabled[0m
+[0;32mI (10069) wifi_init: WiFi RX IRAM OP enabled[0m
+I (10079) wifi:mode : sta (d0:ef:76:2a:0b:4c)
+I (10080) wifi:enable tsf
+I (10081) wifi:Set ps type: 1
+
+..I (12282) wifi:new:<10,0>, old:<1,0>, ap:<255,255>, sta:<10,0>, prof:1
+.I (13125) wifi:state: init -> auth (b0)
+I (13129) wifi:state: auth -> assoc (0)
+I (13145) wifi:state: assoc -> run (10)
+I (13158) wifi:connected with StormFiber-E290, aid = 2, channel 10, BW20, bssid = 6c:49:a6:fd:e2:91
+I (13159) wifi:security: WPA2-PSK, phy: bgn, rssi: -50
+I (13170) wifi:pm start, type: 1
+
+I (13190) wifi:AP's beacon interval = 102400 us, DTIM period = 1
+.I (14123) wifi:<ba-add>idx:0 (ifx:0, 6c:49:a6:fd:e2:91), tid:0, ssn:0, winSize:64
+[0;32mI (14175) esp_netif_handlers: sta ip: 192.168.18.2, mask: 255.255.255.0, gw: 192.168.18.1[0m
+Connected to Wi-Fi network with IP address: 192.168.18.2
+{"battery":90,"macAddress":"D0:EF:76:2A:0B:4E"}
+.Wifi credentials stored
+[0;33mW (15133) BT_HCI: hci cmd send: disconnect: hdl 0x0, rsn:0x13[0m
+[0;33mW (15138) BT_GATT: gatt_if found but not in use.
+[0m
+[0;31mE (15138) BT_GATT: GATTS_SendRsp Unknown  conn_id: 3
+[0m
+[0;31mE (15143) BT_APPL: Sending response failed
+[0m
+BLE : device disconnected
+[0;33mW (15245) BT_HCI: hcif disc complete: hdl 0x0, rsn 0x16[0m
+BLE Stopped
+WIFI RSSI : -52
+Request successful!
+X��?X��?X��?X��?
+[0;33m[ 15147][W][esp32-hal-timer.c:226] timerAttachInterruptFlag(): EDGE timer interrupt is not supported! Setting to LEVEL...[0m
+Client id : 390669489
+[0;32mI (16570) I2S: DMA Malloc info, datalen=blocksize=2048, dma_buf_count=16[0m
+
+the value of m_balance: 0
+the value of r: 1.00
+the value of l: 1.00the value of m_vol:21
+the value of v:1.00
+the value of m_limit_left: 1.00
+the value of m_limit_right: 1.00Amplifier is initilized
+
+the value of m_balance: 0
+the value of r: 1.00
+the value of l: 1.00the value of m_vol:14
+the value of v:0.44
+the value of m_limit_left: 0.44
+the value of m_limit_right: 0.44volume is set to 14.00
+[0;32mI (16605) gpio: GPIO[14]| InputEn: 1| OutputEn: 0| OpenDrain: 0| Pullup: 1| Pulldown: 0| Intr:0 [0m
+[0;32mI (16611) gpio: GPIO[13]| InputEn: 1| OutputEn: 0| OpenDrain: 0| Pullup: 1| Pulldown: 0| Intr:0 [0m
+[0;32mI (16620) gpio: GPIO[22]| InputEn: 1| OutputEn: 0| OpenDrain: 0| Pullup: 1| Pulldown: 0| Intr:0 [0m
+1- Free Stack Space: 14224
+2- Heap Space size : 295439
+3- Maximum allocated Heap : 28672
+4- Free Heap Space: 121555
+5- Minimum Free Heap Space: 2100951
+
+Total PSRAM: 2045 KB
+Free PSRAM: 2019 KB
+Connected to MQTT broker
+Subscribed to device/D0:EF:76:2A:0B:4E/reset
+Subscribed to device/D0:EF:76:2A:0B:4E/subscribe
+Subscribed to device/D0:EF:76:2A:0B:4E/unsubscribe
+Subscribed to device/D0:EF:76:2A:0B:4E/wifi
+Subscribed to device/D0:EF:76:2A:0B:4E/update
+Subscribed to device/D0:EF:76:2A:0B:4E/ping
+1- Free Stack Space: 14224
+2- Heap Space size : 295439
+3- Maximum allocated Heap : 28672
+4- Free Heap Space: 120563
+5- Minimum Free Heap Space: 2100011
+
+Total PSRAM: 2045 KB
+Free PSRAM: 2019 KB
+1- Free Stack Space: 14224
+2- Heap Space size : 295439
+3- Maximum allocated Heap : 28672
+4- Free Heap Space: 120563
+5- Minimum Free Heap Space: 2100011
+
+Total PSRAM: 2045 KB
+Free PSRAM: 2019 KB
+1- Free Stack Space: 14224
+2- Heap Space size : 295439
+3- Maximum allocated Heap : 28672
+4- Free Heap Space: 120563
+5- Minimum Free Heap Space: 2100011
+
+Total PSRAM: 2045 KB
+Free PSRAM: 2019 KB
+1- Free Stack Space: 14224
+2- Heap Space size : 295439
+3- Maximum allocated Heap : 28672
+4- Free Heap Space: 120563
+5- Minimum Free Heap Space: 2099815
+
+Total PSRAM: 2045 KB
+Free PSRAM: 2019 KB
+1- Free Stack Space: 14224
+2- Heap Space size : 295439
+3- Maximum allocated Heap : 28672
+4- Free Heap Space: 120563
+5- Minimum Free Heap Space: 2099815
+
+Total PSRAM: 2045 KB
+Free PSRAM: 2019 KB
+1- Free Stack Space: 14224
+2- Heap Space size : 295439
+3- Maximum allocated Heap : 28672
+4- Free Heap Space: 120563
+5- Minimum Free Heap Space: 2099815
+
+Total PSRAM: 2045 KB
+Free PSRAM: 2019 KB
+1- Free Stack Space: 14224
+2- Heap Space size : 295439
+3- Maximum allocated Heap : 28672
+4- Free Heap Space: 120563
+5- Minimum Free Heap Space: 2099815
+
+Total PSRAM: 2045 KB
+Free PSRAM: 2019 KB
+1- Free Stack Space: 14224
+2- Heap Space size : 295439
+3- Maximum allocated Heap : 28672
+4- Free Heap Space: 120563
+5- Minimum Free Heap Space: 2099815
+
+Total PSRAM: 2045 KB
+Free PSRAM: 2019 KB
+Received MQTT message [device/D0:EF:76:2A:0B:4E/unsubscribe]: {"topic":"masjid/3/adhan/fajr"}
+Unsubscribed to masjid/3/adhan/fajr
+[0;31m[ 58205][E][Preferences.cpp:483] getString(): nvs_get_str len fail: 0 NOT_FOUND[0m
+[0;31m[ 58216][E][Preferences.cpp:483] getString(): nvs_get_str len fail: 1 NOT_FOUND[0m
+UNSUBSCRIBE TOPIC
+Received MQTT message [device/D0:EF:76:2A:0B:4E/unsubscribe]: {"topic":"masjid/3/adhan/dhuhr"}
+Unsubscribed to masjid/3/adhan/dhuhr
+[0;31m[ 58248][E][Preferences.cpp:483] getString(): nvs_get_str len fail: 0 NOT_FOUND[0m
+[0;31m[ 58261][E][Preferences.cpp:483] getString(): nvs_get_str len fail: 1 NOT_FOUND[0m
+UNSUBSCRIBE TOPIC
+Received MQTT message [device/D0:EF:76:2A:0B:4E/unsubscribe]: {"topic":"masjid/3/adhan/asr"}
+Unsubscribed to masjid/3/adhan/asr
+[0;31m[ 58290][E][Preferences.cpp:483] getString(): nvs_get_str len fail: 0 NOT_FOUND[0m
+[0;31m[ 58304][E][Preferences.cpp:483] getString(): nvs_get_str len fail: 1 NOT_FOUND[0m
+UNSUBSCRIBE TOPIC
+Received MQTT message [device/D0:EF:76:2A:0B:4E/unsubscribe]: {"topic":"masjid/3/adhan/maghrib"}
+Unsubscribed to masjid/3/adhan/maghrib
+[0;31m[ 58332][E][Preferences.cpp:483] getString(): nvs_get_str len fail: 0 NOT_FOUND[0m
+[0;31m[ 58343][E][Preferences.cpp:483] getString(): nvs_get_str len fail: 1 NOT_FOUND[0m
+UNSUBSCRIBE TOPIC
+Received MQTT message [device/D0:EF:76:2A:0B:4E/unsubscribe]: {"topic":"masjid/3/adhan/isha"}
+Unsubscribed to masjid/3/adhan/isha
+[0;31m[ 58373][E][Preferences.cpp:483] getString(): nvs_get_str len fail: 0 NOT_FOUND[0m
+[0;31m[ 58383][E][Preferences.cpp:483] getString(): nvs_get_str len fail: 1 NOT_FOUND[0m
+UNSUBSCRIBE TOPIC
+Received MQTT message [device/D0:EF:76:2A:0B:4E/unsubscribe]: {"topic":"masjid/3/adhan/jumuah2"}
+Unsubscribed to masjid/3/adhan/jumuah2
+[0;31m[ 58413][E][Preferences.cpp:483] getString(): nvs_get_str len fail: 0 NOT_FOUND[0m
+[0;31m[ 58424][E][Preferences.cpp:483] getString(): nvs_get_str len fail: 1 NOT_FOUND[0m
+UNSUBSCRIBE TOPIC
+Received MQTT message [device/D0:EF:76:2A:0B:4E/unsubscribe]: {"topic":"masjid/3/adhan/jumuah3"}
+Unsubscribed to masjid/3/adhan/jumuah3
+[0;31m[ 58454][E][Preferences.cpp:483] getString(): nvs_get_str len fail: 0 NOT_FOUND[0m
+[0;31m[ 58468][E][Preferences.cpp:483] getString(): nvs_get_str len fail: 1 NOT_FOUND[0m
+UNSUBSCRIBE TOPIC
+Received MQTT message [device/D0:EF:76:2A:0B:4E/unsubscribe]: {"topic":"masjid/3/adhan/jumuah1"}
+Unsubscribed to masjid/3/adhan/jumuah1
+[0;31m[ 58499][E][Preferences.cpp:483] getString(): nvs_get_str len fail: 0 NOT_FOUND[0m
+[0;31m[ 58510][E][Preferences.cpp:483] getString(): nvs_get_str len fail: 1 NOT_FOUND[0m
+UNSUBSCRIBE TOPIC
+1- Free Stack Space: 14224
+2- Heap Space size : 295439
+3- Maximum allocated Heap : 28672
+4- Free Heap Space: 120563
+5- Minimum Free Heap Space: 2098311
+
+Total PSRAM: 2045 KB
+Free PSRAM: 2019 KB
+Received MQTT message [device/D0:EF:76:2A:0B:4E/subscribe]: {"topic":"masjid/3/adhan/fajr"}
+Subscribed to masjid/3/adhan/fajr
+SUBSCRIBE TOPIC
+Received MQTT message [device/D0:EF:76:2A:0B:4E/subscribe]: {"topic":"masjid/3/adhan/dhuhr"}
+Subscribed to masjid/3/adhan/dhuhr
+SUBSCRIBE TOPIC
+Received MQTT message [device/D0:EF:76:2A:0B:4E/subscribe]: {"topic":"masjid/3/adhan/asr"}
+Subscribed to masjid/3/adhan/asr
+SUBSCRIBE TOPIC
+Received MQTT message [device/D0:EF:76:2A:0B:4E/subscribe]: {"topic":"masjid/3/adhan/maghrib"}
+Subscribed to masjid/3/adhan/maghrib
+SUBSCRIBE TOPIC
+Received MQTT message [device/D0:EF:76:2A:0B:4E/subscribe]: {"topic":"masjid/3/adhan/isha"}
+Subscribed to masjid/3/adhan/isha
+SUBSCRIBE TOPIC
+Received MQTT message [device/D0:EF:76:2A:0B:4E/subscribe]: {"topic":"masjid/3/adhan/jumuah2"}
+Subscribed to masjid/3/adhan/jumuah2
+SUBSCRIBE TOPIC
+Received MQTT message [device/D0:EF:76:2A:0B:4E/subscribe]: {"topic":"masjid/3/adhan/jumuah3"}
+Subscribed to masjid/3/adhan/jumuah3
+SUBSCRIBE TOPIC
+Received MQTT message [device/D0:EF:76:2A:0B:4E/subscribe]: {"topic":"masjid/3/adhan/jumuah1"}
+Subscribed to masjid/3/adhan/jumuah1
+SUBSCRIBE TOPIC
+1- Free Stack Space: 14224
+2- Heap Space size : 295435
+3- Maximum allocated Heap : 28672
+4- Free Heap Space: 120431
+5- Minimum Free Heap Space: 2098311
+
+Total PSRAM: 2045 KB
+Free PSRAM: 2019 KB
+1- Free Stack Space: 14224
+2- Heap Space size : 295435
+3- Maximum allocated Heap : 28672
+4- Free Heap Space: 120419
+5- Minimum Free Heap Space: 2098311
+
+Total PSRAM: 2045 KB
+Free PSRAM: 2019 KB
+OTA is not Updating....
+Updating Telemetry
+{"battery":90,"macAddress":"D0:EF:76:2A:0B:4E"}
+WIFI RSSI : -55
+Request successful!
+{"id":537,"status":"Online","streamer":null,"batteryLife":90,"updatedTime":"2024-12-03T13:00:44.198+00:00"}
+1- Free Stack Space: 12912
+2- Heap Space size : 295391
+3- Maximum allocated Heap : 28672
+4- Free Heap Space: 119687
+5- Minimum Free Heap Space: 2097411
+
+Total PSRAM: 2045 KB
+Free PSRAM: 2019 KB
+Received MQTT message [masjid/3/adhan/asr]: {"action":"START","streamUrl":"http://radio.hear.fi:8000/hear.ogg"}
+Amplifier is Started...
+Streaming from url : https://ais-edge91-dal03.cdnstream.com/2585_256.mp3
+[0;31m[ 80655][E][WiFiClient.cpp:320] setSocketOption(): fail on 0, errno: 9, "Bad file number"[0m
+1- Free Stack Space: 12912
+2- Heap Space size : 295359
+3- Maximum allocated Heap : 28672
+4- Free Heap Space: 95799
+5- Minimum Free Heap Space: 1441539
+
+Total PSRAM: 2045 KB
+Free PSRAM: 1379 KB
+connected to  the host
+1- Free Stack Space: 12912
+2- Heap Space size : 295123
+3- Maximum allocated Heap : 14336
+4- Free Heap Space: 49803
+5- Minimum Free Heap Space: 1419847
+
+Total PSRAM: 2045 KB
+Free PSRAM: 1379 KB
+1- Free Stack Space: 12912
+2- Heap Space size : 295123
+3- Maximum allocated Heap : 14336
+4- Free Heap Space: 49803
+5- Minimum Free Heap Space: 1419847
+
+Total PSRAM: 2045 KB
+Free PSRAM: 1379 KB
+1- Free Stack Space: 12912
+2- Heap Space size : 295027
+3- Maximum allocated Heap : 14336
+4- Free Heap Space: 31867
+5- Minimum Free Heap Space: 1416751
+
+Total PSRAM: 2045 KB
+Free PSRAM: 1379 KB
+1- Free Stack Space: 12912
+2- Heap Space size : 295123
+3- Maximum allocated Heap : 14336
+4- Free Heap Space: 49803
+5- Minimum Free Heap Space: 1416751
+
+Total PSRAM: 2045 KB
+Free PSRAM: 1379 KB
+1- Free Stack Space: 12912
+2- Heap Space size : 295123
+3- Maximum allocated Heap : 14336
+4- Free Heap Space: 49803
+5- Minimum Free Heap Space: 1416751
+
+Total PSRAM: 2045 KB
+Free PSRAM: 1379 KB
+I (110678) wifi:<ba-add>idx:1 (ifx:0, 6c:49:a6:fd:e2:91), tid:1, ssn:0, winSize:64
+1- Free Stack Space: 12912
+2- Heap Space size : 295059
+3- Maximum allocated Heap : 14336
+4- Free Heap Space: 38395
+5- Minimum Free Heap Space: 1416751
+
+Total PSRAM: 2045 KB
+Free PSRAM: 1379 KB
+
+the value of m_balance: 0
+the value of r: 1.00
+the value of l: 1.00the value of m_vol:14
+the value of v:0.44
+the value of m_limit_left: 0.44
+the value of m_limit_right: 0.44volume :14.50
+
+the value of m_balance: 0
+the value of r: 1.00
+the value of l: 1.00the value of m_vol:15
+the value of v:0.51
+the value of m_limit_left: 0.51
+the value of m_limit_right: 0.51volume :15.00
+
+the value of m_balance: 0
+the value of r: 1.00
+the value of l: 1.00the value of m_vol:15
+the value of v:0.51
+the value of m_limit_left: 0.51
+the value of m_limit_right: 0.51volume :15.50
+
+the value of m_balance: 0
+the value of r: 1.00
+the value of l: 1.00the value of m_vol:16
+the value of v:0.58
+the value of m_limit_left: 0.58
+the value of m_limit_right: 0.58volume :16.00
+
+the value of m_balance: 0
+the value of r: 1.00
+the value of l: 1.00the value of m_vol:16
+the value of v:0.58
+the value of m_limit_left: 0.58
+the value of m_limit_right: 0.58volume :16.50
+
+the value of m_balance: 0
+the value of r: 1.00
+the value of l: 1.00the value of m_vol:17
+the value of v:0.66
+the value of m_limit_left: 0.66
+the value of m_limit_right: 0.66volume :17.00
+
+the value of m_balance: 0
+the value of r: 1.00
+the value of l: 1.00the value of m_vol:17
+the value of v:0.66
+the value of m_limit_left: 0.66
+the value of m_limit_right: 0.66volume :17.50
+
+the value of m_balance: 0
+the value of r: 1.00
+the value of l: 1.00the value of m_vol:18
+the value of v:0.73
+the value of m_limit_left: 0.73
+the value of m_limit_right: 0.73volume :18.00
+
+the value of m_balance: 0
+the value of r: 1.00
+the value of l: 1.00the value of m_vol:18
+the value of v:0.73
+the value of m_limit_left: 0.73
+the value of m_limit_right: 0.73volume :18.50
+1- Free Stack Space: 12912
+2- Heap Space size : 294947
+3- Maximum allocated Heap : 1600
+4- Free Heap Space: 18219
+5- Minimum Free Heap Space: 1411503
+
+Total PSRAM: 2045 KB
+Free PSRAM: 1373 KB
+
+the value of m_balance: 0
+the value of r: 1.00
+the value of l: 1.00the value of m_vol:19
+the value of v:0.82
+the value of m_limit_left: 0.82
+the value of m_limit_right: 0.82volume :19.00
+
+the value of m_balance: 0
+the value of r: 1.00
+the value of l: 1.00the value of m_vol:19
+the value of v:0.82
+the value of m_limit_left: 0.82
+the value of m_limit_right: 0.82volume :19.50
+
+the value of m_balance: 0
+the value of r: 1.00
+the value of l: 1.00the value of m_vol:20
+the value of v:0.91
+the value of m_limit_left: 0.91
+the value of m_limit_right: 0.91volume :20.00
+1- Free Stack Space: 12912
+2- Heap Space size : 294971
+3- Maximum allocated Heap : 4864
+4- Free Heap Space: 21379
+5- Minimum Free Heap Space: 1409879
+
+Total PSRAM: 2045 KB
+Free PSRAM: 1379 KB
+1- Free Stack Space: 12912
+2- Heap Space size : 295111
+3- Maximum allocated Heap : 14336
+4- Free Heap Space: 49607
+5- Minimum Free Heap Space: 1408311
+
+Total PSRAM: 2045 KB
+Free PSRAM: 1379 KB
+I (131320) wifi:bcn_timeout,ap_probe_send_start
+1- Free Stack Space: 12912
+2- Heap Space size : 295115
+3- Maximum allocated Heap : 14336
+4- Free Heap Space: 49731
+5- Minimum Free Heap Space: 1408311
+
+Total PSRAM: 2045 KB
+Free PSRAM: 1379 KB
+I (133825) wifi:ap_probe_send over, resett wifi status to disassoc
+I (133826) wifi:state: run -> init (c800)
+I (133827) wifi:pm stop, total sleep time: 84429516 us / 120657446 us
+
+I (133831) wifi:<ba-del>idx
+I (133833) wifi:<ba-del>idx
+I (133836) wifi:new:<10,0>, old:<10,0>, ap:<255,255>, sta:<10,0>, prof:1
+[0;33m[132437][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 200 - BEACON_TIMEOUT[0m
+MQTT client not connected. Reconnecting...
+MQTT state : CONNECTION_LOST
+WIFI RSSI : W (133882) wifi:Haven't to connect to a suitable AP now!
+[0;31m[132478][E][ssl_client0
+Client id : 390.cpp:37] _handle_error(): [data_to_read():361]: (-76) UNKNOWN ERROR CODE (004C)[0m
+669489
+[0;31m[132498][E][WiFiGeneric.cpp:1583] hostByName(): DNS Failed for smartmasjid-broker-dev.futuriklabs.com[0m
+Failed to connect to MQTT broker
+[0;33m[134881][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+OTA is not Updating....
+Updating Telemetry
+{"battery":90,"macAddress":"D0:EF:76:2A:0B:4E"}
+Wifi not connected : Unable to send request
+1- Free Stack Space: 12912
+2- Heap Space size : 295395
+3- Maximum allocated Heap : 16384
+4- Free Heap Space: 83875
+5- Minimum Free Heap Space: 1408311
+
+Total PSRAM: 2045 KB
+Free PSRAM: 1379 KB
+[0;33m[137314][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+I (138741) wifi:new:<10,0>, old:<10,0>, ap:<255,255>, sta:<10,0>, prof:1
+I (138742) wifi:state: init -> auth (b0)
+I (139743) wifi:state: auth -> init (200)
+I (139745) wifi:new:<10,0>, old:<10,0>, ap:<255,255>, sta:<10,0>, prof:1
+[0;33m[138339][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 2 - AUTH_EXPIRE[0m
+[0;33m[140780][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12912
+2- Heap Space size : 295395
+3- Maximum allocated Heap : 16384
+4- Free Heap Space: 83875
+5- Minimum Free Heap Space: 1408311
+
+Total PSRAM: 2045 KB
+Free PSRAM: 1379 KB
+Client id : 390669489
+[0;31m[142554][E][WiFiGeneric.cpp:1583] hostByName(): DNS Failed for smartmasjid-broker-dev.futuriklabs.com[0m
+Failed to connect to MQTT broker
+[0;33m[143213][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+[0;33m[145646][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+I (147072) wifi:new:<10,0>, old:<10,0>, ap:<255,255>, sta:<10,0>, prof:1
+I (147074) wifi:state: init -> auth (b0)
+I (147076) wifi:state: auth -> assoc (0)
+I (147085) wifi:state: assoc -> run (10)
+I (147097) wifi:connected with StormFiber-E290, aid = 2, channel 10, BW20, bssid = 6c:49:a6:fd:e2:91
+I (147098) wifi:security: WPA2-PSK, phy: bgn, rssi: -52
+I (147104) wifi:pm start, type: 1
+
+I (147129) wifi:AP's beacon interval = 102400 us, DTIM period = 1
+[0;32mI (148110) esp_netif_handlers: sta ip: 192.168.18.2, mask: 255.255.255.0, gw: 192.168.18.1[0m
+I (148114) wifi:<ba-add>idx:0 (ifx:0, 6c:49:a6:fd:e2:91), tid:0, ssn:0, winSize:64
+1- Free Stack Space: 12912
+2- Heap Space size : 295359
+3- Maximum allocated Heap : 16384
+4- Free Heap Space: 58607
+5- Minimum Free Heap Space: 1408311
+
+Total PSRAM: 2045 KB
+Free PSRAM: 1379 KB
+[0;31m[148863][E][WiFiClient.cpp:320] setSocketOption(): fail on 0, errno: 9, "Bad file number"[0m
+1- Free Stack Space: 12912
+2- Heap Space size : 295131
+3- Maximum allocated Heap : 4352
+4- Free Heap Space: 26979
+5- Minimum Free Heap Space: 1408311
+
+Total PSRAM: 2045 KB
+Free PSRAM: 1379 KB
+Client id : 390669489
+Connected to MQTT broker
+Subscribed to device/D0:EF:76:2A:0B:4E/reset
+Subscribed to device/D0:EF:76:2A:0B:4E/subscribe
+Subscribed to device/D0:EF:76:2A:0B:4E/unsubscribe
+Subscribed to device/D0:EF:76:2A:0B:4E/wifi
+Subscribed to device/D0:EF:76:2A:0B:4E/update
+Subscribed to device/D0:EF:76:2A:0B:4E/ping
+Subscribed to masjid/3/adhan/fajr
+Subscribed to masjid/3/adhan/dhuhr
+Subscribed to masjid/3/adhan/asr
+Subscribed to masjid/3/adhan/maghrib
+Subscribed to masjid/3/adhan/isha
+Subscribed to masjid/3/adhan/jumuah2
+Subscribed to masjid/3/adhan/jumuah3
+Subscribed to masjid/3/adhan/jumuah1
+1- Free Stack Space: 12912
+2- Heap Space size : 295095
+3- Maximum allocated Heap : 4352
+4- Free Heap Space: 26247
+5- Minimum Free Heap Space: 1394139
+
+Total PSRAM: 2045 KB
+Free PSRAM: 1378 KB
+I (163166) wifi:bcn_timeout,ap_probe_send_start
+1- Free Stack Space: 12912
+2- Heap Space size : 295099
+3- Maximum allocated Heap : 4352
+4- Free Heap Space: 26367
+5- Minimum Free Heap Space: 1394139
+
+Total PSRAM: 2045 KB
+Free PSRAM: 1378 KB
+[0;31m[162312][E][WiFiClient.cpp:320] setSocketOption(): fail on 0, errno: 9, "Bad file number"[0m
+I (165670) wifi:ap_probe_send over, resett wifi status to disassoc
+I (165671) wifi:state: run -> init (c800)
+I (165672) wifi:pm stop, total sleep time: 6112700 us / 18567475 us
+
+I (165675) wifi:<ba-del>idx
+I (165678) wifi:new:<10,0>, old:<10,0>, ap:<255,255>, sta:<10,0>, prof:1
+[0;33m[164279][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 200 - BEACON_TIMEOUT[0m
+[0;31m[164285][E][ssl_client.cpp:129] start_ssl_client(): socket error on fd 54, errno: 113, "Software caused connection abort"[0m
+MQTT client not connected. Reconnecting...
+MQTT state : CONNECTION_LOST
+[0;31m[164314][E][WiFiClientSecure.cpp:144] connect(): start_ssl_client: -1[0m
+WIFI RSSI : ConnectW (165724) wifi:Haven't to connect to a suitable AP now!
+ed to Wi-Fi network with IP address: 0
+Client id : 390669489
+[0;31m[164355][E][WiFiClient.cpp:249] connect(): connect on fd 54, errno: 118, "Host is unreachable"[0m
+Failed to connect to MQTT broker
+[0;33m[166725][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+I (168151) wifi:new:<10,0>, old:<10,0>, ap:<255,255>, sta:<10,0>, prof:1
+I (168152) wifi:state: init -> auth (b0)
+I (168157) wifi:state: auth -> assoc (0)
+I (168166) wifi:state: assoc -> run (10)
+I (168178) wifi:connected with StormFiber-E290, aid = 2, channel 10, BW20, bssid = 6c:49:a6:fd:e2:91
+I (168179) wifi:security: WPA2-PSK, phy: bgn, rssi: -51
+I (168185) wifi:pm start, type: 1
+
+I (168224) wifi:AP's beacon interval = 102400 us, DTIM period = 1
+1- Free Stack Space: 12912
+2- Heap Space size : 295399
+3- Maximum allocated Heap : 23552
+4- Free Heap Space: 81927
+5- Minimum Free Heap Space: 1394139
+
+Total PSRAM: 2045 KB
+Free PSRAM: 1379 KB
+[0;32mI (169191) esp_netif_handlers: sta ip: 192.168.18.2, mask: 255.255.255.0, gw: 192.168.18.1[0m
+1- Free Stack Space: 12912
+2- Heap Space size : 295387
+3- Maximum allocated Heap : 11776
+4- Free Heap Space: 57243
+5- Minimum Free Heap Space: 1394139
+
+Total PSRAM: 2045 KB
+Free PSRAM: 1379 KB
+I (173351) wifi:<ba-add>idx:0 (ifx:0, 6c:49:a6:fd:e2:91), tid:0, ssn:0, winSize:64
+Client id : 3906694890
+Connected to MQTT broker
+Subscribed to device/D0:EF:76:2A:0B:4E/reset
+Subscribed to device/D0:EF:76:2A:0B:4E/subscribe
+Subscribed to device/D0:EF:76:2A:0B:4E/unsubscribe
+Subscribed to device/D0:EF:76:2A:0B:4E/wifi
+.Subscribed to device/D0:EF:76:2A:0B:4E/update
+Subscribed to device/D0:EF:76:2A:0B:4E/ping
+Connected to Wi-Fi network with IP address: Subscribed to masjid/3/adhan/fajr
+Subscribed to masjid/3/adhan/dhuhr
+Subscribed to masjid/3/adhan/asr
+Subscribed to masjid/3/adhan/maghrib
+Subscribed to masjid/3/adhan/isha
+Subscribed to masjid/3/adhan/jumuah2
+Subscribed to masjid/3/adhan/jumuah3
+Subscribed to masjid/3/adhan/jumuah1
+1- Free Stack Space: 12912
+2- Heap Space size : 295335
+3- Maximum allocated Heap : 11776
+4- Free Heap Space: 54947
+5- Minimum Free Heap Space: 1394139
+
+Total PSRAM: 2045 KB
+Free PSRAM: 1379 KB
+1- Free Stack Space: 12912
+2- Heap Space size : 295335
+3- Maximum allocated Heap : 11776
+4- Free Heap Space: 54947
+5- Minimum Free Heap Space: 1394139
+
+Total PSRAM: 2045 KB
+Free PSRAM: 1379 KB
+1- Free Stack Space: 12912
+2- Heap Space size : 295335
+3- Maximum allocated Heap : 11776
+4- Free Heap Space: 54947
+5- Minimum Free Heap Space: 1394139
+
+Total PSRAM: 2045 KB
+Free PSRAM: 1379 KB
+1- Free Stack Space: 12912
+2- Heap Space size : 295335
+3- Maximum allocated Heap : 11776
+4- Free Heap Space: 54947
+5- Minimum Free Heap Space: 1394139
+
+Total PSRAM: 2045 KB
+Free PSRAM: 1379 KB
+OTA is not Updating....
+Updating Telemetry
+{"battery":90,"macAddress":"D0:EF:76:2A:0B:4E"}
+Connected to Wi-Fi network with IP address: 192.168Connected to Wi-Fi network with IP address: .18.2
+{"battery":90,"macAddress":"D0:EF:76:2A:0B:4E"}
+192192.168.18.2
+.168.18.2
+{"battery":90,"macAddress":"D0:EF:76:2A:0B:4E"}
+0.0.0
+{"battery":90,"macAddress":"D0:EF:76:2A:0B:4E"}
+{"battery":90,"macAddress":"D0:EF:76:2A:0B:4E"}
+[0;31m[195398][E][ssl_client.cpp:37] _handle_error(): [start_ssl_client():264]: (-32512) SSL - Memory allocation failed[0m
+[0;31m[195410][E][WiFiClientSecure.cpp:144] connect(): start_ssl_client: -32512[0m
+[0;33m[195419][W][HTTPClient.cpp:1483] returnError(): error(-1): connection refused[0m
+[0;33m[195427][W][HTTPClient.cpp:1483] returnError(): error(-4): not connected[0m
+WIFI RSSI : -54
+Request failed with error code: 
+1- Free Stack Space: 12896
+2- Heap Space size : 295043
+3- Maximum allocated Heap : 11776
+4- Free Heap Space: 42419
+5- Minimum Free Heap Space: 1394139
+
+Total PSRAM: 2045 KB
+Free PSRAM: 1379 KB
+1- Free Stack Space: 12896
+2- Heap Space size : 295071
+3- Maximum allocated Heap : 11776
+4- Free Heap Space: 42799
+5- Minimum Free Heap Spa[0;31m[[0;31m[201884][E][ssl_c[0;31m[196892][E][ssl_[0;31m[201201883][E][slient.cpp:3client.cpp:37] _handle_887][E][ssl_sl_client.c7] _handle_eerror(): [start_ssl_cliclient.cpp:3pp:37] _hanrror(): [staent():264]: (-32512) SS7] _handle_dle_error():rt_ssl_clieL - Memory allocation ferror(): [st [start_sslnt():264]: (ailed[0m
+art_ssl_client():264]: _client():26-32512) SSL(-32512) SSL - Memory allocation fa4]: (-32512 - Memory aliled[0m
+) SSL - Memory allocation failed[0mlocation fai
+led[0m
+ce: 1394139
+
+Total PSRAM: 2045 KB
+Free PSRAM: 1379 KB
+1- Free Stack Space: 12896
+2- Heap Space size : 295059
+3- Maximum allocated Heap : 11776
+4- Free Heap Space: 42671
+5- Minimum Free Heap Space: 1394139
+
+Total PSRAM: 2045 KB
+Free PSRAM: 1379 KB
+1- Free Stack Space: 12896
+2- Heap Space size : 295059
+3- Maximum allocated Heap : 11776
+4- Free Heap Space: 42671
+5- Minimum Free Heap Space: 1394139
+
+Total PSRAM: 2045 KB
+Free PSRAM: 1379 KB
+1- Free Stack Space: 12896
+2- Heap Space size : 295059
+3- Maximum allocated Heap : 11776
+4- Free Heap Space: 42671
+5- Minimum Free Heap Space: 1394139
+
+Total PSRAM: 2045 KB
+Free PSRAM: 1379 KB
+1- Free Stack Space: 12896
+2- Heap Space size : 295059
+3- Maximum allocated Heap : 11776
+4- Free Heap Space: 42671
+5- Minimum Free Heap Space: 1394139
+
+Total PSRAM: 2045 KB
+Free PSRAM: 1379 KB
+1- Free Stack Space: 12896
+2- Heap Space size : 295059
+3- Maximum allocated Heap : 11776
+4- Free Heap Space: 42671
+5- Minimum Free Heap Space: 1394139
+
+Total PSRAM: 2045 KB
+Free PSRAM: 1379 KB
+1- Free Stack Space: 12896
+2- Heap Space size : 295059
+3- Maximum allocated Heap : 11776
+4- Free Heap Space: 42671
+5- Minimum Free Heap Space: 1394139
+
+Total PSRAM: 2045 KB
+Free PSRAM: 1379 KB
+ets Jul 29 2019 12:21:46
+
+rst:0x1 (POWERON_RESET),boot:0x13 (SPI_FAST_FLASH_BOOT)
+configsip: 153911750, SPIWP:0xee
+clk_drv:0x00,q_drv:0x00,d_drv:0x00,cs0_drv:0x00,hd_drv:0x00,wp_drv:0x00
+mode:DIO, clock div:2
+load:0x3fff0030,len:6652
+ho 0 tail 12 room 4
+load:0x40078000,len:15060
+load:0x40080400,len:3836
+entry 0x4008069c
+[0;32mI (30) boot: ESP-IDF 4.4.6 2nd stage bootloader[0m
+[0;32mI (30) boot: compile time 16:58:32[0m
+[0;32mI (30) boot: Multicore bootloader[0m
+[0;32mI (33) boot: chip revision: v3.1[0m
+[0;32mI (37) boot.esp32: SPI Speed      : 40MHz[0m
+[0;32mI (41) boot.esp32: SPI Mode       : DIO[0m
+[0;32mI (46) boot.esp32: SPI Flash Size : 4MB[0m
+[0;32mI (51) boot: Enabling RNG early entropy source...[0m
+[0;32mI (56) boot: Partition Table:[0m
+[0;32mI (60) boot: ## Label            Usage          Type ST Offset   Length[0m
+[0;32mI (67) boot:  0 otadata          OTA data         01 00 0000e000 00002000[0m
+[0;32mI (74) boot:  1 nvs              WiFi data        01 02 00010000 00040000[0m
+[0;32mI (82) boot:  2 app0             OTA app          00 10 00050000 003a0000[0m
+[0;32mI (89) boot:  3 coredump         Unknown data     01 03 003f0000 00010000[0m
+[0;32mI (97) boot: End of partition table[0m
+[0;32mI (101) esp_image: segment 0: paddr=00050020 vaddr=3f400020 size=6f11ch (454940) map[0m
+[0;32mI (274) esp_image: segment 1: paddr=000bf144 vaddr=3ffbdb60 size=00ed4h (  3796) load[0m
+[0;32mI (276) esp_image: segment 2: paddr=000c0020 vaddr=400d0020 size=132cd8h (1256664) map[0m
+[0;32mI (735) esp_image: segment 3: paddr=001f2d00 vaddr=3ffbea34 size=04440h ( 17472) load[0m
+[0;32mI (742) esp_image: segment 4: paddr=001f7148 vaddr=40080000 size=1f8ech (129260) load[0m
+[0;32mI (810) boot: Loaded app from partition at offset 0x50000[0m
+[0;32mI (810) boot: Disabling RNG early entropy source...[0m
+[0;32mI (822) cpu_start: Multicore app[0m
+[0;32mI (822) psram: This chip is ESP32-D0WDR2-V3[0m
+[0;32mI (823) spiram: Found 16MBit SPI RAM device[0m
+[0;32mI (827) spiram: SPI RAM mode: flash 40m sram 40m[0m
+[0;32mI (832) spiram: PSRAM initialized, cache is in low/high (2-core) mode.[0m
+[0;32mI (839) cpu_start: Pro cpu up.[0m
+[0;32mI (843) cpu_start: Starting app cpu, entry point is 0x40083fbc[0m
+[0;32mI (0) cpu_start: App cpu up.[0m
+[0;32mI (1297) spiram: SPI SRAM memory test OK[0m
+[0;32mI (1305) cpu_start: Pro cpu start user code[0m
+[0;32mI (1305) cpu_start: cpu freq: 240000000[0m
+[0;32mI (1305) cpu_start: Application information:[0m
+[0;32mI (1308) cpu_start: Project name:     Better_WiFi_throughput[0m
+[0;32mI (1314) cpu_start: App version:      1[0m
+[0;32mI (1319) cpu_start: Compile time:     Dec  3 2024 16:51:20[0m
+[0;32mI (1325) cpu_start: ELF file SHA256:  1d93c3624fa68596...[0m
+[0;32mI (1331) cpu_start: ESP-IDF:          4.4.6[0m
+[0;32mI (1336) cpu_start: Min chip rev:     v3.0[0m
+[0;32mI (1341) cpu_start: Max chip rev:     v3.99 [0m
+[0;32mI (1345) cpu_start: Chip rev:         v3.1[0m
+[0;32mI (1351) heap_init: Initializing. RAM available for dynamic allocation:[0m
+[0;32mI (1358) heap_init: At 3FFAFF10 len 000000F0 (0 KiB): DRAM[0m
+[0;32mI (1364) heap_init: At 3FFB6388 len 00001C78 (7 KiB): DRAM[0m
+[0;32mI (1370) heap_init: At 3FFB9A20 len 00004108 (16 KiB): DRAM[0m
+[0;32mI (1376) heap_init: At 3FFCD4C8 len 00012B38 (74 KiB): DRAM[0m
+[0;32mI (1382) heap_init: At 3FFE0440 len 00003AE0 (14 KiB): D/IRAM[0m
+[0;32mI (1389) heap_init: At 3FFE4350 len 0001BCB0 (111 KiB): D/IRAM[0m
+[0;32mI (1395) heap_init: At 4009F8EC len 00000714 (1 KiB): IRAM[0m
+[0;32mI (1402) spiram: Adding pool of 2047K of external SPI memory to heap allocator[0m
+[0;32mI (1410) spi_flash: detected chip: gd[0m
+[0;32mI (1414) spi_flash: flash io: dio[0m
+[0;33mW (1418) spi_flash: Detected size(8192k) larger than the size in the binary image header(4096k). Using the size in the binary image header.[0m
+[0;32mI (1433) cpu_start: Starting scheduler on PRO CPU.[0m
+[0;32mI (0) cpu_start: Starting scheduler on APP CPU.[0m
+[0;32mI (1447) spiram: Reserving pool of 32K of internal memory for DMA/internal allocations[0m
+[0;32m[    49][I][esp32-hal-psram.c:96] psramInit(): PSRAM enabled[0m
+[0;32mI ([0;32mI (1598) gpio: GPIO[17]| InputEn: 1| OutputEn: 0| OpenDrain: 0| Pullup: 0| Pulldown: 0| Intr:0 [0m
+[0;31mE (1598) gpio: GPIO can only be used as input mode[0m
+[0;31m[   195][E][esp32-hal-gpio.c:130] __pinMode(): GPIO config failed[0m
+[0;32mI (1620) gpio: GPIO[33]| InputEn: 1| OutputEn: 0| OpenDrain: 0| Pullup: 0| Pulldown: 0| Intr:0 [0m
+Arduino Stack was set to 16384 bytes
+Connecting to StormFiber-E290...
+I (1638) wifi:wifi driver task: 3ffdf9ac, prio:23, stack:6656, core=0
+I (1649) wifi:wifi firmware version: 1ba8b6a
+I (1650) wifi:wifi certification version: v7.0
+I (1650) wifi:config NVS flash: enabled
+I (1650) wifi:config nano formating: disabled
+I (1654) wifi:Init data frame dynamic rx buffer num: 32
+I (1659) wifi:Init management frame dynamic rx buffer num: 32
+I (1665) wifi:Init management short buffer num: 32
+I (1669) wifi:Init dynamic tx buffer num: 32
+I (1673) wifi:Init tx cache buffer num: 4
+I (1677) wifi:Init static rx buffer size: 1600
+I (1681) wifi:Init static rx buffer num: 4
+I (1685) wifi:Init dynamic rx buffer num: 32
+[0;32mI (1690) wifi_init: rx ba win: 6[0m
+[0;32mI (1693) wifi_init: tcpip mbox: 32[0m
+[0;32mI (1697) wifi_init: udp mbox: 6[0m
+[0;32mI (1701) wifi_init: tcp mbox: 32[0m
+[0;32mI (1704) wifi_init: tcp tx win: 8192[0m
+[0;32mI (1709) wifi_init: tcp rx win: 32768[0m
+[0;32mI (1713) wifi_init: tcp mss: 1460[0m
+[0;32mI (1717) wifi_init: WiFi IRAM OP enabled[0m
+[0;32mI (1722) wifi_init: WiFi RX IRAM OP enabled[0m
+[0;32mI (1728) phy_init: phy_version 4771,450c73b,Aug 16 2023,11:03:10[0m
+I (1814) wifi:mode : sta (d0:ef:76:2a:0b:4c)
+I (1815) wifi:enable tsf
+I (1816) wifi:Set ps type: 1
+
+I (1833) wifi:new:<10,0>, old:<1,0>, ap:<255,255>, sta:<10,0>, prof:1
+I (1835) wifi:state: init -> auth (b0)
+I (1838) wifi:state: auth -> assoc (0)
+I (1853) wifi:state: assoc -> run (10)
+I (1865) wifi:connected with StormFiber-E290, aid = 2, channel 10, BW20, bssid = 6c:49:a6:fd:e2:91
+I (1865) wifi:security: WPA2-PSK, phy: bgn, rssi: -52
+I (1871) wifi:pm start, type: 1
+
+I (1877) wifi:AP's beacon interval = 102400 us, DTIM period = 1
+.Connected to Wi-Fi network with IP address: 192.168.18.[0;32mI 2(2876) esp_netif_handlers: sta ip: 192.168.18.2, mask: 255.255.255.0, gw: 192.168.18.1[0m
+
+{"battery":90,"macAddress":"D0:EF:76:2A:0B:4E"}
+I (2898) wifi:<ba-add>idx:0 (ifx:0, 6c:49:a6:fd:e2:91), tid:0, ssn:0, winSize:64
+.WIFI RSSI : -55
+Request successful!
+{"id":537,"status":"Online","streamer":null,"batteryLife":90,"updatedTime":"2024-12-03T13:03:25.890+00:00"}
+[0;33m[  4014][W][esp32-hal-timer.c:226] timerAttachInterruptFlag(): EDGE timer interrupt is not supported! Setting to LEVEL...[0m
+Client id : 164961800
+[0;32mI (5439) I2S: DMA Malloc info, datalen=blocksize=2048, dma_buf_count=16[0m
+
+the value of m_balance: 0
+the value of r: 1.00
+the value of l: 1.00the value of m_vol:21
+the value of v:1.00
+the value of m_limit_left: 1.00
+the value of m_limit_right: 1.00Amplifier is initilized
+
+the value of m_balance: 0
+the value of r: 1.00
+the value of l: 1.00the value of m_vol:14
+the value of v:0.44
+the value of m_limit_left: 0.44
+the value of m_limit_right: 0.44volume is set to 14.00
+[0;32mI (5474) gpio: GPIO[14]| InputEn: 1| OutputEn: 0| OpenDrain: 0| Pullup: 1| Pulldown: 0| Intr:0 [0m
+[0;32mI (5480) gpio: GPIO[13]| InputEn: 1| OutputEn: 0| OpenDrain: 0| Pullup: 1| Pulldown: 0| Intr:0 [0m
+[0;32mI (5489) gpio: GPIO[22]| InputEn: 1| OutputEn: 0| OpenDrain: 0| Pullup: 1| Pulldown: 0| Intr:0 [0m
+Connected to MQTT broker
+Subscribed to device/D0:EF:76:2A:0B:4E/reset
+Subscribed to device/D0:EF:76:2A:0B:4E/subscribe
+Subscribed to device/D0:EF:76:2A:0B:4E/unsubscribe
+Subscribed to device/D0:EF:76:2A:0B:4E/wifi
+Subscribed to device/D0:EF:76:2A:0B:4E/update
+Subscribed to device/D0:EF:76:2A:0B:4E/ping
+Subscribed to masjid/3/adhan/fajr
+Subscribed to masjid/3/adhan/dhuhr
+Subscribed to masjid/3/adhan/asr
+Subscribed to masjid/3/adhan/maghrib
+Subscribed to masjid/3/adhan/isha
+Subscribed to masjid/3/adhan/jumuah2
+Subscribed to masjid/3/adhan/jumuah3
+Subscribed to masjid/3/adhan/jumuah1
+1- Free Stack Space: 13296
+2- Heap Space size : 258415
+3- Maximum allocated Heap : 63488
+4- Free Heap Space: 86835
+5- Minimum Free Heap Space: 2135759
+
+Total PSRAM: 2045 KB
+Free PSRAM: 2019 KB
+1- Free Stack Space: 13296
+2- Heap Space size : 258423
+3- Maximum allocated Heap : 63488
+4- Free Heap Space: 88359
+5- Minimum Free Heap Space: 2135759
+
+Total PSRAM: 2045 KB
+Free PSRAM: 2019 KB
+Received MQTT message [masjid/3/adhan/maghrib]: {"action":"START","streamUrl":"http://radio.hear.fi:8000/hear.ogg"}
+Amplifier is Started...
+Streaming from url : https://ais-edge91-dal03.cdnstream.com/2585_256.mp3
+[0;31m[ 12232][E][WiFiClient.cpp:320] setSocketOption(): fail on 0, errno: 9, "Bad file number"[0m
+1- Free Stack Space: 13296
+2- Heap Space size : 258367
+3- Maximum allocated Heap : 47104
+4- Free Heap Space: 62511
+5- Minimum Free Heap Space: 1471059
+
+Total PSRAM: 2045 KB
+Free PSRAM: 1378 KB
+connected to  the host
+1- Free Stack Space: 13296
+2- Heap Space size : 258075
+3- Maximum allocated Heap : 1664
+4- Free Heap Space: 6407
+5- Minimum Free Heap Space: 1392187
+
+Total PSRAM: 2045 KB
+Free PSRAM: 1373 KB
+1- Free Stack Space: 13296
+2- Heap Space size : 258139
+3- Maximum allocated Heap : 12288
+4- Free Heap Space: 18039
+5- Minimum Free Heap Space: 1386671
+
+Total PSRAM: 2045 KB
+Free PSRAM: 1379 KB
+1- Free Stack Space: 13296
+2- Heap Space size : 258131
+3- Maximum allocated Heap : 12288
+4- Free Heap Space: 17831
+5- Minimum Free Heap Space: 1386527
+
+Total PSRAM: 2045 KB
+Free PSRAM: 1379 KB
+
+the value of m_balance: 0
+the value of r: 1.00
+the value of l: 1.00the value of m_vol:14
+the value of v:0.44
+the value of m_limit_left: 0.44
+the value of m_limit_right: 0.44volume :14.50
+
+the value of m_balance: 0
+the value of r: 1.00
+the value of l: 1.00the value of m_vol:15
+the value of v:0.51
+the value of m_limit_left: 0.51
+the value of m_limit_right: 0.51volume :15.00
+
+the value of m_balance: 0
+the value of r: 1.00
+the value of l: 1.00the value of m_vol:15
+the value of v:0.51
+the value of m_limit_left: 0.51
+the value of m_limit_right: 0.51volume :15.50
+
+the value of m_balance: 0
+the value of r: 1.00
+the value of l: 1.00the value of m_vol:16
+the value of v:0.58
+the value of m_limit_left: 0.58
+the value of m_limit_right: 0.58volume :16.00
+
+the value of m_balance: 0
+the value of r: 1.00
+the value of l: 1.00the value of m_vol:16
+the value of v:0.58
+the value of m_limit_left: 0.58
+the value of m_limit_right: 0.58volume :16.50
+
+the value of m_balance: 0
+the value of r: 1.00
+the value of l: 1.00the value of m_vol:17
+the value of v:0.66
+the value of m_limit_left: 0.66
+the value of m_limit_right: 0.66volume :17.00
+
+the value of m_balance: 0
+the value of r: 1.00
+the value of l: 1.00the value of m_vol:17
+the value of v:0.66
+the value of m_limit_left: 0.66
+the value of m_limit_right: 0.66volume :17.50
+
+the value of m_balance: 0
+the value of r: 1.00
+the value of l: 1.00the value of m_vol:18
+the value of v:0.73
+the value of m_limit_left: 0.73
+the value of m_limit_right: 0.73volume :18.00
+
+the value of m_balance: 0
+the value of r: 1.00
+the value of l: 1.00the value of m_vol:18
+the value of v:0.73
+the value of m_limit_left: 0.73
+the value of m_limit_right: 0.73volume :18.50
+
+the value of m_balance: 0
+the value of r: 1.00
+the value of l: 1.00the value of m_vol:19
+the value of v:0.82
+the value of m_limit_left: 0.82
+the value of m_limit_right: 0.82volume :19.00
+1- Free Stack Space: 13296
+2- Heap Space size : 258123
+3- Maximum allocated Heap : 12288
+4- Free Heap Space: 16299
+5- Minimum Free Heap Space: 1386527
+
+Total PSRAM: 2045 KB
+Free PSRAM: 1379 KB
+
+the value of m_balance: 0
+the value of r: 1.00
+the value of l: 1.00the value of m_vol:19
+the value of v:0.82
+the value of m_limit_left: 0.82
+the value of m_limit_right: 0.82volume :19.50
+
+the value of m_balance: 0
+the value of r: 1.00
+the value of l: 1.00the value of m_vol:20
+the value of v:0.91
+the value of m_limit_left: 0.91
+the value of m_limit_right: 0.91volume :20.00
+[0;31m[ 37906][E][WiFiClient.cpp:320] setSocketOption(): fail on 0, errno: 9, "Bad file number"[0m
+
+the value of m_balance: 0
+the value of r: 1.00
+the value of l: 1.00the value of m_vol:20
+the value of v:0.91
+the value of m_limit_left: 0.91
+the value of m_limit_right: 0.91volume :20.50
+
+the value of m_balance: 0
+the value of r: 1.00
+the value of l: 1.00the value of m_vol:21
+the value of v:1.00
+the value of m_limit_left: 1.00
+the value of m_limit_right: 1.00volume :21.00
+
+the value of m_balance: 0
+the value of r: 1.00
+the value of l: 1.00the value of m_vol:21
+the value of v:1.00
+the value of m_limit_left: 1.00
+the value of m_limit_right: 1.00volume :21.00
+
+the value of m_balance: 0
+the value of r: 1.00
+the value of l: 1.00the value of m_vol:21
+the value of v:1.00
+the value of m_limit_left: 1.00
+the value of m_limit_right: 1.00volume :21.00
+1- Free Stack Space: 13296
+2- Heap Space size : 258331
+3- Maximum allocated Heap : 31744
+4- Free Heap Space: 69919
+5- Minimum Free Heap Space: 1386527
+
+Total PSRAM: 2045 KB
+Free PSRAM: 1378 KB
+
+the value of m_balance: 0
+the value of r: 1.00
+the value of l: 1.00the value of m_vol:21
+the value of v:1.00
+the value of m_limit_left: 1.00
+the value of m_limit_right: 1.00volume :21.00
+
+the value of m_balance: 0
+the value of r: 1.00
+the value of l: 1.00the value of m_vol:21
+the value of v:1.00
+the value of m_limit_left: 1.00
+the value of m_limit_right: 1.00volume :21.00
+
+the value of m_balance: 0
+the value of r: 1.00
+the value of l: 1.00the value of m_vol:21
+the value of v:1.00
+the value of m_limit_left: 1.00
+the value of m_limit_right: 1.00volume :21.00
+
+the value of m_balance: 0
+the value of r: 1.00
+the value of l: 1.00the value of m_vol:21
+the value of v:1.00
+the value of m_limit_left: 1.00
+the value of m_limit_right: 1.00volume :21.00
+1- Free Stack Space: 13296
+2- Heap Space size : 258331
+3- Maximum allocated Heap : 31744
+4- Free Heap Space: 69919
+5- Minimum Free Heap Space: 1386527
+
+Total PSRAM: 2045 KB
+Free PSRAM: 1378 KB
+MQTT client not connected. Reconnecting...
+MQTT state : CONNECTION_LOST
+WIFI RSSI : -54
+Client id : 164961800
+1- Free Stack Space: 13296
+2- Heap Space size : 258323
+3- Maximum allocated Heap : 31744
+4- Free Heap Space: 70907
+5- Minimum Free Heap Space: 1386527
+
+Total PSRAM: 2045 KB
+Free PSRAM: 1378 KB
+[0;31m[ 52413][E][ssl_client.cpp:129] start_ssl_client(): socket error on fd 55, errno: 113, "Software caused connection abort"[0m
+[0;31m[ 52427][E][WiFiClientSecure.cpp:144] connect(): start_ssl_client: -1[0m
+[0;32m[ 52559][I][WiFiClient.cpp:260] connect(): select returned due to timeout 3000 ms for fd 54[0m
+Failed to connect to MQTT broker
+1- Free Stack Space: 13296
+2- Heap Space size : 258391
+3- Maximum allocated Heap : 31744
+4- Free Heap Space: 72431
+5- Minimum Free Heap Space: 1386527
+
+Total PSRAM: 2045 KB
+Free PSRAM: 1379 KB
+1- Free Stack Space: 13296
+2- Heap Space size : 258391
+3- Maximum allocated Heap : 31744
+4- Free Heap Space: 72431
+5- Minimum Free Heap Space: 1386527
+
+Total PSRAM: 2045 KB
+Free PSRAM: 1379 KB
+Client id : 164961800
+OTA is not Updating....
+Updating Telemetry
+{"battery":90,"macAddress":"D0:EF:76:2A:0B:4E"}

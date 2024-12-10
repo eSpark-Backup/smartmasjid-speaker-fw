@@ -1,0 +1,100 @@
+#pragma once
+#include <WiFi.h>
+#include <PubSubClient.h>
+#include <ArduinoJson.h>
+#include "WifiProvisioning.hpp"
+#include "Device.hpp"
+
+#define TEXTIFY(A) #A
+#define MQTT(State)    "MQTT state : " TEXTIFY(State)
+#define MQTT_RECONNECT_DELAY 10
+void mqttTask(void* pvParameters);
+
+typedef enum 
+{
+  DEVICE_RESET,
+  DEVICE_SUBSCRIBE,
+  DEVICE_UNSUBSCRIBE,
+  DEVICE_WIFI,
+  DEVICE_STREAM,
+  DEVICE_PING,
+  DEVICE_OTA_UPDATE,
+  UNKNOWN_TOPIC = 0xFF,
+} MqttTopic;
+
+typedef enum 
+{
+  SUBSCRIBE,
+  UNSUBSCRIBE,
+} Subscription;
+
+namespace MQTT
+{
+  typedef enum
+  {
+    CONNECTION_TIMEOUT = -4,
+    CONNECTION_LOST,
+    CONNECTION_FAILED,
+    DISCONNECTED,
+    CONNECTED,
+    CONNECT_BAD_PROTOCOL,
+    CONNECT_BAD_CLIENT_ID,
+    CONNECT_UNAVAILIABLE,
+    CONNECT_BAD_CREDENTIALS,
+    CONNECT_UNAUTHORIZED,
+  } State;
+}
+
+class MQTTClient
+{
+  private:
+    IWifiProvisioning* pWifiProv;
+    // MQTT broker configuration
+    const char* mqttServer = "smartmasjid-broker-dev.futuriklabs.com";
+    const int mqttPort = 1883;
+    const char* mqttUsername = "device";
+    const char* mqttPassword = "device";
+    // uint8_t serverIp[4] = {34,228,26,242};
+
+
+    int count = 0 ;
+    /* MQTT topic details */
+    const char* topicPrefix = "device";
+    char macAddress[20];
+    
+    // MQTT topic to subscribe to
+    const char* mqttTopicReset  = "reset";
+    const char* mqttTopicSubscribe  = "subscribe";
+    const char* mqttTopicUnsubscribe  = "unsubscribe";
+    const char* mqttTopicWifi  = "wifi";
+    const char* mqttTopicPing  = "ping";
+    const char* mqttTopicOta  = "update"; 
+    char adhan[32];
+
+  public:
+    bool otaUpdated = false;
+    MQTTClient(IWifiProvisioning* wifiProv) : pWifiProv(wifiProv) {}
+    bool setup();
+    bool connectToBroker(int retries) ;
+    bool connectToBroker();
+    bool subscribeTopics();
+    bool unsubscribeTopics();
+    void receiveCallback(char* topic, byte* payload, unsigned int length);
+    void loop();
+    bool subscribe(const char* topic);
+    bool unsubscribe(const char* topic);
+    MqttTopic getTopic(const char* topic);
+    bool extractTopicAndControlSubscription(Subscription control, const char* message);
+    bool extractTopicAndSubscribe(const char* message);
+    bool extractTopicAndUnsubscribe(const char* message);
+    void getTopicPath(char* dest, const char* topicName);
+    bool compareAdhanTopic(const char* topic); 
+    bool compareTopic(const char* topic, const char* topicName);
+    bool controlSubscription(Subscription control, const char* topic);
+    bool subscribeTopicsfromNVS();
+    bool unsubscribeTopicsfromNVS();
+    void mqttCallback();
+    void printState();
+    void createTask();
+
+};

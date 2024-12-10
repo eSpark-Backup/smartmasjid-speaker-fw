@@ -1,0 +1,311 @@
+ets Jul 29 2019 12:21:46
+
+rst:0x1 (POWERON_RESET),boot:0x13 (SPI_FAST_FLASH_BOOT)
+configsip: 153911750, SPIWP:0xee
+clk_drv:0x00,q_drv:0x00,d_drv:0x00,cs0_drv:0x00,hd_drv:0x00,wp_drv:0x00
+mode:DIO, clock div:2
+load:0x3fff0030,len:6652
+ho 0 tail 12 room 4
+load:0x40078000,len:15060
+load:0x40080400,len:3836
+entry 0x4008069c
+[0;32mI (30) boot: ESP-IDF 4.4.6 2nd stage bootloader[0m
+[0;32mI (30) boot: compile time 19:48:53[0m
+[0;32mI (30) boot: Multicore bootloader[0m
+[0;32mI (33) boot: chip revision: v3.1[0m
+[0;32mI (37) boot.esp32: SPI Speed      : 40MHz[0m
+[0;32mI (41) boot.esp32: SPI Mode       : DIO[0m
+[0;32mI (46) boot.esp32: SPI Flash Size : 4MB[0m
+[0;32mI (51) boot: Enabling RNG early entropy source...[0m
+[0;32mI (56) boot: Partition Table:[0m
+[0;32mI (60) boot: ## Label            Usage          Type ST Offset   Length[0m
+[0;32mI (67) boot:  0 otadata          OTA data         01 00 0000e000 00002000[0m
+[0;32mI (74) boot:  1 nvs              WiFi data        01 02 00010000 00040000[0m
+[0;32mI (82) boot:  2 app0             OTA app          00 10 00050000 003a0000[0m
+[0;32mI (89) boot:  3 coredump         Unknown data     01 03 003f0000 00010000[0m
+[0;32mI (97) boot: End of partition table[0m
+[0;32mI (101) esp_image: segment 0: paddr=00050020 vaddr=3f400020 size=4b820h (309280) map[0m
+[0;32mI (221) esp_image: segment 1: paddr=0009b848 vaddr=3ffbdb60 size=047d0h ( 18384) load[0m
+[0;32mI (229) esp_image: segment 2: paddr=000a0020 vaddr=400d0020 size=118da4h (1150372) map[0m
+[0;32mI (645) esp_image: segment 3: paddr=001b8dcc vaddr=3ffc2330 size=006ach (  1708) load[0m
+[0;32mI (646) esp_image: segment 4: paddr=001b9480 vaddr=40080000 size=1f850h (129104) load[0m
+[0;32mI (719) boot: Loaded app from partition at offset 0x50000[0m
+[0;32mI (719) boot: Disabling RNG early entropy source...[0m
+[0;32mI (731) cpu_start: Multicore app[0m
+[0;32mI (731) psram: This chip is ESP32-D0WDR2-V3[0m
+[0;32mI (731) spiram: Found 16MBit SPI RAM device[0m
+[0;32mI (735) spiram: SPI RAM mode: flash 40m sram 40m[0m
+[0;32mI (741) spiram: PSRAM initialized, cache is in low/high (2-core) mode.[0m
+[0;32mI (748) cpu_start: Pro cpu up.[0m
+[0;32mI (752) cpu_start: Starting app cpu, entry point is 0x40083fb8[0m
+[0;32mI (0) cpu_start: App cpu up.[0m
+[0;32mI (1205) spiram: SPI SRAM memory test OK[0m
+[0;32mI (1214) cpu_start: Pro cpu start user code[0m
+[0;32mI (1214) cpu_start: cpu freq: 240000000[0m
+[0;32mI (1214) cpu_start: Application information:[0m
+[0;32mI (1217) cpu_start: Project name:     Better_WiFi_throughput[0m
+[0;32mI (1223) cpu_start: App version:      1[0m
+[0;32mI (1227) cpu_start: Compile time:     Nov 29 2024 19:43:03[0m
+[0;32mI (1234) cpu_start: ELF file SHA256:  f033107cdf0f861a...[0m
+[0;32mI (1240) cpu_start: ESP-IDF:          4.4.6[0m
+[0;32mI (1245) cpu_start: Min chip rev:     v3.0[0m
+[0;32mI (1249) cpu_start: Max chip rev:     v3.99 [0m
+[0;32mI (1254) cpu_start: Chip rev:         v3.1[0m
+[0;32mI (1259) heap_init: Initializing. RAM available for dynamic allocation:[0m
+[0;32mI (1267) heap_init: At 3FFAFF10 len 000000F0 (0 KiB): DRAM[0m
+[0;32mI (1273) heap_init: At 3FFB6388 len 00001C78 (7 KiB): DRAM[0m
+[0;32mI (1279) heap_init: At 3FFB9A20 len 00004108 (16 KiB): DRAM[0m
+[0;32mI (1285) heap_init: At 3FFCBDA8 len 00014258 (80 KiB): DRAM[0m
+[0;32mI (1291) heap_init: At 3FFE0440 len 00003AE0 (14 KiB): D/IRAM[0m
+[0;32mI (1298) heap_init: At 3FFE4350 len 0001BCB0 (111 KiB): D/IRAM[0m
+[0;32mI (1304) heap_init: At 4009F850 len 000007B0 (1 KiB): IRAM[0m
+[0;32mI (1311) spiram: Adding pool of 2047K of external SPI memory to heap allocator[0m
+[0;32mI (1319) spi_flash: detected chip: gd[0m
+[0;32mI (1323) spi_flash: flash io: dio[0m
+[0;33mW (1327) spi_flash: Detected size(8192k) larger than the size in the binary image header(4096k). Using the size in the binary image header.[0m
+[0;32mI (1342) cpu_start: Starting scheduler on PRO CPU.[0m
+[0;32mI (0) cpu_start: Starting scheduler on APP CPU.[0m
+[0;32mI (1356) spiram: Reserving pool of 32K of internal memory for DMA/internal allocations[0m
+[0;32m[    49][I][esp32-hal-psram.c:96] psramInit(): PSRAM enabled[0m
+[0;32mI ([0;32mI (1407) gpio: GPIO[17]| InputEn: 1| OutputEn: 0| OpenDrain: 0| Pullup: 0| Pulldown: 0| Intr:0 [0m
+[0;31mE (1408) gpio: GPIO can only be used as input mode[0m
+[0;31m[    95][E][esp32-hal-gpio.c:130] __pinMode(): GPIO config failed[0m
+[0;32mI (1429) gpio: GPIO[33]| InputEn: 1| OutputEn: 0| OpenDrain: 0| Pullup: 0| Pulldown: 0| Intr:0 [0m
+Arduino Stack was set to 16384 bytes
+[0;31m[   115][E][Preferences.cpp:483] getString(): nvs_get_str len fail: ssid NOT_FOUND[0m
+No values saved for ssid or password
+Switching to Bluetooth mode
+[0;32mI (1550) BTDM_INIT: BT controller compile version [7b24543][0m
+[0;32mI (1552) system_api: Base MAC address is not set[0m
+[0;32mI (1552) system_api: read default base MAC address from EFUSE[0m
+[0;32mI (1559) BTDM_INIT: Bluetooth MAC: d0:ef:76:2a:0b:4e[0m
+[0;32mI (1567) phy_init: phy_version 4771,450c73b,Aug 16 2023,11:03:10[0m
+D0:EF:76:2A:0B:4E
+[0;32m[   748][I][BLEDevice.cpp:577] getAdvertising(): create advertising[0m
+Waiting a client connection to notify...
+ets Jul 29 2019 12:21:46
+
+rst:0x1 (POWERON_RESET),boot:0x13 (SPI_FAST_FLASH_BOOT)
+configsip: 153911750, SPIWP:0xee
+clk_drv:0x00,q_drv:0x00,d_drv:0x00,cs0_drv:0x00,hd_drv:0x00,wp_drv:0x00
+mode:DIO, clock div:2
+load:0x3fff0030,len:6652
+ho 0 tail 12 room 4
+load:0x40078000,len:15060
+load:0x40080400,len:3836
+entry 0x4008069c
+[0;32mI (30) boot: ESP-IDF 4.4.6 2nd stage bootloader[0m
+[0;32mI (30) boot: compile time 19:48:53[0m
+[0;32mI (30) boot: Multicore bootloader[0m
+[0;32mI (33) boot: chip revision: v3.1[0m
+[0;32mI (37) boot.esp32: SPI Speed      : 40MHz[0m
+[0;32mI (41) boot.esp32: SPI Mode       : DIO[0m
+[0;32mI (46) boot.esp32: SPI Flash Size : 4MB[0m
+[0;32mI (51) boot: Enabling RNG early entropy source...[0m
+[0;32mI (56) boot: Partition Table:[0m
+[0;32mI (60) boot: ## Label            Usage          Type ST Offset   Length[0m
+[0;32mI (67) boot:  0 otadata          OTA data         01 00 0000e000 00002000[0m
+[0;32mI (74) boot:  1 nvs              WiFi data        01 02 00010000 00040000[0m
+[0;32mI (82) boot:  2 app0             OTA app          00 10 00050000 003a0000[0m
+[0;32mI (89) boot:  3 coredump         Unknown data     01 03 003f0000 00010000[0m
+[0;32mI (97) boot: End of partition table[0m
+[0;32mI (101) esp_image: segment 0: paddr=00050020 vaddr=3f400020 size=4b820h (309280) map[0m
+[0;32mI (221) esp_image: segment 1: paddr=0009b848 vaddr=3ffbdb60 size=047d0h ( 18384) load[0m
+[0;32mI (229) esp_image: segment 2: paddr=000a0020 vaddr=400d0020 size=118da4h (1150372) map[0m
+[0;32mI (645) esp_image: segment 3: paddr=001b8dcc vaddr=3ffc2330 size=006ach (  1708) load[0m
+[0;32mI (646) esp_image: segment 4: paddr=001b9480 vaddr=40080000 size=1f850h (129104) load[0m
+[0;32mI (719) boot: Loaded app from partition at offset 0x50000[0m
+[0;32mI (719) boot: Disabling RNG early entropy source...[0m
+[0;32mI (731) cpu_start: Multicore app[0m
+[0;32mI (731) psram: This chip is ESP32-D0WDR2-V3[0m
+[0;32mI (731) spiram: Found 16MBit SPI RAM device[0m
+[0;32mI (735) spiram: SPI RAM mode: flash 40m sram 40m[0m
+[0;32mI (741) spiram: PSRAM initialized, cache is in low/high (2-core) mode.[0m
+[0;32mI (748) cpu_start: Pro cpu up.[0m
+[0;32mI (752) cpu_start: Starting app cpu, entry point is 0x40083fb8[0m
+[0;32mI (0) cpu_start: App cpu up.[0m
+[0;32mI (1205) spiram: SPI SRAM memory test OK[0m
+[0;32mI (1214) cpu_start: Pro cpu start user code[0m
+[0;32mI (1214) cpu_start: cpu freq: 240000000[0m
+[0;32mI (1214) cpu_start: Application information:[0m
+[0;32mI (1217) cpu_start: Project name:     Better_WiFi_throughput[0m
+[0;32mI (1223) cpu_start: App version:      1[0m
+[0;32mI (1227) cpu_start: Compile time:     Nov 29 2024 19:43:03[0m
+[0;32mI (1234) cpu_start: ELF file SHA256:  f033107cdf0f861a...[0m
+[0;32mI (1240) cpu_start: ESP-IDF:          4.4.6[0m
+[0;32mI (1245) cpu_start: Min chip rev:     v3.0[0m
+[0;32mI (1249) cpu_start: Max chip rev:     v3.99 [0m
+[0;32mI (1254) cpu_start: Chip rev:         v3.1[0m
+[0;32mI (1259) heap_init: Initializing. RAM available for dynamic allocation:[0m
+[0;32mI (1267) heap_init: At 3FFAFF10 len 000000F0 (0 KiB): DRAM[0m
+[0;32mI (1273) heap_init: At 3FFB6388 len 00001C78 (7 KiB): DRAM[0m
+[0;32mI (1279) heap_init: At 3FFB9A20 len 00004108 (16 KiB): DRAM[0m
+[0;32mI (1285) heap_init: At 3FFCBDA8 len 00014258 (80 KiB): DRAM[0m
+[0;32mI (1291) heap_init: At 3FFE0440 len 00003AE0 (14 KiB): D/IRAM[0m
+[0;32mI (1298) heap_init: At 3FFE4350 len 0001BCB0 (111 KiB): D/IRAM[0m
+[0;32mI (1304) heap_init: At 4009F850 len 000007B0 (1 KiB): IRAM[0m
+[0;32mI (1311) spiram: Adding pool of 2047K of external SPI memory to heap allocator[0m
+[0;32mI (1319) spi_flash: detected chip: gd[0m
+[0;32mI (1323) spi_flash: flash io: dio[0m
+[0;33mW (1327) spi_flash: Detected size(8192k) larger than the size in the binary image header(4096k). Using the size in the binary image header.[0m
+[0;32mI (1342) cpu_start: Starting scheduler on PRO CPU.[0m
+[0;32mI (0) cpu_start: Starting scheduler on APP CPU.[0m
+[0;32mI (1356) spiram: Reserving pool of 32K of internal memory for DMA/internal allocations[0m
+[0;32m[    49][I][esp32-hal-psram.c:96] psramInit(): PSRAM enabled[0m
+[0;32mI ([0;32mI (1407) gpio: GPIO[17]| InputEn: 1| OutputEn: 0| OpenDrain: 0| Pullup: 0| Pulldown: 0| Intr:0 [0m
+[0;31mE (1408) gpio: GPIO can only be used as input mode[0m
+[0;31m[    95][E][esp32-hal-gpio.c:130] __pinMode(): GPIO config failed[0m
+[0;32mI (1429) gpio: GPIO[33]| InputEn: 1| OutputEn: 0| OpenDrain: 0| Pullup: 0| Pulldown: 0| Intr:0 [0m
+Arduino Stack was set to 16384 bytes
+[0;31m[   115][E][Preferences.cpp:483] getString(): nvs_get_str len fail: ssid NOT_FOUND[0m
+No values saved for ssid or password
+Switching to Bluetooth mode
+[0;32mI (1550) BTDM_INIT: BT controller compile version [7b24543][0m
+[0;32mI (1552) system_api: Base MAC address is not set[0m
+[0;32mI (1552) system_api: read default base MAC address from EFUSE[0m
+[0;32mI (1559) BTDM_INIT: Bluetooth MAC: d0:ef:76:2a:0b:4e[0m
+[0;32mI (1567) phy_init: phy_version 4771,450c73b,Aug 16 2023,11:03:10[0m
+D0:EF:76:2A:0B:4E
+[0;32m[   745][I][BLEDevice.cpp:577] getAdvertising(): create advertising[0m
+Waiting a client connection to notify...
+ets Jul 29 2019 12:21:46
+
+rst:0x1 (POWERON_RESET),boot:0x13 (SPI_FAST_FLASH_BOOT)
+configsip: 153911750, SPIWP:0xee
+clk_drv:0x00,q_drv:0x00,d_drv:0x00,cs0_drv:0x00,hd_drv:0x00,wp_drv:0x00
+mode:DIO, clock div:2
+load:0x3fff0030,len:6652
+ho 0 tail 12 room 4
+load:0x40078000,len:15060
+load:0x40080400,len:3836
+entry 0x4008069c
+[0;32mI (30) boot: ESP-IDF 4.4.6 2nd stage bootloader[0m
+[0;32mI (30) boot: compile time 19:48:53[0m
+[0;32mI (30) boot: Multicore bootloader[0m
+[0;32mI (33) boot: chip revision: v3.1[0m
+[0;32mI (37) boot.esp32: SPI Speed      : 40MHz[0m
+[0;32mI (41) boot.esp32: SPI Mode       : DIO[0m
+[0;32mI (46) boot.esp32: SPI Flash Size : 4MB[0m
+[0;32mI (51) boot: Enabling RNG early entropy source...[0m
+[0;32mI (56) boot: Partition Table:[0m
+[0;32mI (60) boot: ## Label            Usage          Type ST Offset   Length[0m
+[0;32mI (67) boot:  0 otadata          OTA data         01 00 0000e000 00002000[0m
+[0;32mI (74) boot:  1 nvs              WiFi data        01 02 00010000 00040000[0m
+[0;32mI (82) boot:  2 app0             OTA app          00 10 00050000 003a0000[0m
+[0;32mI (89) boot:  3 coredump         Unknown data     01 03 003f0000 00010000[0m
+[0;32mI (97) boot: End of partition table[0m
+[0;32mI (101) esp_image: segment 0: paddr=00050020 vaddr=3f400020 size=4b820h (309280) map[0m
+[0;32mI (221) esp_image: segment 1: paddr=0009b848 vaddr=3ffbdb60 size=047d0h ( 18384) load[0m
+[0;32mI (229) esp_image: segment 2: paddr=000a0020 vaddr=400d0020 size=118da4h (1150372) map[0m
+ets Jul 29 2019 12:21:46
+
+rst:0x1 (POWERON_RESET),boot:0x13 (SPI_FAST_FLASH_BOOT)
+configsip: 153911750, SPIWP:0xee
+clk_drv:0x00,q_drv:0x00,d_drv:0x00,cs0_drv:0x00,hd_drv:0x00,wp_drv:0x00
+mode:DIO, clock div:2
+load:0x3fff0030,len:6652
+ho 0 tail 12 room 4
+load:0x40078000,len:15060
+load:0x40080400,len:3836
+entry 0x4008069c
+[0;32mI (30) boot: ESP-IDF 4.4.6 2nd stage bootloader[0m
+[0;32mI (30) boot: compile time 19:48:53[0m
+[0;32mI (30) boot: Multicore bootloader[0m
+[0;32mI (33) boot: chip revision: v3.1[0m
+[0;32mI (37) boot.esp32: SPI Speed      : 40MHz[0m
+[0;32mI (41) boot.esp32: SPI Mode       : DIO[0m
+[0;32mI (46) boot.esp32: SPI Flash Size : 4MB[0m
+[0;32mI (51) boot: Enabling RNG early entropy source...[0m
+[0;32mI (56) boot: Partition Table:[0m
+[0;32mI (60) boot: ## Label            Usage          Type ST Offset   Length[0m
+[0;32mI (67) boot:  0 otadata          OTA data         01 00 0000e000 00002000[0m
+[0;32mI (74) boot:  1 nvs              WiFi data        01 02 00010000 00040000[0m
+[0;32mI (82) boot:  2 app0             OTA app          00 10 00050000 003a0000[0m
+[0;32mI (89) boot:  3 coredump         Unknown data     01 03 003f0000 00010000[0m
+[0;32mI (97) boot: End of partition table[0m
+[0;32mI (101) esp_image: segment 0: paddr=00050020 vaddr=3f400020 size=4b820h (309280) map[0m
+ets Jul 29 2019 12:21:46
+
+rst:0x1 (POWERON_RESET),boot:0x13 (SPI_FAST_FLASH_BOOT)
+configsip: 153911750, SPIWP:0xee
+clk_drv:0x00,q_drv:0x00,d_drv:0x00,cs0_drv:0x00,hd_drv:0x00,wp_drv:0x00
+mode:DIO, clock div:2
+load:0x3fff0030,len:6652
+ho 0 tail 12 room 4
+load:0x40078000,len:15060
+load:0x40080400,len:3836
+entry 0x4008069c
+[0;32mI (30) boot: ESP-IDF 4.4.6 2nd stage bootloader[0m
+[0;32mI (30) boot: compile time 19:48:53[0m
+[0;32mI (30) boot: Multicore bootloader[0m
+[0;32mI (33) boot: chip revision: v3.1[0m
+[0;32mI (37) boot.esp32: SPI Speed      : 40MHz[0m
+[0;32mI (41) boot.esp32: SPI Mode       : DIO[0m
+[0;32mI (46) boot.esp32: SPI Flash Size : 4MB[0m
+[0;32mI (51) boot: Enabling RNG early entropy source...[0m
+[0;32mI (56) boot: Partition Table:[0m
+[0;32mI (60) boot: ## Label            Usage          Type ST Offset   Length[0m
+[0;32mI (67) boot:  0 otadata          OTA data         01 00 0000e000 00002000[0m
+[0;32mI (74) boot:  1 nvs              WiFi data        01 02 00010000 00040000[0m
+[0;32mI (82) boot:  2 app0             OTA app          00 10 00050000 003a0000[0m
+[0;32mI (89) boot:  3 coredump         Unknown data     01 03 003f0000 00010000[0m
+[0;32mI (97) boot: End of partition table[0m
+[0;32mI (101) esp_image: segment 0: paddr=00050020 vaddr=3f400020 size=4b820h (309280) map[0m
+[0;32mI (221) esp_image: segment 1: paddr=0009b848 vaddr=3ffbdb60 size=047d0h ( 18384) load[0m
+[0;32mI (229) esp_image: segment 2: paddr=000a0020 vaddr=400d0020 size=118da4h (1150372) map[0m
+[0;32mI (645) esp_image: segment 3: paddr=001b8dcc vaddr=3ffc2330 size=006ach (  1708) load[0m
+[0;32mI (646) esp_image: segment 4: paddr=001b9480 vaddr=40080000 size=1f850h (129104) load[0m
+[0;32mI (719) boot: Loaded app from partition at offset 0x50000[0m
+[0;32mI (719) boot: Disabling RNG early entropy source...[0m
+[0;32mI (731) cpu_start: Multicore app[0m
+[0;32mI (731) psram: This chip is ESP32-D0WDR2-V3[0m
+[0;32mI (731) spiram: Found 16MBit SPI RAM device[0m
+[0;32mI (735) spiram: SPI RAM mode: flash 40m sram 40m[0m
+[0;32mI (741) spiram: PSRAM initialized, cache is in low/high (2-core) mode.[0m
+[0;32mI (748) cpu_start: Pro cpu up.[0m
+[0;32mI (752) cpu_start: Starting app cpu, entry point is 0x40083fb8[0m
+[0;32mI (0) cpu_start: App cpu up.[0m
+[0;32mI (1205) spiram: SPI SRAM memory test OK[0m
+[0;32mI (1214) cpu_start: Pro cpu start user code[0m
+[0;32mI (1214) cpu_start: cpu freq: 240000000[0m
+[0;32mI (1214) cpu_start: Application information:[0m
+[0;32mI (1217) cpu_start: Project name:     Better_WiFi_throughput[0m
+[0;32mI (1223) cpu_start: App version:      1[0m
+[0;32mI (1227) cpu_start: Compile time:     Nov 29 2024 19:43:03[0m
+[0;32mI (1234) cpu_start: ELF file SHA256:  f033107cdf0f861a...[0m
+[0;32mI (1240) cpu_start: ESP-IDF:          4.4.6[0m
+[0;32mI (1245) cpu_start: Min chip rev:     v3.0[0m
+[0;32mI (1249) cpu_start: Max chip rev:     v3.99 [0m
+[0;32mI (1254) cpu_start: Chip rev:         v3.1[0m
+[0;32mI (1259) heap_init: Initializing. RAM available for dynamic allocation:[0m
+[0;32mI (1267) heap_init: At 3FFAFF10 len 000000F0 (0 KiB): DRAM[0m
+[0;32mI (1273) heap_init: At 3FFB6388 len 00001C78 (7 KiB): DRAM[0m
+[0;32mI (1279) heap_init: At 3FFB9A20 len 00004108 (16 KiB): DRAM[0m
+[0;32mI (1285) heap_init: At 3FFCBDA8 len 00014258 (80 KiB): DRAM[0m
+[0;32mI (1291) heap_init: At 3FFE0440 len 00003AE0 (14 KiB): D/IRAM[0m
+[0;32mI (1298) heap_init: At 3FFE4350 len 0001BCB0 (111 KiB): D/IRAM[0m
+[0;32mI (1304) heap_init: At 4009F850 len 000007B0 (1 KiB): IRAM[0m
+[0;32mI (1311) spiram: Adding pool of 2047K of external SPI memory to heap allocator[0m
+[0;32mI (1319) spi_flash: detected chip: gd[0m
+[0;32mI (1323) spi_flash: flash io: dio[0m
+[0;33mW (1327) spi_flash: Detected size(8192k) larger than the size in the binary image header(4096k). Using the size in the binary image header.[0m
+[0;32mI (1342) cpu_start: Starting scheduler on PRO CPU.[0m
+[0;32mI (0) cpu_start: Starting scheduler on APP CPU.[0m
+[0;32mI (1356) spiram: Reserving pool of 32K of internal memory for DMA/internal allocations[0m
+[0;32m[    49][I][esp32-hal-psram.c:96] psramInit(): PSRAM enabled[0m
+[0;32mI ([0;32mI (1407) gpio: GPIO[17]| InputEn: 1| OutputEn: 0| OpenDrain: 0| Pullup: 0| Pulldown: 0| Intr:0 [0m
+[0;31mE (1408) gpio: GPIO can only be used as input mode[0m
+[0;31m[    95][E][esp32-hal-gpio.c:130] __pinMode(): GPIO config failed[0m
+[0;32mI (1429) gpio: GPIO[33]| InputEn: 1| OutputEn: 0| OpenDrain: 0| Pullup: 0| Pulldown: 0| Intr:0 [0m
+Arduino Stack was set to 16384 bytes
+[0;31m[   115][E][Preferences.cpp:483] getString(): nvs_get_str len fail: ssid NOT_FOUND[0m
+No values saved for ssid or password
+Switching to Bluetooth mode
+[0;32mI (1550) BTDM_INIT: BT controller compile version [7b24543][0m
+[0;32mI (1552) system_api: Base MAC address is not set[0m
+[0;32mI (1552) system_api: read default base MAC address from EFUSE[0m
+[0;32mI (1559) BTDM_INIT: Bluetooth MAC: d0:ef:76:2a:0b:4e[0m
+[0;32mI (1567) phy_init: phy_version 4771,450c73b,Aug 16 2023,11:03:10[0m
+D0:EF:76:2A:0B:4E
+[0;32m[   746][I][BLEDevice.cpp:577] getAdvertising(): create advertising[0m
+Waiting a client connection to notify...

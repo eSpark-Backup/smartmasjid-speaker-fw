@@ -1,0 +1,1569 @@
+ets Jul 29 2019 12:21:46
+
+rst:0x1 (POWERON_RESET),boot:0x13 (SPI_FAST_FLASH_BOOT)
+configsip: 153911750, SPIWP:0xee
+clk_drv:0x00,q_drv:0x00,d_drv:0x00,cs0_drv:0x00,hd_drv:0x00,wp_drv:0x00
+mode:DIO, clock div:2
+load:0x3fff0030,len:6652
+ho 0 tail 12 room 4
+load:0x40078000,len:15052
+load:0x40080400,len:3836
+entry 0x4008069c
+[0;32mI (30) boot: ESP-IDF 4.4.7 2nd stage bootloader[0m
+[0;32mI (30) boot: compile time 20:19:43[0m
+[0;32mI (30) boot: Multicore bootloader[0m
+[0;32mI (33) boot: chip revision: v3.1[0m
+[0;32mI (37) boot.esp32: SPI Speed      : 40MHz[0m
+[0;32mI (41) boot.esp32: SPI Mode       : DIO[0m
+[0;32mI (46) boot.esp32: SPI Flash Size : 4MB[0m
+[0;32mI (51) boot: Enabling RNG early entropy source...[0m
+[0;32mI (56) boot: Partition Table:[0m
+[0;32mI (60) boot: ## Label            Usage          Type ST Offset   Length[0m
+[0;32mI (67) boot:  0 otadata          OTA data         01 00 0000e000 00002000[0m
+[0;32mI (74) boot:  1 nvs              WiFi data        01 02 00010000 00040000[0m
+[0;32mI (82) boot:  2 app0             OTA app          00 10 00050000 003a0000[0m
+[0;32mI (89) boot:  3 coredump         Unknown data     01 03 003f0000 00010000[0m
+[0;32mI (97) boot: End of partition table[0m
+[0;32mI (101) esp_image: segment 0: paddr=00050020 vaddr=3f400020 size=6f810h (456720) map[0m
+[0;32mI (275) esp_image: segment 1: paddr=000bf838 vaddr=3ffbdb60 size=007e0h (  2016) load[0m
+[0;32mI (276) esp_image: segment 2: paddr=000c0020 vaddr=400d0020 size=134f50h (1265488) map[0m
+[0;32mI (738) esp_image: segment 3: paddr=001f4f78 vaddr=3ffbe340 size=04ee4h ( 20196) load[0m
+[0;32mI (747) esp_image: segment 4: paddr=001f9e64 vaddr=40080000 size=1fc5ch (130140) load[0m
+[0;32mI (816) boot: Loaded app from partition at offset 0x50000[0m
+[0;32mI (816) boot: Disabling RNG early entropy source...[0m
+[0;32mI (827) cpu_start: Multicore app[0m
+[0;32mI (828) psram: This chip is ESP32-D0WDR2-V3[0m
+[0;32mI (828) spiram: Found 16MBit SPI RAM device[0m
+[0;32mI (832) spiram: SPI RAM mode: flash 40m sram 40m[0m
+[0;32mI (837) spiram: PSRAM initialized, cache is in low/high (2-core) mode.[0m
+[0;32mI (845) cpu_start: Pro cpu up.[0m
+[0;32mI (848) cpu_start: Starting app cpu, entry point is 0x40083fe4[0m
+[0;32mI (0) cpu_start: App cpu up.[0m
+[0;32mI (1302) spiram: SPI SRAM memory test OK[0m
+[0;32mI (1310) cpu_start: Pro cpu start user code[0m
+[0;32mI (1310) cpu_start: cpu freq: 240000000[0m
+[0;32mI (1310) cpu_start: Application information:[0m
+[0;32mI (1313) cpu_start: Project name:     Better_WiFi_throughput[0m
+[0;32mI (1320) cpu_start: App version:      1[0m
+[0;32mI (1324) cpu_start: Compile time:     Dec 10 2024 20:14:29[0m
+[0;32mI (1330) cpu_start: ELF file SHA256:  c8b3bedc32080d8c...[0m
+[0;32mI (1336) cpu_start: ESP-IDF:          4.4.7[0m
+[0;32mI (1341) cpu_start: Min chip rev:     v3.0[0m
+[0;32mI (1346) cpu_start: Max chip rev:     v3.99 [0m
+[0;32mI (1351) cpu_start: Chip rev:         v3.1[0m
+[0;32mI (1356) heap_init: Initializing. RAM available for dynamic allocation:[0m
+[0;32mI (1363) heap_init: At 3FFAFF10 len 000000F0 (0 KiB): DRAM[0m
+[0;32mI (1369) heap_init: At 3FFB6388 len 00001C78 (7 KiB): DRAM[0m
+[0;32mI (1375) heap_init: At 3FFB9A20 len 00004108 (16 KiB): DRAM[0m
+[0;32mI (1382) heap_init: At 3FFCD8C8 len 00012738 (73 KiB): DRAM[0m
+[0;32mI (1388) heap_init: At 3FFE0440 len 00003AE0 (14 KiB): D/IRAM[0m
+[0;32mI (1394) heap_init: At 3FFE4350 len 0001BCB0 (111 KiB): D/IRAM[0m
+[0;32mI (1401) heap_init: At 4009FC5C len 000003A4 (0 KiB): IRAM[0m
+[0;32mI (1407) spiram: Adding pool of 2047K of external SPI memory to heap allocator[0m
+[0;32mI (1416) spi_flash: detected chip: gd[0m
+[0;32mI (1419) spi_flash: flash io: dio[0m
+[0;33mW (1423) spi_flash: Detected size(8192k) larger than the size in the binary image header(4096k). Using the size in the binary image header.[0m
+[0;32mI (1439) cpu_start: Starting scheduler on PRO CPU.[0m
+[0;32mI (0) cpu_start: Starting scheduler on APP CPU.[0m
+[0;32mI (1452) spiram: Reserving pool of 32K of internal memory for DMA/internal allocations[0m
+[0;32m[    49][I][esp32-hal-psram.c:96] psramInit(): PSRAM enabled[0m
+[0;32mI ([0;32mI (1603) gpio: GPIO[17]| InputEn: 1| OutputEn: 0| OpenDrain: 0| Pullup: 0| Pulldown: 0| Intr:0 [0m
+[0;31mE (1603) gpio: GPIO can only be used as input mode[0m
+[0;31m[   195][E][esp32-hal-gpio.c:130] __pinMode(): GPIO config failed[0m
+[0;32mI (1625) gpio: GPIO[33]| InputEn: 1| OutputEn: 0| OpenDrain: 0| Pullup: 0| Pulldown: 0| Intr:0 [0m
+Arduino Stack was set to 16384 bytes
+Connecting to StormFiber-E290...
+I (1643) wifi:wifi driver task: 3ffdfdac, prio:23, stack:6656, core=0
+I (1654) wifi:wifi firmware version: 1fd20f4
+I (1654) wifi:wifi certification version: v7.0
+I (1655) wifi:config NVS flash: enabled
+I (1655) wifi:config nano formating: disabled
+I (1659) wifi:Init data frame dynamic rx buffer num: 32
+I (1664) wifi:Init static rx mgmt buffer num: 5
+I (1668) wifi:Init management short buffer num: 32
+I (1673) wifi:Init dynamic tx buffer num: 32
+I (1677) wifi:Init tx cache buffer num: 4
+I (1681) wifi:Init static rx buffer size: 1600
+I (1685) wifi:Init static rx buffer num: 4
+I (1689) wifi:Init dynamic rx buffer num: 32
+[0;32mI (1693) wifi_init: rx ba win: 6[0m
+[0;32mI (1696) wifi_init: tcpip mbox: 32[0m
+[0;32mI (1701) wifi_init: udp mbox: 6[0m
+[0;32mI (1704) wifi_init: tcp mbox: 32[0m
+[0;32mI (1708) wifi_init: tcp tx win: 8192[0m
+[0;32mI (1712) wifi_init: tcp rx win: 32768[0m
+[0;32mI (1717) wifi_init: tcp mss: 1460[0m
+[0;32mI (1721) wifi_init: WiFi IRAM OP enabled[0m
+[0;32mI (1725) wifi_init: WiFi RX IRAM OP enabled[0m
+[0;32mI (1732) phy_init: phy_version 4791,2c4672b,Dec 20 2023,16:06:06[0m
+I (1801) wifi:mode : sta (d0:ef:76:2a:0b:4c)
+I (1802) wifi:enable tsf
+I (1803) wifi:Set ps type: 1
+
+I (1824) wifi:new:<5,0>, old:<1,0>, ap:<255,255>, sta:<5,0>, prof:1
+I (1826) wifi:state: init -> auth (b0)
+I (1829) wifi:state: auth -> assoc (0)
+I (1838) wifi:state: assoc -> run (10)
+I (1859) wifi:connected with StormFiber-E290, aid = 1, channel 5, BW20, bssid = 6c:49:a6:fd:e2:91
+I (1860) wifi:security: WPA2-PSK, phy: bgn, rssi: -52
+I (1865) wifi:pm start, type: 1
+
+I (2202) wifi:AP's beacon interval = 102400 us, DTIM period = 1
+.[0;32mI (2871) esp_netif_handlers: sta ip: 192.168.18.16, mask: 255.255.255.0, gw: 192.168.18.1[0m
+Connected to Wi-Fi network with IP address: 192.168.18.16
+{"battery":90,"macAddress":"D0:EF:76:2A:0B:4E"}
+I (2987) wifi:<ba-add>idx:0 (ifx:0, 6c:49:a6:fd:e2:91), tid:0, ssn:0, winSize:64
+.WIFI RSSI : -52
+Request successful!
+{"id":537,"status":"Online","streamer":null,"batteryLife":90,"updatedTime":"2024-12-10T15:36:21.116+00:00"}
+[0;33m[  4896][W][esp32-hal-timer.c:226] timerAttachInterruptFlag(): EDGE timer interrupt is not supported! Setting to LEVEL...[0m
+Client id : 365440629
+[0;32mI (6325) I2S: DMA Malloc info, datalen=blocksize=2048, dma_buf_count=16[0m
+
+the value of m_balance: 0
+the value of r: 1.00
+the value of l: 1.00the value of m_vol:21
+the value of v:0.91
+the value of m_limit_left: 0.91
+the value of m_limit_right: 0.91Amplifier is initilized
+
+the value of m_balance: 0
+the value of r: 1.00
+the value of l: 1.00the value of m_vol:14
+the value of v:0.40
+the value of m_limit_left: 0.40
+the value of m_limit_right: 0.40volume is set to 14.00
+[0;32mI (6360) gpio: GPIO[14]| InputEn: 1| OutputEn: 0| OpenDrain: 0| Pullup: 1| Pulldown: 0| Intr:0 [0m
+[0;32mI (6366) gpio: GPIO[13]| InputEn: 1| OutputEn: 0| OpenDrain: 0| Pullup: 1| Pulldown: 0| Intr:0 [0m
+[0;32mI (6375) gpio: GPIO[22]| InputEn: 1| OutputEn: 0| OpenDrain: 0| Pullup: 1| Pulldown: 0| Intr:0 [0m
+1- Free Stack Space: 13280
+2- Heap Space size : 256575
+3- Maximum allocated Heap : 59392
+4- Free Heap Space: 85347
+5- Minimum Free Heap Space: 2132451
+
+Total PSRAM: 2045 KB
+Free PSRAM: 2019 KB
+Connected to MQTT broker
+Subscribed to device/D0:EF:76:2A:0B:4E/reset
+Subscribed to device/D0:EF:76:2A:0B:4E/subscribe
+Subscribed to device/D0:EF:76:2A:0B:4E/unsubscribe
+Subscribed to device/D0:EF:76:2A:0B:4E/wifi
+Subscribed to device/D0:EF:76:2A:0B:4E/update
+Subscribed to device/D0:EF:76:2A:0B:4E/ping
+Subscribed to masjid/3/adhan/fajr
+Subscribed to masjid/3/adhan/dhuhr
+Subscribed to masjid/3/adhan/asr
+Subscribed to masjid/3/adhan/maghrib
+Subscribed to masjid/3/adhan/isha
+Subscribed to masjid/3/adhan/jumuah2
+Subscribed to masjid/3/adhan/jumuah3
+Subscribed to masjid/3/adhan/jumuah1
+1- Free Stack Space: 13280
+2- Heap Space size : 256535
+3- Maximum allocated Heap : 59392
+4- Free Heap Space: 83563
+5- Minimum Free Heap Space: 2132451
+
+Total PSRAM: 2045 KB
+Free PSRAM: 2019 KB
+1- Free Stack Space: 13280
+2- Heap Space size : 256535
+3- Maximum allocated Heap : 59392
+4- Free Heap Space: 83563
+5- Minimum Free Heap Space: 2132451
+
+Total PSRAM: 2045 KB
+Free PSRAM: 2019 KB
+1- Free Stack Space: 13280
+2- Heap Space size : 256535
+3- Maximum allocated Heap : 59392
+4- Free Heap Space: 83563
+5- Minimum Free Heap Space: 2132451
+
+Total PSRAM: 2045 KB
+Free PSRAM: 2019 KB
+1- Free Stack Space: 13280
+2- Heap Space size : 256535
+3- Maximum allocated Heap : 59392
+4- Free Heap Space: 83563
+5- Minimum Free Heap Space: 2132451
+
+Total PSRAM: 2045 KB
+Free PSRAM: 2019 KB
+1- Free Stack Space: 13280
+2- Heap Space size : 256535
+3- Maximum allocated Heap : 59392
+4- Free Heap Space: 83563
+5- Minimum Free Heap Space: 2132451
+
+Total PSRAM: 2045 KB
+Free PSRAM: 2019 KB
+1- Free Stack Space: 13280
+2- Heap Space size : 256535
+3- Maximum allocated Heap : 59392
+4- Free Heap Space: 83563
+5- Minimum Free Heap Space: 2132451
+
+Total PSRAM: 2045 KB
+Free PSRAM: 2019 KB
+1- Free Stack Space: 13280
+2- Heap Space size : 256535
+3- Maximum allocated Heap : 59392
+4- Free Heap Space: 83563
+5- Minimum Free Heap Space: 2132451
+
+Total PSRAM: 2045 KB
+Free PSRAM: 2019 KB
+Received MQTT message [masjid/3/adhan/isha]: {"action":"START","streamUrl":"http://radio.hear.fi:8000/hear.ogg"}
+Amplifier is Started...
+Streaming from url : https://ais-edge91-dal03.cdnstream.com/2585_256.mp3
+[0;31m[ 40580][E][WiFiClient.cpp:326] setSocketOption(): fail on 0, errno: 9, "Bad file number"[0m
+connected to  the host
+1- Free Stack Space: 13280
+2- Heap Space size : 256259
+3- Maximum allocated Heap : 7936
+4- Free Heap Space: 13355
+5- Minimum Free Heap Space: 1385955
+
+Total PSRAM: 2045 KB
+Free PSRAM: 1379 KB
+1- Free Stack Space: 13280
+2- Heap Space size : 256131
+3- Maximum allocated Heap : 1088
+4- Free Heap Space: 2131
+5- Minimum Free Heap Space: 1382251
+
+Total PSRAM: 2045 KB
+Free PSRAM: 1358 KB
+1- Free Stack Space: 13280
+2- Heap Space size : 256259
+3- Maximum allocated Heap : 7936
+4- Free Heap Space: 13355
+5- Minimum Free Heap Space: 1382251
+
+Total PSRAM: 2045 KB
+Free PSRAM: 1379 KB
+1- Free Stack Space: 13280
+2- Heap Space size : 256211
+3- Maximum allocated Heap : 6400
+4- Free Heap Space: 11051
+5- Minimum Free Heap Space: 1379879
+
+Total PSRAM: 2045 KB
+Free PSRAM: 1379 KB
+OTA is not Updating....
+Updating Telemetry
+{"battery":90,"macAddress":"D0:EF:76:2A:0B:4E"}
+[0;31m[ 65212][E][ssl_client.cpp:37] _handle_error(): [start_ssl_client():264]: (-32512) SSL - Memory allocation failed[0m
+[0;31m[ 65223][E][WiFiClientSecure.cpp:144] connect(): start_ssl_client: -32512[0m
+[0;33m[ 65233][W][HTTPClient.cpp:1483] returnError(): error(-1): connection refused[0m
+[0;33m[ 65241][W][HTTPClient.cpp:1483] returnError(): error(-4): not connected[0m
+WIFI RSSI : -57
+Request failed with error code: 
+1- Free Stack Space: 13008
+2- Heap Space size : 256231
+3- Maximum allocated Heap : 7936
+4- Free Heap Space: 12799
+5- Minimum Free Heap Space: 1379879
+
+Total PSRAM: 2045 KB
+Free PSRAM: 1379 KB
+1- Free Stack Space: 13008
+2- Heap Space size : 256191
+3- Maximum allocated Heap : 1600
+4- Free Heap Space: 5443
+5- Minimum Free Heap Space: 1379879
+
+Total PSRAM: 2045 KB
+Free PSRAM: 1376 KB
+1- Free Stack Space: 13008
+2- Heap Space size : 256139
+3- Maximum allocated Heap : 1472
+4- Free Heap Space: 2491
+5- Minimum Free Heap Space: 1379879
+
+Total PSRAM: 2045 KB
+Free PSRAM: 1352 KB
+1- Free Stack Space: 13008
+2- Heap Space size : 256239
+3- Maximum allocated Heap : 7936
+4- Free Heap Space: 12935
+5- Minimum Free Heap Space: 1379879
+
+Total PSRAM: 2045 KB
+Free PSRAM: 1379 KB
+1- Free Stack Space: 13008
+2- Heap Space size : 256211
+3- Maximum allocated Heap : 6656
+4- Free Heap Space: 11759
+5- Minimum Free Heap Space: 1379879
+
+Total PSRAM: 2045 KB
+Free PSRAM: 1371 KB
+I (87146) wifi:<ba-add>idx:1 (ifx:0, 6c:49:a6:fd:e2:91), tid:1, ssn:0, winSize:64
+1- Free Stack Space: 13008
+2- Heap Space size : 256203
+3- Maximum allocated Heap : 6656
+4- Free Heap Space: 11475
+5- Minimum Free Heap Space: 1379879
+
+Total PSRAM: 2045 KB
+Free PSRAM: 1379 KB
+1- Free Stack Space: 13008
+2- Heap Space size : 256219
+3- Maximum allocated Heap : 7936
+4- Free Heap Space: 12439
+5- Minimum Free Heap Space: 1379879
+
+Total PSRAM: 2045 KB
+Free PSRAM: 1379 KB
+1- Free Stack Space: 13008
+2- Heap Space size : 256231
+3- Maximum allocated Heap : 7936
+4- Free Heap Space: 12863
+5- Minimum Free Heap Space: 1379879
+
+Total PSRAM: 2045 KB
+Free PSRAM: 1379 KB
+1- Free Stack Space: 13008
+2- Heap Space size : 256231
+3- Maximum allocated Heap : 7936
+4- Free Heap Space: 12863
+5- Minimum Free Heap Space: 1379879
+
+Total PSRAM: 2045 KB
+Free PSRAM: 1379 KB
+1- Free Stack Space: 13008
+2- Heap Space size : 256227
+3- Maximum allocated Heap : 7936
+4- Free Heap Space: 12839
+5- Minimum Free Heap Space: 1379879
+
+Total PSRAM: 2045 KB
+Free PSRAM: 1379 KB
+1- Free Stack Space: 13008
+2- Heap Space size : 256231
+3- Maximum allocated Heap : 7936
+4- Free Heap Space: 12863
+5- Minimum Free Heap Space: 1379863
+
+Total PSRAM: 2045 KB
+Free PSRAM: 1379 KB
+1- Free Stack Space: 13008
+2- Heap Space size : 256223
+3- Maximum allocated Heap : 7936
+4- Free Heap Space: 12559
+5- Minimum Free Heap Space: 1379863
+
+Total PSRAM: 2045 KB
+Free PSRAM: 1379 KB
+OTA is not Updating....
+Updating Telemetry
+{"battery":90,"macAddress":"D0:EF:76:2A:0B:4E"}
+[0;31m[125289][E][ssl_client.cpp:37] _handle_error(): [start_ssl_client():264]: (-32512) SSL - Memory allocation failed[0m
+[0;31m[125301][E][WiFiClientSecure.cpp:144] connect(): start_ssl_client: -32512[0m
+[0;33m[125311][W][HTTPClient.cpp:1483] returnError(): error(-1): connection refused[0m
+[0;33m[125320][W][HTTPClient.cpp:1483] returnError(): error(-4): not connected[0m
+WIFI RSSI : -50
+Request failed with error code: 
+1- Free Stack Space: 12896
+2- Heap Space size : 256143
+3- Maximum allocated Heap : 1856
+4- Free Heap Space: 6771
+5- Minimum Free Heap Space: 1379863
+
+Total PSRAM: 2045 KB
+Free PSRAM: 1375 KB
+1- Free Stack Space: 12896
+2- Heap Space size : 256227
+3- Maximum allocated Heap : 7936
+4- Free Heap Space: 12651
+5- Minimum Free Heap Space: 1379863
+
+Total PSRAM: 2045 KB
+Free PSRAM: 1379 KB
+1- Free Stack Space: 12896
+2- Heap Space size : 256211
+3- Maximum allocated Heap : 6400
+4- Free Heap Space: 11183
+5- Minimum Free Heap Space: 1379863
+
+Total PSRAM: 2045 KB
+Free PSRAM: 1377 KB
+1- Free Stack Space: 12896
+2- Heap Space size : 256227
+3- Maximum allocated Heap : 7936
+4- Free Heap Space: 12651
+5- Minimum Free Heap Space: 1379863
+
+Total PSRAM: 2045 KB
+Free PSRAM: 1379 KB
+1- Free Stack Space: 12896
+2- Heap Space size : 256179
+3- Maximum allocated Heap : 1600
+4- Free Heap Space: 5947
+5- Minimum Free Heap Space: 1379863
+
+Total PSRAM: 2045 KB
+Free PSRAM: 1379 KB
+1- Free Stack Space: 12896
+2- Heap Space size : 256179
+3- Maximum allocated Heap : 1600
+4- Free Heap Space: 5947
+5- Minimum Free Heap Space: 1379863
+
+Total PSRAM: 2045 KB
+Free PSRAM: 1379 KB
+[0;31m[154399][E][WiFiClient.cpp:326] setSocketOption(): fail on 0, errno: 9, "Bad file number"[0m
+1- Free Stack Space: 12896
+2- Heap Space size : 256379
+3- Maximum allocated Heap : 21504
+4- Free Heap Space: 59415
+5- Minimum Free Heap Space: 1379863
+
+Total PSRAM: 2045 KB
+Free PSRAM: 1378 KB
+1- Free Stack Space: 12896
+2- Heap Space size : 256431
+3- Maximum allocated Heap : 27648
+4- Free Heap Space: 64951
+5- Minimum Free Heap Space: 1379863
+
+Total PSRAM: 2045 KB
+Free PSRAM: 1378 KB
+1- Free Stack Space: 12896
+2- Heap Space size : 256431
+3- Maximum allocated Heap : 27648
+4- Free Heap Space: 64951
+5- Minimum Free Heap Space: 1379863
+
+Total PSRAM: 2045 KB
+Free PSRAM: 1378 KB
+[0;31m[169091][E][ssl_client.cpp:129] start_ssl_client(): socket error on fd 55, errno: 113, "Software caused connection abort"[0m
+[0;31m[169109][E][WiFiClientSecure.cpp:144] connect(): start_ssl_client: -1[0m
+1- Free Stack Space: 12896
+2- Heap Space size : 256467
+3- Maximum allocated Heap : 27648
+4- Free Heap Space: 65743
+5- Minimum Free Heap Space: 1379863
+
+Total PSRAM: 2045 KB
+Free PSRAM: 1379 KB
+MQTT client not connected. Reconnecting...
+MQTT state : CONNECTION_TIMEOUT
+WIFI RSSI : -51
+Client id : 365440629
+1- Free Stack Space: 12896
+2- Heap Space size : 256479
+3- Maximum allocated Heap : 27648
+4- Free Heap Space: 67267
+5- Minimum Free Heap Space: 1379863
+
+Total PSRAM: 2045 KB
+Free PSRAM: 1379 KB
+[0;31m[177486][E][WiFiGeneric.cpp:1583] hostByName(): DNS Failed for smartmasjid-broker-dev.futuriklabs.com[0m
+[0;31m[177496][E][WiFiClient.cpp:307] connect(): fail on to resolve host name retry no : 0[0m
+1- Free Stack Space: 12896
+2- Heap Space size : 256475
+3- Maximum allocated Heap : 27648
+4- Free Heap Space: 67135
+5- Minimum Free Heap Space: 1379863
+
+Total PSRAM: 2045 KB
+Free PSRAM: 1379 KB
+[0;31m[184489][E][WiFiGeneric.cpp:1583] hostByName(): DNS Failed for smartmasjid-broker-dev.futuriklabs.com[0m
+[0;31m[184504][E][WiFiClient.cpp:307] connect(): fail on to resolve host name retry no : 1[0m
+OTA is not Updating....
+Updating Telemetry
+{"battery":90,"macAddress":"D0:EF:76:2A:0B:4E"}
+[0;31m[191492][E][WiFiGeneric.cpp:1583] hostByName(): DNS Failed for smartmasjid-broker-dev.futuriklabs.com[0m
+[0;31m[191506][E][WiFiClient.cpp:307] connect(): fail on to resolve host name retry no : 2[0m
+[0;31m[198493][E][WiFiGeneric.cpp:1583] hostByName(): DNS Failed for smartmasjid-api-qa.futuriklabs.com[0m
+[0;33m[198503][W][HTTPClient.cpp:1483] returnError(): error(-1): connection refused[0m
+[0;33m[198511][W][HTTPClient.cpp:1483] returnError(): error(-4): not connected[0m
+WIFI RSSI : -57
+Request failed with error code: 
+1- Free Stack Space: 12896
+2- Heap Space size : 256479
+3- Maximum allocated Heap : 27648
+4- Free Heap Space: 67231
+5- Minimum Free Heap Space: 1379863
+
+Total PSRAM: 2045 KB
+Free PSRAM: 1379 KB
+1- Free Stack Space: 12896
+2- Heap Space size : 256503
+3- Maximum allocated Heap : 27648
+4- Free Heap Space: 69343
+5- Minimum Free Heap Space: 1379863
+
+Total PSRAM: 2045 KB
+Free PSRAM: 1379 KB
+[0;31m[205498][E][WiFiGeneric.cpp:1583] hostByName(): DNS Failed for smartmasjid-broker-dev.futuriklabs.com[0m
+[0;31m[205508][E][WiFiClient.cpp:307] connect(): fail on to resolve host name retry no : 3[0m
+1- Free Stack Space: 12896
+2- Heap Space size : 256503
+3- Maximum allocated Heap : 27648
+4- Free Heap Space: 69343
+5- Minimum Free Heap Space: 1379863
+
+Total PSRAM: 2045 KB
+Free PSRAM: 1379 KB
+[0;31m[212501][E][WiFiGeneric.cpp:1583] hostByName(): DNS Failed for smartmasjid-broker-dev.futuriklabs.com[0m
+[0;31m[212511][E][WiFiClient.cpp:307] connect(): fail on to resolve host name retry no : 4[0m
+1- Free Stack Space: 12896
+2- Heap Space size : 256503
+3- Maximum allocated Heap : 27648
+4- Free Heap Space: 69343
+5- Minimum Free Heap Space: 1379863
+
+Total PSRAM: 2045 KB
+Free PSRAM: 1379 KB
+Connected to MQTT broker
+Subscribed to device/D0:EF:76:2A:0B:4E/reset
+Subscribed to device/D0:EF:76:2A:0B:4E/subscribe
+Subscribed to device/D0:EF:76:2A:0B:4E/unsubscribe
+Subscribed to device/D0:EF:76:2A:0B:4E/wifi
+Subscribed to device/D0:EF:76:2A:0B:4E/update
+Subscribed to device/D0:EF:76:2A:0B:4E/ping
+Subscribed to masjid/3/adhan/fajr
+Subscribed to masjid/3/adhan/dhuhr
+Subscribed to masjid/3/adhan/asr
+Subscribed to masjid/3/adhan/maghrib
+Subscribed to masjid/3/adhan/isha
+Subscribed to masjid/3/adhan/jumuah2
+Subscribed to masjid/3/adhan/jumuah3
+Subscribed to masjid/3/adhan/jumuah1
+1- Free Stack Space: 12896
+2- Heap Space size : 256471
+3- Maximum allocated Heap : 27648
+4- Free Heap Space: 67383
+5- Minimum Free Heap Space: 1379863
+
+Total PSRAM: 2045 KB
+Free PSRAM: 1379 KB
+1- Free Stack Space: 12896
+2- Heap Space size : 256471
+3- Maximum allocated Heap : 27648
+4- Free Heap Space: 67383
+5- Minimum Free Heap Space: 1379863
+
+Total PSRAM: 2045 KB
+Free PSRAM: 1379 KB
+1- Free Stack Space: 12896
+2- Heap Space size : 256471
+3- Maximum allocated Heap : 27648
+4- Free Heap Space: 67383
+5- Minimum Free Heap Space: 1379863
+
+Total PSRAM: 2045 KB
+Free PSRAM: 1379 KB
+1- Free Stack Space: 12896
+2- Heap Space size : 256463
+3- Maximum allocated Heap : 27648
+4- Free Heap Space: 65859
+5- Minimum Free Heap Space: 1379863
+
+Total PSRAM: 2045 KB
+Free PSRAM: 1379 KB
+1- Free Stack Space: 12896
+2- Heap Space size : 256467
+3- Maximum allocated Heap : 27648
+4- Free Heap Space: 67259
+5- Minimum Free Heap Space: 1379863
+
+Total PSRAM: 2045 KB
+Free PSRAM: 1379 KB
+1- Free Stack Space: 12896
+2- Heap Space size : 256471
+3- Maximum allocated Heap : 27648
+4- Free Heap Space: 67383
+5- Minimum Free Heap Space: 1379863
+
+Total PSRAM: 2045 KB
+Free PSRAM: 1379 KB
+OTA is not Updating....
+Updating Telemetry
+{"battery":90,"macAddress":"D0:EF:76:2A:0B:4E"}
+WIFI RSSI : -53
+Request successful!
+{"id":537,"status":"Online","streamer":null,"batteryLife":90,"updatedTime":"2024-12-10T15:40:23.762+00:00"}
+1- Free Stack Space: 12832
+2- Heap Space size : 256471
+3- Maximum allocated Heap : 27648
+4- Free Heap Space: 67551
+5- Minimum Free Heap Space: 1379863
+
+Total PSRAM: 2045 KB
+Free PSRAM: 1379 KB
+1- Free Stack Space: 12832
+2- Heap Space size : 256471
+3- Maximum allocated Heap : 27648
+4- Free Heap Space: 67551
+5- Minimum Free Heap Space: 1379863
+
+Total PSRAM: 2045 KB
+Free PSRAM: 1379 KB
+1- Free Stack Space: 12832
+2- Heap Space size : 256471
+3- Maximum allocated Heap : 27648
+4- Free Heap Space: 67551
+5- Minimum Free Heap Space: 1379863
+
+Total PSRAM: 2045 KB
+Free PSRAM: 1379 KB
+1- Free Stack Space: 12832
+2- Heap Space size : 256471
+3- Maximum allocated Heap : 27648
+4- Free Heap Space: 67551
+5- Minimum Free Heap Space: 1379863
+
+Total PSRAM: 2045 KB
+Free PSRAM: 1379 KB
+Received MQTT message [masjid/3/adhan/isha]: {"action":"START","streamUrl":"http://radio.hear.fi:8000/hear.ogg"}
+Amplifier is Started...
+Streaming from url : https://ais-edge91-dal03.cdnstream.com/2585_256.mp3
+[0;31m[264198][E][WiFiClient.cpp:326] setSocketOption(): fail on 0, errno: 9, "Bad file number"[0m
+connected to  the host
+1- Free Stack Space: 12832
+2- Heap Space size : 256423
+3- Maximum allocated Heap : 16384
+4- Free Heap Space: 44267
+5- Minimum Free Heap Space: 1379863
+
+Total PSRAM: 2045 KB
+Free PSRAM: 1364 KB
+[0;31m[272348][E][Audio.cpp:3695] parseHttpResponseHeader(): timeout[0m
+[0;31m[272368][E][WiFiClient.cpp:326] setSocketOption(): fail on 0, errno: 9, "Bad file number"[0m
+1- Free Stack Space: 12832
+2- Heap Space size : 256419
+3- Maximum allocated Heap : 11264
+4- Free Heap Space: 27967
+5- Minimum Free Heap Space: 1379863
+
+Total PSRAM: 2045 KB
+Free PSRAM: 1378 KB
+[0;31m[277812][E][ssl_client.cpp:37] _handle_error(): [data_to_read():361]: (-29184) SSL - An invalid SSL record was received[0m[0;31m[27781
+3][E][ssl_client.cpp:37] _handle_error(): [data_to_read():361]: (-29184) SSL - An invalid SSL record was received[0m
+1- Free Stack Space: 12832
+2- Heap Space size : 256447
+3- Maximum allocated Heap : 27648
+4- Free Heap Space: 52059
+5- Minimum Free Heap Space: 1379863
+
+Total PSRAM: 2045 KB
+Free PSRAM: 1379 KB
+[0;31m[281470][E][Audio.cpp:3695] parseHttpResponseHeader(): timeout[0m
+[0;31m[281470][E][Audio.cpp:3695] parseHttpResponseHeader(): timeout[0m
+[0;31m[281492][E][WiFiClient.cpp:326] setSocketOption(): fail on 0, errno: 9, "Bad file number"[0m
+[0;31m[281796][E][ssl_client.cpp:107] start_ssl_client(): select on fd 0, errno: 9, "Bad file number"[0m
+[0;31m[281798][E][WiFiClient.cpp:326] setSocketOption(): fail on 0, errno: 9, "Bad file number"[0m
+[0;31m[281818][E][WiFiClientSecure.cpp:144] connect(): start_ssl_client: -1[0m
+1- Free Stack Space: 12832
+2- Heap Space size : 256167
+3- Maximum allocated Heap : 11264
+4- Free Heap Space: 14687
+5- Minimum Free Heap Space: 1379863
+
+Total PSRAM: 2045 KB
+Free PSRAM: 1378 KB
+[0;31m[286953][E][ssl_client.cpp:37] _handle_error(): [data_to_read():361]: (-76) UNKNOWN ERROR CODE (004C)[0m
+1- Free Stack Space: 12832
+2- Heap Space size : 256447
+3- Maximum allocated Heap : 27648
+4- Free Heap Space: 52059
+5- Minimum Free Heap Space: 1379863
+
+Total PSRAM: 2045 KB
+Free PSRAM: 1379 KB
+[0;31m[291032][E][Audio.cpp:3695] parseHttpResponseHeader(): timeout[0m
+1- Free Stack Space: 12832
+2- Heap Space size : 256447
+3- Maximum allocated Heap : 27648
+4- Free Heap Space: 52059
+5- Minimum Free Heap Space: 1379863
+
+Total PSRAM: 2045 KB
+Free PSRAM: 1379 KB
+1- Free Stack Space: 12832
+2- Heap Space size : 256447
+3- Maximum allocated Heap : 27648
+4- Free Heap Space: 52059
+5- Minimum Free Heap Space: 1379863
+
+Total PSRAM: 2045 KB
+Free PSRAM: 1379 KB
+1- Free Stack Space: 12832
+2- Heap Space size : 256447
+3- Maximum allocated Heap : 27648
+4- Free Heap Space: 52059
+5- Minimum Free Heap Space: 1379863
+
+Total PSRAM: 2045 KB
+Free PSRAM: 1379 KB
+OTA is not Updating....
+Updating Telemetry
+{"battery":90,"macAddress":"D0:EF:76:2A:0B:4E"}
+[0;31m[311505][E][WiFiGeneric.cpp:1583] hostByName(): DNS Failed for smartmasjid-api-qa.futuriklabs.com[0m
+[0;33m[311515][W][HTTPClient.cpp:1483] returnError(): error(-1): connection refused[0m
+[0;33m[311523][W][HTTPClient.cpp:1483] returnError(): error(-4): not connected[0m
+WIFI RSSI : -53
+Request failed with error code: 
+1- Free Stack Space: 12832
+2- Heap Space size : 256439
+3- Maximum allocated Heap : 27648
+4- Free Heap Space: 50535
+5- Minimum Free Heap Space: 1379863
+
+Total PSRAM: 2045 KB
+Free PSRAM: 1379 KB
+1- Free Stack Space: 12832
+2- Heap Space size : 256439
+3- Maximum allocated Heap : 27648
+4- Free Heap Space: 50535
+5- Minimum Free Heap Space: 1379863
+
+Total PSRAM: 2045 KB
+Free PSRAM: 1379 KB
+1- Free Stack Space: 12832
+2- Heap Space size : 256447
+3- Maximum allocated Heap : 27648
+4- Free Heap Space: 52059
+5- Minimum Free Heap Space: 1379863
+
+Total PSRAM: 2045 KB
+Free PSRAM: 1379 KB
+1- Free Stack Space: 12832
+2- Heap Space size : 256447
+3- Maximum allocated Heap : 27648
+4- Free Heap Space: 52059
+5- Minimum Free Heap Space: 1379863
+
+Total PSRAM: 2045 KB
+Free PSRAM: 1379 KB
+1- Free Stack Space: 12832
+2- Heap Space size : 256447
+3- Maximum allocated Heap : 27648
+4- Free Heap Space: 52059
+5- Minimum Free Heap Space: 1379863
+
+Total PSRAM: 2045 KB
+Free PSRAM: 1379 KB
+1- Free Stack Space: 12832
+2- Heap Space size : 256447
+3- Maximum allocated Heap : 27648
+4- Free Heap Space: 52059
+5- Minimum Free Heap Space: 1379863
+
+Total PSRAM: 2045 KB
+Free PSRAM: 1379 KB
+1- Free Stack Space: 12832
+2- Heap Space size : 256451
+3- Maximum allocated Heap : 27648
+4- Free Heap Space: 52079
+5- Minimum Free Heap Space: 1379863
+
+Total PSRAM: 2045 KB
+Free PSRAM: 1379 KB
+1- Free Stack Space: 12832
+2- Heap Space size : 256451
+3- Maximum allocated Heap : 27648
+4- Free Heap Space: 52079
+5- Minimum Free Heap Space: 1379863
+
+Total PSRAM: 2045 KB
+Free PSRAM: 1379 KB
+1- Free Stack Space: 12832
+2- Heap Space size : 256451
+3- Maximum allocated Heap : 27648
+4- Free Heap Space: 52079
+5- Minimum Free Heap Space: 1379863
+
+Total PSRAM: 2045 KB
+Free PSRAM: 1379 KB
+1- Free Stack Space: 12832
+2- Heap Space size : 256451
+3- Maximum allocated Heap : 27648
+4- Free Heap Space: 52079
+5- Minimum Free Heap Space: 1379863
+
+Total PSRAM: 2045 KB
+Free PSRAM: 1379 KB
+1- Free Stack Space: 12832
+2- Heap Space size : 256451
+3- Maximum allocated Heap : 27648
+4- Free Heap Space: 52079
+5- Minimum Free Heap Space: 1379863
+
+Total PSRAM: 2045 KB
+Free PSRAM: 1379 KB
+OTA is not Updating....
+Updating Telemetry
+{"battery":90,"macAddress":"D0:EF:76:2A:0B:4E"}
+[0;33m[374662][W][HTTPClient.cpp:1483] returnError(): error(-11): read Timeout[0m
+[0;33m[374672][W][HTTPClient.cpp:1483] returnError(): error(-4): not connected[0m
+WIFI RSSI : -52
+Request failed with error code: 
+1- Free Stack Space: 12832
+2- Heap Space size : 256427
+3- Maximum allocated Heap : 27648
+4- Free Heap Space: 51387
+5- Minimum Free Heap Space: 1379863
+
+Total PSRAM: 2045 KB
+Free PSRAM: 1379 KB
+1- Free Stack Space: 12832
+2- Heap Space size : 256447
+3- Maximum allocated Heap : 27648
+4- Free Heap Space: 52059
+5- Minimum Free Heap Space: 1379863
+
+Total PSRAM: 2045 KB
+Free PSRAM: 1379 KB
+1- Free Stack Space: 12832
+2- Heap Space size : 256447
+3- Maximum allocated Heap : 27648
+4- Free Heap Space: 52059
+5- Minimum Free Heap Space: 1379863
+
+Total PSRAM: 2045 KB
+Free PSRAM: 1379 KB
+1- Free Stack Space: 12832
+2- Heap Space size : 256447
+3- Maximum allocated Heap : 27648
+4- Free Heap Space: 52059
+5- Minimum Free Heap Space: 1379863
+
+Total PSRAM: 2045 KB
+Free PSRAM: 1379 KB
+1- Free Stack Space: 12832
+2- Heap Space size : 256447
+3- Maximum allocated Heap : 27648
+4- Free Heap Space: 52059
+5- Minimum Free Heap Space: 1379863
+
+Total PSRAM: 2045 KB
+Free PSRAM: 1379 KB
+1- Free Stack Space: 12832
+2- Heap Space size : 256447
+3- Maximum allocated Heap : 27648
+4- Free Heap Space: 52059
+5- Minimum Free Heap Space: 1379863
+
+Total PSRAM: 2045 KB
+Free PSRAM: 1379 KB
+1- Free Stack Space: 12832
+2- Heap Space size : 256447
+3- Maximum allocated Heap : 27648
+4- Free Heap Space: 52059
+5- Minimum Free Heap Space: 1379863
+
+Total PSRAM: 2045 KB
+Free PSRAM: 1379 KB
+1- Free Stack Space: 12832
+2- Heap Space size : 256447
+3- Maximum allocated Heap : 27648
+4- Free Heap Space: 52059
+5- Minimum Free Heap Space: 1379863
+
+Total PSRAM: 2045 KB
+Free PSRAM: 1379 KB
+1- Free Stack Space: 12832
+2- Heap Space size : 256447
+3- Maximum allocated Heap : 27648
+4- Free Heap Space: 52059
+5- Minimum Free Heap Space: 1379863
+
+Total PSRAM: 2045 KB
+Free PSRAM: 1379 KB
+1- Free Stack Space: 12832
+2- Heap Space size : 256447
+3- Maximum allocated Heap : 27648
+4- Free Heap Space: 52059
+5- Minimum Free Heap Space: 1379863
+
+Total PSRAM: 2045 KB
+Free PSRAM: 1379 KB
+1- Free Stack Space: 12832
+2- Heap Space size : 256447
+3- Maximum allocated Heap : 27648
+4- Free Heap Space: 52059
+5- Minimum Free Heap Space: 1379863
+
+Total PSRAM: 2045 KB
+Free PSRAM: 1379 KB
+OTA is not Updating....
+Updating Telemetry
+{"battery":90,"macAddress":"D0:EF:76:2A:0B:4E"}
+WIFI RSSI : -54
+Request successful!
+{"id":537,"status":"Online","streamer":null,"batteryLife":90,"updatedTime":"2024-12-10T15:43:27.929+00:00"}
+1- Free Stack Space: 12832
+2- Heap Space size : 256427
+3- Maximum allocated Heap : 16384
+4- Free Heap Space: 51147
+5- Minimum Free Heap Space: 1379863
+
+Total PSRAM: 2045 KB
+Free PSRAM: 1379 KB
+1- Free Stack Space: 12832
+2- Heap Space size : 256451
+3- Maximum allocated Heap : 27648
+4- Free Heap Space: 52079
+5- Minimum Free Heap Space: 1379863
+
+Total PSRAM: 2045 KB
+Free PSRAM: 1379 KB
+1- Free Stack Space: 12832
+2- Heap Space size : 256439
+3- Maximum allocated Heap : 27648
+4- Free Heap Space: 50351
+5- Minimum Free Heap Space: 1379863
+
+Total PSRAM: 2045 KB
+Free PSRAM: 1379 KB
+1- Free Stack Space: 12832
+2- Heap Space size : 256451
+3- Maximum allocated Heap : 27648
+4- Free Heap Space: 52079
+5- Minimum Free Heap Space: 1379863
+
+Total PSRAM: 2045 KB
+Free PSRAM: 1379 KB
+1- Free Stack Space: 12832
+2- Heap Space size : 256451
+3- Maximum allocated Heap : 27648
+4- Free Heap Space: 52079
+5- Minimum Free Heap Space: 1379863
+
+Total PSRAM: 2045 KB
+Free PSRAM: 1379 KB
+1- Free Stack Space: 12832
+2- Heap Space size : 256443
+3- Maximum allocated Heap : 27648
+4- Free Heap Space: 50555
+5- Minimum Free Heap Space: 1379863
+
+Total PSRAM: 2045 KB
+Free PSRAM: 1379 KB
+1- Free Stack Space: 12832
+2- Heap Space size : 256451
+3- Maximum allocated Heap : 27648
+4- Free Heap Space: 52079
+5- Minimum Free Heap Space: 1379863
+
+Total PSRAM: 2045 KB
+Free PSRAM: 1379 KB
+1- Free Stack Space: 12832
+2- Heap Space size : 256451
+3- Maximum allocated Heap : 27648
+4- Free Heap Space: 52079
+5- Minimum Free Heap Space: 1379863
+
+Total PSRAM: 2045 KB
+Free PSRAM: 1379 KB
+1- Free Stack Space: 12832
+2- Heap Space size : 256443
+3- Maximum allocated Heap : 27648
+4- Free Heap Space: 50555
+5- Minimum Free Heap Space: 1379863
+
+Total PSRAM: 2045 KB
+Free PSRAM: 1379 KB
+1- Free Stack Space: 12832
+2- Heap Space size : 256451
+3- Maximum allocated Heap : 27648
+4- Free Heap Space: 52079
+5- Minimum Free Heap Space: 1379863
+
+Total PSRAM: 2045 KB
+Free PSRAM: 1379 KB
+1- Free Stack Space: 12832
+2- Heap Space size : 256451
+3- Maximum allocated Heap : 27648
+4- Free Heap Space: 52079
+5- Minimum Free Heap Space: 1379863
+
+Total PSRAM: 2045 KB
+Free PSRAM: 1379 KB
+OTA is not Updating....
+Updating Telemetry
+{"battery":90,"macAddress":"D0:EF:76:2A:0B:4E"}
+WIFI RSSI : -57
+Request successful!
+{"id":537,"status":"Online","streamer":null,"batteryLife":90,"updatedTime":"2024-12-10T15:44:22.830+00:00"}
+1- Free Stack Space: 12832
+2- Heap Space size : 256427
+3- Maximum allocated Heap : 27648
+4- Free Heap Space: 50179
+5- Minimum Free Heap Space: 1379863
+
+Total PSRAM: 2045 KB
+Free PSRAM: 1379 KB
+1- Free Stack Space: 12832
+2- Heap Space size : 256447
+3- Maximum allocated Heap : 27648
+4- Free Heap Space: 52059
+5- Minimum Free Heap Space: 1379863
+
+Total PSRAM: 2045 KB
+Free PSRAM: 1379 KB
+1- Free Stack Space: 12832
+2- Heap Space size : 256447
+3- Maximum allocated Heap : 27648
+4- Free Heap Space: 52059
+5- Minimum Free Heap Space: 1379863
+
+Total PSRAM: 2045 KB
+Free PSRAM: 1379 KB
+1- Free Stack Space: 12832
+2- Heap Space size : 256439
+3- Maximum allocated Heap : 27648
+4- Free Heap Space: 50535
+5- Minimum Free Heap Space: 1379863
+
+Total PSRAM: 2045 KB
+Free PSRAM: 1379 KB
+1- Free Stack Space: 12832
+2- Heap Space size : 256447
+3- Maximum allocated Heap : 27648
+4- Free Heap Space: 52059
+5- Minimum Free Heap Space: 1379863
+
+Total PSRAM: 2045 KB
+Free PSRAM: 1379 KB
+1- Free Stack Space: 12832
+2- Heap Space size : 256447
+3- Maximum allocated Heap : 27648
+4- Free Heap Space: 52059
+5- Minimum Free Heap Space: 1379863
+
+Total PSRAM: 2045 KB
+Free PSRAM: 1379 KB
+1- Free Stack Space: 12832
+2- Heap Space size : 256439
+3- Maximum allocated Heap : 27648
+4- Free Heap Space: 50535
+5- Minimum Free Heap Space: 1379863
+
+Total PSRAM: 2045 KB
+Free PSRAM: 1379 KB
+1- Free Stack Space: 12832
+2- Heap Space size : 256447
+3- Maximum allocated Heap : 27648
+4- Free Heap Space: 52059
+5- Minimum Free Heap Space: 1379863
+
+Total PSRAM: 2045 KB
+Free PSRAM: 1379 KB
+1- Free Stack Space: 12832
+2- Heap Space size : 256447
+3- Maximum allocated Heap : 27648
+4- Free Heap Space: 52059
+5- Minimum Free Heap Space: 1379863
+
+Total PSRAM: 2045 KB
+Free PSRAM: 1379 KB
+1- Free Stack Space: 12832
+2- Heap Space size : 256439
+3- Maximum allocated Heap : 27648
+4- Free Heap Space: 50535
+5- Minimum Free Heap Space: 1379863
+
+Total PSRAM: 2045 KB
+Free PSRAM: 1379 KB
+1- Free Stack Space: 12832
+2- Heap Space size : 256447
+3- Maximum allocated Heap : 27648
+4- Free Heap Space: 52059
+5- Minimum Free Heap Space: 1379863
+
+Total PSRAM: 2045 KB
+Free PSRAM: 1379 KB
+1- Free Stack Space: 12832
+2- Heap Space size : 256447
+3- Maximum allocated Heap : 27648
+4- Free Heap Space: 52059
+5- Minimum Free Heap Space: 1379863
+
+Total PSRAM: 2045 KB
+Free PSRAM: 1379 KB
+OTA is not Updating....
+Updating Telemetry
+{"battery":90,"macAddress":"D0:EF:76:2A:0B:4E"}
+WIFI RSSI : -52
+Request successful!
+{"id":537,"status":"Online","streamer":null,"batteryLife":90,"updatedTime":"2024-12-10T15:45:22.802+00:00"}
+1- Free Stack Space: 12832
+2- Heap Space size : 256431
+3- Maximum allocated Heap : 27648
+4- Free Heap Space: 50207
+5- Minimum Free Heap Space: 1379863
+
+Total PSRAM: 2045 KB
+Free PSRAM: 1379 KB
+1- Free Stack Space: 12832
+2- Heap Space size : 256451
+3- Maximum allocated Heap : 27648
+4- Free Heap Space: 52079
+5- Minimum Free Heap Space: 1379863
+
+Total PSRAM: 2045 KB
+Free PSRAM: 1379 KB
+1- Free Stack Space: 12832
+2- Heap Space size : 256451
+3- Maximum allocated Heap : 27648
+4- Free Heap Space: 52079
+5- Minimum Free Heap Space: 1379863
+
+Total PSRAM: 2045 KB
+Free PSRAM: 1379 KB
+1- Free Stack Space: 12832
+2- Heap Space size : 256443
+3- Maximum allocated Heap : 27648
+4- Free Heap Space: 50555
+5- Minimum Free Heap Space: 1379863
+
+Total PSRAM: 2045 KB
+Free PSRAM: 1379 KB
+1- Free Stack Space: 12832
+2- Heap Space size : 256451
+3- Maximum allocated Heap : 27648
+4- Free Heap Space: 52079
+5- Minimum Free Heap Space: 1379863
+
+Total PSRAM: 2045 KB
+Free PSRAM: 1379 KB
+1- Free Stack Space: 12832
+2- Heap Space size : 256451
+3- Maximum allocated Heap : 27648
+4- Free Heap Space: 52079
+5- Minimum Free Heap Space: 1379863
+
+Total PSRAM: 2045 KB
+Free PSRAM: 1379 KB
+1- Free Stack Space: 12832
+2- Heap Space size : 256443
+3- Maximum allocated Heap : 27648
+4- Free Heap Space: 50555
+5- Minimum Free Heap Space: 1379863
+
+Total PSRAM: 2045 KB
+Free PSRAM: 1379 KB
+1- Free Stack Space: 12832
+2- Heap Space size : 256451
+3- Maximum allocated Heap : 27648
+4- Free Heap Space: 52079
+5- Minimum Free Heap Space: 1379863
+
+Total PSRAM: 2045 KB
+Free PSRAM: 1379 KB
+1- Free Stack Space: 12832
+2- Heap Space size : 256451
+3- Maximum allocated Heap : 27648
+4- Free Heap Space: 52079
+5- Minimum Free Heap Space: 1379863
+
+Total PSRAM: 2045 KB
+Free PSRAM: 1379 KB
+1- Free Stack Space: 12832
+2- Heap Space size : 256443
+3- Maximum allocated Heap : 27648
+4- Free Heap Space: 50555
+5- Minimum Free Heap Space: 1379863
+
+Total PSRAM: 2045 KB
+Free PSRAM: 1379 KB
+1- Free Stack Space: 12832
+2- Heap Space size : 256451
+3- Maximum allocated Heap : 27648
+4- Free Heap Space: 52079
+5- Minimum Free Heap Space: 1379863
+
+Total PSRAM: 2045 KB
+Free PSRAM: 1379 KB
+1- Free Stack Space: 12832
+2- Heap Space size : 256451
+3- Maximum allocated Heap : 27648
+4- Free Heap Space: 52079
+5- Minimum Free Heap Space: 1379863
+
+Total PSRAM: 2045 KB
+Free PSRAM: 1379 KB
+OTA is not Updating....
+Updating Telemetry
+{"battery":90,"macAddress":"D0:EF:76:2A:0B:4E"}
+WIFI RSSI : -53
+Request successful!
+{"id":537,"status":"Online","streamer":null,"batteryLife":90,"updatedTime":"2024-12-10T15:46:22.833+00:00"}
+1- Free Stack Space: 12832
+2- Heap Space size : 256427
+3- Maximum allocated Heap : 27648
+4- Free Heap Space: 50187
+5- Minimum Free Heap Space: 1379863
+
+Total PSRAM: 2045 KB
+Free PSRAM: 1379 KB
+1- Free Stack Space: 12832
+2- Heap Space size : 256447
+3- Maximum allocated Heap : 27648
+4- Free Heap Space: 52059
+5- Minimum Free Heap Space: 1379863
+
+Total PSRAM: 2045 KB
+Free PSRAM: 1379 KB
+1- Free Stack Space: 12832
+2- Heap Space size : 256447
+3- Maximum allocated Heap : 27648
+4- Free Heap Space: 52059
+5- Minimum Free Heap Space: 1379863
+
+Total PSRAM: 2045 KB
+Free PSRAM: 1379 KB
+1- Free Stack Space: 12832
+2- Heap Space size : 256439
+3- Maximum allocated Heap : 27648
+4- Free Heap Space: 50535
+5- Minimum Free Heap Space: 1379863
+
+Total PSRAM: 2045 KB
+Free PSRAM: 1379 KB
+1- Free Stack Space: 12832
+2- Heap Space size : 256447
+3- Maximum allocated Heap : 27648
+4- Free Heap Space: 52059
+5- Minimum Free Heap Space: 1379863
+
+Total PSRAM: 2045 KB
+Free PSRAM: 1379 KB
+1- Free Stack Space: 12832
+2- Heap Space size : 256447
+3- Maximum allocated Heap : 27648
+4- Free Heap Space: 52059
+5- Minimum Free Heap Space: 1379863
+
+Total PSRAM: 2045 KB
+Free PSRAM: 1379 KB
+1- Free Stack Space: 12832
+2- Heap Space size : 256439
+3- Maximum allocated Heap : 27648
+4- Free Heap Space: 50535
+5- Minimum Free Heap Space: 1379863
+
+Total PSRAM: 2045 KB
+Free PSRAM: 1379 KB
+1- Free Stack Space: 12832
+2- Heap Space size : 256447
+3- Maximum allocated Heap : 27648
+4- Free Heap Space: 52059
+5- Minimum Free Heap Space: 1379863
+
+Total PSRAM: 2045 KB
+Free PSRAM: 1379 KB
+1- Free Stack Space: 12832
+2- Heap Space size : 256447
+3- Maximum allocated Heap : 27648
+4- Free Heap Space: 52059
+5- Minimum Free Heap Space: 1379863
+
+Total PSRAM: 2045 KB
+Free PSRAM: 1379 KB
+1- Free Stack Space: 12832
+2- Heap Space size : 256439
+3- Maximum allocated Heap : 27648
+4- Free Heap Space: 50535
+5- Minimum Free Heap Space: 1379863
+
+Total PSRAM: 2045 KB
+Free PSRAM: 1379 KB
+1- Free Stack Space: 12832
+2- Heap Space size : 256447
+3- Maximum allocated Heap : 27648
+4- Free Heap Space: 52059
+5- Minimum Free Heap Space: 1379863
+
+Total PSRAM: 2045 KB
+Free PSRAM: 1379 KB
+1- Free Stack Space: 12832
+2- Heap Space size : 256447
+3- Maximum allocated Heap : 27648
+4- Free Heap Space: 52059
+5- Minimum Free Heap Space: 1379863
+
+Total PSRAM: 2045 KB
+Free PSRAM: 1379 KB
+OTA is not Updating....
+Updating Telemetry
+{"battery":90,"macAddress":"D0:EF:76:2A:0B:4E"}
+WIFI RSSI : -55
+Request successful!
+dC�?dC�?7,"status":"Online","streamer":null,"batteryLife":90,"updatedTime":"2024-12-10T15:47:22.825+00:00"}
+1- Free Stack Space: 12832
+2- Heap Space size : 256431
+3- Maximum allocated Heap : 27648
+4- Free Heap Space: 50203
+5- Minimum Free Heap Space: 1379863
+
+Total PSRAM: 2045 KB
+Free PSRAM: 1379 KB
+1- Free Stack Space: 12832
+2- Heap Space size : 256451
+3- Maximum allocated Heap : 27648
+4- Free Heap Space: 52079
+5- Minimum Free Heap Space: 1379863
+
+Total PSRAM: 2045 KB
+Free PSRAM: 1379 KB
+1- Free Stack Space: 12832
+2- Heap Space size : 256451
+3- Maximum allocated Heap : 27648
+4- Free Heap Space: 52079
+5- Minimum Free Heap Space: 1379863
+
+Total PSRAM: 2045 KB
+Free PSRAM: 1379 KB
+1- Free Stack Space: 12832
+2- Heap Space size : 256443
+3- Maximum allocated Heap : 27648
+4- Free Heap Space: 50555
+5- Minimum Free Heap Space: 1379863
+
+Total PSRAM: 2045 KB
+Free PSRAM: 1379 KB
+1- Free Stack Space: 12832
+2- Heap Space size : 256451
+3- Maximum allocated Heap : 27648
+4- Free Heap Space: 52079
+5- Minimum Free Heap Space: 1379863
+
+Total PSRAM: 2045 KB
+Free PSRAM: 1379 KB
+1- Free Stack Space: 12832
+2- Heap Space size : 256451
+3- Maximum allocated Heap : 27648
+4- Free Heap Space: 52079
+5- Minimum Free Heap Space: 1379863
+
+Total PSRAM: 2045 KB
+Free PSRAM: 1379 KB
+1- Free Stack Space: 12832
+2- Heap Space size : 256443
+3- Maximum allocated Heap : 27648
+4- Free Heap Space: 50555
+5- Minimum Free Heap Space: 1379863
+
+Total PSRAM: 2045 KB
+Free PSRAM: 1379 KB
+1- Free Stack Space: 12832
+2- Heap Space size : 256451
+3- Maximum allocated Heap : 27648
+4- Free Heap Space: 52079
+5- Minimum Free Heap Space: 1379863
+
+Total PSRAM: 2045 KB
+Free PSRAM: 1379 KB
+1- Free Stack Space: 12832
+2- Heap Space size : 256451
+3- Maximum allocated Heap : 27648
+4- Free Heap Space: 52079
+5- Minimum Free Heap Space: 1379863
+
+Total PSRAM: 2045 KB
+Free PSRAM: 1379 KB
+1- Free Stack Space: 12832
+2- Heap Space size : 256443
+3- Maximum allocated Heap : 27648
+4- Free Heap Space: 50555
+5- Minimum Free Heap Space: 1379863
+
+Total PSRAM: 2045 KB
+Free PSRAM: 1379 KB
+1- Free Stack Space: 12832
+2- Heap Space size : 256451
+3- Maximum allocated Heap : 27648
+4- Free Heap Space: 52079
+5- Minimum Free Heap Space: 1379863
+
+Total PSRAM: 2045 KB
+Free PSRAM: 1379 KB
+1- Free Stack Space: 12832
+2- Heap Space size : 256451
+3- Maximum allocated Heap : 27648
+4- Free Heap Space: 52079
+5- Minimum Free Heap Space: 1379863
+
+Total PSRAM: 2045 KB
+Free PSRAM: 1379 KB
+OTA is not Updating....
+Updating Telemetry
+{"battery":90,"macAddress":"D0:EF:76:2A:0B:4E"}
+WIFI RSSI : -50
+Request successful!
+{"id":537,"status":"Online","streamer":null,"batteryLife":90,"updatedTime":"2024-12-10T15:48:23.189+00:00"}
+1- Free Stack Space: 12832
+2- Heap Space size : 256427
+3- Maximum allocated Heap : 18432
+4- Free Heap Space: 50167
+5- Minimum Free Heap Space: 1379863
+
+Total PSRAM: 2045 KB
+Free PSRAM: 1379 KB
+1- Free Stack Space: 12832
+2- Heap Space size : 256447
+3- Maximum allocated Heap : 27648
+4- Free Heap Space: 52059
+5- Minimum Free Heap Space: 1379863
+
+Total PSRAM: 2045 KB
+Free PSRAM: 1379 KB
+1- Free Stack Space: 12832
+2- Heap Space size : 256447
+3- Maximum allocated Heap : 27648
+4- Free Heap Space: 52059
+5- Minimum Free Heap Space: 1379863
+
+Total PSRAM: 2045 KB
+Free PSRAM: 1379 KB
+1- Free Stack Space: 12832
+2- Heap Space size : 256439
+3- Maximum allocated Heap : 27648
+4- Free Heap Space: 50535
+5- Minimum Free Heap Space: 1379863
+
+Total PSRAM: 2045 KB
+Free PSRAM: 1379 KB
+1- Free Stack Space: 12832
+2- Heap Space size : 256447
+3- Maximum allocated Heap : 27648
+4- Free Heap Space: 52059
+5- Minimum Free Heap Space: 1379863
+
+Total PSRAM: 2045 KB
+Free PSRAM: 1379 KB
+1- Free Stack Space: 12832
+2- Heap Space size : 256447
+3- Maximum allocated Heap : 27648
+4- Free Heap Space: 52059
+5- Minimum Free Heap Space: 1379863
+
+Total PSRAM: 2045 KB
+Free PSRAM: 1379 KB
+1- Free Stack Space: 12832
+2- Heap Space size : 256439
+3- Maximum allocated Heap : 27648
+4- Free Heap Space: 50535
+5- Minimum Free Heap Space: 1379863
+
+Total PSRAM: 2045 KB
+Free PSRAM: 1379 KB
+1- Free Stack Space: 12832
+2- Heap Space size : 256447
+3- Maximum allocated Heap : 27648
+4- Free Heap Space: 52059
+5- Minimum Free Heap Space: 1379863
+
+Total PSRAM: 2045 KB
+Free PSRAM: 1379 KB
+1- Free Stack Space: 12832
+2- Heap Space size : 256447
+3- Maximum allocated Heap : 27648
+4- Free Heap Space: 52059
+5- Minimum Free Heap Space: 1379863
+
+Total PSRAM: 2045 KB
+Free PSRAM: 1379 KB
+1- Free Stack Space: 12832
+2- Heap Space size : 256439
+3- Maximum allocated Heap : 27648
+4- Free Heap Space: 50535
+5- Minimum Free Heap Space: 1379863
+
+Total PSRAM: 2045 KB
+Free PSRAM: 1379 KB
+1- Free Stack Space: 12832
+2- Heap Space size : 256447
+3- Maximum allocated Heap : 27648
+4- Free Heap Space: 52059
+5- Minimum Free Heap Space: 1379863
+
+Total PSRAM: 2045 KB
+Free PSRAM: 1379 KB
+1- Free Stack Space: 12832
+2- Heap Space size : 256447
+3- Maximum allocated Heap : 27648
+4- Free Heap Space: 52059
+5- Minimum Free Heap Space: 1379863
+
+Total PSRAM: 2045 KB
+Free PSRAM: 1379 KB
+OTA is not Updating....
+Updating Telemetry
+{"battery":90,"macAddress":"D0:EF:76:2A:0B:4E"}
+WIFI RSSI : -53
+Request successful!
+dC�?dC�?7,"status":"Online","streamer":null,"batteryLife":90,"updatedTime":"2024-12-10T15:49:22.866+00:00"}
+1- Free Stack Space: 12832
+2- Heap Space size : 256443
+3- Maximum allocated Heap : 27648
+4- Free Heap Space: 50555
+5- Minimum Free Heap Space: 1379863
+
+Total PSRAM: 2045 KB
+Free PSRAM: 1379 KB
+1- Free Stack Space: 12832
+2- Heap Space size : 256451
+3- Maximum allocated Heap : 27648
+4- Free Heap Space: 52079
+5- Minimum Free Heap Space: 1379863
+
+Total PSRAM: 2045 KB
+Free PSRAM: 1379 KB
+1- Free Stack Space: 12832
+2- Heap Space size : 256451
+3- Maximum allocated Heap : 27648
+4- Free Heap Space: 52079
+5- Minimum Free Heap Space: 1379863
+
+Total PSRAM: 2045 KB
+Free PSRAM: 1379 KB
+1- Free Stack Space: 12832
+2- Heap Space size : 256443
+3- Maximum allocated Heap : 27648
+4- Free Heap Space: 50555
+5- Minimum Free Heap Space: 1379863
+
+Total PSRAM: 2045 KB
+Free PSRAM: 1379 KB
+1- Free Stack Space: 12832
+2- Heap Space size : 256451
+3- Maximum allocated Heap : 27648
+4- Free Heap Space: 52079
+5- Minimum Free Heap Space: 1379863
+
+Total PSRAM: 2045 KB
+Free PSRAM: 1379 KB
+1- Free Stack Space: 12832
+2- Heap Space size : 256451
+3- Maximum allocated Heap : 27648
+4- Free Heap Space: 52079
+5- Minimum Free Heap Space: 1379863
+
+Total PSRAM: 2045 KB
+Free PSRAM: 1379 KB
+1- Free Stack Space: 12832
+2- Heap Space size : 256443
+3- Maximum allocated Heap : 27648
+4- Free Heap Space: 50555
+5- Minimum Free Heap Space: 1379863
+
+Total PSRAM: 2045 KB
+Free PSRAM: 1379 KB
+1- Free Stack Space: 12832
+2- Heap Space size : 256451
+3- Maximum allocated Heap : 27648
+4- Free Heap Space: 52079
+5- Minimum Free Heap Space: 1379863
+
+Total PSRAM: 2045 KB
+Free PSRAM: 1379 KB
