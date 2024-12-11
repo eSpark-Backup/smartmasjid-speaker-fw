@@ -38,21 +38,16 @@ Before starting, ensure you have the following installed on your system:
 
 1. **Build the Project**  
    - Click on the checkmark icon in the PlatformIO toolbar or run:
- ![image](https://github.com/user-attachments/assets/77029463-3997-4d0c-88e3-48e3b09b0dc7)
-
-OR to run `platformio run` in platformio terminal to compile. 
-![image](https://github.com/user-attachments/assets/706e8800-ad06-481c-be83-514b12930aad)
+    ![image](https://github.com/user-attachments/assets/77029463-3997-4d0c-88e3-48e3b09b0dc7)
 
 2. **Upload Code to the Board**  
    - Click on the arrow icon in the PlatformIO toolbar or run:
-![image](https://github.com/user-attachments/assets/4a7f7f9b-5170-4699-94e1-b80366b19cc0)
-OR to run `platformio run --target upload` in platformio terminal to upload. 
+   ![image](https://github.com/user-attachments/assets/4a7f7f9b-5170-4699-94e1-b80366b19cc0)
 
 3. **Monitor Serial Output**  
    - Use the plug icon in the PlatformIO toolbar or run:
-     ```bash
-     platformio device monitor
-     ```
+   ![image](https://github.com/user-attachments/assets/185d0be1-905d-4ea4-9dd3-becc4aaaffd7)
+
 ## Common Issues and Troubleshooting
 
 - **Detected a whitespace character in project paths**:  
