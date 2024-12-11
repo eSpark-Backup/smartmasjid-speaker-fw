@@ -1,47 +1,67 @@
-# ESP32-audioI2S, better WiFi speed
-with a high bit rate or low compression rate, the data throughput via WiFi may not be sufficient to fill the audio buffer sufficiently. In this case, the message 'slow stream, dropouts are possible' appears periodically. Better TCP settings can help. This can be achieved via menuconfig followed by Arduino compilation.
-Here is a complete example that can be easily copy that into PlatformIO.
+# PlatformIO Setup Guide
+
+This guide provides instructions for setting up PlatformIO for developing and managing your project.
+
+## Prerequisites
+
+Before starting, ensure you have the following installed on your system:
+- [Visual Studio Code (VS Code)](https://code.visualstudio.com/)
+- Python (version 3.6 or later)
+- PlatformIO Core CLI (optional but recommended for advanced users)
+
+## Installation Steps
+
+1. **Install PlatformIO Extension for VS Code**  
+   - Open VS Code.
+   - Go to the **Extensions** view (`Ctrl+Shift+X` or `Cmd+Shift+X` on macOS).
+   - Search for `PlatformIO IDE` and click **Install**.
+
+2. **Verify Installation**  
+   - Open the PlatformIO Home screen by clicking on the PlatformIO icon in the Activity Bar.
+   - Ensure PlatformIO initializes correctly and loads its dashboard.
+
+3. **Open an Existing PlatformIO Project (Platformio-Firmware)**  
+   - To open an existing project:  
+     1. Go to **PlatformIO Home > Open Project**.  
+     2. Navigate to the folder containing your PlatformIO project.  
+     3. Select the folder and click **Open**.  
+   - Alternatively, you can use **File > Open Folder** in VS Code and select your project folder.  
 
 
-````c++
-#include <Arduino.h>
-#include "WiFiMulti.h"
-#include "Audio.h"
+4. **Configure the Existing `platformio.ini` File**  
+   - Open the `platformio.ini` file located in the root directory of your project.  
+   - This file is already created when you set up your project and contains default settings for your selected board and framework.  
+   - Press (Cntrl + S) to download the packages and libraries. 
+   - After Download and configuration.
 
-Audio audio;
-WiFiMulti wifiMulti;
+## Building and Uploading Code
 
-String ssid =     "xxxx";
-String password = "xxxx";
+1. **Build the Project**  
+   - Click on the checkmark icon in the PlatformIO toolbar or run:
+ ![image](https://github.com/user-attachments/assets/77029463-3997-4d0c-88e3-48e3b09b0dc7)
 
-#define I2S_LRC     26
-#define I2S_DOUT    25
-#define I2S_BCLK    27
-#define I2S_MCLK     0
+OR to run `platformio run` in platformio terminal to compile. 
+![image](https://github.com/user-attachments/assets/706e8800-ad06-481c-be83-514b12930aad)
 
-void setup() {
-    Serial.begin(115200);
-    wifiMulti.addAP(ssid.c_str(), password.c_str());
-    wifiMulti.run();
-    audio.setPinout(I2S_BCLK, I2S_LRC, I2S_DOUT);
-    audio.setVolume(20); // 0...21
-    audio.connecttohost("http://us3.internet-radio.com:8342/stream");
-}
+2. **Upload Code to the Board**  
+   - Click on the arrow icon in the PlatformIO toolbar or run:
+![image](https://github.com/user-attachments/assets/4a7f7f9b-5170-4699-94e1-b80366b19cc0)
+OR to run `platformio run --target upload` in platformio terminal to upload. 
 
-void loop(){
-    audio.loop();
-}
+3. **Monitor Serial Output**  
+   - Use the plug icon in the PlatformIO toolbar or run:
+     ```bash
+     platformio device monitor
+     ```
+## Common Issues and Troubleshooting
 
-// optional
-void audio_info(const char *info){
-    Serial.print("info        "); Serial.println(info);
-}
+- **Detected a whitespace character in project paths**:  
+  Ensure your project path does not contain spaces. Move the project to a location without spaces, e.g., `C:\Projects\MyProject`.
 
+- **Board Not Detected**:  
+  Check that the correct port is selected in the `platformio.ini` file.  
+  Example:
+  ```ini
+  upload_port = COM3
 
-````
-
-
-
-These are the main settings:
-![menuconfig](https://github.com/schreibfaul1/ESP32-audioI2S/blob/master/examples/Better_WiFi_throughput/better_WiFi_throughput.jpeg)
 
