@@ -1,0 +1,18 @@
+{
+    "chip_type": "ESP32-WROOM-32E-N8R2",
+    "flash_size": "4MB",
+    "binaries": [
+        {
+            "address": "0x1000",
+            "file": "bootloader.bin"
+        },
+        {
+            "address": " 0x10000",
+            "file": "firmware.bin"
+        },
+        {
+            "address": "0x8000",
+            "file": "partitions.bin"
+        }
+    ]
+}
