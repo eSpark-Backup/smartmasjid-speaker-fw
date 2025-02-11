@@ -9,6 +9,7 @@
 #include "Source/Button.hpp"
 #include "Source/Battery.hpp"
 #include"Source/Amplifier.hpp"
+#include  "Source/CertificateHandler.hpp"
 
 SET_LOOP_TASK_STACK_SIZE( 16*1024 ); // 16KB
 
@@ -17,6 +18,7 @@ MQTTClient mqtt(&wifiProv);
 // Button button;
 Battery battery;
 Amplifier& amp = *Amplifier::getInstance();
+CertificateHandler certificateHandler;
 
 void setup() 
 {
@@ -52,6 +54,10 @@ void setup()
   {
     delay(100);
   }
+
+  certificateHandler.setup();
+  certificateHandler.print();
+
   mqtt.createTask();
    Device::timerSetup();
    amp.setup();
