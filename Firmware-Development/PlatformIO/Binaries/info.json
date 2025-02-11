@@ -7,7 +7,7 @@
             "file": "bootloader.bin"
         },
         {
-            "address": " 0x10000",
+            "address": " 0x50000",
             "file": "firmware.bin"
         },
         {
