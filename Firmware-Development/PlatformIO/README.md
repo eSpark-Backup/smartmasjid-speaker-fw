@@ -59,7 +59,7 @@ Before starting, ensure you have the following installed on your system:
   ```ini
   upload_port = COM3
 
-  ## Upload Binaries on ESP32:
+## Upload Binaries on ESP32:
 Follow these steps to upload the binary files to the ESP32 through `flash_download_tool`:
 ### Required Software
 1. [ESP32 Flash Download Tool](https://www.espressif.com/sites/default/files/tools/flash_download_tool_3.9.4.zip)
@@ -72,8 +72,8 @@ Follow these steps to upload the binary files to the ESP32 through `flash_downlo
    ```
       * bootloader.bin  OR  bootloader.bin -> 0x1000
       * partitions.bin  OR  partitions.bin -> 0x8000
-      * firmware.bin    OR  firmware.bin   -> 0x50000
- 
+      * firmware.bin    OR  firmware.bin   -> 0x10000
+      * spiffs.bin      OR  spiffs.bin    -> 0x310000
     ```
 5. Press the start button to start the flashing process.
 6. Once finished, close the software and reset the ESP32 using EN button on the Dev Module. For the custom board, you can power cycle the board (turning power ON/OFF)
