@@ -31,13 +31,10 @@ void LED::setup()
 
 void LED::showSolidColor(CRGB color)
 {
-    setColor(color);
-    uint8_t colorIndex = 0;
-    for (int i = 0; i < NUM_LEDS; ++i)
-    {
-        leds[i] = ColorFromPalette(currentPalette, colorIndex, BRIGHTNESS, currentBlending);
-        FastLED.show();
-    }
+
+    FastLED.setBrightness(BRIGHTNESS);
+    fill_solid(leds, NUM_LEDS, color);
+    FastLED.show();
 }
 
 void LED::showBlinkingColor(CRGB color, uint16_t blinkDelay)
