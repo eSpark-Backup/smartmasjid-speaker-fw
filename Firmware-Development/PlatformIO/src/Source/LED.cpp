@@ -43,17 +43,18 @@ void LED::showSolidColor(CRGB color)
 void LED::showBlinkingColor(CRGB color, uint16_t blinkDelay)
 {
     setColor(color);
-    uint8_t colorIndex = 0;
     for (int i = 0; i < NUM_LEDS; ++i)
     {
-        leds[i] = ColorFromPalette(currentPalette, colorIndex, BRIGHTNESS, currentBlending);
+        // leds[i] = ColorFromPalette(currentPalette, colorIndex, BRIGHTNESS, currentBlending);
+        leds[i] = color;
         FastLED.show();
     }
     delay(blinkDelay); 
     setColor(CRGB::Black);
     for (int i = 0; i < NUM_LEDS; ++i)
     {
-        leds[i] = ColorFromPalette(currentPalette, colorIndex, 0, currentBlending);
+        // leds[i] = ColorFromPalette(currentPalette, colorIndex, 0, currentBlending);
+        leds[i] = CRGB::Black;
         FastLED.show();
     }
     delay(blinkDelay); 
