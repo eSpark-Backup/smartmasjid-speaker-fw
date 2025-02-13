@@ -17,7 +17,8 @@ typedef enum MODE
   ADHAN_STREAMING, //2
   BATTRY_IS_CHARGING,//3
   LOW_BATTERY,//4
-  RGB_OFF//5
+  RGB_OFF,//5
+  ON_POWER_UP//6
 } MODE;
 
 typedef enum AdhanStatus 
@@ -38,6 +39,7 @@ class LED
     CRGB orange;
     CRGB green;
     CRGB red;
+    CRGB white;
     CRGB leds[NUM_LEDS];
     static MODE currentMode;
     static AdhanStatus ADHAN_FLAG;
@@ -50,6 +52,7 @@ class LED
 
     void setup();
     void showSolidColor(CRGB color);
+    void showBlinkingColor(CRGB color, uint16_t blinkDelay);
     void setColor(CRGB color);
     void circleBlinking(CRGB color, const char* speed); // speed can be FAST , MEDIUM and SLOW ,any Argument other than these arguments , the led will not lit
     void turnOffLeds();

@@ -26,6 +26,7 @@ void setup()
   LED& rgb = *LED::getInstance();
   rgb.createTask();
   battery.setup();
+  rgb.currentMode = MODE::ON_POWER_UP; 
   Device::checkMacAddress();
   Serial.printf("Arduino Stack was set to %d bytes\n", getArduinoLoopTaskStackSize());
   BLE::setup(&wifiProv);
