@@ -31,13 +31,18 @@ void LED::setup()
 
 void LED::showSolidColor(CRGB color)
 {
-    setColor(color);
-    uint8_t colorIndex = 0;
-    for (int i = 0; i < NUM_LEDS; ++i)
-    {
-        leds[i] = ColorFromPalette(currentPalette, colorIndex, BRIGHTNESS, currentBlending);
-        FastLED.show();
-    }
+
+    FastLED.setBrightness(BRIGHTNESS);
+    fill_solid(leds, NUM_LEDS, color);
+    FastLED.show();
+}
+
+void LED::showBlinkingColor(CRGB color, uint16_t blinkDelay)
+{
+    showSolidColor(color);
+    delay(blinkDelay); 
+    turnOffLeds();
+    delay(blinkDelay); 
 }
 
 void LED::circleBlinking(CRGB color, const char *speed)
@@ -87,11 +92,13 @@ void LED::createTask()
 
 void rgbLedTask(void *pvParameters)
 {
-    delay(3000);
+    // delay(3000);
     rgb.setup();
     rgb.orange = CHSV(HUE_ORANGE, 255, 255);
     rgb.red = CHSV(HUE_RED, 255, 255);
     rgb.green = CHSV(HUE_GREEN, 255, 255);
+    rgb.white = CHSV(0, 0, 255); // White color
+
     // rgb.turnOffLeds();
 
     while (1)
@@ -116,6 +123,9 @@ void rgbLedTask(void *pvParameters)
 
             case MODE::LOW_BATTERY:
                 rgb.showSolidColor(rgb.red); // LED behavior is Red constant only when there is no USB charger plugged in
+                break;
+            case MODE::ON_POWER_UP:
+                rgb.showBlinkingColor(rgb.white, BLINK_DURATION); // LED behavior should be Green circle blinking slowly
                 break;
 
             default:
