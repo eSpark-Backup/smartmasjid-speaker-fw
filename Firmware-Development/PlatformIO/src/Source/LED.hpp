@@ -8,7 +8,7 @@
 #define LED_TYPE    TM1803 // WS2812B is not functioning 
 #define COLOR_ORDER GRB
 #define UPDATES_PER_SECOND 1000
-#define BLINK_DURATION 1000
+#define FADE_DURATION 10
 
 typedef enum MODE 
 { 
@@ -53,7 +53,7 @@ class LED
 
     void setup();
     void showSolidColor(CRGB color);
-    void showBlinkingColor(CRGB color, uint16_t blinkDelay);
+    void showBlinkingColor(CRGB color, uint16_t fadeDelay);
     void setColor(CRGB color);
     void circleBlinking(CRGB color, const char* speed); // speed can be FAST , MEDIUM and SLOW ,any Argument other than these arguments , the led will not lit
     void turnOffLeds();
