@@ -8,7 +8,7 @@
 #define LED_TYPE    TM1803 // WS2812B is not functioning 
 #define COLOR_ORDER GRB
 #define UPDATES_PER_SECOND 1000
-#define BLINK_DURATION 500
+#define BLINK_DURATION 1000
 
 typedef enum MODE 
 { 

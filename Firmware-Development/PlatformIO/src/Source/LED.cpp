@@ -39,9 +39,19 @@ void LED::showSolidColor(CRGB color)
 
 void LED::showBlinkingColor(CRGB color, uint16_t blinkDelay)
 {
-    showSolidColor(color);
-    delay(blinkDelay); 
-    turnOffLeds();
+    for (int i = 0; i <= BRIGHTNESS; ++i) {
+        FastLED.setBrightness(i);
+        fill_solid(leds, NUM_LEDS, color);
+        FastLED.show();
+        delay(10); 
+    }
+    delay(blinkDelay);
+    for (int i = BRIGHTNESS; i >= 0; --i) {
+        FastLED.setBrightness(i);
+        fill_solid(leds, NUM_LEDS, color);
+        FastLED.show();
+        delay(10);
+    }
     delay(blinkDelay); 
 }
 
