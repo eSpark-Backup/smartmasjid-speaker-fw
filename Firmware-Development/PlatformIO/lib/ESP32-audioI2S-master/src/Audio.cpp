@@ -5156,9 +5156,10 @@ void Audio::computeLimit() {    // is calculated when the volume or balance chan
     /* TODO: logarithmic scaling of balance, too? */
     if(m_balance > 0) { r -= (double)abs(m_balance) / 16; }
     else if(m_balance < 0) { l -= (double)abs(m_balance) / 16; }
+
     switch(m_curve) {
         case 0:
-            v = (double)pow(m_vol, 2) / pow(m_vol_steps + 1 , 2); // square (default)
+            v = (double)pow(m_vol, 2) / pow(m_vol_steps, 2); // square (default)
             break;
         case 1: // logarithmic
             double log1 = log(1);
@@ -5169,8 +5170,6 @@ void Audio::computeLimit() {    // is calculated when the volume or balance chan
 
     m_limit_left = l * v;
     m_limit_right = r * v;
-
-
 
     // log_i("m_limit_left %f,  m_limit_right %f ",m_limit_left, m_limit_right);
 }
