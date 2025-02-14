@@ -85,7 +85,7 @@ void Amplifier::stream(const char* action, const char* url)
 
 void Amplifier::volumeUp()
 {
-  volume += 0.5;
+  volume += 1;
   if (volume > MAX_DEFAULT_VOLUME)
     volume = MAX_DEFAULT_VOLUME;
   audio->setVolume(volume);
@@ -96,7 +96,7 @@ void Amplifier::volumeUp()
 void Amplifier::volumeDown()
 {
   if ((volume >= MIN_DEFAULT_VOLUME+1) && (volume <= MAX_DEFAULT_VOLUME))
-      volume -= 0.5;
+      volume -= 1;
   else if (volume > MAX_DEFAULT_VOLUME)
       volume = MAX_DEFAULT_VOLUME;
   else    

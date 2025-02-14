@@ -6,6 +6,9 @@ volatile bool Button::volumeUpFlag = false;
 volatile bool Button::volumeDownFlag = false;
 volatile bool Button::volumeMuteFlag = false;
 
+volatile unsigned long Button::lastPressTimeUp = 0;
+volatile unsigned long Button::lastPressTimeDown = 0;
+
 const uint32_t Button::PRESS_DURATION;
 bool Button::resetButtonPressed = false;
 MQTTClient* Button::pMqtt = nullptr;
@@ -22,15 +25,22 @@ void Button::setup(MQTTClient* mqtt)
   Button::interruptHandler();
 }
 
-
 void Button::volumeUpWrapper() 
 {
- volumeUpFlag = true;
+  unsigned long currentMillis = millis();
+  if (currentMillis - lastPressTimeUp > DEBOUNCE_DELAY) {
+      volumeUpFlag = true;
+      lastPressTimeUp = currentMillis;
+  }
 }
 
 void Button::volumeDownWrapper() 
 {
-  volumeDownFlag = true;
+  unsigned long currentMillis = millis();
+  if (currentMillis - lastPressTimeUp > DEBOUNCE_DELAY) {
+      volumeDownFlag = true;
+      lastPressTimeUp = currentMillis;
+  }
 }
 
 void Button::volumeMuteWrapper() 
@@ -89,7 +99,6 @@ void IRAM_ATTR Button::resetButtonISR()
     Serial.println("Reset button ISR triggered");
   }
 }
-
 
 
 void Button::interruptHandler()
