@@ -11,7 +11,7 @@
 #define DOWN_BUTTON 13
 //#define MUTE_BUTTON -1  //GPIO 16 can not be used because of PSRAM (GPIO16 = CS pin)
 #define RESET_BUTTON 22 
-
+#define DEBOUNCE_DELAY 200
 
 class Button
 {
@@ -31,5 +31,9 @@ class Button
     static volatile bool volumeUpFlag;
     static volatile bool volumeDownFlag;
     static volatile bool volumeMuteFlag;
+
+    static volatile unsigned long lastPressTimeUp;
+    static volatile unsigned long lastPressTimeDown;
+
     static void setup(MQTTClient* mqtt);
 };

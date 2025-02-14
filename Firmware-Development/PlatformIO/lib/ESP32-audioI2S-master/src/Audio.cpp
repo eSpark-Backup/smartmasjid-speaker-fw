@@ -5156,24 +5156,9 @@ void Audio::computeLimit() {    // is calculated when the volume or balance chan
     /* TODO: logarithmic scaling of balance, too? */
     if(m_balance > 0) { r -= (double)abs(m_balance) / 16; }
     else if(m_balance < 0) { l -= (double)abs(m_balance) / 16; }
-Serial.print("\n");
-    Serial.print("the value of m_balance: ");
-    Serial.print(m_balance);
-Serial.print("\n");
-    Serial.print("the value of r: ");
-    Serial.print(r);
-Serial.print("\n");
-    Serial.print("the value of l: ");
-    Serial.print(l);
     switch(m_curve) {
         case 0:
             v = (double)pow(m_vol, 2) / pow(m_vol_steps + 1 , 2); // square (default)
-            Serial.print("the value of m_vol:");
-            Serial.print(m_vol);
-            Serial.print("\n");
-            Serial.print("the value of v:");
-            Serial.print(v);
-            Serial.print("\n");
             break;
         case 1: // logarithmic
             double log1 = log(1);
@@ -5185,11 +5170,6 @@ Serial.print("\n");
     m_limit_left = l * v;
     m_limit_right = r * v;
 
-    Serial.print("the value of m_limit_left: ");
-    Serial.print(m_limit_left);
-    Serial.print("\n");
-    Serial.print("the value of m_limit_right: ");
-    Serial.print(m_limit_right);
 
 
     // log_i("m_limit_left %f,  m_limit_right %f ",m_limit_left, m_limit_right);
