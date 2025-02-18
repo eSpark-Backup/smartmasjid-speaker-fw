@@ -97,10 +97,10 @@ void rgbLedTask(void *pvParameters)
     rgb.orange = CHSV(HUE_ORANGE, 255, 255);
     rgb.red = CHSV(HUE_RED, 255, 255);
     rgb.green = CHSV(HUE_GREEN, 255, 255);
-    rgb.darkgreen = CHSV(HUE_GREEN, 255, 80);
-    rgb.goldenRod = CHSV(42 , 255, 80);
+    rgb.darkgreen = CRGB::DarkGreen;
+    rgb.goldenRod = CRGB::DarkGoldenrod;   // hsv(43, 94%, 72%)
     rgb.white = CHSV(0, 0, 255); // White color
-    rgb.darkred = CHSV(HUE_RED, 255, 80);
+    rgb.darkred = CRGB::DarkRed;
 
     // rgb.turnOffLeds();
 
