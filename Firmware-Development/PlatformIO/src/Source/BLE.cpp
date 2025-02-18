@@ -20,18 +20,21 @@ BLECharacteristic *pTxCharacteristic;
 BLECharacteristic *pDeviceCharacteristic;
 BLECharacteristic *pProvCharacteristic;
 
+// CertificateHandler certificateHandler;
 
 class MyServerCallbacks : public BLEServerCallbacks
 {
   void onConnect(BLEServer *pServer)
   {
     Serial.println("BLE : device connected");
-    
     char factoryInfoJson[100];
+
+    String SM_MODEL = SM_Json::SM_MODEL();
+    String SM_FIRMWARE = SM_Json::SM_FIRMWARE_VER();
     SM_Json::create(factoryInfoJson, sizeof(factoryInfoJson),
                         std::make_pair("device_model", SM_MODEL),
                         std::make_pair("mac_address", Device::macAddress),
-                        std::make_pair("firmware_rev", SM_FIRMWARE_VER));                                          
+                        std::make_pair("firmware_rev", SM_FIRMWARE));                                          
     Serial.println(factoryInfoJson);
     
     pDeviceCharacteristic->setValue(factoryInfoJson);

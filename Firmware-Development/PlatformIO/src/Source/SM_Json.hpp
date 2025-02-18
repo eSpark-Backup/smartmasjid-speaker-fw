@@ -2,6 +2,7 @@
 #include <ArduinoJson.h>
 #include <unordered_map>
 #include <cstring>
+#include  "CertificateHandler.hpp"
 
 class SM_Json 
 {
@@ -33,6 +34,18 @@ class SM_Json
       return result;
     }
 
+    static String SM_FIRMWARE_VER(){
+      return certificateHandler.getField("sm_firmware_ver");
+  }
+
+  static String smHost(){
+    return certificateHandler.getField("sm_host");
+}
+
+  static String EXTERNAL_API_KEY(){
+    return certificateHandler.getField("external_api_key");
+  }
+
     static char* parseDynamic(const char* json) 
     {
         // Create a temporary DynamicJsonDocument to handle parsing
@@ -57,7 +70,12 @@ class SM_Json
 
         return result; 
     }
-  
+
+  static String SM_MODEL(){
+        return certificateHandler.getField("sm_model");
+    }
+
+ 
   private:
     template <typename T>
     static void addValueToDoc(JsonDocument& doc, const char* key, const T& value) 

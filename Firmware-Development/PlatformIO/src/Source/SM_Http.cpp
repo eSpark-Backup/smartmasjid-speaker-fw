@@ -27,7 +27,8 @@ HttpStatusCode SmHttp::sendDeviceTelemetry(const char* macAddress, uint8_t retry
 
 HttpStatusCode SmHttp::sendDeviceTelemetry(const char* macAddress) 
 {
-  std::string deviceTelemetryUrl = smHost;
+  String smHost = SM_Json::smHost();
+  std::string deviceTelemetryUrl = std::string(smHost.c_str());
   deviceTelemetryUrl += telemetryEndpoint;
 
   char telemetryJson[64];
@@ -45,14 +46,15 @@ HttpStatusCode SmHttp::notifyOTAUpdate(const char* macAddress)
     Serial.println("Wifi not connected : Unable to send request");
     return false;
   }
-  
-  std::string updateOnLoadUrl = smHost;
+  String smHost = SM_Json::smHost();
+  std::string updateOnLoadUrl = std::string(smHost.c_str());
   updateOnLoadUrl += otaUpdateEndpoint;
 
   char payload[64];
+  String SM_FIRMWARE  = SM_Json::SM_FIRMWARE_VER();
   SM_Json::create(payload, sizeof(payload),
                   std::make_pair("macAddress", Device::macAddress),
-                  std::make_pair("firmwareVersion", SM_FIRMWARE_VER));
+                  std::make_pair("firmwareVersion", SM_FIRMWARE));
   Serial.println(payload);
   return request(updateOnLoadUrl.c_str(), payload, Http::RequestType::PUT);
 }
@@ -64,8 +66,8 @@ HttpStatusCode SmHttp::updateDeviceStatus(const char* macAddress, char* status)
     Serial.println("Wifi not connected : Unable to send request");
     return false;
   }
-
-  std::string updateOnLoadUrl = smHost;
+  String smHost = SM_Json::smHost();
+  std::string updateOnLoadUrl = std::string(smHost.c_str());
   updateOnLoadUrl += otaEndpoint;
 
   char payload[64];
@@ -83,7 +85,7 @@ HttpStatusCode SmHttp::request(const char* url, const char* json, Http::RequestT
     Serial.println("Wifi not connected : Unable to send request");
     return false;
   }
-
+  String EXTERNAL_API_KEY = SM_Json::EXTERNAL_API_KEY();
   WiFiClientSecure client;
   client.setInsecure();
   HTTPClient https;

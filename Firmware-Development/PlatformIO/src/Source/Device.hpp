@@ -1,8 +1,6 @@
 #pragma once
 #include <WiFi.h>
 
-#define SM_MODEL "SSB23V1"
-#define SM_FIRMWARE_VER "1.0"
 #define BLE_MAC_OFFSET 2
 #define BATTERY_HEALTH 90
 #define MASJID_ID_TEST 3

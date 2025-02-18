@@ -23,6 +23,7 @@ CertificateHandler certificateHandler;
 void setup() 
 {
   Serial.begin(115200);
+  certificateHandler.setup();
   LED& rgb = *LED::getInstance();
   rgb.createTask();
   battery.setup();
@@ -56,7 +57,7 @@ void setup()
     delay(100);
   }
 
-  certificateHandler.setup();
+ 
   certificateHandler.print();
 
   mqtt.createTask();
