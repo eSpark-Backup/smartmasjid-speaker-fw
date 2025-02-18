@@ -97,7 +97,10 @@ void rgbLedTask(void *pvParameters)
     rgb.orange = CHSV(HUE_ORANGE, 255, 255);
     rgb.red = CHSV(HUE_RED, 255, 255);
     rgb.green = CHSV(HUE_GREEN, 255, 255);
+    rgb.darkgreen = CRGB::DarkGreen;
+    rgb.goldenRod = CRGB::DarkGoldenrod;   // hsv(43, 94%, 72%)
     rgb.white = CHSV(0, 0, 255); // White color
+    rgb.darkred = CRGB::DarkRed;
 
     // rgb.turnOffLeds();
 
@@ -106,11 +109,11 @@ void rgbLedTask(void *pvParameters)
         switch (LED::currentMode)
         {
             case MODE::BLE:
-                rgb.circleBlinking(rgb.orange, "MEDIUM"); // LED behavior is Orange circle blinking at medium speed
+                rgb.circleBlinking(rgb.goldenRod, "MEDIUM"); // LED behavior is Orange circle blinking at medium speed
                 break;
 
             case MODE::WIFI_CONNECTED:
-                rgb.showSolidColor(rgb.orange); // the board gets connected to WiFi but is sitting idle
+                rgb.showSolidColor(rgb.darkgreen); // the board gets connected to WiFi but is sitting idle
                 break;
 
             case MODE::ADHAN_STREAMING:
@@ -126,6 +129,10 @@ void rgbLedTask(void *pvParameters)
                 break;
             case MODE::ON_POWER_UP:
                 rgb.showBlinkingColor(rgb.white, BLINK_DURATION); // LED behavior should be Green circle blinking slowly
+                break;
+
+            case MODE::WIFI_DISCONNECTED:
+                rgb.showSolidColor(rgb.darkred); // LED behavior should be red 
                 break;
 
             default:
