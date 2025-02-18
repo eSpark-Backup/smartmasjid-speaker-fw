@@ -40,6 +40,9 @@ class LED
     CRGB orange;
     CRGB green;
     CRGB red;
+    CRGB darkgreen;
+    CRGB goldenRod;
+    CRGB darkred;
     CRGB white;
     CRGB leds[NUM_LEDS];
     static MODE currentMode;
