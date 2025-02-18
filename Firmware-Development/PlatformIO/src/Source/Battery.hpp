@@ -2,6 +2,7 @@
 #pragma once
 #include "Arduino.h"
 #include"LED.hpp"
+#include "WifiProvisioning.hpp"
 
 #define  BAT_ADC  17
 #define  BAT_STAT 35

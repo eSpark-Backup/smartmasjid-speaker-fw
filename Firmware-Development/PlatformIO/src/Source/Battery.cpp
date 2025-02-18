@@ -55,7 +55,12 @@ void Battery::loop()
         break;
 
     case BatteryStatus::USB_POWER_PLUGED_OUT:
-        rgb.currentMode = MODE::WIFI_CONNECTED; 
+        if(WiFi.status() != WL_CONNECTED){
+          rgb.currentMode = MODE::WIFI_DISCONNECTED;
+        }
+        else{
+          rgb.currentMode = MODE::WIFI_CONNECTED;
+        } 
         break;
         
     case BatteryStatus::LOW_BATERY:
