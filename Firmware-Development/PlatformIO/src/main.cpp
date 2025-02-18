@@ -10,6 +10,7 @@
 #include "Source/Battery.hpp"
 #include"Source/Amplifier.hpp"
 #include  "Source/CertificateHandler.hpp"
+#include "Source/SM_Json.hpp"
 
 SET_LOOP_TASK_STACK_SIZE( 16*1024 ); // 16KB
 

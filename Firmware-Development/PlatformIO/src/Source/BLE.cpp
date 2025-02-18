@@ -29,8 +29,10 @@ class MyServerCallbacks : public BLEServerCallbacks
     Serial.println("BLE : device connected");
     char factoryInfoJson[100];
 
-    String SM_MODEL = SM_Json::SM_MODEL();
-    String SM_FIRMWARE = SM_Json::SM_FIRMWARE_VER();
+    String SM_MODEL = SM_Json::getJsonValueFromFile(FILE_JSON,"model");
+    
+    String SM_FIRMWARE = SM_Json::getJsonValueFromFile(FILE_JSON,"firmware_ver");
+
     SM_Json::create(factoryInfoJson, sizeof(factoryInfoJson),
                         std::make_pair("device_model", SM_MODEL),
                         std::make_pair("mac_address", Device::macAddress),

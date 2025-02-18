@@ -49,14 +49,9 @@ class MQTTClient
 {
   private:
     IWifiProvisioning* pWifiProv;
-    // MQTT broker configuration
-    const char* mqttServer = "smartmasjid-broker-dev.futuriklabs.com";
+
     const int mqttPort = 1883;
-    const char* mqttUsername = "device";
-    const char* mqttPassword = "device";
     // uint8_t serverIp[4] = {34,228,26,242};
-
-
     int count = 0 ;
     /* MQTT topic details */
     const char* topicPrefix = "device";

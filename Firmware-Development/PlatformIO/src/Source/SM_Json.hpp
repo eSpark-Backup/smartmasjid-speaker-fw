@@ -4,6 +4,7 @@
 #include <cstring>
 #include  "CertificateHandler.hpp"
 
+
 class SM_Json 
 {
   public:
@@ -33,20 +34,50 @@ class SM_Json
       bool result = parseValues(doc, args...);
       return result;
     }
-
-    static String SM_FIRMWARE_VER(){
-      return certificateHandler.getField("sm_firmware_ver");
+  
+static String getJsonValueFromFile(const char* filePath, const char* key) {
+  // Open JSON file from SPIFFS
+  File file = SPIFFS.open(filePath, "r");
+  if (!file) {
+      Serial.println("Failed to open file");
+      return "";
   }
 
-  static String smHost(){
-    return certificateHandler.getField("sm_host");
+  // Read file contents
+  String jsonContent = "";
+  while (file.available()) {
+      jsonContent += (char)file.read();
+  }
+  file.close();
+
+  // Parse JSON
+  StaticJsonDocument<512> doc;
+  DeserializationError error = deserializeJson(doc, jsonContent);
+  
+  if (error) {
+      Serial.println("Error parsing JSON");
+      return "";
+  }
+
+  // Search for the key in all objects
+  for (JsonPair item : doc.as<JsonObject>()) {
+      if (item.value().is<JsonObject>()) {  
+          // If the key exists in a nested object, extract it
+          JsonObject nestedObj = item.value().as<JsonObject>();
+          if (nestedObj.containsKey(key)) {
+              return nestedObj[key].as<String>();
+          }
+      } else if (String(item.key().c_str()) == key) { 
+          // If the key is at the root level
+          return item.value().as<String>();
+      }
+  }
+
+  Serial.println("Key not found in JSON");
+  return "";
 }
 
-  static String EXTERNAL_API_KEY(){
-    return certificateHandler.getField("external_api_key");
-  }
-
-    static char* parseDynamic(const char* json) 
+  static char* parseDynamic(const char* json) 
     {
         // Create a temporary DynamicJsonDocument to handle parsing
         size_t capacity = JSON_OBJECT_SIZE(10) + strlen(json) + 1; // Adjust size based on expected JSON structure
@@ -71,9 +102,7 @@ class SM_Json
         return result; 
     }
 
-  static String SM_MODEL(){
-        return certificateHandler.getField("sm_model");
-    }
+  
 
  
   private:
