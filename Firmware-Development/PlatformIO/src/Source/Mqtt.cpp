@@ -38,12 +38,15 @@ bool MQTTClient::connectToBroker(int retries)
 
 bool MQTTClient::connectToBroker() 
 { 
-  String brokerStr = SM_Json::getJsonValueFromFile(FILE_JSON,"broker");
-  String userStr = SM_Json::getJsonValueFromFile(FILE_JSON,"user_name");
-  String passStr = SM_Json::getJsonValueFromFile(FILE_JSON,"password");
-  const char* mqttUsername = userStr.c_str();
-  const char* mqttPassword = passStr.c_str();
-  const char* mqttServer = brokerStr.c_str();
+  char mqtt[120];
+  char mqttServer[40];
+  char mqttUsername[8];
+  char mqttPassword[8];
+  const char* json = SM_Json::readJSONFile();
+  SM_Json::parse(json , std::make_pair("mqtt", mqtt));
+  SM_Json::parse((const char*)(mqtt) , std::make_pair("broker", mqttServer));
+  SM_Json::parse((const char*)(mqtt) , std::make_pair("user_name", mqttUsername));
+  SM_Json::parse((const char*)(mqtt) , std::make_pair("password", mqttPassword));
   
   mqttClient.setServer(mqttServer, mqttPort);
   static std::string clientId = std::to_string(random(1000000000));

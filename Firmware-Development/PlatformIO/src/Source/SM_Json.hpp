@@ -34,49 +34,31 @@ class SM_Json
       bool result = parseValues(doc, args...);
       return result;
     }
-  
-static String getJsonValueFromFile(const char* filePath, const char* key) {
-  // Open JSON file from SPIFFS
-  File file = SPIFFS.open(filePath, "r");
-  if (!file) {
-      Serial.println("Failed to open file");
-      return "";
-  }
 
-  // Read file contents
-  String jsonContent = "";
-  while (file.available()) {
-      jsonContent += (char)file.read();
-  }
-  file.close();
-
-  // Parse JSON
-  StaticJsonDocument<512> doc;
-  DeserializationError error = deserializeJson(doc, jsonContent);
-  
-  if (error) {
-      Serial.println("Error parsing JSON");
-      return "";
-  }
-
-  // Search for the key in all objects
-  for (JsonPair item : doc.as<JsonObject>()) {
-      if (item.value().is<JsonObject>()) {  
-          // If the key exists in a nested object, extract it
-          JsonObject nestedObj = item.value().as<JsonObject>();
-          if (nestedObj.containsKey(key)) {
-              return nestedObj[key].as<String>();
-          }
-      } else if (String(item.key().c_str()) == key) { 
-          // If the key is at the root level
-          return item.value().as<String>();
+  static const char* readJSONFile() {
+      File file = SPIFFS.open(FILE_JSON, "r");
+      if (!file) {
+          Serial.println("Failed to open file");
+          return nullptr;
       }
+      static char jsonContent[512];  
+      size_t index = 0;
+      while (file.available() && index < sizeof(jsonContent) - 1) {
+          jsonContent[index++] = (char)file.read();
+      }
+      jsonContent[index] = '\0'; 
+      file.close();
+      StaticJsonDocument<512> doc;
+      DeserializationError error = deserializeJson(doc, jsonContent);
+      if (error) {
+          Serial.println("Error parsing JSON");
+          return nullptr;
+      }
+      static char output[512]; 
+      serializeJson(doc, output, sizeof(output));
+      return output;
   }
-
-  Serial.println("Key not found in JSON");
-  return "";
-}
-
+  
   static char* parseDynamic(const char* json) 
     {
         // Create a temporary DynamicJsonDocument to handle parsing
@@ -102,8 +84,7 @@ static String getJsonValueFromFile(const char* filePath, const char* key) {
         return result; 
     }
 
-  
-
+ 
  
   private:
     template <typename T>
@@ -124,9 +105,30 @@ static String getJsonValueFromFile(const char* filePath, const char* key) {
         return false;
       }
     
-      const char* value = obj[pair.first];
-      uint8_t len = strlen(value);
-      memcpy(pair.second, value, len + 1);
+      // const char* value = obj[pair.first];
+      // uint8_t len = strlen(value);
+      // memcpy(pair.second, value, len + 1);
+
+      JsonVariant value = obj[pair.first];
+
+      if (value.is<const char*>()) 
+      {
+          // Case 1: If the value is a string, copy it
+          const char* strValue = value.as<const char*>();
+          uint8_t len = strlen(strValue);
+          memcpy(pair.second, strValue, len + 1);
+          Serial.printf("Key: %s, String Value: %s, Length: %d\n", pair.first, strValue, len);
+      } 
+      else if (value.is<JsonObject>()) 
+      {
+          // Case 2: If the value is a JSON object, serialize it and copy
+          size_t jsonSize = measureJson(value);
+          char jsonBuffer[jsonSize + 1];  // Allocate buffer dynamically
+          serializeJson(value, jsonBuffer, sizeof(jsonBuffer));
+  
+          memcpy(pair.second, jsonBuffer, jsonSize + 1);
+          Serial.printf("Key: %s, JSON Object Size: %d\n", pair.first, jsonSize);
+      }
     
       return parseValues(doc, rest...);
     }
