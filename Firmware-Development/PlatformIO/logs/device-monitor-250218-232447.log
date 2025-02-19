@@ -1,0 +1,570 @@
+ets Jul 29 2019 12:21:46
+
+rst:0x1 (POWERON_RESET),boot:0x13 (SPI_FAST_FLASH_BOOT)
+configsip: 153911750, SPIWP:0xee
+clk_drv:0x00,q_drv:0x00,d_drv:0x00,cs0_drv:0x00,hd_drv:0x00,wp_drv:0x00
+mode:DIO, clock div:2
+load:0x3fff0030,len:6652
+ho 0 tail 12 room 4
+load:0x40078000,len:15052
+load:0x40080400,len:3836
+entry 0x4008069c
+[0;32mI (30) boot: ESP-IDF 4.4.7 2nd stage bootloader[0m
+[0;32mI (30) boot: compile time 12:24:16[0m
+[0;32mI (30) boot: Multicore bootloader[0m
+[0;32mI (33) boot: chip revision: v3.1[0m
+[0;32mI (37) boot.esp32: SPI Speed      : 40MHz[0m
+[0;32mI (41) boot.esp32: SPI Mode       : DIO[0m
+[0;32mI (46) boot.esp32: SPI Flash Size : 4MB[0m
+[0;32mI (51) boot: Enabling RNG early entropy source...[0m
+[0;32mI (56) boot: Partition Table:[0m
+[0;32mI (60) boot: ## Label            Usage          Type ST Offset   Length[0m
+[0;32mI (67) boot:  0 nvs              WiFi data        01 02 00009000 00005000[0m
+[0;32mI (74) boot:  1 otadata          OTA data         01 00 0000e000 00002000[0m
+[0;32mI (82) boot:  2 app0             OTA app          00 10 00010000 00300000[0m
+[0;32mI (89) boot:  3 spiffs           Unknown data     01 82 00310000 000f0000[0m
+[0;32mI (97) boot: End of partition table[0m
+[0;32mI (101) esp_image: segment 0: paddr=00010020 vaddr=3f400020 size=6f6f0h (456432) map[0m
+[0;32mI (275) esp_image: segment 1: paddr=0007f718 vaddr=3ffbdb60 size=00900h (  2304) load[0m
+[0;32mI (276) esp_image: segment 2: paddr=00080020 vaddr=400d0020 size=135174h (1266036) map[0m
+[0;32mI (739) esp_image: segment 3: paddr=001b519c vaddr=3ffbe460 size=04dc4h ( 19908) load[0m
+[0;32mI (747) esp_image: segment 4: paddr=001b9f68 vaddr=40080000 size=1fc5ch (130140) load[0m
+[0;32mI (816) boot: Loaded app from partition at offset 0x10000[0m
+[0;32mI (816) boot: Disabling RNG early entropy source...[0m
+[0;32mI (827) cpu_start: Multicore app[0m
+[0;32mI (828) psram: This chip is ESP32-D0WDR2-V3[0m
+[0;32mI (828) spiram: Found 16MBit SPI RAM device[0m
+[0;32mI (832) spiram: SPI RAM mode: flash 40m sram 40m[0m
+[0;32mI (837) spiram: PSRAM initialized, cache is in low/high (2-core) mode.[0m
+[0;32mI (845) cpu_start: Pro cpu up.[0m
+[0;32mI (848) cpu_start: Starting app cpu, entry point is 0x40083fe4[0m
+[0;32mI (0) cpu_start: App cpu up.[0m
+[0;32mI (1302) spiram: SPI SRAM memory test OK[0m
+[0;32mI (1310) cpu_start: Pro cpu start user code[0m
+[0;32mI (1310) cpu_start: cpu freq: 240000000[0m
+[0;32mI (1310) cpu_start: Application information:[0m
+[0;32mI (1313) cpu_start: Project name:     Better_WiFi_throughput[0m
+[0;32mI (1320) cpu_start: App version:      V1.0.2-7-g25f707a-dirty[0m
+[0;32mI (1326) cpu_start: Compile time:     Feb 18 2025 12:16:58[0m
+[0;32mI (1332) cpu_start: ELF file SHA256:  4cca8a24711d8856...[0m
+[0;32mI (1338) cpu_start: ESP-IDF:          4.4.7[0m
+[0;32mI (1343) cpu_start: Min chip rev:     v3.0[0m
+[0;32mI (1348) cpu_start: Max chip rev:     v3.99 [0m
+[0;32mI (1353) cpu_start: Chip rev:         v3.1[0m
+[0;32mI (1358) heap_init: Initializing. RAM available for dynamic allocation:[0m
+[0;32mI (1365) heap_init: At 3FFAFF10 len 000000F0 (0 KiB): DRAM[0m
+[0;32mI (1371) heap_init: At 3FFB6388 len 00001C78 (7 KiB): DRAM[0m
+[0;32mI (1377) heap_init: At 3FFB9A20 len 00004108 (16 KiB): DRAM[0m
+[0;32mI (1383) heap_init: At 3FFCD8E0 len 00012720 (73 KiB): DRAM[0m
+[0;32mI (1390) heap_init: At 3FFE0440 len 00003AE0 (14 KiB): D/IRAM[0m
+[0;32mI (1396) heap_init: At 3FFE4350 len 0001BCB0 (111 KiB): D/IRAM[0m
+[0;32mI (1403) heap_init: At 4009FC5C len 000003A4 (0 KiB): IRAM[0m
+[0;32mI (1409) spiram: Adding pool of 2047K of external SPI memory to heap allocator[0m
+[0;32mI (1418) spi_flash: detected chip: gd[0m
+[0;32mI (1421) spi_flash: flash io: dio[0m
+[0;33mW (1425) spi_flash: Detected size(8192k) larger than the size in the binary image header(4096k). Using the size in the binary image header.[0m
+[0;32mI (1441) cpu_start: Starting scheduler on PRO CPU.[0m
+[0;32mI (0) cpu_start: Starting scheduler on APP CPU.[0m
+[0;32mI (1454) spiram: Reserving pool of 32K of internal memory for DMA/internal allocations[0m
+[0;32m[    49][I][esp32-hal-psram.c:96] psramInit(): PSRAM enabled[0m
+[0;32mI ([0;32mI (1515) gpio: GPIO[17]| InputEn: 1| OutputEn: 0| OpenDrain: 0| Pullup: 0| Pulldown: 0| Intr:0 [0m
+[0;31mE (1516) gpio: GPIO can only be used as input mode[0m
+[0;31m[   105][E][esp32-hal-gpio.c:130] __pinMode(): GPIO config failed[0m
+[0;32mI (1537) gpio: GPIO[33]| InputEn: 1| OutputEn: 0| OpenDrain: 0| Pullup: 0| Pulldown: 0| Intr:0 [0m
+Arduino Stack was set to 16384 bytes
+Connecting to Pixel_4...
+I (1555) wifi:wifi driver task: 3ffdebfc, prio:23, stack:6656, core=0
+I (1566) wifi:wifi firmware version: 1fd20f4
+I (1567) wifi:wifi certification version: v7.0
+I (1567) wifi:config NVS flash: enabled
+I (1567) wifi:config nano formating: disabled
+I (1572) wifi:Init data frame dynamic rx buffer num: 32
+I (1576) wifi:Init static rx mgmt buffer num: 5
+I (1580) wifi:Init management short buffer num: 32
+I (1585) wifi:Init dynamic tx buffer num: 32
+I (1589) wifi:Init tx cache buffer num: 4
+I (1593) wifi:Init static rx buffer size: 1600
+I (1597) wifi:Init static rx buffer num: 4
+I (1601) wifi:Init dynamic rx buffer num: 32
+[0;32mI (1606) wifi_init: rx ba win: 6[0m
+[0;32mI (1609) wifi_init: tcpip mbox: 32[0m
+[0;32mI (1613) wifi_init: udp mbox: 6[0m
+[0;32mI (1617) wifi_init: tcp mbox: 32[0m
+[0;32mI (1620) wifi_init: tcp tx win: 8192[0m
+[0;32mI (1625) wifi_init: tcp rx win: 32768[0m
+[0;32mI (1629) wifi_init: tcp mss: 1460[0m
+[0;32mI (1633) wifi_init: WiFi IRAM OP enabled[0m
+[0;32mI (1638) wifi_init: WiFi RX IRAM OP enabled[0m
+[0;32mI (1644) phy_init: phy_version 4791,2c4672b,Dec 20 2023,16:06:06[0m
+I (1716) wifi:mode : sta (d0:ef:76:2a:0b:44)
+I (1717) wifi:enable tsf
+I (1718) wifi:Set ps type: 1
+
+..[0;33m[  2718][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+..[0;33m[  5141][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+...[0;33m[  7562][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+..[0;33m[  9984][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+.Failed to connect to WiFi
+I (11724) wifi:flush txq
+I (11724) wifi:stop sw txq
+I (11725) wifi:lmac stop hw txq
+I (11727) wifi:Deinit lldesc rx mblock:4
+Switching to Bluetooth mode
+[0;32mI (11829) BTDM_INIT: BT controller compile version [0f0c5a2][0m
+[0;32mI (11831) BTDM_INIT: Bluetooth MAC: d0:ef:76:2a:0b:46[0m
+D0:EF:76:2A:0B:46
+[0;32m[ 10865][I][BLEDevice.cpp:577] getAdvertising(): create advertising[0m
+Waiting a client connection to notify...
+BLE : device connected
+{"device_model":"SSB23V1","mac_address":"D0:EF:76:2A:0B:46","firmware_rev":"1.0"}
+Connecting to Pixel_4...
+I (39568) wifi:wifi driver task: 3ffd59b0, prio:23, stack:6656, core=0
+I (39579) wifi:wifi firmware version: 1fd20f4
+I (39579) wifi:wifi certification version: v7.0
+I (39579) wifi:config NVS flash: enabled
+I (39580) wifi:config nano formating: disabled
+I (39585) wifi:Init data frame dynamic rx buffer num: 32
+I (39590) wifi:Init static rx mgmt buffer num: 5
+I (39594) wifi:Init management short buffer num: 32
+I (39598) wifi:Init dynamic tx buffer num: 32
+I (39603) wifi:Init tx cache buffer num: 4
+I (39606) wifi:Init static rx buffer size: 1600
+I (39611) wifi:Init static rx buffer num: 4
+I (39614) wifi:Init dynamic rx buffer num: 32
+[0;32mI (39619) wifi_init: rx ba win: 6[0m
+[0;32mI (39622) wifi_init: tcpip mbox: 32[0m
+[0;32mI (39627) wifi_init: udp mbox: 6[0m
+[0;32mI (39631) wifi_init: tcp mbox: 32[0m
+[0;32mI (39634) wifi_init: tcp tx win: 8192[0m
+[0;32mI (39639) wifi_init: tcp rx win: 32768[0m
+[0;32mI (39643) wifi_init: tcp mss: 1460[0m
+[0;32mI (39647) wifi_init: WiFi IRAM OP enabled[0m
+[0;32mI (39652) wifi_init: WiFi RX IRAM OP enabled[0m
+I (39662) wifi:mode : sta (d0:ef:76:2a:0b:44)
+I (39663) wifi:enable tsf
+I (39664) wifi:Set ps type: 1
+
+I (39679) wifi:new:<10,0>, old:<1,0>, ap:<255,255>, sta:<10,0>, prof:1
+I (39682) wifi:state: init -> auth (b0)
+I (39689) wifi:state: auth -> assoc (0)
+I (39716) wifi:state: assoc -> run (10)
+I (39759) wifi:connected with Pixel_4, aid = 1, channel 10, BW20, bssid = 86:1c:91:92:af:50
+I (39760) wifi:security: WPA2-PSK, phy: bgn, rssi: -33
+I (39766) wifi:pm start, type: 1
+
+I (39809) wifi:AP's beacon interval = 102400 us, DTIM period = 2
+.[0;32mI (40772) esp_netif_handlers: sta ip: 192.168.219.174, mask: 255.255.255.0, gw: 192.168.219.103[0m
+Connected to Wi-Fi network with IP address: 192.168.219.174
+Connected to Wi-Fi network with IP address: 192.168.219.174
+{"battery":90,"macAddress":"D0:EF:76:2A:0B:46"}
+{"battery":90,"macAddress":"D0:EF:76:2A:0B:46"}
+I (41148) wifi:<ba-add>idx:0 (ifx:0, 86:1c:91:92:af:50), tid:0, ssn:3, winSize:64
+.Wifi credentials stored
+[0;33mW (41682) BT_HCI: hci cmd send: disconnect: hdl 0x0, rsn:0x13[0m
+[0;33mW (41685) BT_GATT: gatt_if found but not in use.
+[0m
+[0;31mE (41685) BT_GATT: GATTS_SendRsp Unknown  conn_id: 3
+[0m
+[0;31mE (41689) BT_APPL: Sending response failed
+[0m
+BLE : device disconnected
+[0;33mW (41767) BT_HCI: hcif disc complete: hdl 0x0, rsn 0x16[0m
+BLE Stopped
+WIFI RSSI : -32
+Request successful!
+
+WIFI RSSI : -32
+Request successful!
+{"id":585,"status":"Online","streamer":null,"batteryLife":90,"updatedTime":"2025-02-18T18:25:32.221+00:00"}
+SPIFFS mounted successfully
+File Content:
+-----BEGIN CERTIFICATE-----
+MIIDQTCCAimgAwIBAgITBmyfz5m/jAo54vB4ikPmljZbyjANBgkqhkiG9w0BAQsF
+ADA5MQswCQYDVQQGEwJVUzEPMA0GA1UEChMGQW1hem9uMRkwFwYDVQQDExBBbWF6
+b24gUm9vdCBDQSAxMB4XDTE1MDUyNjAwMDAwMFoXDTM4MDExNzAwMDAwMFowOTEL
+MAkGA1UEBhMCVVMxDzANBgNVBAoTBkFtYXpvbjEZMBcGA1UEAxMQQW1hem9uIFJv
+b3QgQ0EgMTCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEBALJ4gHHKeNXj
+ca9HgFB0fW7Y14h29Jlo91ghYPl0hAEvrAIthtOgQ3pOsqTQNroBvo3bSMgHFzZM
+9O6II8c+6zf1tRn4SWiw3te5djgdYZ6k/oI2peVKVuRF4fn9tBb6dNqcmzU5L/qw
+IFAGbHrQgLKm+a/sRxmPUDgH3KKHOVj4utWp+UhnMJbulHheb4mjUcAwhmahRWa6
+VOujw5H5SNz/0egwLX0tdHA114gk957EWW67c4cX8jJGKLhD+rcdqsq08p8kDi1L
+93FcXmn/6pUCyziKrlA4b9v7LWIbxcceVOF34GfID5yHI9Y/QCB/IIDEgEw+OyQm
+jgSubJrIqg0CAwEAAaNCMEAwDwYDVR0TAQH/BAUwAwEB/zAOBgNVHQ8BAf8EBAMC
+AYYwHQYDVR0OBBYEFIQYzIU07LwMlJQuCFmcx7IQTgoIMA0GCSqGSIb3DQEBCwUA
+A4IBAQCY8jdaQZChGsV2USggNiMOruYou6r4lK5IpDB/G/wkjUu0yKGX9rbxenDI
+U5PMCCjjmCXPI6T53iHTfIUJrU6adTrCC2qJeHZERxhlbI1Bjjt/msv0tadQ1wUs
+N+gDS63pYaACbvXy8MWy7Vu33PqUXHeeE6V/Uq2V8viTO96LXFvKWlJbYK8U90vv
+o/ufQJVtMVT8QtPHRh8jrdkPSHCa2XV4cdFyQzR1bldZwgJcJmApzyMZFo6IQ6XU
+5MsI+yMRQ+hDKXJioaldXgjUkK642M4UwtBV8ob2xJNDd2ZhwLnoQdeXeGADbkpy
+rqXRfboQnoZsG4q5WTP468SQvvG5
+-----END CERTIFICATE-----
+
+[0;33m[ 43251][W][esp32-hal-timer.c:226] timerAttachInterruptFlag(): EDGE timer interrupt is not supported! Setting to LEVEL...[0m
+Client id : 24501460
+[0;32mI (44683) I2S: DMA Malloc info, datalen=blocksize=2048, dma_buf_count=16[0m
+Amplifier is initilized
+volume is set to 14.00
+[0;32mI (44685) gpio: GPIO[14]| InputEn: 1| OutputEn: 0| OpenDrain: 0| Pullup: 1| Pulldown: 0| Intr:0 [0m
+[0;32mI (44694) gpio: GPIO[13]| InputEn: 1| OutputEn: 0| OpenDrain: 0| Pullup: 1| Pulldown: 0| Intr:0 [0m
+[0;32mI (44703) gpio: GPIO[22]| InputEn: 1| OutputEn: 0| OpenDrain: 0| Pullup: 1| Pulldown: 0| Intr:0 [0m
+1- Free Stack Space: 13280
+2- Heap Space size : 293559
+3- Maximum allocated Heap : 49152
+4- Free Heap Space: 118107
+5- Minimum Free Heap Space: 2067407
+
+Total PSRAM: 2045 KB
+Free PSRAM: 2019 KB
+Connected to MQTT broker
+Subscribed to device/D0:EF:76:2A:0B:46/reset
+Subscribed to device/D0:EF:76:2A:0B:46/subscribe
+Subscribed to device/D0:EF:76:2A:0B:46/unsubscribe
+Subscribed to device/D0:EF:76:2A:0B:46/wifi
+Subscribed to device/D0:EF:76:2A:0B:46/update
+Subscribed to device/D0:EF:76:2A:0B:46/ping
+ets Jul 29 2019 12:21:46
+
+rst:0x1 (POWERON_RESET),boot:0x13 (SPI_FAST_FLASH_BOOT)
+configsip: 153911750, SPIWP:0xee
+clk_drv:0x00,q_drv:0x00,d_drv:0x00,cs0_drv:0x00,hd_drv:0x00,wp_drv:0x00
+mode:DIO, clock div:2
+load:0x3fff0030,len:6652
+ho 0 tail 12 room 4
+load:0x40078000,len:15052
+load:0x40080400,len:3836
+entry 0x4008069c
+[0;32mI (30) boot: ESP-IDF 4.4.7 2nd stage bootloader[0m
+[0;32mI (30) boot: compile time 12:24:16[0m
+[0;32mI (30) boot: Multicore bootloader[0m
+[0;32mI (33) boot: chip revision: v3.1[0m
+[0;32mI (37) boot.esp32: SPI Speed      : 40MHz[0m
+[0;32mI (41) boot.esp32: SPI Mode       : DIO[0m
+[0;32mI (46) boot.esp32: SPI Flash Size : 4MB[0m
+[0;32mI (51) boot: Enabling RNG early entropy source...[0m
+[0;32mI (56) boot: Partition Table:[0m
+[0;32mI (60) boot: ## Label            Usage          Type ST Offset   Length[0m
+[0;32mI (67) boot:  0 nvs              WiFi data        01 02 00009000 00005000[0m
+[0;32mI (74) boot:  1 otadata          OTA data         01 00 0000e000 00002000[0m
+[0;32mI (82) boot:  2 app0             OTA app          00 10 00010000 00300000[0m
+[0;32mI (89) boot:  3 spiffs           Unknown data     01 82 00310000 000f0000[0m
+[0;32mI (97) boot: End of partition table[0m
+[0;32mI (101) esp_image: segment 0: paddr=00010020 vaddr=3f400020 size=6f6f0h (456432) map[0m
+[0;32mI (275) esp_image: segment 1: paddr=0007f718 vaddr=3ffbdb60 size=00900h (  2304) load[0m
+[0;32mI (276) esp_image: segment 2: paddr=00080020 vaddr=400d0020 size=135174h (1266036) map[0m
+[0;32mI (739) esp_image: segment 3: paddr=001b519c vaddr=3ffbe460 size=04dc4h ( 19908) load[0m
+[0;32mI (747) esp_image: segment 4: paddr=001b9f68 vaddr=40080000 size=1fc5ch (130140) load[0m
+[0;32mI (816) boot: Loaded app from partition at offset 0x10000[0m
+[0;32mI (816) boot: Disabling RNG early entropy source...[0m
+[0;32mI (827) cpu_start: Multicore app[0m
+[0;32mI (828) psram: This chip is ESP32-D0WDR2-V3[0m
+[0;32mI (828) spiram: Found 16MBit SPI RAM device[0m
+[0;32mI (832) spiram: SPI RAM mode: flash 40m sram 40m[0m
+[0;32mI (837) spiram: PSRAM initialized, cache is in low/high (2-core) mode.[0m
+[0;32mI (845) cpu_start: Pro cpu up.[0m
+[0;32mI (848) cpu_start: Starting app cpu, entry point is 0x40083fe4[0m
+[0;32mI (0) cpu_start: App cpu up.[0m
+[0;32mI (1302) spiram: SPI SRAM memory test OK[0m
+[0;32mI (1310) cpu_start: Pro cpu start user code[0m
+[0;32mI (1310) cpu_start: cpu freq: 240000000[0m
+[0;32mI (1310) cpu_start: Application information:[0m
+[0;32mI (1313) cpu_start: Project name:     Better_WiFi_throughput[0m
+[0;32mI (1320) cpu_start: App version:      V1.0.2-7-g25f707a-dirty[0m
+[0;32mI (1326) cpu_start: Compile time:     Feb 18 2025 12:16:58[0m
+[0;32mI (1332) cpu_start: ELF file SHA256:  4cca8a24711d8856...[0m
+[0;32mI (1338) cpu_start: ESP-IDF:          4.4.7[0m
+[0;32mI (1343) cpu_start: Min chip rev:     v3.0[0m
+[0;32mI (1348) cpu_start: Max chip rev:     v3.99 [0m
+[0;32mI (1353) cpu_start: Chip rev:         v3.1[0m
+[0;32mI (1358) heap_init: Initializing. RAM available for dynamic allocation:[0m
+[0;32mI (1365) heap_init: At 3FFAFF10 len 000000F0 (0 KiB): DRAM[0m
+[0;32mI (1371) heap_init: At 3FFB6388 len 00001C78 (7 KiB): DRAM[0m
+[0;32mI (1377) heap_init: At 3FFB9A20 len 00004108 (16 KiB): DRAM[0m
+[0;32mI (1383) heap_init: At 3FFCD8E0 len 00012720 (73 KiB): DRAM[0m
+[0;32mI (1390) heap_init: At 3FFE0440 len 00003AE0 (14 KiB): D/IRAM[0m
+[0;32mI (1396) heap_init: At 3FFE4350 len 0001BCB0 (111 KiB): D/IRAM[0m
+[0;32mI (1403) heap_init: At 4009FC5C len 000003A4 (0 KiB): IRAM[0m
+[0;32mI (1409) spiram: Adding pool of 2047K of external SPI memory to heap allocator[0m
+[0;32mI (1418) spi_flash: detected chip: gd[0m
+[0;32mI (1421) spi_flash: flash io: dio[0m
+[0;33mW (1425) spi_flash: Detected size(8192k) larger than the size in the binary image header(4096k). Using the size in the binary image header.[0m
+[0;32mI (1441) cpu_start: Starting scheduler on PRO CPU.[0m
+[0;32mI (0) cpu_start: Starting scheduler on APP CPU.[0m
+[0;32mI (1454) spiram: Reserving pool of 32K of internal memory for DMA/internal allocations[0m
+[0;32m[    49][I][esp32-hal-psram.c:96] psramInit(): PSRAM enabled[0m
+[0;32mI ([0;32mI (1515) gpio: GPIO[17]| InputEn: 1| OutputEn: 0| OpenDrain: 0| Pullup: 0| Pulldown: 0| Intr:0 [0m
+[0;31mE (1516) gpio: GPIO can only be used as input mode[0m
+[0;31m[   105][E][esp32-hal-gpio.c:130] __pinMode(): GPIO config failed[0m
+[0;32mI (1537) gpio: GPIO[33]| InputEn: 1| OutputEn: 0| OpenDrain: 0| Pullup: 0| Pulldown: 0| Intr:0 [0m
+Arduino Stack was set to 16384 bytes
+Connecting to Pixel_4...
+I (1555) wifi:wifi driver task: 3ffdebfc, prio:23, stack:6656, core=0
+I (1566) wifi:wifi firmware version: 1fd20f4
+I (1567) wifi:wifi certification version: v7.0
+I (1567) wifi:config NVS flash: enabled
+I (1567) wifi:config nano formating: disabled
+I (1572) wifi:Init data frame dynamic rx buffer num: 32
+I (1576) wifi:Init static rx mgmt buffer num: 5
+I (1580) wifi:Init management short buffer num: 32
+I (1585) wifi:Init dynamic tx buffer num: 32
+I (1589) wifi:Init tx cache buffer num: 4
+I (1593) wifi:Init static rx buffer size: 1600
+I (1597) wifi:Init static rx buffer num: 4
+I (1601) wifi:Init dynamic rx buffer num: 32
+[0;32mI (1606) wifi_init: rx ba win: 6[0m
+[0;32mI (1609) wifi_init: tcpip mbox: 32[0m
+[0;32mI (1613) wifi_init: udp mbox: 6[0m
+[0;32mI (1617) wifi_init: tcp mbox: 32[0m
+[0;32mI (1620) wifi_init: tcp tx win: 8192[0m
+[0;32mI (1625) wifi_init: tcp rx win: 32768[0m
+[0;32mI (1629) wifi_init: tcp mss: 1460[0m
+[0;32mI (1633) wifi_init: WiFi IRAM OP enabled[0m
+[0;32mI (1638) wifi_init: WiFi RX IRAM OP enabled[0m
+[0;32mI (1644) phy_init: phy_version 4791,2c4672b,Dec 20 2023,16:06:06[0m
+I (1719) wifi:mode : sta (d0:ef:76:2a:0b:44)
+I (1720) wifi:enable tsf
+I (1721) wifi:Set ps type: 1
+
+I (1731) wifi:new:<10,0>, old:<1,0>, ap:<255,255>, sta:<10,0>, prof:1
+I (1733) wifi:state: init -> auth (b0)
+I (1739) wifi:state: auth -> assoc (0)
+I (1749) wifi:Association refused temporarily, comeback time 1000 (TUs)
+.I (2773) wifi:state: assoc -> assoc (0)
+I (2836) wifi:state: assoc -> run (10)
+I (2856) wifi:connected with Pixel_4, aid = 2, channel 10, BW20, bssid = 86:1c:91:92:af:50
+I (2857) wifi:security: WPA2-PSK, phy: bgn, rssi: -28
+I (2862) wifi:pm start, type: 1
+
+I (2930) wifi:AP's beacon interval = 102400 us, DTIM period = 2
+I (3345) wifi:<ba-add>idx:0 (ifx:0, 86:1c:91:92:af:50), tid:0, ssn:2, winSize:64
+.[0;32mI (3868) esp_netif_handlers: sta ip: 192.168.219.174, mask: 255.255.255.0, gw: 192.168.219.103[0m
+Connected to Wi-Fi network with IP address: 192.168.219.174
+{"battery":90,"macAddress":"D0:EF:76:2A:0B:46"}
+.WIFI RSSI : -26
+Request successful!
+dC�?dC�?5,"status":"Online","streamer":null,"batteryLife":90,"updatedTime":"2025-02-18T18:25:40.794+00:00"}
+SPIFFS mounted successfully
+File Content:
+-----BEGIN CERTIFICATE-----
+MIIDQTCCAimgAwIBAgITBmyfz5m/jAo54vB4ikPmljZbyjANBgkqhkiG9w0BAQsF
+ADA5MQswCQYDVQQGEwJVUzEPMA0GA1UEChMGQW1hem9uMRkwFwYDVQQDExBBbWF6
+b24gUm9vdCBDQSAxMB4XDTE1MDUyNjAwMDAwMFoXDTM4MDExNzAwMDAwMFowOTEL
+MAkGA1UEBhMCVVMxDzANBgNVBAoTBkFtYXpvbjEZMBcGA1UEAxMQQW1hem9uIFJv
+b3QgQ0EgMTCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEBALJ4gHHKeNXj
+ca9HgFB0fW7Y14h29Jlo91ghYPl0hAEvrAIthtOgQ3pOsqTQNroBvo3bSMgHFzZM
+9O6II8c+6zf1tRn4SWiw3te5djgdYZ6k/oI2peVKVuRF4fn9tBb6dNqcmzU5L/qw
+IFAGbHrQgLKm+a/sRxmPUDgH3KKHOVj4utWp+UhnMJbulHheb4mjUcAwhmahRWa6
+VOujw5H5SNz/0egwLX0tdHA114gk957EWW67c4cX8jJGKLhD+rcdqsq08p8kDi1L
+93FcXmn/6pUCyziKrlA4b9v7LWIbxcceVOF34GfID5yHI9Y/QCB/IIDEgEw+OyQm
+jgSubJrIqg0CAwEAAaNCMEAwDwYDVR0TAQH/BAUwAwEB/zAOBgNVHQ8BAf8EBAMC
+AYYwHQYDVR0OBBYEFIQYzIU07LwMlJQuCFmcx7IQTgoIMA0GCSqGSIb3DQEBCwUA
+A4IBAQCY8jdaQZChGsV2USggNiMOruYou6r4lK5IpDB/G/wkjUu0yKGX9rbxenDI
+U5PMCCjjmCXPI6T53iHTfIUJrU6adTrCC2qJeHZERxhlbI1Bjjt/msv0tadQ1wUs
+N+gDS63pYaACbvXy8MWy7Vu33PqUXHeeE6V/Uq2V8viTO96LXFvKWlJbYK8U90vv
+o/ufQJVtMVT8QtPHRh8jrdkPSHCa2XV4cdFyQzR1bldZwgJcJmApzyMZFo6IQ6XU
+5MsI+yMRQ+hDKXJioaldXgjUkK642M4UwtBV8ob2xJNDd2ZhwLnoQdeXeGADbkpy
+rqXRfboQnoZsG4q5WTP468SQvvG5
+-----END CERTIFICATE-----
+
+[0;33m[  5394][W][esp32-hal-timer.c:226] timerAttachInterruptFlag(): EDGE timer interrupt is not supported! Setting to LEVEL...[0m
+Client id : 70127535
+[0;32mI (6828) I2S: DMA Malloc info, datalen=blocksize=2048, dma_buf_count=16[0m
+Amplifier is initilized
+volume is set to 14.00
+[0;32mI (6830) gpio: GPIO[14]| InputEn: 1| OutputEn: 0| OpenDrain: 0| Pullup: 1| Pulldown: 0| Intr:0 [0m
+[0;32mI (6838) gpio: GPIO[13]| InputEn: 1| OutputEn: 0| OpenDrain: 0| Pullup: 1| Pulldown: 0| Intr:0 [0m
+[0;32mI (6848) gpio: GPIO[22]| InputEn: 1| OutputEn: 0| OpenDrain: 0| Pullup: 1| Pulldown: 0| Intr:0 [0m
+1- Free Stack Space: 13280
+2- Heap Space size : 256479
+3- Maximum allocated Heap : 63488
+4- Free Heap Space: 85123
+5- Minimum Free Heap Space: 2123359
+
+Total PSRAM: 2045 KB
+Free PSRAM: 2019 KB
+Connected to MQTT broker
+Subscribed to device/D0:EF:76:2A:0B:46/reset
+Subscribed to device/D0:EF:76:2A:0B:46/subscribe
+Subscribed to device/D0:EF:76:2A:0B:46/unsubscribe
+Subscribed to device/D0:EF:76:2A:0B:46/wifi
+Subscribed to device/D0:EF:76:2A:0B:46/update
+Subscribed to device/D0:EF:76:2A:0B:46/ping
+1- Free Stack Space: 13280
+2- Heap Space size : 256483
+3- Maximum allocated Heap : 63488
+4- Free Heap Space: 84175
+5- Minimum Free Heap Space: 2123359
+
+Total PSRAM: 2045 KB
+Free PSRAM: 2019 KB
+1- Free Stack Space: 13280
+2- Heap Space size : 256483
+3- Maximum allocated Heap : 63488
+4- Free Heap Space: 84175
+5- Minimum Free Heap Space: 2123359
+
+Total PSRAM: 2045 KB
+Free PSRAM: 2019 KB
+1- Free Stack Space: 13280
+2- Heap Space size : 256483
+3- Maximum allocated Heap : 63488
+4- Free Heap Space: 84175
+5- Minimum Free Heap Space: 2123359
+
+Total PSRAM: 2045 KB
+Free PSRAM: 2019 KB
+1- Free Stack Space: 13280
+2- Heap Space size : 256483
+3- Maximum allocated Heap : 63488
+4- Free Heap Space: 84175
+5- Minimum Free Heap Space: 2123359
+
+Total PSRAM: 2045 KB
+Free PSRAM: 2019 KB
+I (27305) wifi:state: run -> init (1a0)
+I (27306) wifi:pm stop, total sleep time: 22169645 us / 24443577 us
+
+I (27306) wifi:<ba-del>idx
+I (27307) wifi:new:<10,0>, old:<10,0>, ap:<255,255>, sta:<10,0>, prof:1
+[0;33m[ 25899][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 1 - UNSPECIFIED[0m
+MQTT client not connected. Reconnecting...
+MQTT state : CONNECTION_LOST
+WIFI RSSI : W (27337) wifi:Haven't to connect to a suitable AP now!
+0
+Client id : 70127535
+[0;31m[ 25928][E][WiFiClient.cpp:249] connect(): connect on fd 54, errno: 118, "Host is unreachable"[0m
+Failed to connect to MQTT broker
+[0;33m[ 28335][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 13280
+2- Heap Space size : 256535
+3- Maximum allocated Heap : 63488
+4- Free Heap Space: 86759
+5- Minimum Free Heap Space: 2123359
+
+Total PSRAM: 2045 KB
+Free PSRAM: 2019 KB
+[0;33m[ 30758][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+[0;33m[ 33181][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+I (34614) wifi:new:<10,0>, old:<10,0>, ap:<255,255>, sta:<10,0>, prof:1
+I (34616) wifi:state: init -> auth (b0)
+I (34622) wifi:state: auth -> assoc (0)
+I (34649) wifi:state: assoc -> run (10)
+I (34690) wifi:connected with Pixel_4, aid = 1, channel 10, BW20, bssid = 46:fe:e3:15:f0:50
+I (34690) wifi:security: WPA2-PSK, phy: bgn, rssi: -30
+I (34696) wifi:pm start, type: 1
+
+I (34778) wifi:AP's beacon interval = 102400 us, DTIM period = 2
+[0;32mI (35702) esp_netif_handlers: sta ip: 192.168.219.174, mask: 255.255.255.0, gw: 192.168.219.103[0m
+1- Free Stack Space: 13280
+2- Heap Space size : 256507
+3- Maximum allocated Heap : 51200
+4- Free Heap Space: 61591
+5- Minimum Free Heap Space: 2118167
+
+Total PSRAM: 2045 KB
+Free PSRAM: 2019 KB
+Client id : 70127535
+I (37855) wifi:<ba-add>idx:0 (ifx:0, 46:fe:e3:15:f0:50), tid:0, ssn:3, winSize:64
+Connected to MQTT broker
+Subscribed to device/D0:EF:76:2A:0B:46/reset
+Subscribed to device/D0:EF:76:2A:0B:46/subscribe
+Subscribed to device/D0:EF:76:2A:0B:46/unsubscribe
+Subscribed to device/D0:EF:76:2A:0B:46/wifi
+Subscribed to device/D0:EF:76:2A:0B:46/update
+Subscribed to device/D0:EF:76:2A:0B:46/ping
+1- Free Stack Space: 13280
+2- Heap Space size : 256455
+3- Maximum allocated Heap : 51200
+4- Free Heap Space: 59319
+5- Minimum Free Heap Space: 2113367
+
+Total PSRAM: 2045 KB
+Free PSRAM: 2019 KB
+I (42973) wifi:state: run -> init (1a0)
+I (42974) wifi:pm stop, total sleep time: 7064115 us / 8278342 us
+
+I (42975) wifi:<ba-del>idx
+I (42975) wifi:new:<10,0>, old:<10,0>, ap:<255,255>, sta:<10,0>, prof:1
+[0;33m[ 41568][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 1 - UNSPECIFIED[0m
+MQTT client not connected. Reconnecting...
+MQTT state : CONNECTION_LOST
+WIFI RSSI : W (43006) wifi:Haven't to connect to a suitable AP now!
+0
+Client id : 70127535
+[0;31m[ 41600][E][WiFiClient.cpp:249] connect(): connect on fd 54, errno: 118, "Host is unreachable"[0m
+Failed to connect to MQTT broker
+[0;33m[ 44003][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 13280
+2- Heap Space size : 256519
+3- Maximum allocated Heap : 51200
+4- Free Heap Space: 62055
+5- Minimum Free Heap Space: 2113367
+
+Total PSRAM: 2045 KB
+Free PSRAM: 2019 KB
+[0;33m[ 46426][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+[0;33m[ 48849][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+I (50280) wifi:new:<10,0>, old:<10,0>, ap:<255,255>, sta:<10,0>, prof:1
+I (50281) wifi:state: init -> auth (b0)
+I (50286) wifi:state: auth -> assoc (0)
+I (50320) wifi:state: assoc -> run (10)
+I (50357) wifi:connected with Pixel_4, aid = 1, channel 10, BW20, bssid = 0a:0f:94:78:72:b6
+I (50358) wifi:security: WPA2-PSK, phy: bgn, rssi: -28
+I (50364) wifi:pm start, type: 1
+
+I (50445) wifi:AP's beacon interval = 102400 us, DTIM period = 2
+[0;32mI (51369) esp_netif_handlers: sta ip: 192.168.219.174, mask: 255.255.255.0, gw: 192.168.219.103[0m
+1- Free Stack Space: 13280
+2- Heap Space size : 256491
+3- Maximum allocated Heap : 27648
+4- Free Heap Space: 36895
+5- Minimum Free Heap Space: 2093463
+
+Total PSRAM: 2045 KB
+Free PSRAM: 2019 KB
+Client id : 70127535
+I (53428) wifi:<ba-add>idx:0 (ifx:0, 0a:0f:94:78:72:b6), tid:0, ssn:3, winSize:64
+Connected to MQTT broker
+Subscribed to device/D0:EF:76:2A:0B:46/reset
+Subscribed to device/D0:EF:76:2A:0B:46/subscribe
+Subscribed to device/D0:EF:76:2A:0B:46/unsubscribe
+Subscribed to device/D0:EF:76:2A:0B:46/wifi
+Subscribed to device/D0:EF:76:2A:0B:46/update
+Subscribed to device/D0:EF:76:2A:0B:46/ping
+1- Free Stack Space: 13280
+2- Heap Space size : 256439
+3- Maximum allocated Heap : 27648
+4- Free Heap Space: 34611
+5- Minimum Free Heap Space: 2088663
+
+Total PSRAM: 2045 KB
+Free PSRAM: 2019 KB
+1- Free Stack Space: 13280
+2- Heap Space size : 256443
+3- Maximum allocated Heap : 27648
+4- Free Heap Space: 34631
+5- Minimum Free Heap Space: 2088663
+
+Total PSRAM: 2045 KB
+Free PSRAM: 2019 KB
+OTA is not Updating....
+Updating Telemetry
+{"battery":90,"macAddress":"D0:EF:76:2A:0B:46"}
+Connected to Wi-Fi network with IP address: 192.168.219.174
+Connected to Wi-Fi network with IP address: 192Connected to Wi-Fi network with IP address: .168.219.174
+{"battery":90,"macAddress":"D0:EF:76:2A:0B:46"}
+Connected to Wi-Fi network with IP address: 192192.168.219.174
+{"battery":90,"macAddress":"D0:EF:76:2A:0B:46"}
+.168.219.174
+{"battery":90,"macAddress":"D0:EF:76:2A:0B:46"}
+{"battery":90,"macAddress":"D0:EF:76:2A:0B:46"}
+WIFI RSSI : -28
+Request successful!
+dC�?dC�?5,"status":"Online","streamer":null,"batteryLife":90,"updatedTime":"2025-02-18T18:26:43.460+00:00"}
+1- Free Stack Space: 12848
+2- Heap Space size : 256143
+3- Maximum allocated Heap : 11776
+4- Free Heap Space: 20575
+5- Minimum Free Heap Space: 1886619
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1887 KB
