@@ -39,6 +39,7 @@ bool MQTTClient::connectToBroker(int retries)
 bool MQTTClient::connectToBroker() 
 {
   mqttClient.setServer(mqttServer, mqttPort);
+  mqttClient.setBufferSize(2048);
   static std::string clientId = std::to_string(random(1000000000));
   Serial.print("Client id : ");
   Serial.println(clientId.c_str());
@@ -80,8 +81,8 @@ bool MQTTClient::subscribeTopics()
     }
   }
 
-  if(!subscribeTopicsfromNVS())
-      return false;
+  if(!subscribeTopicsfromNVS()){
+      return false;}
 
   return true;
 }
@@ -200,7 +201,7 @@ bool MQTTClient::unsubscribe(const char* topic)
 }
 
 MqttTopic MQTTClient::getTopic(const char* topic) 
-{
+{ 
   if (compareTopic(topic, mqttTopicReset)) 
   {
     return DEVICE_RESET;
