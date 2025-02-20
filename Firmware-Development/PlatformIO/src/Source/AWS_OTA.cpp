@@ -1,6 +1,6 @@
 #include"AWS_OTA.hpp"
 #include "SM_Http.hpp"
-#include"CertificateHandler.hpp"
+#include"LocalStorage.hpp"
 #include "Device.hpp"
 
 AWS_OTA* AWS_OTA::instance = nullptr;
@@ -76,11 +76,10 @@ void AWS_OTA::startFirmwareUpdate(const char* url)
   deviceOtaUrl = url;
   Serial.println(deviceOtaUrl);
   
-  CertificateHandler certificateHandler;
-  certificateHandler.setup();
-  certificateHandler.isExist();
-  //certificateHandler.write(server_certificate);  // Write new content in  to the file
-  server_certificate = certificateHandler.get();  // Get the content of the file as a char array
+ 
+  localStorage.setup();
+  localStorage.isExist();
+  server_certificate = localStorage.get(FILE_TITLE);  // Get the content of the file as a char array
   if (server_certificate) 
   {
     Serial.print("server_certificate content via get(): ");

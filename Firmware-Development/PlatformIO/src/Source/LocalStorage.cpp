@@ -1,8 +1,9 @@
 
-#include"CertificateHandler.hpp"
+#include"LocalStorage.hpp"
 
+LocalStorage localStorage;
 // Method to initialize SPIFFS
-void CertificateHandler::setup() 
+void LocalStorage::setup() 
 {
   if (!SPIFFS.begin(true)) 
   {
@@ -15,7 +16,7 @@ void CertificateHandler::setup()
 }
 
 // Method to check if the file exists
-void CertificateHandler::isExist() 
+void LocalStorage::isExist() 
 {
   if (SPIFFS.exists(FILE_TITLE)) 
   {
@@ -28,7 +29,7 @@ void CertificateHandler::isExist()
 }
 
 // Method to write new content to the file
-void CertificateHandler::write(const char* content) 
+void LocalStorage::write(const char* content) 
 {
   File file = SPIFFS.open(FILE_TITLE, FILE_WRITE);
   if (!file) 
@@ -42,7 +43,7 @@ void CertificateHandler::write(const char* content)
 }
 
 // Method to read and print the content of the file
-void CertificateHandler::print() 
+void LocalStorage::print() 
 {
   File file = SPIFFS.open(FILE_TITLE, FILE_READ);
   if (!file) 
@@ -73,8 +74,8 @@ void CertificateHandler::print()
   Serial.println();
 }
 
-char* CertificateHandler::get() {
-  File file = SPIFFS.open(FILE_TITLE, FILE_READ);
+char* LocalStorage::get(const char* filename) {
+  File file = SPIFFS.open(filename, FILE_READ);
   if (!file) 
   {
     Serial.println("Failed to open file for reading");
