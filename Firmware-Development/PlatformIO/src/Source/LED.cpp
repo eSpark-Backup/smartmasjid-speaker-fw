@@ -37,20 +37,29 @@ void LED::showSolidColor(CRGB color)
     FastLED.show();
 }
 
-void LED::showBlinkingColor(CRGB color, uint16_t fadeDelay)
-{
-    for (int i = 0; i <= BRIGHTNESS; ++i) {
-        FastLED.setBrightness(i);
+
+void LED::showBlinkingColor(CRGB color, uint16_t fadeDelay) {
+    static uint32_t previousMillis = 0;
+    static int brightness = 0;
+    static bool increasing = true;
+
+    if (millis() - previousMillis >= fadeDelay) {
+        previousMillis = millis();
+
+        // Adjust brightness smoothly
+        FastLED.setBrightness(brightness);
         fill_solid(leds, NUM_LEDS, color);
         FastLED.show();
-        delay(fadeDelay); 
+
+        // Adjust brightness direction
+        if (increasing) {
+            brightness++;
+            if (brightness >= BRIGHTNESS) increasing = false;
+        } else {
+            brightness--;
+            if (brightness <= 0) increasing = true;
+        }
     }
-    for (int i = BRIGHTNESS; i >= 0; --i) {
-        FastLED.setBrightness(i);
-        fill_solid(leds, NUM_LEDS, color);
-        FastLED.show();
-        delay(fadeDelay);
-    } 
 }
 
 void LED::circleBlinking(CRGB color, const char *speed)
