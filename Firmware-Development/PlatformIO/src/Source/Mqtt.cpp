@@ -422,6 +422,31 @@ void MQTTClient::mqttCallback()
       printState();
       Serial.print("WIFI RSSI : ");
       Serial.println(WiFi.RSSI());
+
+    //   int retryCount = 0;
+    //   const int maxRetries = 10;
+    //   // const int sleepDuration = 15 * 60 * 1000;  //15 minutes in milli sec
+    //   while (WiFi.status() != WL_CONNECTED && retryCount < maxRetries) {
+    //     Serial.print("WiFi disconnected. Retrying (");
+    //     Serial.print(retryCount + 1);
+    //     Serial.println("/10)...");
+        
+    //     WiFi.disconnect();
+    //     delay(1000);
+    //     WiFi.reconnect();
+    //     delay(2000); 
+        
+    //     retryCount++;
+    // }
+    //   if (WiFi.status() != WL_CONNECTED){
+    //     Serial.println("Failed to reconnect after 10 attempts. Entering sleep mode...");
+    //     esp_sleep_enable_timer_wakeup(1 * 60 * 1000000); // 1 minutes in micro sec
+    //     esp_deep_sleep_start();
+    //   }
+    //   else{
+    //   Serial.println("WiFi Reconnected Successfully!");
+    // }
+    
       connectToBroker(10); 
 }
 
