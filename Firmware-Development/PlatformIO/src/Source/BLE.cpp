@@ -8,7 +8,7 @@
 #include "Device.hpp"
 #include "SM_Json.hpp"
 #include "SM_Nvs.hpp"
-#include  "CertificateHandler.hpp"
+#include  "LocalStorage.hpp"
 
 // BLE ble;
 IWifiProvisioning* pWifiProv = nullptr;
@@ -29,18 +29,18 @@ class MyServerCallbacks : public BLEServerCallbacks
     char factoryInfoJson[100];
 
     char device[70];
-    char SM_MODEL[8];
-    char SM_FIRMWARE[6];
-    const char* json = certificateHandler.get(FILE_JSON);
+    char smModel[24];
+    char smFirmware[24];
+    const char* json = localStorage.get(FILE_JSON);
     Serial.println(json);
     SM_Json::parse(json , std::make_pair("device_info", device));
-    SM_Json::parse((const char*)(device) , std::make_pair("model", SM_MODEL));
-    SM_Json::parse((const char*)(device) , std::make_pair("firmware_ver", SM_FIRMWARE));
+    SM_Json::parse((const char*)(device) , std::make_pair("model", smModel));
+    SM_Json::parse((const char*)(device) , std::make_pair("firmware_ver", smFirmware));
 
     SM_Json::create(factoryInfoJson, sizeof(factoryInfoJson),
-                        std::make_pair("device_model", SM_MODEL),
+                        std::make_pair("device_model", smModel),
                         std::make_pair("mac_address", Device::macAddress),
-                        std::make_pair("firmware_rev", SM_FIRMWARE));                                          
+                        std::make_pair("firmware_rev", smFirmware));                                          
     Serial.println(factoryInfoJson);
     
     pDeviceCharacteristic->setValue(factoryInfoJson);

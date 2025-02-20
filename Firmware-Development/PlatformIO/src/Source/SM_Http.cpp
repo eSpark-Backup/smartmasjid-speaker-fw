@@ -5,7 +5,7 @@
 #include "SM_Http.hpp"
 #include "SM_Json.hpp"
 #include "Device.hpp"
-#include"CertificateHandler.hpp"
+#include"LocalStorage.hpp"
 
 
 HttpStatusCode SmHttp::sendDeviceTelemetry(const char* macAddress, uint8_t retryInterval, uint16_t maxRetry)
@@ -32,7 +32,7 @@ HttpStatusCode SmHttp::sendDeviceTelemetry(const char* macAddress)
   char http[150];
   char smHost[50];
  
-  const char* json = certificateHandler.get(FILE_JSON);
+  const char* json = localStorage.get(FILE_JSON);
   SM_Json::parse(json , std::make_pair("http", http));
   SM_Json::parse((const char*)(http) , std::make_pair("host", smHost));
   
@@ -57,9 +57,9 @@ HttpStatusCode SmHttp::notifyOTAUpdate(const char* macAddress)
   char http[150];
   char smHost[50];
   char device[70];
-  char SM_FIRMWARE[6];
+  char smFirmware[6];
 
-  const char* json = certificateHandler.get(FILE_JSON);
+  const char* json = localStorage.get(FILE_JSON);
   
   SM_Json::parse(json , std::make_pair("http", http));
   SM_Json::parse((const char*)(http) , std::make_pair("host", smHost));
@@ -69,11 +69,11 @@ HttpStatusCode SmHttp::notifyOTAUpdate(const char* macAddress)
   char payload[64];
 
   SM_Json::parse(json , std::make_pair("device_info", device));
-  SM_Json::parse((const char*)(device) , std::make_pair("firmware_ver", SM_FIRMWARE));
+  SM_Json::parse((const char*)(device) , std::make_pair("firmware_ver", smFirmware));
   
   SM_Json::create(payload, sizeof(payload),
                   std::make_pair("macAddress", Device::macAddress),
-                  std::make_pair("firmwareVersion", SM_FIRMWARE));
+                  std::make_pair("firmwareVersion", smFirmware));
   Serial.println(payload);
   return request(updateOnLoadUrl.c_str(), payload, Http::RequestType::PUT);
 }
@@ -88,7 +88,7 @@ HttpStatusCode SmHttp::updateDeviceStatus(const char* macAddress, char* status)
   char http[150];
   char smHost[50];
  
-  const char* json = certificateHandler.get(FILE_JSON);
+  const char* json = localStorage.get(FILE_JSON);
   SM_Json::parse(json , std::make_pair("http", http));
   SM_Json::parse((const char*)(http) , std::make_pair("host", smHost));
   std::string updateOnLoadUrl = smHost;
@@ -110,10 +110,10 @@ HttpStatusCode SmHttp::request(const char* url, const char* json, Http::RequestT
     return false;
   }
   char http[150];
-  char EXTERNAL_API_KEY[70];
-  const char* jsonFile = certificateHandler.get(FILE_JSON);
+  char externalApiKey[70];
+  const char* jsonFile = localStorage.get(FILE_JSON);
   SM_Json::parse(jsonFile , std::make_pair("http", http));
-  SM_Json::parse((const char*)(http) , std::make_pair("api_key", EXTERNAL_API_KEY));
+  SM_Json::parse((const char*)(http) , std::make_pair("api_key", externalApiKey));
   
   WiFiClientSecure client;
   client.setInsecure();
@@ -121,7 +121,7 @@ HttpStatusCode SmHttp::request(const char* url, const char* json, Http::RequestT
   https.setReuse(false);
   https.begin(client, url);
   https.addHeader("Content-Type", "application/json");
-  https.addHeader("x-api-key", EXTERNAL_API_KEY);
+  https.addHeader("x-api-key", externalApiKey);
 
   HttpStatusCode status = Http::Response::DEVICE_NOT_FOUND;
 

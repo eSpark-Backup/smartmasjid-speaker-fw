@@ -4,7 +4,7 @@
 
 #define FILE_TITLE "/server.crt"
 #define FILE_JSON "/config.json"
-class CertificateHandler 
+class LocalStorage 
 {
   public:
     void setup(); 
@@ -14,4 +14,4 @@ class CertificateHandler
     char* get(const char* filename);
 };
 
-extern CertificateHandler certificateHandler;
+extern LocalStorage localStorage;

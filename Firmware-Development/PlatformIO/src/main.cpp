@@ -9,7 +9,7 @@
 #include "Source/Button.hpp"
 #include "Source/Battery.hpp"
 #include"Source/Amplifier.hpp"
-#include  "Source/CertificateHandler.hpp"
+#include  "Source/LocalStorage.hpp"
 #include "Source/SM_Json.hpp"
 
 SET_LOOP_TASK_STACK_SIZE( 16*1024 ); // 16KB
@@ -19,12 +19,12 @@ MQTTClient mqtt(&wifiProv);
 // Button button;
 Battery battery;
 Amplifier& amp = *Amplifier::getInstance();
-// CertificateHandler certificateHandler;
+
 
 void setup() 
 {
   Serial.begin(115200);
-  certificateHandler.setup();
+  localStorage.setup();
   LED& rgb = *LED::getInstance();
   rgb.createTask();
   battery.setup();
@@ -59,7 +59,7 @@ void setup()
   }
 
  
-  certificateHandler.print();
+  localStorage.print();
 
   mqtt.createTask();
    Device::timerSetup();
