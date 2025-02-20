@@ -5,6 +5,8 @@
 #include "SM_Http.hpp"
 #include "SM_Json.hpp"
 #include "Device.hpp"
+#include"CertificateHandler.hpp"
+
 
 HttpStatusCode SmHttp::sendDeviceTelemetry(const char* macAddress, uint8_t retryInterval, uint16_t maxRetry)
 {  
@@ -30,7 +32,7 @@ HttpStatusCode SmHttp::sendDeviceTelemetry(const char* macAddress)
   char http[150];
   char smHost[50];
  
-  const char* json = SM_Json::readJSONFile();
+  const char* json = certificateHandler.get(FILE_JSON);
   SM_Json::parse(json , std::make_pair("http", http));
   SM_Json::parse((const char*)(http) , std::make_pair("host", smHost));
   
@@ -57,7 +59,7 @@ HttpStatusCode SmHttp::notifyOTAUpdate(const char* macAddress)
   char device[70];
   char SM_FIRMWARE[6];
 
-  const char* json = SM_Json::readJSONFile();
+  const char* json = certificateHandler.get(FILE_JSON);
   
   SM_Json::parse(json , std::make_pair("http", http));
   SM_Json::parse((const char*)(http) , std::make_pair("host", smHost));
@@ -86,7 +88,7 @@ HttpStatusCode SmHttp::updateDeviceStatus(const char* macAddress, char* status)
   char http[150];
   char smHost[50];
  
-  const char* json = SM_Json::readJSONFile();
+  const char* json = certificateHandler.get(FILE_JSON);
   SM_Json::parse(json , std::make_pair("http", http));
   SM_Json::parse((const char*)(http) , std::make_pair("host", smHost));
   std::string updateOnLoadUrl = smHost;
@@ -109,7 +111,7 @@ HttpStatusCode SmHttp::request(const char* url, const char* json, Http::RequestT
   }
   char http[150];
   char EXTERNAL_API_KEY[70];
-  const char* jsonFile = SM_Json::readJSONFile();
+  const char* jsonFile = certificateHandler.get(FILE_JSON);
   SM_Json::parse(jsonFile , std::make_pair("http", http));
   SM_Json::parse((const char*)(http) , std::make_pair("api_key", EXTERNAL_API_KEY));
   

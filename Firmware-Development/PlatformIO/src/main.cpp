@@ -19,7 +19,7 @@ MQTTClient mqtt(&wifiProv);
 // Button button;
 Battery battery;
 Amplifier& amp = *Amplifier::getInstance();
-CertificateHandler certificateHandler;
+// CertificateHandler certificateHandler;
 
 void setup() 
 {

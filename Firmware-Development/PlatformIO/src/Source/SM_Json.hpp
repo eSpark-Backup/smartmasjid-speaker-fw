@@ -2,7 +2,7 @@
 #include <ArduinoJson.h>
 #include <unordered_map>
 #include <cstring>
-#include  "CertificateHandler.hpp"
+
 
 
 class SM_Json 
@@ -34,30 +34,6 @@ class SM_Json
       bool result = parseValues(doc, args...);
       return result;
     }
-
-  static const char* readJSONFile() {
-      File file = SPIFFS.open(FILE_JSON, "r");
-      if (!file) {
-          Serial.println("Failed to open file");
-          return nullptr;
-      }
-      static char jsonContent[512];  
-      size_t index = 0;
-      while (file.available() && index < sizeof(jsonContent) - 1) {
-          jsonContent[index++] = (char)file.read();
-      }
-      jsonContent[index] = '\0'; 
-      file.close();
-      StaticJsonDocument<512> doc;
-      DeserializationError error = deserializeJson(doc, jsonContent);
-      if (error) {
-          Serial.println("Error parsing JSON");
-          return nullptr;
-      }
-      static char output[512]; 
-      serializeJson(doc, output, sizeof(output));
-      return output;
-  }
   
   static char* parseDynamic(const char* json) 
     {
@@ -84,7 +60,6 @@ class SM_Json
         return result; 
     }
 
- 
  
   private:
     template <typename T>
@@ -133,6 +108,5 @@ class SM_Json
       return parseValues(doc, rest...);
     }
 
-    // Base case of recursion to terminate the recursive function call
     static bool parseValues(JsonDocument&) { return true; }
 };

@@ -1,6 +1,7 @@
 
 #include"CertificateHandler.hpp"
 
+CertificateHandler certificateHandler;
 // Method to initialize SPIFFS
 void CertificateHandler::setup() 
 {
@@ -73,8 +74,8 @@ void CertificateHandler::print()
   Serial.println();
 }
 
-char* CertificateHandler::get() {
-  File file = SPIFFS.open(FILE_TITLE, FILE_READ);
+char* CertificateHandler::get(const char* filename) {
+  File file = SPIFFS.open(filename, FILE_READ);
   if (!file) 
   {
     Serial.println("Failed to open file for reading");
@@ -102,4 +103,3 @@ char* CertificateHandler::get() {
   file.close();
   return content;
 }
-

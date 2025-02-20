@@ -11,8 +11,7 @@ class CertificateHandler
     void isExist(); 
     void write(const char* content); 
     void print(); 
-    char* get();
-    String getField(String fieldName);
+    char* get(const char* filename);
 };
 
 extern CertificateHandler certificateHandler;

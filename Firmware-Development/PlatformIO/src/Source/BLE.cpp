@@ -8,7 +8,7 @@
 #include "Device.hpp"
 #include "SM_Json.hpp"
 #include "SM_Nvs.hpp"
-
+#include  "CertificateHandler.hpp"
 
 // BLE ble;
 IWifiProvisioning* pWifiProv = nullptr;
@@ -20,7 +20,6 @@ BLECharacteristic *pTxCharacteristic;
 BLECharacteristic *pDeviceCharacteristic;
 BLECharacteristic *pProvCharacteristic;
 
-// CertificateHandler certificateHandler;
 
 class MyServerCallbacks : public BLEServerCallbacks
 {
@@ -32,7 +31,8 @@ class MyServerCallbacks : public BLEServerCallbacks
     char device[70];
     char SM_MODEL[8];
     char SM_FIRMWARE[6];
-    const char* json = SM_Json::readJSONFile();
+    const char* json = certificateHandler.get(FILE_JSON);
+    Serial.println(json);
     SM_Json::parse(json , std::make_pair("device_info", device));
     SM_Json::parse((const char*)(device) , std::make_pair("model", SM_MODEL));
     SM_Json::parse((const char*)(device) , std::make_pair("firmware_ver", SM_FIRMWARE));

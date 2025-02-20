@@ -8,6 +8,7 @@
 #include"Amplifier.hpp"
 #include <freertos/semphr.h>
 #include"AWS_OTA.hpp"
+#include  "CertificateHandler.hpp"
 
 WiFiClient wifiClient;
 PubSubClient mqttClient(wifiClient);
@@ -42,7 +43,7 @@ bool MQTTClient::connectToBroker()
   char mqttServer[40];
   char mqttUsername[8];
   char mqttPassword[8];
-  const char* json = SM_Json::readJSONFile();
+  const char* json = certificateHandler.get(FILE_JSON);
   SM_Json::parse(json , std::make_pair("mqtt", mqtt));
   SM_Json::parse((const char*)(mqtt) , std::make_pair("broker", mqttServer));
   SM_Json::parse((const char*)(mqtt) , std::make_pair("user_name", mqttUsername));
