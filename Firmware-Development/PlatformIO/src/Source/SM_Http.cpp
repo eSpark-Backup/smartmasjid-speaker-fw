@@ -76,6 +76,7 @@ HttpStatusCode SmHttp::notifyOTAUpdate(const char* macAddress)
                   std::make_pair("firmwareVersion", smFirmware));
   Serial.println(payload);
   return request(updateOnLoadUrl.c_str(), payload, Http::RequestType::PUT);
+  
 }
 
 HttpStatusCode SmHttp::updateDeviceStatus(const char* macAddress, char* status)
