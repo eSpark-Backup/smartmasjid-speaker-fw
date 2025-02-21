@@ -13,9 +13,9 @@
 #define DELAY_INTERVAL  5000
 
 // ESP Sleep Mode Parameters 
-#define SLEEP_DURATION  15          // 15 minutes
-#define MAX_RETRIES  10             // 10 retry to connect wifi before sleep
-#define RECONNECT_WIFI_DELAY 2000   // 2 sec for reconnect wifi.
+#define SLEEP_DURATION  1          // 5 minutes
+#define MAX_WIFI_RETRIES  10             // 10 retry to connect wifi before sleep
+
 // Timer Settings
 #define TIMER_NO 0
 #define TIMER_PRESCALAR_1MHZ 80

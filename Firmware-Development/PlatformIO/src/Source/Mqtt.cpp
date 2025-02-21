@@ -5,9 +5,9 @@
 #include "SM_Nvs.hpp"
 #include "SM_Http.hpp"
 #include "Device.hpp"
-#include"Amplifier.hpp"
+#include "Amplifier.hpp"
 #include <freertos/semphr.h>
-#include"AWS_OTA.hpp"
+#include "AWS_OTA.hpp"
 
 WiFiClient wifiClient;
 PubSubClient mqttClient(wifiClient);
@@ -423,31 +423,33 @@ void MQTTClient::mqttCallback()
       Serial.print("WIFI RSSI : ");
       Serial.println(WiFi.RSSI());
 
-    //   int retryCount = 0;
-    //   const int maxRetries = 10;
-    //   // const int sleepDuration = 15 * 60 * 1000;  //15 minutes in milli sec
-    //   while (WiFi.status() != WL_CONNECTED && retryCount < maxRetries) {
-    //     Serial.print("WiFi disconnected. Retrying (");
-    //     Serial.print(retryCount + 1);
-    //     Serial.println("/10)...");
+      int retryCount = 0;
+      const int maxRetries = MAX_WIFI_RETRIES;
+      
+      while (WiFi.status() != WL_CONNECTED && retryCount < maxRetries) {
+        Serial.print("WiFi disconnected. Retrying (");
+        Serial.print(retryCount + 1);
+        Serial.println("/10)...");
         
-    //     WiFi.disconnect();
-    //     delay(1000);
-    //     WiFi.reconnect();
-    //     delay(2000); 
+        WiFi.disconnect();
+        delay(1000);
+        WiFi.reconnect();
+        delay(2000); 
         
-    //     retryCount++;
-    // }
-    //   if (WiFi.status() != WL_CONNECTED){
-    //     Serial.println("Failed to reconnect after 10 attempts. Entering sleep mode...");
-    //     esp_sleep_enable_timer_wakeup(1 * 60 * 1000000); // 1 minutes in micro sec
-    //     esp_deep_sleep_start();
-    //   }
-    //   else{
-    //   Serial.println("WiFi Reconnected Successfully!");
-    // }
+        retryCount++;
+    }
+      if (WiFi.status() != WL_CONNECTED){
+        Serial.println("Failed to reconnect after 10 attempts. Entering sleep mode...");
+        Serial.println("Enter Sleep mode for 15 minutes.");
+        delay(100);
+        esp_sleep_enable_timer_wakeup(SLEEP_DURATION * 60 * 1000000); // 1 minute in microseconds
+        esp_light_sleep_start();
+      }
+      else{
+      Serial.println("WiFi Reconnected Successfully!");
+      connectToBroker(5); 
+    }
     
-      connectToBroker(10); 
 }
 
 bool MQTTClient::compareAdhanTopic(const char* topic) 
