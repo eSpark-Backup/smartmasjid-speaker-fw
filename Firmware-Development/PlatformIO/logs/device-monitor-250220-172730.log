@@ -1,0 +1,4354 @@
+1- Free Stack Space: 12064
+2- Heap Space size : 293039
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 37035
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1854 KB
+OTA is not Updating....
+Updating Telemetry
+{"battery":90,"macAddress":"D0:EF:76:2A:0B:46"}
+WIFI RSSI : -38
+Request successful!
+dC�?dC�?8,"status":"Online","streamer":null,"batteryLife":90,"updatedTime":"2025-02-20T12:27:40.689+00:00"}
+1- Free Stack Space: 12064
+2- Heap Space size : 293023
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 36663
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1853 KB
+I (869721) wifi:state: run -> init (1a0)
+I (869722) wifi:pm stop, total sleep time: 384175112 us / 413960389 us
+
+I (869723) wifi:<ba-del>idx
+I (869724) wifi:new:<5,0>, old:<5,0>, ap:<255,255>, sta:<5,0>, prof:1
+[0;33m[868316][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 1 - UNSPECIFIED[0m
+MQTT client not connected. Reconnecting...
+MQTT state : CONNECTION_LOST
+WIFI RSSI : W (869754) wifi:Haven't to connect to a suitable AP now!
+I (869759) wifi:new:<5,0>, old:<5,0>, ap:<255,255>, sta:<5,0>, prof:1
+I (869760) wifi:state: init -> auth (b0)
+0
+Client id : 334667025
+[0;31m[868351][E][WiFiGeneric.cpp:1583] hostByName(): DNS Failed for smartmasjid-broker-dev.fI (869773) wifi:state: auth -> assoc (0)
+uturiklabs.com[0m
+I (869783) wifi:state: assoc -> init (3a0)
+I (869784) wifi:new:<5,0>, old:<5,0>, ap:<255,255>, sta:<5,0>, prof:1
+[0;33m[868374][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 203 - ASSOC_FAIL[0m
+Failed to connect to MQTT broker
+[0;33m[870808][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293115
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40767
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1853 KB
+[0;33m[873232][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+[0;33m[875655][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293115
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40767
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1853 KB
+[0;33m[878078][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+Client id : 334667025
+[0;31m[878400][E][WiFiGeneric.cpp:1583] hostByName(): DNS Failed for smartmasjid-broker-dev.futuriklabs.com[0m
+Failed to connect to MQTT broker
+[0;33m[880502][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293115
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40767
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1853 KB
+[0;33m[882925][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+[0;33m[885349][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293115
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40767
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1853 KB
+[0;33m[887772][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+Client id : 334667025
+[0;31m[888412][E][WiFiGeneric.cpp:1583] hostByName(): DNS Failed for smartmasjid-broker-dev.futuriklabs.com[0m
+Failed to connect to MQTT broker
+[0;33m[890196][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293115
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40767
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1853 KB
+[0;33m[892619][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+[0;33m[895042][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293115
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40767
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1853 KB
+[0;33m[897466][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+Client id : 334667025
+[0;31m[898427][E][WiFiGeneric.cpp:1583] hostByName(): DNS Failed for smartmasjid-broker-dev.futuriklabs.com[0m
+Failed to connect to MQTT broker
+[0;33m[899889][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293115
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40767
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1853 KB
+[0;33m[902312][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+[0;33m[904736][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293115
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40771
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1853 KB
+[0;33m[907159][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+Client id : 334667025
+[0;31m[908440][E][WiFiGeneric.cpp:1583] hostByName(): DNS Failed for smartmasjid-broker-dev.futuriklabs.com[0m
+Failed to connect to MQTT broker
+[0;33m[909582][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293115
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40771
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1853 KB
+[0;33m[912005][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+[0;33m[914429][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293115
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40771
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1853 KB
+[0;33m[916852][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+Client id : 334667025
+[0;31m[918455][E][WiFiGeneric.cpp:1583] hostByName(): DNS Failed for smartmasjid-broker-dev.futuriklabs.com[0m
+Failed to connect to MQTT broker
+[0;33m[919276][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293115
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40771
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1853 KB
+[0;33m[921699][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+OTA is not Updating....
+Updating Telemetry
+{"battery":90,"macAddress":"D0:EF:76:2A:0B:46"}
+Wifi not connected : Unable to send request
+[0;33m[924123][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293119
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40795
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1853 KB
+[0;33m[926546][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+Client id : 334667025
+[0;31m[928469][E][WiFiGeneric.cpp:1583] hostByName(): DNS Failed for smartmasjid-broker-dev.futuriklabs.com[0m
+Failed to connect to MQTT broker
+[0;33m[928970][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293119
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40795
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1853 KB
+[0;33m[931393][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+[0;33m[933816][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293119
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40795
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1853 KB
+[0;33m[936239][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+Client id : 334667025
+[0;31m[938482][E][WiFiGeneric.cpp:1583] hostByName(): DNS Failed for smartmasjid-broker-dev.futuriklabs.com[0m
+Failed to connect to MQTT broker
+[0;33m[938663][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293119
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40795
+5- Minimum Free Heap Spa[0;33m[941086][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+ce: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1853 KB
+[0;33m[943518][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+[0;33m[945941][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293115
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40607
+5- Minimum Free Heap Spa[0;31mE (947497) task_wdt: Task watchdog got triggered. The following tasks did not reset the watchdog in time:[0m
+[0;31mE (947497) task_wdt:  - IDLE1 (CPU 1)[0m
+[0;31mE (947497) task_wdt: Tasks currently running:[0m
+[0;31mE (947497) task_wdt: CPU 0: IDLE0[0m
+[0;31mE (947497) task_wdt: CPU 1: IDLE1[0m
+[0;31mE (947497) task_wdt: Print CPU 0 (current core) backtrace[0m
+
+
+Backtrace: 0x4015E462:0x3FFBEA90 0x40085559:0x3FFBEAB0 0x401FF053:0x3FFBC670 0x4015EB49:0x3FFBC690 0x400951FC:0x3FFBC6B0
+  #0  0x4015E462 in task_wdt_isr at C:\Users\eSpark\.platformio\packages\framework-espidf\components\esp_system/task_wdt.c:183 (discriminator 3)
+  #1  0x3FFBEA90 in port_IntStack at ??:?
+  #2  0x40085559 in _xt_lowint1 at C:\Users\eSpark\.platformio\packages\framework-espidf\components\freertos\port\xtensa/xtensa_vectors.S:1118
+  #3  0x3FFBEAB0 in port_IntStack at ??:?
+  #4  0x401FF053 in cpu_ll_waiti at C:\Users\eSpark\.platformio\packages\framework-espidf\components\hal\esp32\include/hal/cpu_ll.h:183
+      (inlined by) esp_pm_impl_waiti at C:\Users\eSpark\.platformio\packages\framework-espidf\components\esp_pm/pm_impl.c:853
+  #5  0x4015EB49 in esp_vApplicationIdleHook at C:\Users\eSpark\.platformio\packages\framework-espidf\components\esp_system/freertos_hooks.c:63
+  #6  0x400951FC in prvIdleTask at C:\Users\eSpark\.platformio\packages\framework-espidf\components\freertos/tasks.c:4099
+
+
+[0;31mE (947497) task_wdt: Print CPU 1 backtrace[0m
+
+
+Backtrace: 0x40083EFD:0x3FFBF090 0x40085559:0x3FFBF0B0 0x4000BFED:0x3FFBCD70 0x40096E7A:0x3FFBCD80 0x4015E6CB:0x3FFBCDA0 0x4015E6D7:0x3FFBCDD0 0x4015EB36:0x3FFBCDF0 0x400951FC:0x3FFBCE10
+  #0  0x40083EFD in esp_crosscore_isr at C:\Users\eSpark\.platformio\packages\framework-espidf\components\esp_system/crosscore_int.c:92
+  #1  0x3FFBF090 in port_IntStack at ??:?
+  #2  0x40085559 in _xt_lowint1 at C:\Users\eSpark\.platformio\packages\framework-espidf\components\freertos\port\xtensa/xtensa_vectors.S:1118
+  #3  0x3FFBF0B0 in port_IntStackTop at ??:?
+  #4  0x40096E7A in vPortClearInterruptMaskFromISR at C:\Users\eSpark\.platformio\packages\framework-espidf\components\freertos\port\xtensa\include/freertos/portmacro.h:571
+      (inlined by) vPortExitCritical at C:\Users\eSpark\.platformio\packages\framework-espidf\components\freertos\port\xtensa/port.c:332
+  #5  0x4015E6CB in esp_task_wdt_reset at C:\Users\eSpark\.platformio\packages\framework-espidf\components\esp_system/task_wdt.c:334
+  #6  0x4015E6D7 in idle_hook_cb at C:\Users\eSpark\.platformio\packages\framework-espidf\components\esp_system/task_wdt.c:80
+  #7  0x4015EB36 in esp_vApplicationIdleHook at C:\Users\eSpark\.platformio\packages\framework-espidf\components\esp_system/freertos_hooks.c:51 (discriminator 1)
+  #8  0x400951FC in prvIdleTask at C:\Users\eSpark\.platformio\packages\framework-espidf\components\freertos/tasks.c:4099
+
+
+ce: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1853 KB
+[0;33m[948364][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+Client id : 334667025
+[0;31m[948501][E][WiFiGeneric.cpp:1583] hostByName(): DNS Failed for smartmasjid-broker-dev.futuriklabs.com[0m
+Failed to connect to MQTT broker
+[0;33m[950788][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293119
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40795
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1853 KB
+[0;33m[953211][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+[0;33m[955634][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293119
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40795
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1854 KB
+[0;33m[958058][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+Client id : 334667025
+[0;31m[958513][E][WiFiGeneric.cpp:1583] hostByName(): DNS Failed for smartmasjid-broker-dev.futuriklabs.com[0m
+Failed to connect to MQTT broker
+[0;33m[960481][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293119
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40787
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1854 KB
+[0;33m[962905][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+[0;33m[965328][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293119
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40787
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1854 KB
+[0;33m[967751][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+MQTT client not connected. Reconnecting...
+MQTT state : CONNECTION_FAILED
+WIFI RSSI : W (969942) wifi:Haven't to connect to a suitable AP now!
+0
+Client id : 334667025
+[0;31m[968542][E][WiFiGeneric.cpp:1583] hostByName(): DNS Failed for smartmasjid-broker-dev.futuriklabs.com[0m
+Failed to connect to MQTT broker
+[0;33m[970175][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293119
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40787
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1854 KB
+[0;33m[972598][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+[0;33m[975021][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293119
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40787
+5- Minimum Free Heap Spa[0;31m[976088][E][ssl_client.cpp:37] _handle_error(): [start_ssl_client():273]: (-78) UNKNOWN ERROR CODE (004E)[0m
+ce: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1854 KB
+[0;33m[977445][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+Client id : 334667025
+[0;31m[978555][E][WiFiGeneric.cpp:1583] hostByName(): DNS Failed for smartmasjid-broker-dev.futuriklabs.com[0m
+Failed to connect to MQTT broker
+[0;33m[979868][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293119
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40787
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1855 KB
+[0;33m[982291][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+OTA is not Updating....
+Updating Telemetry
+{"battery":90,"macAddress":"D0:EF:76:2A:0B:46"}
+Wifi not connected : Unable to send request
+[0;33m[984715][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293119
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40787
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1854 KB
+[0;33m[987138][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+Client id : 334667025
+[0;31m[988568][E][WiFiGeneric.cpp:1583] hostByName(): DNS Failed for smartmasjid-broker-dev.futuriklabs.com[0m
+Failed to connect to MQTT broker
+[0;33m[989562][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1854 KB
+[0;33m[991985][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+[0;33m[994409][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Spa[0;31m[996086][E][ssl_client.cpp:37] _handle_error(): [start_ssl_client():273]: (-78) UNKNOWN ERROR CODE (004E)[0m
+ce: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1855 KB
+[0;33m[996832][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+Client id : 334667025
+[0;31m[998581][E][WiFiGeneric.cpp:1583] hostByName(): DNS Failed for smartmasjid-broker-dev.futuriklabs.com[0m
+Failed to connect to MQTT broker
+[0;33m[999255][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1855 KB
+[0;33m[1001678][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+[0;33m[1004102][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1855 KB
+[0;33m[1006525][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+Client id : 334667025
+[0;31m[1008594][E][WiFiGeneric.cpp:1583] hostByName(): DNS Failed for smartmasjid-broker-dev.futuriklabs.com[0m
+Failed to connect to MQTT broker
+[0;33m[1008949][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1855 KB
+[0;33m[1011372][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+[0;33m[1013795][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1855 KB
+[0;33m[1016219][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+Client id : 334667025
+[0;31m[1018607][E][WiFiGeneric.cpp:1583] hostByName(): DNS Failed for smartmasjid-broker-dev.futuriklabs.com[0m
+Failed to connect to MQTT broker
+[0;33m[1018642][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+[0;33m[1021065][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Spa[0;31m[1021086][E][ssl_client.cpp:37] _handle_error(): [start_ssl_client():273]: (-78) UNKNOWN ERROR CODE (004E)[0m
+ce: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1856 KB
+[0;33m[1023488][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+[0;33m[1025912][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1855 KB
+[0;33m[1028335][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+Client id : 334667025
+[0;31m[1028622][E][WiFiGeneric.cpp:1583] hostByName(): DNS Failed for smartmasjid-broker-dev.futuriklabs.com[0m
+Failed to connect to MQTT broker
+[0;33m[1030758][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1856 KB
+[0;33m[1033182][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+[0;33m[1035605][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1856 KB
+[0;33m[1038028][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+Client id : 334667025
+[0;31m[1038637][E][WiFiGeneric.cpp:1583] hostByName(): DNS Failed for smartmasjid-broker-dev.futuriklabs.com[0m
+Failed to connect to MQTT broker
+[0;33m[1040452][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Spa[0;31m[1041087][E][ssl_client.cpp:37] _handle_error(): [start_ssl_client():273]: (-78) UNKNOWN ERROR CODE (004E)[0m
+ce: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1856 KB
+[0;33m[1042875][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+OTA is not Updating....
+Updating Telemetry
+{"battery":90,"macAddress":"D0:EF:76:2A:0B:46"}
+Wifi not connected : Unable to send request
+[0;33m[1045298][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1856 KB
+[0;33m[1047721][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+Client id : 334667025
+[0;31m[1048652][E][WiFiGeneric.cpp:1583] hostByName(): DNS Failed for smartmasjid-broker-dev.futuriklabs.com[0m
+Failed to connect to MQTT broker
+[0;33m[1050145][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Spa[0;31m[1051092][E][ssl_client.cpp:37] _handle_error(): [start_ssl_client():273]: (-78) UNKNOWN ERROR CODE (004E)[0m
+ce: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[1052568][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+[0;33m[1054991][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[1057414][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+Client id : 334667025
+[0;31m[1058667][E][WiFiGeneric.cpp:1583] hostByName(): DNS Failed for smartmasjid-broker-dev.futuriklabs.com[0m
+Failed to connect to MQTT broker
+[0;33m[1059837][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[1062260][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+[0;33m[1064683][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[1067106][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+MQTT client not connected. Reconnecting...
+MQTT state : CONNECTION_FAILED
+WIFI RSSI : W (1070097) wifi:Haven't to connect to a suitable AP now!
+0
+Client id : 334667025
+[0;31m[1068697][E][WiFiGeneric.cpp:1583] hostByName(): DNS Failed for smartmasjid-broker-dev.futuriklabs.com[0m
+Failed to connect to MQTT broker
+[0;33m[1069529][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[1071952][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+[0;33m[1074375][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[1076798][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+Client id : 334667025
+[0;31m[1078713][E][WiFiGeneric.cpp:1583] hostByName(): DNS Failed for smartmasjid-broker-dev.futuriklabs.com[0m
+Failed to connect to MQTT broker
+[0;33m[1079221][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[1081644][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+[0;33m[1084067][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[1086490][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+Client id : 334667025
+[0;31m[1088729][E][WiFiGeneric.cpp:1583] hostByName(): DNS Failed for smartmasjid-broker-dev.futuriklabs.com[0m
+Failed to connect to MQTT broker
+[0;33m[1088913][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[1091336][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+[0;33m[1093759][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[1096182][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+[0;33m[1098605][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+Client id : 334667025
+[0;31m[1098742][E][WiFiGeneric.cpp:1583] hostByName(): DNS Failed for smartmasjid-broker-dev.futuriklabs.com[0m
+Failed to connect to MQTT broker
+[0;33m[1101028][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[1103451][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+OTA is not Updating....
+Updating Telemetry
+{"battery":90,"macAddress":"D0:EF:76:2A:0B:46"}
+Wifi not connected : Unable to send request
+[0;33m[1105874][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[1108297][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+Client id : 334667025
+[0;31m[1108755][E][WiFiGeneric.cpp:1583] hostByName(): DNS Failed for smartmasjid-broker-dev.futuriklabs.com[0m
+Failed to connect to MQTT broker
+[0;33m[1110721][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[1113144][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+[0;33m[1115567][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[1117990][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+Client id : 334667025
+[0;31m[1118767][E][WiFiGeneric.cpp:1583] hostByName(): DNS Failed for smartmasjid-broker-dev.futuriklabs.com[0m
+Failed to connect to MQTT broker
+[0;33m[1120413][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[1122837][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+[0;33m[1125259][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[1127682][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+Client id : 334667025
+[0;31m[1128782][E][WiFiGeneric.cpp:1583] hostByName(): DNS Failed for smartmasjid-broker-dev.futuriklabs.com[0m
+Failed to connect to MQTT broker
+[0;33m[1130106][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[1132529][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+[0;33m[1134952][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[1137375][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+Client id : 334667025
+[0;31m[1138798][E][WiFiGeneric.cpp:1583] hostByName(): DNS Failed for smartmasjid-broker-dev.futuriklabs.com[0m
+Failed to connect to MQTT broker
+[0;33m[1139798][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[1142221][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+[0;33m[1144644][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[1147067][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+Client id : 334667025
+[0;31m[1148811][E][WiFiGeneric.cpp:1583] hostByName(): DNS Failed for smartmasjid-broker-dev.futuriklabs.com[0m
+Failed to connect to MQTT broker
+[0;33m[1149490][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[1151913][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+[0;33m[1154336][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[1156759][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+Client id : 334667025
+[0;31m[1158824][E][WiFiGeneric.cpp:1583] hostByName(): DNS Failed for smartmasjid-broker-dev.futuriklabs.com[0m
+Failed to connect to MQTT broker
+[0;33m[1159182][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[1161605][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+OTA is not Updating....
+Updating Telemetry
+{"battery":90,"macAddress":"D0:EF:76:2A:0B:46"}
+Wifi not connected : Unable to send request
+[0;33m[1164028][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[1166452][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+MQTT client not connected. Reconnecting...
+MQTT state : CONNECTION_FAILED
+WIFI RSSI : W (1170254) wifi:Haven't to connect to a suitable AP now!
+0
+Client id : 334667025
+[0;31m[1168856][E][WiFiGeneric.cpp:1583] hostByName(): DNS Failed for smartmasjid-broker-dev.futuriklabs.com[0m
+Failed to connect to MQTT broker
+[0;33m[1168875][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[1171298][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+[0;33m[1173721][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[1176144][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+[0;33m[1178567][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+Client id : 334667025
+[0;31m[1178869][E][WiFiGeneric.cpp:1583] hostByName(): DNS Failed for smartmasjid-broker-dev.futuriklabs.com[0m
+Failed to connect to MQTT broker
+[0;33m[1180990][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[1183414][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+[0;33m[1185836][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[1188260][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+Client id : 334667025
+[0;31m[1188882][E][WiFiGeneric.cpp:1583] hostByName(): DNS Failed for smartmasjid-broker-dev.futuriklabs.com[0m
+Failed to connect to MQTT broker
+[0;33m[1190683][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[1193106][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+[0;33m[1195529][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[1197953][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+Client id : 334667025
+[0;31m[1198893][E][WiFiGeneric.cpp:1583] hostByName(): DNS Failed for smartmasjid-broker-dev.futuriklabs.com[0m
+Failed to connect to MQTT broker
+[0;33m[1200376][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[1202799][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+[0;33m[1205222][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[1207645][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+Client id : 334667025
+[0;31m[1208908][E][WiFiGeneric.cpp:1583] hostByName(): DNS Failed for smartmasjid-broker-dev.futuriklabs.com[0m
+Failed to connect to MQTT broker
+[0;33m[1210068][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[1212492][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+[0;33m[1214915][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[1217338][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+Client id : 334667025
+[0;31m[1218923][E][WiFiGeneric.cpp:1583] hostByName(): DNS Failed for smartmasjid-broker-dev.futuriklabs.com[0m
+Failed to connect to MQTT broker
+[0;33m[1219761][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[1222185][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+OTA is not Updating....
+Updating Telemetry
+{"battery":90,"macAddress":"D0:EF:76:2A:0B:46"}
+Wifi not connected : Unable to send request
+[0;33m[1224607][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[1227031][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+Client id : 334667025
+[0;31m[1228939][E][WiFiGeneric.cpp:1583] hostByName(): DNS Failed for smartmasjid-broker-dev.futuriklabs.com[0m
+Failed to connect to MQTT broker
+[0;33m[1229454][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[1231877][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+[0;33m[1234300][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[1236723][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+Client id : 334667025
+[0;31m[1238953][E][WiFiGeneric.cpp:1583] hostByName(): DNS Failed for smartmasjid-broker-dev.futuriklabs.com[0m
+Failed to connect to MQTT broker
+[0;33m[1239146][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[1241569][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+[0;33m[1243992][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[1246415][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+[0;33m[1248838][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+Client id : 334667025
+[0;31m[1248966][E][WiFiGeneric.cpp:1583] hostByName(): DNS Failed for smartmasjid-broker-dev.futuriklabs.com[0m
+Failed to connect to MQTT broker
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[1251261][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+[0;33m[1253684][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[1256107][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+[0;33m[1258530][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+Client id : 334667025
+[0;31m[1258982][E][WiFiGeneric.cpp:1583] hostByName(): DNS Failed for smartmasjid-broker-dev.futuriklabs.com[0m
+Failed to connect to MQTT broker
+[0;33m[1260953][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[1263376][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+[0;33m[1265799][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[1268223][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+MQTT client not connected. Reconnecting...
+MQTT state : CONNECTION_FAILED
+WIFI RSSI : W (1270411) wifi:Haven't to connect to a suitable AP now!
+0
+Client id : 334667025
+[0;31m[1269011][E][WiFiGeneric.cpp:1583] hostByName(): DNS Failed for smartmasjid-broker-dev.futuriklabs.com[0m
+Failed to connect to MQTT broker
+[0;33m[1270646][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[1273070][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+[0;33m[1275493][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[1277916][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+Client id : 334667025
+[0;31m[1279024][E][WiFiGeneric.cpp:1583] hostByName(): DNS Failed for smartmasjid-broker-dev.futuriklabs.com[0m
+Failed to connect to MQTT broker
+[0;33m[1280340][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[1282763][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+OTA is not Updating....
+Updating Telemetry
+{"battery":90,"macAddress":"D0:EF:76:2A:0B:46"}
+Wifi not connected : Unable to send request
+[0;33m[1285186][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[1287610][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+Client id : 334667025
+[0;31m[1289040][E][WiFiGeneric.cpp:1583] hostByName(): DNS Failed for smartmasjid-broker-dev.futuriklabs.com[0m
+Failed to connect to MQTT broker
+[0;33m[1290033][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[1292456][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+[0;33m[1294879][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[1297302][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+Client id : 334667025
+[0;31m[1299053][E][WiFiGeneric.cpp:1583] hostByName(): DNS Failed for smartmasjid-broker-dev.futuriklabs.com[0m
+Failed to connect to MQTT broker
+[0;33m[1299726][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[1302149][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+[0;33m[1304572][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[1306995][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+Client id : 334667025
+[0;31m[1309066][E][WiFiGeneric.cpp:1583] hostByName(): DNS Failed for smartmasjid-broker-dev.futuriklabs.com[0m
+Failed to connect to MQTT broker
+[0;33m[1309418][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[1311842][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+[0;33m[1314264][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[1316687][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+Client id : 334667025
+[0;31m[1319079][E][WiFiGeneric.cpp:1583] hostByName(): DNS Failed for smartmasjid-broker-dev.futuriklabs.com[0m
+Failed to connect to MQTT broker
+[0;33m[1319111][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[1321534][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+[0;33m[1323957][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[1326380][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+[0;33m[1328803][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+Client id : 334667025
+[0;31m[1329095][E][WiFiGeneric.cpp:1583] hostByName(): DNS Failed for smartmasjid-broker-dev.futuriklabs.com[0m
+Failed to connect to MQTT broker
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[1331227][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+[0;33m[1333650][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+[0;33m[1336072][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293111
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40635
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[1338495][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+Client id : 334667025
+[0;31m[1339108][E][WiFiGeneric.cpp:1583] hostByName(): DNS Failed for smartmasjid-broker-dev.futuriklabs.com[0m
+Failed to connect to MQTT broker
+[0;33m[1340919][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[1343342][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+OTA is not Updating....
+Updating Telemetry
+{"battery":90,"macAddress":"D0:EF:76:2A:0B:46"}
+Wifi not connected : Unable to send request
+[0;33m[1345765][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[1348189][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+Client id : 334667025
+[0;31m[1349120][E][WiFiGeneric.cpp:1583] hostByName(): DNS Failed for smartmasjid-broker-dev.futuriklabs.com[0m
+Failed to connect to MQTT broker
+[0;33m[1350612][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[1353036][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+[0;33m[1355459][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[1357882][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+Client id : 334667025
+[0;31m[1359135][E][WiFiGeneric.cpp:1583] hostByName(): DNS Failed for smartmasjid-broker-dev.futuriklabs.com[0m
+Failed to connect to MQTT broker
+[0;33m[1360305][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[1362728][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+[0;33m[1365151][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[1367574][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+MQTT client not connected. Reconnecting...
+MQTT state : CONNECTION_FAILED
+WIFI RSSI : W (1370565) wifi:Haven't to connect to a suitable AP now!
+0
+Client id : 334667025
+[0;31m[1369167][E][WiFiGeneric.cpp:1583] hostByName(): DNS Failed for smartmasjid-broker-dev.futuriklabs.com[0m
+Failed to connect to MQTT broker
+[0;33m[1369998][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[1372422][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+[0;33m[1374845][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[1377268][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+Client id : 334667025
+[0;31m[1379178][E][WiFiGeneric.cpp:1583] hostByName(): DNS Failed for smartmasjid-broker-dev.futuriklabs.com[0m
+Failed to connect to MQTT broker
+[0;33m[1379692][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[1382115][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+[0;33m[1384538][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[1386962][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+Client id : 334667025
+[0;31m[1389193][E][WiFiGeneric.cpp:1583] hostByName(): DNS Failed for smartmasjid-broker-dev.futuriklabs.com[0m
+Failed to connect to MQTT broker
+[0;33m[1389385][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[1391809][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+[0;33m[1394232][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[1396655][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+[0;33m[1399078][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+Client id : 334667025
+[0;31m[1399209][E][WiFiGeneric.cpp:1583] hostByName(): DNS Failed for smartmasjid-broker-dev.futuriklabs.com[0m
+Failed to connect to MQTT broker
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[1401502][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+OTA is not Updating....
+Updating Telemetry
+{"battery":90,"macAddress":"D0:EF:76:2A:0B:46"}
+Wifi not connected : Unable to send request
+[0;33m[1403925][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[1406349][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+[0;33m[1408771][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+Client id : 334667025
+[0;31m[1409224][E][WiFiGeneric.cpp:1583] hostByName(): DNS Failed for smartmasjid-broker-dev.futuriklabs.com[0m
+Failed to connect to MQTT broker
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[1411195][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+[0;33m[1413618][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+[0;33m[1416041][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[1418464][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+Client id : 334667025
+[0;31m[1419237][E][WiFiGeneric.cpp:1583] hostByName(): DNS Failed for smartmasjid-broker-dev.futuriklabs.com[0m
+Failed to connect to MQTT broker
+[0;33m[1420888][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[1423311][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+[0;33m[1425735][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[1428158][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+Client id : 334667025
+[0;31m[1429250][E][WiFiGeneric.cpp:1583] hostByName(): DNS Failed for smartmasjid-broker-dev.futuriklabs.com[0m
+Failed to connect to MQTT broker
+[0;33m[1430581][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[1433005][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+[0;33m[1435428][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[1437851][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+Client id : 334667025
+[0;31m[1439265][E][WiFiGeneric.cpp:1583] hostByName(): DNS Failed for smartmasjid-broker-dev.futuriklabs.com[0m
+Failed to connect to MQTT broker
+[0;33m[1440275][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[1442698][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+[0;33m[1445121][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[1447545][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+Client id : 334667025
+[0;31m[1449277][E][WiFiGeneric.cpp:1583] hostByName(): DNS Failed for smartmasjid-broker-dev.futuriklabs.com[0m
+Failed to connect to MQTT broker
+[0;33m[1449968][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[1452392][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+[0;33m[1454815][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[1457238][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+Client id : 334667025
+[0;31m[1459290][E][WiFiGeneric.cpp:1583] hostByName(): DNS Failed for smartmasjid-broker-dev.futuriklabs.com[0m
+Failed to connect to MQTT broker
+[0;33m[1459661][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[1462085][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+OTA is not Updating....
+Updating Telemetry
+{"battery":90,"macAddress":"D0:EF:76:2A:0B:46"}
+Wifi not connected : Unable to send request
+[0;33m[1464508][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[1466931][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+MQTT client not connected. Reconnecting...
+MQTT state : CONNECTION_FAILED
+WIFI RSSI : W (1470719) wifi:Haven't to connect to a suitable AP now!
+0
+Client id : 334667025
+[0;31m[1469321][E][WiFiGeneric.cpp:1583] hostByName(): DNS Failed for smartmasjid-broker-dev.futuriklabs.com[0m
+Failed to connect to MQTT broker
+[0;33m[1469355][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[1471778][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+[0;33m[1474201][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[1476624][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+[0;33m[1479047][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+Client id : 334667025
+[0;31m[1479334][E][WiFiGeneric.cpp:1583] hostByName(): DNS Failed for smartmasjid-broker-dev.futuriklabs.com[0m
+Failed to connect to MQTT broker
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[1481471][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+[0;33m[1483894][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[1486317][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+[0;33m[1488740][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+Client id : 334667025
+[0;31m[1489348][E][WiFiGeneric.cpp:1583] hostByName(): DNS Failed for smartmasjid-broker-dev.futuriklabs.com[0m
+Failed to connect to MQTT broker
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[1491164][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+[0;33m[1493587][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+[0;33m[1496009][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[1498433][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+Client id : 334667025
+[0;31m[1499363][E][WiFiGeneric.cpp:1583] hostByName(): DNS Failed for smartmasjid-broker-dev.futuriklabs.com[0m
+Failed to connect to MQTT broker
+[0;33m[1500856][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[1503280][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+[0;33m[1505703][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293119
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40635
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[1508126][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+Client id : 334667025
+[0;31m[1509376][E][WiFiGeneric.cpp:1583] hostByName(): DNS Failed for smartmasjid-broker-dev.futuriklabs.com[0m
+Failed to connect to MQTT broker
+[0;33m[1510550][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[1512973][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+[0;33m[1515396][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[1517820][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+Client id : 334667025
+[0;31m[1519391][E][WiFiGeneric.cpp:1583] hostByName(): DNS Failed for smartmasjid-broker-dev.futuriklabs.com[0m
+Failed to connect to MQTT broker
+[0;33m[1520243][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[1522666][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+OTA is not Updating....
+Updating Telemetry
+{"battery":90,"macAddress":"D0:EF:76:2A:0B:46"}
+Wifi not connected : Unable to send request
+[0;33m[1525089][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[1527513][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+Client id : 334667025
+[0;31m[1529407][E][WiFiGeneric.cpp:1583] hostByName(): DNS Failed for smartmasjid-broker-dev.futuriklabs.com[0m
+Failed to connect to MQTT broker
+[0;33m[1529936][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[1532360][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+[0;33m[1534783][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[1537206][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+Client id : 334667025
+[0;31m[1539420][E][WiFiGeneric.cpp:1583] hostByName(): DNS Failed for smartmasjid-broker-dev.futuriklabs.com[0m
+Failed to connect to MQTT broker
+[0;33m[1539629][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[1542052][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+[0;33m[1544475][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[1546898][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+[0;33m[1549322][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+Client id : 334667025
+[0;31m[1549437][E][WiFiGeneric.cpp:1583] hostByName(): DNS Failed for smartmasjid-broker-dev.futuriklabs.com[0m
+Failed to connect to MQTT broker
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[1551745][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+[0;33m[1554169][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[1556592][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+[0;33m[1559015][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+Client id : 334667025
+[0;31m[1559450][E][WiFiGeneric.cpp:1583] hostByName(): DNS Failed for smartmasjid-broker-dev.futuriklabs.com[0m
+Failed to connect to MQTT broker
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[1561438][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+[0;33m[1563862][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[1566285][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+[0;33m[1568708][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+MQTT client not connected. Reconnecting...
+MQTT state : CONNECTION_FAILED
+WIFI RSSI : W (1570883) wifi:Haven't to connect to a suitable AP now!
+0
+Client id : 334667025
+[0;31m[1569471][E][WiFiGeneric.cpp:1583] hostByName(): DNS Failed for smartmasjid-broker-dev.futuriklabs.com[0m
+Failed to connect to MQTT broker
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[1571131][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+[0;33m[1573555][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+[0;33m[1575978][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[1578401][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+Client id : 334667025
+[0;31m[1579494][E][WiFiGeneric.cpp:1583] hostByName(): DNS Failed for smartmasjid-broker-dev.futuriklabs.com[0m
+Failed to connect to MQTT broker
+[0;33m[1580825][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[1583248][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+OTA is not Updating....
+Updating Telemetry
+{"battery":90,"macAddress":"D0:EF:76:2A:0B:46"}
+Wifi not connected : Unable to send request
+[0;33m[1585671][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[1588095][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+Client id : 334667025
+[0;31m[1589511][E][WiFiGeneric.cpp:1583] hostByName(): DNS Failed for smartmasjid-broker-dev.futuriklabs.com[0m
+Failed to connect to MQTT broker
+[0;33m[1590518][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[1592941][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+[0;33m[1595364][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[1597788][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+Client id : 334667025
+[0;31m[1599523][E][WiFiGeneric.cpp:1583] hostByName(): DNS Failed for smartmasjid-broker-dev.futuriklabs.com[0m
+Failed to connect to MQTT broker
+[0;33m[1600211][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[1602635][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+[0;33m[1605058][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[1607481][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+Client id : 334667025
+[0;31m[1609537][E][WiFiGeneric.cpp:1583] hostByName(): DNS Failed for smartmasjid-broker-dev.futuriklabs.com[0m
+Failed to connect to MQTT broker
+[0;33m[1609904][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[1612328][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+[0;33m[1614751][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[1617174][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+Client id : 334667025
+[0;31m[1619552][E][WiFiGeneric.cpp:1583] hostByName(): DNS Failed for smartmasjid-broker-dev.futuriklabs.com[0m
+Failed to connect to MQTT broker
+[0;33m[1619597][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[1622021][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+[0;33m[1624444][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[1626867][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+[0;33m[1629290][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+Client id : 334667025
+[0;31m[1629565][E][WiFiGeneric.cpp:1583] hostByName(): DNS Failed for smartmasjid-broker-dev.futuriklabs.com[0m
+Failed to connect to MQTT broker
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[1631714][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+[0;33m[1634137][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[1636560][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+[0;33m[1638983][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+Client id : 334667025
+[0;31m[1639578][E][WiFiGeneric.cpp:1583] hostByName(): DNS Failed for smartmasjid-broker-dev.futuriklabs.com[0m
+Failed to connect to MQTT broker
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[1641407][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+OTA is not Updating....
+Updating Telemetry
+{"battery":90,"macAddress":"D0:EF:76:2A:0B:46"}
+Wifi not connected : Unable to send request
+[0;33m[1643830][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[1646254][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+[0;33m[1648677][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+Client id : 334667025
+[0;31m[1649591][E][WiFiGeneric.cpp:1583] hostByName(): DNS Failed for smartmasjid-broker-dev.futuriklabs.com[0m
+Failed to connect to MQTT broker
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[1651100][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+[0;33m[1653524][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+[0;33m[1655946][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[1658370][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+Client id : 334667025
+[0;31m[1659604][E][WiFiGeneric.cpp:1583] hostByName(): DNS Failed for smartmasjid-broker-dev.futuriklabs.com[0m
+Failed to connect to MQTT broker
+[0;33m[1660793][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[1663216][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+[0;33m[1665639][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[1668063][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+MQTT client not connected. Reconnecting...
+MQTT state : CONNECTION_FAILED
+WIFI RSSI : W (1671030) wifi:Haven't to connect to a suitable AP now!
+0
+Client id : 334667025
+[0;31m[1669630][E][WiFiGeneric.cpp:1583] hostByName(): DNS Failed for smartmasjid-broker-dev.futuriklabs.com[0m
+Failed to connect to MQTT broker
+[0;33m[1670486][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[1672910][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+[0;33m[1675333][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[1677757][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+Client id : 334667025
+[0;31m[1679645][E][WiFiGeneric.cpp:1583] hostByName(): DNS Failed for smartmasjid-broker-dev.futuriklabs.com[0m
+Failed to connect to MQTT broker
+[0;33m[1680180][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[1682603][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+[0;33m[1685026][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[1687450][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+Client id : 334667025
+[0;31m[1689660][E][WiFiGeneric.cpp:1583] hostByName(): DNS Failed for smartmasjid-broker-dev.futuriklabs.com[0m
+Failed to connect to MQTT broker
+[0;33m[1689873][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[1692297][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+[0;33m[1694720][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[1697144][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+[0;33m[1699567][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+Client id : 334667025
+[0;31m[1699676][E][WiFiGeneric.cpp:1583] hostByName(): DNS Failed for smartmasjid-broker-dev.futuriklabs.com[0m
+Failed to connect to MQTT broker
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[1701990][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+OTA is not Updating....
+Updating Telemetry
+{"battery":90,"macAddress":"D0:EF:76:2A:0B:46"}
+Wifi not connected : Unable to send request
+[0;33m[1704414][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[1706837][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+[0;33m[1709260][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+Client id : 334667025
+[0;31m[1709692][E][WiFiGeneric.cpp:1583] hostByName(): DNS Failed for smartmasjid-broker-dev.futuriklabs.com[0m
+Failed to connect to MQTT broker
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[1711684][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+[0;33m[1714107][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[1716530][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+[0;33m[1718953][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+Client id : 334667025
+[0;31m[1719703][E][WiFiGeneric.cpp:1583] hostByName(): DNS Failed for smartmasjid-broker-dev.futuriklabs.com[0m
+Failed to connect to MQTT broker
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[1721377][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+[0;33m[1723800][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[1726224][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+[0;33m[1728647][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+Client id : 334667025
+[0;31m[1729718][E][WiFiGeneric.cpp:1583] hostByName(): DNS Failed for smartmasjid-broker-dev.futuriklabs.com[0m
+Failed to connect to MQTT broker
+[0;33m[1731070][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[1733493][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+[0;33m[1735916][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[1738340][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+Client id : 334667025
+[0;31m[1739732][E][WiFiGeneric.cpp:1583] hostByName(): DNS Failed for smartmasjid-broker-dev.futuriklabs.com[0m
+Failed to connect to MQTT broker
+[0;33m[1740763][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[1743187][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+[0;33m[1745609][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[1748033][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+Client id : 334667025
+[0;31m[1749748][E][WiFiGeneric.cpp:1583] hostByName(): DNS Failed for smartmasjid-broker-dev.futuriklabs.com[0m
+Failed to connect to MQTT broker
+[0;33m[1750457][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[1752880][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+[0;33m[1755303][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[1757727][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+Client id : 334667025
+[0;31m[1759762][E][WiFiGeneric.cpp:1583] hostByName(): DNS Failed for smartmasjid-broker-dev.futuriklabs.com[0m
+Failed to connect to MQTT broker
+[0;33m[1760150][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[1762574][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+OTA is not Updating....
+Updating Telemetry
+{"battery":90,"macAddress":"D0:EF:76:2A:0B:46"}
+Wifi not connected : Unable to send request
+[0;33m[1764997][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[1767420][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+MQTT client not connected. Reconnecting...
+MQTT state : CONNECTION_FAILED
+WIFI RSSI : W (1771192) wifi:Haven't to connect to a suitable AP now!
+0
+Client id : 334667025
+[0;31m[1769794][E][WiFiGeneric.cpp:1583] hostByName(): DNS Failed for smartmasjid-broker-dev.futuriklabs.com[0m
+Failed to connect to MQTT broker
+[0;33m[1769844][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[1772267][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+[0;33m[1774690][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[1777113][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+[0;33m[1779536][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+Client id : 334667025
+[0;31m[1779809][E][WiFiGeneric.cpp:1583] hostByName(): DNS Failed for smartmasjid-broker-dev.futuriklabs.com[0m
+Failed to connect to MQTT broker
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[1781960][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+[0;33m[1784383][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[1786806][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+[0;33m[1789229][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+Client id : 334667025
+[0;31m[1789821][E][WiFiGeneric.cpp:1583] hostByName(): DNS Failed for smartmasjid-broker-dev.futuriklabs.com[0m
+Failed to connect to MQTT broker
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[1791653][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+[0;33m[1794076][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[1796499][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+[0;33m[1798922][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+Client id : 334667025
+[0;31m[1799834][E][WiFiGeneric.cpp:1583] hostByName(): DNS Failed for smartmasjid-broker-dev.futuriklabs.com[0m
+Failed to connect to MQTT broker
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[1801346][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+[0;33m[1803769][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[1806192][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+[0;33m[1808615][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+Client id : 334667025
+[0;31m[1809847][E][WiFiGeneric.cpp:1583] hostByName(): DNS Failed for smartmasjid-broker-dev.futuriklabs.com[0m
+Failed to connect to MQTT broker
+[0;33m[1811038][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[1813462][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+[0;33m[1815885][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[1818308][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+Client id : 334667025
+[0;31m[1819863][E][WiFiGeneric.cpp:1583] hostByName(): DNS Failed for smartmasjid-broker-dev.futuriklabs.com[0m
+Failed to connect to MQTT broker
+[0;33m[1820732][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[1823156][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+OTA is not Updating....
+Updating Telemetry
+{"battery":90,"macAddress":"D0:EF:76:2A:0B:46"}
+Wifi not connected : Unable to send request
+[0;33m[1825579][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[1828002][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+Client id : 334667025
+[0;31m[1829875][E][WiFiGeneric.cpp:1583] hostByName(): DNS Failed for smartmasjid-broker-dev.futuriklabs.com[0m
+Failed to connect to MQTT broker
+[0;33m[1830426][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[1832849][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+[0;33m[1835272][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[1837696][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+Client id : 334667025
+[0;31m[1839890][E][WiFiGeneric.cpp:1583] hostByName(): DNS Failed for smartmasjid-broker-dev.futuriklabs.com[0m
+Failed to connect to MQTT broker
+[0;33m[1840119][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[1842543][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+[0;33m[1844966][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[1847389][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+[0;33m[1849812][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+Client id : 334667025
+[0;31m[1849906][E][WiFiGeneric.cpp:1583] hostByName(): DNS Failed for smartmasjid-broker-dev.futuriklabs.com[0m
+Failed to connect to MQTT broker
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[1852236][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+[0;33m[1854659][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[1857082][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+[0;33m[1859505][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+Client id : 334667025
+[0;31m[1859917][E][WiFiGeneric.cpp:1583] hostByName(): DNS Failed for smartmasjid-broker-dev.futuriklabs.com[0m
+Failed to connect to MQTT broker
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[1861929][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+[0;33m[1864352][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[1866775][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+[0;33m[1869198][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+MQTT client not connected. Reconnecting...
+MQTT state : CONNECTION_FAILED
+WIFI RSSI : W (1871346) wifi:Haven't to connect to a suitable AP now!
+0
+Client id : 334667025
+[0;31m[1869948][E][WiFiGeneric.cpp:1583] hostByName(): DNS Failed for smartmasjid-broker-dev.futuriklabs.com[0m
+Failed to connect to MQTT broker
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[1871622][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+[0;33m[1874045][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[1876468][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+[0;33m[1878890][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+Client id : 334667025
+[0;31m[1879961][E][WiFiGeneric.cpp:1583] hostByName(): DNS Failed for smartmasjid-broker-dev.futuriklabs.com[0m
+Failed to connect to MQTT broker
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[1881314][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+OTA is not Updating....
+Updating Telemetry
+{"battery":90,"macAddress":"D0:EF:76:2A:0B:46"}
+Wifi not connected : Unable to send request
+[0;33m[1883737][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[1886161][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+[0;33m[1888584][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+Client id : 334667025
+[0;31m[1889972][E][WiFiGeneric.cpp:1583] hostByName(): DNS Failed for smartmasjid-broker-dev.futuriklabs.com[0m
+Failed to connect to MQTT broker
+[0;33m[1891006][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[1893430][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+[0;33m[1895853][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[1898276][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+Client id : 334667025
+[0;31m[1899987][E][WiFiGeneric.cpp:1583] hostByName(): DNS Failed for smartmasjid-broker-dev.futuriklabs.com[0m
+Failed to connect to MQTT broker
+[0;33m[1900700][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[1903123][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+[0;33m[1905546][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[1907970][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+Client id : 334667025
+[0;31m[1910003][E][WiFiGeneric.cpp:1583] hostByName(): DNS Failed for smartmasjid-broker-dev.futuriklabs.com[0m
+Failed to connect to MQTT broker
+[0;33m[1910393][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[1912817][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+[0;33m[1915240][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[1917663][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+Client id : 334667025
+[0;31m[1920017][E][WiFiGeneric.cpp:1583] hostByName(): DNS Failed for smartmasjid-broker-dev.futuriklabs.com[0m
+Failed to connect to MQTT broker
+[0;33m[1920086][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[1922510][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+[0;33m[1924933][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[1927356][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+[0;33m[1929779][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+Client id : 334667025
+[0;31m[1930033][E][WiFiGeneric.cpp:1583] hostByName(): DNS Failed for smartmasjid-broker-dev.futuriklabs.com[0m
+Failed to connect to MQTT broker
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[1932203][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+[0;33m[1934626][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[1937049][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+[0;33m[1939472][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+Client id : 334667025
+[0;31m[1940047][E][WiFiGeneric.cpp:1583] hostByName(): DNS Failed for smartmasjid-broker-dev.futuriklabs.com[0m
+Failed to connect to MQTT broker
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[1941896][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+OTA is not Updating....
+Updating Telemetry
+{"battery":90,"macAddress":"D0:EF:76:2A:0B:46"}
+Wifi not connected : Unable to send request
+[0;33m[1944319][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[1946743][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+[0;33m[1949166][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+Client id : 334667025
+[0;31m[1950062][E][WiFiGeneric.cpp:1583] hostByName(): DNS Failed for smartmasjid-broker-dev.futuriklabs.com[0m
+Failed to connect to MQTT broker
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[1951589][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+[0;33m[1954012][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[1956436][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+[0;33m[1958859][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+Client id : 334667025
+[0;31m[1960078][E][WiFiGeneric.cpp:1583] hostByName(): DNS Failed for smartmasjid-broker-dev.futuriklabs.com[0m
+Failed to connect to MQTT broker
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[1961282][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+[0;33m[1963705][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[1966129][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+[0;33m[1968552][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+MQTT client not connected. Reconnecting...
+MQTT state : CONNECTION_FAILED
+WIFI RSSI : W (1971505) wifi:Haven't to connect to a suitable AP now!
+0
+Client id : 334667025
+[0;31m[1970105][E][WiFiGeneric.cpp:1583] hostByName(): DNS Failed for smartmasjid-broker-dev.futuriklabs.com[0m
+Failed to connect to MQTT broker
+[0;33m[1970975][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[1973399][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+[0;33m[1975822][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[1978245][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+Client id : 334667025
+[0;31m[1980120][E][WiFiGeneric.cpp:1583] hostByName(): DNS Failed for smartmasjid-broker-dev.futuriklabs.com[0m
+Failed to connect to MQTT broker
+[0;33m[1980668][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[1983092][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+[0;33m[1985515][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[1987938][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+Client id : 334667025
+[0;31m[1990135][E][WiFiGeneric.cpp:1583] hostByName(): DNS Failed for smartmasjid-broker-dev.futuriklabs.com[0m
+Failed to connect to MQTT broker
+[0;33m[1990362][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[1992785][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+[0;33m[1995208][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[1997632][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+[0;33m[2000054][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+Client id : 334667025
+[0;31m[2000149][E][WiFiGeneric.cpp:1583] hostByName(): DNS Failed for smartmasjid-broker-dev.futuriklabs.com[0m
+Failed to connect to MQTT broker
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[2002478][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+OTA is not Updating....
+Updating Telemetry
+{"battery":90,"macAddress":"D0:EF:76:2A:0B:46"}
+Wifi not connected : Unable to send request
+[0;33m[2004901][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[2007325][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+[0;33m[2009748][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+Client id : 334667025
+[0;31m[2010163][E][WiFiGeneric.cpp:1583] hostByName(): DNS Failed for smartmasjid-broker-dev.futuriklabs.com[0m
+Failed to connect to MQTT broker
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[2012171][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+[0;33m[2014594][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[2017018][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+[0;33m[2019441][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+Client id : 334667025
+[0;31m[2020176][E][WiFiGeneric.cpp:1583] hostByName(): DNS Failed for smartmasjid-broker-dev.futuriklabs.com[0m
+Failed to connect to MQTT broker
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[2021865][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+[0;33m[2024288][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[2026711][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+[0;33m[2029134][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+Client id : 334667025
+[0;31m[2030191][E][WiFiGeneric.cpp:1583] hostByName(): DNS Failed for smartmasjid-broker-dev.futuriklabs.com[0m
+Failed to connect to MQTT broker
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[2031558][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+[0;33m[2033981][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[2036404][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+[0;33m[2038827][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+Client id : 334667025
+[0;31m[2040206][E][WiFiGeneric.cpp:1583] hostByName(): DNS Failed for smartmasjid-broker-dev.futuriklabs.com[0m
+Failed to connect to MQTT broker
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[2041251][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+[0;33m[2043674][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[2046097][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+[0;33m[2048522][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+Client id : 334667025
+[0;31m[2050219][E][WiFiGeneric.cpp:1583] hostByName(): DNS Failed for smartmasjid-broker-dev.futuriklabs.com[0m
+Failed to connect to MQTT broker
+[0;33m[2050945][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293119
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40635
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[2053368][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+[0;33m[2055791][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[2058215][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+Client id : 334667025
+[0;31m[2060231][E][WiFiGeneric.cpp:1583] hostByName(): DNS Failed for smartmasjid-broker-dev.futuriklabs.com[0m
+Failed to connect to MQTT broker
+[0;33m[2060638][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[2063061][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+OTA is not Updating....
+Updating Telemetry
+{"battery":90,"macAddress":"D0:EF:76:2A:0B:46"}
+Wifi not connected : Unable to send request
+[0;33m[2065484][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[2067908][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+MQTT client not connected. Reconnecting...
+MQTT state : CONNECTION_FAILED
+WIFI RSSI : W (2071660) wifi:Haven't to connect to a suitable AP now!
+0
+Client id : 334667025
+[0;31m[2070259][E][WiFiGeneric.cpp:1583] hostByName(): DNS Failed for smartmasjid-broker-dev.futuriklabs.com[0m
+Failed to connect to MQTT broker
+[0;33m[2070331][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[2072755][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+[0;33m[2075178][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[2077601][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+[0;33m[2080024][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+Client id : 334667025
+[0;31m[2080274][E][WiFiGeneric.cpp:1583] hostByName(): DNS Failed for smartmasjid-broker-dev.futuriklabs.com[0m
+Failed to connect to MQTT broker
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[2082449][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+[0;33m[2084872][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[2087295][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+[0;33m[2089718][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+Client id : 334667025
+[0;31m[2090289][E][WiFiGeneric.cpp:1583] hostByName(): DNS Failed for smartmasjid-broker-dev.futuriklabs.com[0m
+Failed to connect to MQTT broker
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[2092142][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+[0;33m[2094565][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[2096988][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+[0;33m[2099411][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+Client id : 334667025
+[0;31m[2100305][E][WiFiGeneric.cpp:1583] hostByName(): DNS Failed for smartmasjid-broker-dev.futuriklabs.com[0m
+Failed to connect to MQTT broker
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[2101834][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+[0;33m[2104257][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[2106680][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+[0;33m[2109103][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+Client id : 334667025
+[0;31m[2110318][E][WiFiGeneric.cpp:1583] hostByName(): DNS Failed for smartmasjid-broker-dev.futuriklabs.com[0m
+Failed to connect to MQTT broker
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[2111527][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+[0;33m[2113950][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[2116373][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+[0;33m[2118796][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+Client id : 334667025
+[0;31m[2120331][E][WiFiGeneric.cpp:1583] hostByName(): DNS Failed for smartmasjid-broker-dev.futuriklabs.com[0m
+Failed to connect to MQTT broker
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[2121219][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+OTA is not Updating....
+Updating Telemetry
+{"battery":90,"macAddress":"D0:EF:76:2A:0B:46"}
+Wifi not connected : Unable to send request
+[0;33m[2123642][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+[0;33m[2126065][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[2128489][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+Client id : 334667025
+[0;31m[2130344][E][WiFiGeneric.cpp:1583] hostByName(): DNS Failed for smartmasjid-broker-dev.futuriklabs.com[0m
+Failed to connect to MQTT broker
+[0;33m[2130912][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[2133335][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+[0;33m[2135758][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[2138182][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+Client id : 334667025
+[0;31m[2140359][E][WiFiGeneric.cpp:1583] hostByName(): DNS Failed for smartmasjid-broker-dev.futuriklabs.com[0m
+Failed to connect to MQTT broker
+[0;33m[2140605][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[2143029][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+[0;33m[2145452][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[2147875][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+[0;33m[2150298][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+Client id : 334667025
+[0;31m[2150373][E][WiFiGeneric.cpp:1583] hostByName(): DNS Failed for smartmasjid-broker-dev.futuriklabs.com[0m
+Failed to connect to MQTT broker
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[2152722][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+[0;33m[2155145][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[2157568][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+[0;33m[2159991][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+Client id : 334667025
+[0;31m[2160388][E][WiFiGeneric.cpp:1583] hostByName(): DNS Failed for smartmasjid-broker-dev.futuriklabs.com[0m
+Failed to connect to MQTT broker
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[2162415][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+[0;33m[2164837][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[2167260][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+[0;33m[2169683][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+MQTT client not connected. Reconnecting...
+MQTT state : CONNECTION_FAILED
+WIFI RSSI : W (2171817) wifi:Haven't to connect to a suitable AP now!
+0
+Client id : 334667025
+[0;31m[2170417][E][WiFiGeneric.cpp:1583] hostByName(): DNS Failed for smartmasjid-broker-dev.futuriklabs.com[0m
+Failed to connect to MQTT broker
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[2172107][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+[0;33m[2174530][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[2176953][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+[0;33m[2179376][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+Client id : 334667025
+[0;31m[2180433][E][WiFiGeneric.cpp:1583] hostByName(): DNS Failed for smartmasjid-broker-dev.futuriklabs.com[0m
+Failed to connect to MQTT broker
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[2181800][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+OTA is not Updating....
+Updating Telemetry
+{"battery":90,"macAddress":"D0:EF:76:2A:0B:46"}
+Wifi not connected : Unable to send request
+[0;33m[2184223][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[2186646][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+[0;33m[2189068][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+Client id : 334667025
+[0;31m[2190447][E][WiFiGeneric.cpp:1583] hostByName(): DNS Failed for smartmasjid-broker-dev.futuriklabs.com[0m
+Failed to connect to MQTT broker
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[2191492][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+[0;33m[2193915][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[2196338][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+[0;33m[2198761][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+Client id : 334667025
+[0;31m[2200463][E][WiFiGeneric.cpp:1583] hostByName(): DNS Failed for smartmasjid-broker-dev.futuriklabs.com[0m
+Failed to connect to MQTT broker
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[2201184][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+[0;33m[2203607][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+[0;33m[2206030][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[2208453][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+Client id : 334667025
+[0;31m[2210476][E][WiFiGeneric.cpp:1583] hostByName(): DNS Failed for smartmasjid-broker-dev.futuriklabs.com[0m
+Failed to connect to MQTT broker
+[0;33m[2210877][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[2213300][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+[0;33m[2215723][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[2218146][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+Client id : 334667025
+[0;31m[2220491][E][WiFiGeneric.cpp:1583] hostByName(): DNS Failed for smartmasjid-broker-dev.futuriklabs.com[0m
+Failed to connect to MQTT broker
+[0;33m[2220569][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[2222992][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+[0;33m[2225415][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[2227838][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+[0;33m[2230261][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+Client id : 334667025
+[0;31m[2230504][E][WiFiGeneric.cpp:1583] hostByName(): DNS Failed for smartmasjid-broker-dev.futuriklabs.com[0m
+Failed to connect to MQTT broker
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[2232685][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+[0;33m[2235108][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[2237531][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+[0;33m[2239954][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+Client id : 334667025
+[0;31m[2240519][E][WiFiGeneric.cpp:1583] hostByName(): DNS Failed for smartmasjid-broker-dev.futuriklabs.com[0m
+Failed to connect to MQTT broker
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[2242378][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+OTA is not Updating....
+Updating Telemetry
+{"battery":90,"macAddress":"D0:EF:76:2A:0B:46"}
+Wifi not connected : Unable to send request
+[0;33m[2244800][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293119
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40635
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[2247224][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+[0;33m[2249646][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+Client id : 334667025
+[0;31m[2250530][E][WiFiGeneric.cpp:1583] hostByName(): DNS Failed for smartmasjid-broker-dev.futuriklabs.com[0m
+Failed to connect to MQTT broker
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[2252069][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+[0;33m[2254493][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[2256916][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+[0;33m[2259338][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+Client id : 334667025
+[0;31m[2260545][E][WiFiGeneric.cpp:1583] hostByName(): DNS Failed for smartmasjid-broker-dev.futuriklabs.com[0m
+Failed to connect to MQTT broker
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[2261761][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+[0;33m[2264185][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[2266607][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+[0;33m[2269030][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+MQTT client not connected. Reconnecting...
+MQTT state : CONNECTION_FAILED
+WIFI RSSI : W (2271976) wifi:Haven't to connect to a suitable AP now!
+0
+Client id : 334667025
+[0;31m[2270576][E][WiFiGeneric.cpp:1583] hostByName(): DNS Failed for smartmasjid-broker-dev.futuriklabs.com[0m
+Failed to connect to MQTT broker
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[2271454][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+[0;33m[2273877][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[2276300][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+[0;33m[2278723][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+Client id : 334667025
+[0;31m[2280590][E][WiFiGeneric.cpp:1583] hostByName(): DNS Failed for smartmasjid-broker-dev.futuriklabs.com[0m
+Failed to connect to MQTT broker
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[2281146][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+[0;33m[2283569][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+[0;33m[2285991][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[2288414][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+Client id : 334667025
+[0;31m[2290602][E][WiFiGeneric.cpp:1583] hostByName(): DNS Failed for smartmasjid-broker-dev.futuriklabs.com[0m
+Failed to connect to MQTT broker
+[0;33m[2290837][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[2293261][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+[0;33m[2295683][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[2298106][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+[0;33m[2300529][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+Client id : 334667025
+[0;31m[2300615][E][WiFiGeneric.cpp:1583] hostByName(): DNS Failed for smartmasjid-broker-dev.futuriklabs.com[0m
+Failed to connect to MQTT broker
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[2302953][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+OTA is not Updating....
+Updating Telemetry
+{"battery":90,"macAddress":"D0:EF:76:2A:0B:46"}
+Wifi not connected : Unable to send request
+[0;33m[2305376][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[2307799][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+[0;33m[2310223][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+Client id : 334667025
+[0;31m[2310630][E][WiFiGeneric.cpp:1583] hostByName(): DNS Failed for smartmasjid-broker-dev.futuriklabs.com[0m
+Failed to connect to MQTT broker
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[2312646][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+[0;33m[2315069][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[2317492][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+[0;33m[2319915][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+Client id : 334667025
+[0;31m[2320646][E][WiFiGeneric.cpp:1583] hostByName(): DNS Failed for smartmasjid-broker-dev.futuriklabs.com[0m
+Failed to connect to MQTT broker
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[2322339][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+[0;33m[2324762][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[2327185][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+[0;33m[2329608][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+Client id : 334667025
+[0;31m[2330661][E][WiFiGeneric.cpp:1583] hostByName(): DNS Failed for smartmasjid-broker-dev.futuriklabs.com[0m
+Failed to connect to MQTT broker
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[2332031][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+[0;33m[2334454][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[2336877][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+[0;33m[2339300][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+Client id : 334667025
+[0;31m[2340674][E][WiFiGeneric.cpp:1583] hostByName(): DNS Failed for smartmasjid-broker-dev.futuriklabs.com[0m
+Failed to connect to MQTT broker
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[2341723][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+[0;33m[2344146][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[2346569][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+[0;33m[2348992][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+Client id : 334667025
+[0;31m[2350689][E][WiFiGeneric.cpp:1583] hostByName(): DNS Failed for smartmasjid-broker-dev.futuriklabs.com[0m
+Failed to connect to MQTT broker
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[2351416][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+[0;33m[2353839][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[2356262][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+[0;33m[2358685][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+Client id : 334667025
+[0;31m[2360705][E][WiFiGeneric.cpp:1583] hostByName(): DNS Failed for smartmasjid-broker-dev.futuriklabs.com[0m
+Failed to connect to MQTT broker
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[2361108][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+[0;33m[2363531][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+OTA is not Updating....
+Updating Telemetry
+{"battery":90,"macAddress":"D0:EF:76:2A:0B:46"}
+Wifi not connected : Unable to send request
+[0;33m[2365953][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[2368377][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+MQTT client not connected. Reconnecting...
+MQTT state : CONNECTION_FAILED
+WIFI RSSI : W (2372135) wifi:Haven't to connect to a suitable AP now!
+0
+Client id : 334667025
+[0;31m[2370737][E][WiFiGeneric.cpp:1583] hostByName(): DNS Failed for smartmasjid-broker-dev.futuriklabs.com[0m
+Failed to connect to MQTT broker
+[0;33m[2370800][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[2373224][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+[0;33m[2375647][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[2378070][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+[0;33m[2380493][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+Client id : 334667025
+[0;31m[2380749][E][WiFiGeneric.cpp:1583] hostByName(): DNS Failed for smartmasjid-broker-dev.futuriklabs.com[0m
+Failed to connect to MQTT broker
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[2382917][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+[0;33m[2385340][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[2387763][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+[0;33m[2390186][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+Client id : 334667025
+[0;31m[2390761][E][WiFiGeneric.cpp:1583] hostByName(): DNS Failed for smartmasjid-broker-dev.futuriklabs.com[0m
+Failed to connect to MQTT broker
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[2392610][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+[0;33m[2395033][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[2397456][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+[0;33m[2399879][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+Client id : 334667025
+[0;31m[2400776][E][WiFiGeneric.cpp:1583] hostByName(): DNS Failed for smartmasjid-broker-dev.futuriklabs.com[0m
+Failed to connect to MQTT broker
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[2402303][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+[0;33m[2404726][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[2407149][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+[0;33m[2409572][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+Client id : 334667025
+[0;31m[2410789][E][WiFiGeneric.cpp:1583] hostByName(): DNS Failed for smartmasjid-broker-dev.futuriklabs.com[0m
+Failed to connect to MQTT broker
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[2411995][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+[0;33m[2414419][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[2416842][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+[0;33m[2419265][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+Client id : 334667025
+[0;31m[2420804][E][WiFiGeneric.cpp:1583] hostByName(): DNS Failed for smartmasjid-broker-dev.futuriklabs.com[0m
+Failed to connect to MQTT broker
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[2421688][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+OTA is not Updating....
+Updating Telemetry
+{"battery":90,"macAddress":"D0:EF:76:2A:0B:46"}
+Wifi not connected : Unable to send request
+[0;33m[2424112][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[2426535][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+[0;33m[2428958][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+Client id : 334667025
+[0;31m[2430819][E][WiFiGeneric.cpp:1583] hostByName(): DNS Failed for smartmasjid-broker-dev.futuriklabs.com[0m
+Failed to connect to MQTT broker
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[2431381][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+[0;33m[2433804][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[2436228][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+[0;33m[2438650][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+Client id : 334667025
+[0;31m[2440832][E][WiFiGeneric.cpp:1583] hostByName(): DNS Failed for smartmasjid-broker-dev.futuriklabs.com[0m
+Failed to connect to MQTT broker
+[0;33m[2441073][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293115
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40675
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[2443497][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+[0;33m[2445920][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[2448343][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+[0;33m[2450766][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+Client id : 334667025
+[0;31m[2450846][E][WiFiGeneric.cpp:1583] hostByName(): DNS Failed for smartmasjid-broker-dev.futuriklabs.com[0m
+Failed to connect to MQTT broker
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[2453189][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+[0;33m[2455612][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[2458036][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+[0;33m[2460459][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+Client id : 334667025
+[0;31m[2460861][E][WiFiGeneric.cpp:1583] hostByName(): DNS Failed for smartmasjid-broker-dev.futuriklabs.com[0m
+Failed to connect to MQTT broker
+1- Free Stack Space: 12064
+2- Heap Space size : 293119
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40635
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[2462883][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+[0;33m[2465306][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[2467729][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+[0;33m[2470152][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+MQTT client not connected. Reconnecting...
+MQTT state : CONNECTION_FAILED
+WIFI RSSI : W (2472291) wifi:Haven't to connect to a suitable AP now!
+0
+Client id : 334667025
+[0;31m[2470893][E][WiFiGeneric.cpp:1583] hostByName(): DNS Failed for smartmasjid-broker-dev.futuriklabs.com[0m
+Failed to connect to MQTT broker
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[2472576][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+[0;33m[2474999][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[2477422][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+[0;33m[2479845][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+Client id : 334667025
+[0;31m[2480905][E][WiFiGeneric.cpp:1583] hostByName(): DNS Failed for smartmasjid-broker-dev.futuriklabs.com[0m
+Failed to connect to MQTT broker
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[2482269][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+OTA is not Updating....
+Updating Telemetry
+{"battery":90,"macAddress":"D0:EF:76:2A:0B:46"}
+Wifi not connected : Unable to send request
+[0;33m[2484692][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[2487115][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+[0;33m[2489538][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+Client id : 334667025
+[0;31m[2490920][E][WiFiGeneric.cpp:1583] hostByName(): DNS Failed for smartmasjid-broker-dev.futuriklabs.com[0m
+Failed to connect to MQTT broker
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[2491961][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+[0;33m[2494384][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[2496807][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+[0;33m[2499230][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+Client id : 334667025
+[0;31m[2500932][E][WiFiGeneric.cpp:1583] hostByName(): DNS Failed for smartmasjid-broker-dev.futuriklabs.com[0m
+Failed to connect to MQTT broker
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[2501653][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+[0;33m[2504076][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[2506499][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+[0;33m[2508922][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+Client id : 334667025
+[0;31m[2510948][E][WiFiGeneric.cpp:1583] hostByName(): DNS Failed for smartmasjid-broker-dev.futuriklabs.com[0m
+Failed to connect to MQTT broker
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[2511346][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+[0;33m[2513769][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[2516192][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+[0;33m[2518615][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+Client id : 334667025
+[0;31m[2520964][E][WiFiGeneric.cpp:1583] hostByName(): DNS Failed for smartmasjid-broker-dev.futuriklabs.com[0m
+Failed to connect to MQTT broker
+[0;33m[2521038][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[2523462][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+[0;33m[2525885][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[2528308][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+[0;33m[2530731][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+Client id : 334667025
+[0;31m[2530975][E][WiFiGeneric.cpp:1583] hostByName(): DNS Failed for smartmasjid-broker-dev.futuriklabs.com[0m
+Failed to connect to MQTT broker
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[2533155][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+[0;33m[2535578][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[2538001][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+[0;33m[2540424][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+Client id : 334667025
+[0;31m[2540990][E][WiFiGeneric.cpp:1583] hostByName(): DNS Failed for smartmasjid-broker-dev.futuriklabs.com[0m
+Failed to connect to MQTT broker
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[2542848][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+OTA is not Updating....
+Updating Telemetry
+{"battery":90,"macAddress":"D0:EF:76:2A:0B:46"}
+Wifi not connected : Unable to send request
+[0;33m[2545271][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[2547695][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+[0;33m[2550118][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+Client id : 334667025
+[0;31m[2551006][E][WiFiGeneric.cpp:1583] hostByName(): DNS Failed for smartmasjid-broker-dev.futuriklabs.com[0m
+Failed to connect to MQTT broker
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[2552542][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+[0;33m[2554965][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[2557388][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+[0;33m[2559811][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+Client id : 334667025
+[0;31m[2561020][E][WiFiGeneric.cpp:1583] hostByName(): DNS Failed for smartmasjid-broker-dev.futuriklabs.com[0m
+Failed to connect to MQTT broker
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[2562234][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+[0;33m[2564658][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[2567081][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+[0;33m[2569504][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+MQTT client not connected. Reconnecting...
+MQTT state : CONNECTION_FAILED
+WIFI RSSI : W (2572449) wifi:Haven't to connect to a suitable AP now!
+0
+Client id : 334667025
+[0;31m[2571051][E][WiFiGeneric.cpp:1583] hostByName(): DNS Failed for smartmasjid-broker-dev.futuriklabs.com[0m
+Failed to connect to MQTT broker
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[2571927][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+[0;33m[2574350][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[2576773][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+[0;33m[2579196][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+Client id : 334667025
+[0;31m[2581062][E][WiFiGeneric.cpp:1583] hostByName(): DNS Failed for smartmasjid-broker-dev.futuriklabs.com[0m
+Failed to connect to MQTT broker
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[2581619][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+[0;33m[2584042][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[2586466][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+[0;33m[2588889][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+Client id : 334667025
+[0;31m[2591077][E][WiFiGeneric.cpp:1583] hostByName(): DNS Failed for smartmasjid-broker-dev.futuriklabs.com[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+Failed to connect to MQTT broker
+[0;33m[2591312][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+[0;33m[2593735][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[2596158][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+[0;33m[2598581][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+[0;33m[2601004][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+Client id : 334667025
+[0;31m[2601108][E][WiFiGeneric.cpp:1583] hostByName(): DNS Failed for smartmasjid-broker-dev.futuriklabs.com[0m
+Failed to connect to MQTT broker
+[0;33m[2603428][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+OTA is not Updating....
+Updating Telemetry
+{"battery":90,"macAddress":"D0:EF:76:2A:0B:46"}
+Wifi not connected : Unable to send request
+[0;33m[2605851][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[2608274][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+[0;33m[2610697][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+Client id : 334667025
+[0;31m[2611124][E][WiFiGeneric.cpp:1583] hostByName(): DNS Failed for smartmasjid-broker-dev.futuriklabs.com[0m
+Failed to connect to MQTT broker
+[0;33m[2613121][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+[0;33m[2615544][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[2617967][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+[0;33m[2620391][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+Client id : 334667025
+[0;31m[2621140][E][WiFiGeneric.cpp:1583] hostByName(): DNS Failed for smartmasjid-broker-dev.futuriklabs.com[0m
+Failed to connect to MQTT broker
+[0;33m[2622814][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+[0;33m[2625237][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+[0;33m[2627661][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+[0;33m[2630084][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB
+Client id : 334667025
+[0;31m[2631156][E][WiFiGeneric.cpp:1583] hostByName(): DNS Failed for smartmasjid-broker-dev.futuriklabs.com[0m
+Failed to connect to MQTT broker
+[0;33m[2632507][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+[0;33m[2634930][W][WiFiGeneric.cpp:1062] _eventCallback(): Reason: 201 - NO_AP_FOUND[0m
+1- Free Stack Space: 12064
+2- Heap Space size : 293123
+3- Maximum allocated Heap : 15872
+4- Free Heap Space: 40811
+5- Minimum Free Heap Space: 1856291
+
+Total PSRAM: 2044 KB
+Free PSRAM: 1857 KB

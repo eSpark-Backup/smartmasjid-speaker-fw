@@ -10,6 +10,10 @@
 #define DEVICE_MEMORY_INFO_PRINT_INTERVAL 5000
 #define DELAY_INTERVAL  5000
 
+// ESP Sleep Mode Parameters 
+#define SLEEP_DURATION  5    // 5 minutes
+#define MAX_WIFI_RETRIES  10             // 10 retry to connect wifi before sleep
+
 // Timer Settings
 #define TIMER_NO 0
 #define TIMER_PRESCALAR_1MHZ 80
