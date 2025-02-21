@@ -3,7 +3,7 @@
 
 #define HTTP_STATUS_OK 200
 #define HTTP_STATUS_CREATED 201
-#define EXTERNAL_API_KEY "b8z6X5fzbjNDGHz15XtPVzEkO3h5mCT7q4Ei8AupX9DD12PxL94rhnZHarHc8O2H"
+// #define EXTERNAL_API_KEY "b8z6X5fzbjNDGHz15XtPVzEkO3h5mCT7q4Ei8AupX9DD12PxL94rhnZHarHc8O2H"
 #define TO_MS(seconds) (seconds * 1000)
 
 typedef int HttpStatusCode;
@@ -28,7 +28,7 @@ namespace Http
 class SmHttp 
 {
   private:
-    const char* smHost = "https://smartmasjid-api-qa.futuriklabs.com";
+    // const char* smHost = "https://smartmasjid-api-qa.futuriklabs.com";
     const char* telemetryEndpoint = "/external/device/telemetry";
     const char* otaUpdateEndpoint = "/external/device/update";
     const char* otaEndpoint = "/external/device/ota";

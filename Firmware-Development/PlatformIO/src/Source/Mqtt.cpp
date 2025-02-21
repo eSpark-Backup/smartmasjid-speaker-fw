@@ -7,7 +7,8 @@
 #include "Device.hpp"
 #include "Amplifier.hpp"
 #include <freertos/semphr.h>
-#include "AWS_OTA.hpp"
+#include"AWS_OTA.hpp"
+#include  "LocalStorage.hpp"
 
 WiFiClient wifiClient;
 PubSubClient mqttClient(wifiClient);
@@ -37,8 +38,19 @@ bool MQTTClient::connectToBroker(int retries)
 }
 
 bool MQTTClient::connectToBroker() 
-{
+{ 
+  char mqtt[120];
+  char mqttServer[40];
+  char mqttUsername[8];
+  char mqttPassword[8];
+  const char* json = localStorage.get(FILE_JSON);
+  SM_Json::parse(json , std::make_pair("mqtt", mqtt));
+  SM_Json::parse((const char*)(mqtt) , std::make_pair("broker", mqttServer));
+  SM_Json::parse((const char*)(mqtt) , std::make_pair("user_name", mqttUsername));
+  SM_Json::parse((const char*)(mqtt) , std::make_pair("password", mqttPassword));
+  
   mqttClient.setServer(mqttServer, mqttPort);
+  mqttClient.setBufferSize(2048);
   static std::string clientId = std::to_string(random(1000000000));
   Serial.print("Client id : ");
   Serial.println(clientId.c_str());
@@ -80,8 +92,8 @@ bool MQTTClient::subscribeTopics()
     }
   }
 
-  if(!subscribeTopicsfromNVS())
-      return false;
+  if(!subscribeTopicsfromNVS()){
+      return false;}
 
   return true;
 }
@@ -200,7 +212,7 @@ bool MQTTClient::unsubscribe(const char* topic)
 }
 
 MqttTopic MQTTClient::getTopic(const char* topic) 
-{
+{ 
   if (compareTopic(topic, mqttTopicReset)) 
   {
     return DEVICE_RESET;

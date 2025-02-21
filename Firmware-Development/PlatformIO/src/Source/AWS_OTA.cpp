@@ -1,7 +1,8 @@
 #include"AWS_OTA.hpp"
 #include "SM_Http.hpp"
-#include"CertificateHandler.hpp"
+#include"LocalStorage.hpp"
 #include "Device.hpp"
+#include "HttpsOTAUpdate.cpp"
 
 AWS_OTA* AWS_OTA::instance = nullptr;
 
@@ -15,8 +16,7 @@ AWS_OTA* AWS_OTA::getInstance()
 }
 
 void AWS_OTA::httpEventHandler(HttpEvent_t *event) 
-{
-  switch (event->event_id) 
+{ switch (event->event_id) 
   {
     case HTTP_EVENT_ERROR:        Serial.println("Http Event Error"); break;
     case HTTP_EVENT_ON_CONNECTED: Serial.println("Http Event On Connected"); break;
@@ -31,6 +31,8 @@ void AWS_OTA::httpEventHandler(HttpEvent_t *event)
 
 void AWS_OTA::setup()
 {
+  config.buffer_size = 2048;
+  config.buffer_size_tx = 2048;
   HttpsOTA.onHttpEvent(httpEventHandler);
   Serial.println("Starting OTA");
   HttpsOTA.begin(deviceOtaUrl, server_certificate);
@@ -67,6 +69,7 @@ bool AWS_OTA::getStatus()
       break;
   }
 
+  vTaskDelay(1);
   return false;
 }
 
@@ -76,11 +79,10 @@ void AWS_OTA::startFirmwareUpdate(const char* url)
   deviceOtaUrl = url;
   Serial.println(deviceOtaUrl);
   
-  CertificateHandler certificateHandler;
-  certificateHandler.setup();
-  certificateHandler.isExist();
-  //certificateHandler.write(server_certificate);  // Write new content in  to the file
-  server_certificate = certificateHandler.get();  // Get the content of the file as a char array
+ 
+  localStorage.setup();
+  localStorage.isExist();
+  server_certificate = localStorage.get(FILE_TITLE);  // Get the content of the file as a char array
   if (server_certificate) 
   {
     Serial.print("server_certificate content via get(): ");
@@ -122,7 +124,7 @@ void awsOtaTask(void* pvParameters)
     }
     if (!ota.updated) 
       break;
-    delay(1000);
+    vTaskDelay(1);
   }
   http.updateDeviceStatus(Device::macAddress, otaStatus);
 
@@ -132,6 +134,7 @@ void awsOtaTask(void* pvParameters)
   Device::otaUpdating = false;
   Serial.printf("Device::otaUpdating %d\n", Device::otaUpdating);
   Serial.println("OTA Task Deleted");
+
   vTaskDelete(NULL);
 }
 

@@ -1,8 +1,6 @@
 #pragma once
 #include <WiFi.h>
 
-#define SM_MODEL "SSB23V1"
-#define SM_FIRMWARE_VER "1.0"
 #define BLE_MAC_OFFSET 2
 #define BATTERY_HEALTH 90
 #define MASJID_ID_TEST 3
@@ -20,7 +18,7 @@
 #define TIMER_NO 0
 #define TIMER_PRESCALAR_1MHZ 80
 #define TIMER_ONE_SECOND_COUNTS 1000000
-#define TELEMETRY_UPDATE_TIME 1 * 60 // telemetry update time in seconds
+#define TELEMETRY_UPDATE_TIME 5 * 60 // telemetry update time in seconds
 
 class Device 
 {

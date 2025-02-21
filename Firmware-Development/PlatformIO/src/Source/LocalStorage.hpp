@@ -1,13 +1,17 @@
 #pragma once
 #include "SPIFFS.h"
+#include "ArduinoJson.h"
 
 #define FILE_TITLE "/server.crt"
-class CertificateHandler 
+#define FILE_JSON "/config.json"
+class LocalStorage 
 {
   public:
     void setup(); 
     void isExist(); 
     void write(const char* content); 
     void print(); 
-    char* get();
+    char* get(const char* filename);
 };
+
+extern LocalStorage localStorage;

@@ -20,7 +20,7 @@
             "file": "partitions.bin"
         },
 	{
-            "address": "0x310000",
+            "address": "0x3D0000",
             "file": "spiffs.bin"
         }
     ]
