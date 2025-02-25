@@ -147,6 +147,7 @@ void BLE::stop(void)
   Serial.println("BLE Stopped");
   LED& rgb = *LED::getInstance();
   rgb.currentMode = MODE::WIFI_CONNECTED; 
+  WifiProvisioning::wifiServiceStarted = true;
   status = BLE_STOPPED;
 }
 

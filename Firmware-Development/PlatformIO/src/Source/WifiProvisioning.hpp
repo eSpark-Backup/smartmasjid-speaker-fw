@@ -15,6 +15,8 @@
 #define WIFI_RETRY 10  // number of times to retry WiFi connection
 #define TO_MS(seconds) ((seconds) * 1000)
 
+
+
 void wifiProvisioning(void* pvParameters);
 
 typedef enum
@@ -42,7 +44,8 @@ class WifiProvisioning : public IWifiProvisioning
     // TelemetryStatus deviceTelemetryStatus = TELEMETRY_NOTSENT;
     
   public:
-    
+    static volatile bool wifiServiceStarted;
+
     bool connectWifiFromNVS(void);
     bool connectWifi(const char* ssid, const char* pass, int retries = WIFI_RETRY) override;
     void wifiGotIP(WiFiEvent_t event, WiFiEventInfo_t info);

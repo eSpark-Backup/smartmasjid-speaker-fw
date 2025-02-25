@@ -6,6 +6,7 @@
 #include "LED.hpp"
 
 TelemetryStatus deviceTelemetryStatus = TELEMETRY_NOTSENT;
+volatile bool WifiProvisioning::wifiServiceStarted = false;
 
 bool WifiProvisioning::connectWifi(const char *ssid, const char *pass, int retries)
 { 
@@ -24,6 +25,7 @@ bool WifiProvisioning::connectWifi(const char *ssid, const char *pass, int retri
     if (WiFi.status() == WL_CONNECTED)
     {
        WiFi.onEvent(std::bind(&WifiProvisioning::wifiGotIP, this, std::placeholders::_1, std::placeholders::_2), WiFiEvent_t::ARDUINO_EVENT_WIFI_STA_GOT_IP);  
+       wifiServiceStarted = true;
        return true;
     }
     else
@@ -52,6 +54,7 @@ bool WifiProvisioning:: connectWifiFromNVS(void)
   {
     LED& rgb = *LED::getInstance();
     rgb.currentMode = MODE::WIFI_CONNECTED; 
+    wifiServiceStarted = true;
     return true;
   }
   return false;

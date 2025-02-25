@@ -63,6 +63,7 @@ bool MQTTClient::connectToBroker()
   else
   {
     Serial.println("Failed to connect to MQTT broker");
+    WifiProvisioning::wifiServiceStarted = false;
     return false;
   }
 }
@@ -442,26 +443,39 @@ void MQTTClient::mqttCallback()
         Serial.print("WiFi disconnected. Retrying (");
         Serial.print(retryCount + 1);
         Serial.println("/10)...");
-        
         WiFi.disconnect();
+        WifiProvisioning::wifiServiceStarted = false;
         delay(1000);
         WiFi.reconnect();
         delay(2000); 
-        
         retryCount++;
     }
       if (WiFi.status() != WL_CONNECTED){
         Serial.println("Failed to reconnect after 10 attempts. Entering sleep mode...");
-        Serial.println("Enter Sleep mode for 15 minutes.");
-        delay(100);
+        Serial.println("Enter Sleep mode for 5 minutes.");
+        delay(10);
         esp_sleep_enable_timer_wakeup(SLEEP_DURATION * 60 * 1000000); // 1 minute in microseconds
         esp_light_sleep_start();
       }
-      else{
-      Serial.println("WiFi Reconnected Successfully!");
-      connectToBroker(5); 
+      else {
+          Serial.println("WiFi Reconnected Successfully!");
+          if(connectToBroker(5))
+          {
+            WifiProvisioning::wifiServiceStarted = true;
+            Serial.println("Wifi connection established successfullly");
+          } 
+          else 
+          {
+            WifiProvisioning::wifiServiceStarted = false;
+            Serial.println("Failed to established connection....");
+            Serial.println("Failed to reconnect after 5 attempts. Entering sleep mode...");
+            Serial.println("Sleep mode for 5 minutes.");
+            delay(10);
+            esp_sleep_enable_timer_wakeup(SLEEP_DURATION * 60 * 1000000); // 1 minute in microseconds
+            esp_light_sleep_start();
+          }
     }
-    
+
 }
 
 bool MQTTClient::compareAdhanTopic(const char* topic) 
@@ -535,6 +549,7 @@ void mqttTask(void* pvParameters)
   while(1)
   {
     mqtt->loop();
+    vTaskDelay(10);
     
   }
 
