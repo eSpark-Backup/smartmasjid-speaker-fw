@@ -3,6 +3,7 @@
 #include"LocalStorage.hpp"
 #include "Device.hpp"
 #include "HttpsOTAUpdate.cpp"
+#include <HTTPUpdate.h>
 
 AWS_OTA* AWS_OTA::instance = nullptr;
 
@@ -29,13 +30,15 @@ void AWS_OTA::httpEventHandler(HttpEvent_t *event)
   }
 }
 
-void AWS_OTA::setup()
+void AWS_OTA::setup(const char* url)
 {
   config.buffer_size = 2048;
   config.buffer_size_tx = 2048;
+  config.keep_alive_enable = true;
+  config.timeout_ms = 15000;
   HttpsOTA.onHttpEvent(httpEventHandler);
   Serial.println("Starting OTA");
-  HttpsOTA.begin(deviceOtaUrl, server_certificate);
+  HttpsOTA.begin(url, server_certificate);
   Serial.println("Please Wait it takes some time ...");
 }
 
@@ -44,6 +47,7 @@ bool AWS_OTA::getStatus()
   otastatus = HttpsOTA.status();
   Serial.print("Ota Status = ");
   Serial.println(otastatus);
+  vTaskDelay(pdMS_TO_TICKS(10));
 
   switch (otastatus)
   {
@@ -74,10 +78,12 @@ bool AWS_OTA::getStatus()
 }
 
 
-void AWS_OTA::startFirmwareUpdate(const char* url)
+void AWS_OTA::startFirmwareUpdate(const char* url,const char* certificate)
 {
   deviceOtaUrl = url;
+  deviceOtaSpiffUrl = certificate;
   Serial.println(deviceOtaUrl);
+  Serial.println(deviceOtaSpiffUrl);
   
  
   localStorage.setup();
@@ -97,7 +103,9 @@ void AWS_OTA::startFirmwareUpdate(const char* url)
 void awsOtaTask(void* pvParameters) 
 {
   AWS_OTA& ota = *AWS_OTA::getInstance();
-  ota.setup();
+
+  // ota.updateSPIFFSFromUrl(ota.deviceOtaSpiffUrl);
+  ota.setup(ota.deviceOtaUrl);
   SmHttp http;
   char otaStatus[10];  
 
@@ -118,7 +126,9 @@ void awsOtaTask(void* pvParameters)
         Serial.println("Failed to report update to server");
         strcpy(otaStatus, OTA_ROLL_BACK);  // Use strcpy to copy "R" into otaStatus
         delete[] ota.deviceOtaUrl;
+        delete[] ota.deviceOtaSpiffUrl;
         ota.deviceOtaUrl = nullptr;
+        ota.deviceOtaSpiffUrl = nullptr;
         break;
       }
     }
@@ -126,10 +136,11 @@ void awsOtaTask(void* pvParameters)
       break;
     vTaskDelay(1);
   }
+  ota.updateSPIFFSFromUrl(ota.deviceOtaSpiffUrl);
   http.updateDeviceStatus(Device::macAddress, otaStatus);
 
-  if (strcmp(otaStatus, OTA_SUCCESS) == 0) 
-    ESP.restart();
+  if (strcmp(otaStatus, OTA_SUCCESS) == 0){ 
+    ESP.restart();}
 
   Device::otaUpdating = false;
   Serial.printf("Device::otaUpdating %d\n", Device::otaUpdating);
@@ -138,5 +149,19 @@ void awsOtaTask(void* pvParameters)
   vTaskDelete(NULL);
 }
 
-
-
+bool AWS_OTA::updateSPIFFSFromUrl(const char* url)
+{
+  WiFiClientSecure client;
+  HTTPUpdate httpUpdate;
+  client.setInsecure();
+  Serial.println("Updating SPIFFS...");
+  // client.setTimeout(30000); // Set timeout to 10 seconds
+  t_httpUpdate_return ret = httpUpdate.updateSpiffs(client, url);
+  vTaskDelay(pdMS_TO_TICKS(10));
+  if (ret != HTTP_UPDATE_OK) {
+    Serial.printf("SPIFFS Update failed. Error (%d): %s\n", httpUpdate.getLastError(), httpUpdate.getLastErrorString().c_str());
+    return false;
+  }
+  Serial.println("[OTA] SPIFFS update completed successfully.");
+  return true;  
+}

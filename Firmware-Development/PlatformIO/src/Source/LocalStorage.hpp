@@ -12,6 +12,7 @@ class LocalStorage
     void write(const char* content); 
     void print(); 
     char* get(const char* filename);
+    void deleteFile();
 };
 
 extern LocalStorage localStorage;

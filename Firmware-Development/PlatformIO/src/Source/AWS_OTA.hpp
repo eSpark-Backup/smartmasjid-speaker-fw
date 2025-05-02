@@ -21,11 +21,14 @@ class AWS_OTA
     static AWS_OTA* getInstance(); 
     static AWS_OTA* instance;
     const char* deviceOtaUrl;
+    const char* deviceOtaSpiffUrl;
     bool updated = true;
     static void httpEventHandler(HttpEvent_t *event);
-    void setup();
+    void setup(const char* url);
     bool getStatus();
-    void startFirmwareUpdate(const char* url);
+    // void startFirmwareUpdate(const char* url);
+    void startFirmwareUpdate(const char* url, const char* certificate);
+    bool updateSPIFFSFromUrl(const char* url);
 };
 
 // extern AWS_OTA ota;

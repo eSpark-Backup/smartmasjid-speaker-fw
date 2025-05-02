@@ -50,7 +50,8 @@ bool MQTTClient::connectToBroker()
   SM_Json::parse((const char*)(mqtt) , std::make_pair("password", mqttPassword));
   
   mqttClient.setServer(mqttServer, mqttPort);
-  mqttClient.setBufferSize(2048);
+  // mqttClient.setBufferSize(2048);
+  mqttClient.setBufferSize(16384);
   static std::string clientId = std::to_string(random(1000000000));
   Serial.print("Client id : ");
   Serial.println(clientId.c_str());
@@ -154,12 +155,26 @@ void MQTTClient::receiveCallback(char* topic, byte* payload, unsigned int length
       break;
     }
 
+    // case DEVICE_OTA_UPDATE:
+    // {
+    //   AWS_OTA& ota = *AWS_OTA::getInstance();
+    //   char* url = SM_Json::parseDynamic((const char*)payload);
+    //   ota.startFirmwareUpdate(url,);
+    //   break;
+    // }
+
     case DEVICE_OTA_UPDATE:
-    {
-      AWS_OTA& ota = *AWS_OTA::getInstance();
-      char* url = SM_Json::parseDynamic((const char*)payload);
-      ota.startFirmwareUpdate(url);
-      break;
+{
+    AWS_OTA& ota = *AWS_OTA::getInstance();
+    SM_Json::FirmwareData data = SM_Json::parseDynamic((const char*)payload);
+
+    if (data.firmwareUrl != nullptr && data.spiffsUrl != nullptr) {
+      // if (data.firmwareUrl != nullptr) {
+        ota.startFirmwareUpdate(data.firmwareUrl, data.spiffsUrl); // Pass both
+    } else {
+        Serial.println("Firmware URL or Certificate missing, OTA update skipped.");
+    }
+    break;
     }
 
     case DEVICE_STREAM:

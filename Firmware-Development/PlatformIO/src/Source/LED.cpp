@@ -118,7 +118,7 @@ void rgbLedTask(void *pvParameters)
     rgb.goldenRod = CRGB::DarkGoldenrod;   // hsv(43, 94%, 72%)
     rgb.white = CHSV(0, 0, 255); // White color
     rgb.darkred = CRGB::DarkRed;
-
+    vTaskDelay(pdMS_TO_TICKS(10));
     // rgb.turnOffLeds();
 
     while (1)

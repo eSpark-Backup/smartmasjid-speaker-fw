@@ -103,3 +103,8 @@ char* LocalStorage::get(const char* filename) {
   file.close();
   return content;
 }
+
+void LocalStorage::deleteFile() 
+{
+  SPIFFS.format();
+}
